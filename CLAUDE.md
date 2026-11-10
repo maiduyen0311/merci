@@ -7,7 +7,7 @@ Theme Merci của iPhoenix Themes, bán trên ThemeForest. Code nền clone từ
 **Đọc trước khi làm tiếp:** `.claude/memory/MEMORY.md` + các file trong `.claude/memory/`.
 
 - Phase hiện tại: 05 — 05A trang con xong (SPEC Appendix D, `_mc-pages.scss`); 05B generator `scripts/demo/merci.js` → `demos/merci/` xong; 05C import CHƯA chạy (chờ user cho phép + `shopify store auth`).
-- Việc tiếp theo: user duyệt preview → `shopify store auth --store merci-demo.myshopify.com --scopes write_products,write_files,write_content,write_online_store_pages,write_online_store_navigation` → `npm run demo:import -- merci --store merci-demo.myshopify.com --only metafields,files,pages,menus` → `node scripts/deploy-demo.js merci --store merci-demo.myshopify.com --theme 161508261959`. Sau import: xoá `templates/page.faqs.json` (chỉ tồn tại vì trang FAQ v1 dùng suffix faqs).
+- Việc tiếp theo: user duyệt preview → `shopify store auth --store merci-demo.myshopify.com --scopes write_products,write_files,write_content,write_online_store_pages,write_online_store_navigation` → `npm run demo:import -- merci --store merci-demo.myshopify.com --only metafields,files,pages,menus` → `node scripts/deploy-demo.js merci --store merci-demo.myshopify.com --theme 161508261959`. (import đã chạy 2026-11-10)
 
 ## Playbook
 

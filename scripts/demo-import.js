@@ -120,9 +120,11 @@ const alt = (key, fallback) => fallback || key.replace(/^p-/, '').replace(/-/g, 
 // ---------------------------------------------------------------------------
 // Shared lookups
 // ---------------------------------------------------------------------------
-const pubs = gql('{ publications(first: 20) { nodes { id name } } }').publications.nodes;
-const onlineStore = pubs.find((p) => /online store/i.test(p.name)) || pubs[0];
-const location = gql('{ locations(first: 1) { nodes { id } } }').locations.nodes[0];
+// only the catalogue steps need them (read_publications / read_locations scopes)
+const needCatalogue = step('products') || step('collections');
+const pubs = needCatalogue ? gql('{ publications(first: 20) { nodes { id name } } }').publications.nodes : [];
+const onlineStore = pubs.find((p) => /online store/i.test(p.name)) || pubs[0] || { name: '-' };
+const location = needCatalogue ? gql('{ locations(first: 1) { nodes { id } } }').locations.nodes[0] : null;
 const publish = (id) => userErrors(gql(
   'mutation($id: ID!, $input: [PublicationInput!]!) { publishablePublish(id: $id, input: $input) { userErrors { field message } } }',
   { id, input: [{ publicationId: onlineStore.id }] },

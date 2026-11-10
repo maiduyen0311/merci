@@ -67,28 +67,28 @@
         "spot1": {
           "type": "hotspot",
           "settings": {
-            "x": 55,
-            "y": 42,
+            "x": 30,
+            "y": 20,
             "show_card": true,
-            "product": "knot-hem-top"
+            "product": "the-placeholder-text"
           }
         },
         "spot2": {
           "type": "hotspot",
           "settings": {
-            "x": 48,
-            "y": 66,
+            "x": 45,
+            "y": 50,
             "show_card": true,
-            "product": "duis-aute-pariatur"
+            "product": "scallop-edge-laser-cut-1"
           }
         },
         "spot3": {
           "type": "hotspot",
           "settings": {
-            "x": 40,
-            "y": 92,
+            "x": 42,
+            "y": 93,
             "show_card": true,
-            "product": "consectetur-adipiscing-elit"
+            "product": "duis-aute-pariatur"
           }
         }
       },
@@ -101,8 +101,8 @@
         "layout": "split",
         "image_position": "right",
         "eyebrow": "Look 02",
-        "heading": "Weekend green",
-        "subheading": "Knitted crop top, sand shorts and white trainers for slow summer mornings.",
+        "heading": "Denim on denim",
+        "subheading": "Light wash on light wash: an oversized denim jacket, ripped straight-leg jeans and black mules.",
         "image": "shopify://shop_images/merci-demo-lookbook-2.jpg",
         "cta_label": "Shop the look",
         "cta_url": "shopify://collections/all",
@@ -116,26 +116,26 @@
         "spot1": {
           "type": "hotspot",
           "settings": {
-            "x": 38,
-            "y": 30,
+            "x": 55,
+            "y": 8,
             "show_card": true,
-            "product": "the-placeholder-text"
+            "product": "neque-porro-quisquam-est"
           }
         },
         "spot2": {
           "type": "hotspot",
           "settings": {
-            "x": 55,
-            "y": 62,
+            "x": 50,
+            "y": 40,
             "show_card": true,
-            "product": "scallop-edge-laser-cut-1"
+            "product": "knot-hem-top"
           }
         },
         "spot3": {
           "type": "hotspot",
           "settings": {
-            "x": 52,
-            "y": 94,
+            "x": 70,
+            "y": 80,
             "show_card": true,
             "product": "finibus-bonorum-et-malorum"
           }
@@ -150,8 +150,8 @@
         "layout": "split",
         "image_position": "left",
         "eyebrow": "Look 03",
-        "heading": "Denim on denim",
-        "subheading": "Light wash on light wash: an oversized jacket with straight-leg jeans and black heels.",
+        "heading": "Beach day",
+        "subheading": "A soft polo, a canvas cap and a striped towel to carry — everything for a slow day by the sea.",
         "image": "shopify://shop_images/merci-demo-lookbook-3.jpg",
         "cta_label": "Shop the look",
         "cta_url": "shopify://collections/all",

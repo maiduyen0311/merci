@@ -192,8 +192,8 @@ if (!fs.existsSync(imgDir)) {
   const { head, data } = readJson(path.join(ROOT, 'templates', 'page.lookbook.json'));
   const looks = {
     look1: ['lookbook-1', ['scallop-edge-laser-cut', 'button-front-denim-skirt', 'lorem-ipsum-began-as-scrambled']],
-    look2: ['lookbook-2', ['knot-hem-top', 'duis-aute-pariatur', 'consectetur-adipiscing-elit']],
-    look3: ['lookbook-3', ['the-placeholder-text', 'scallop-edge-laser-cut-1', 'finibus-bonorum-et-malorum']],
+    look2: ['lookbook-2', ['the-placeholder-text', 'scallop-edge-laser-cut-1', 'duis-aute-pariatur']],
+    look3: ['lookbook-3', ['neque-porro-quisquam-est', 'knot-hem-top', 'finibus-bonorum-et-malorum']],
   };
   for (const [id, [img, handles]] of Object.entries(looks)) {
     const s = data.sections[id];
