@@ -1,0 +1,139 @@
+// =============================================================================
+// Merci — Footer layout "merci" (SPEC §2 Footer, render design/merci/sections/14-footer-desktop.png)
+//   light background (--color-footer-bg #f9f9f9), 4 columns:
+//   about (logo + text + copyright) | My account | Link | Follow us + payment icons
+//   newsletter: full-width row, centred, underline field with an arrow button in the primary colour.
+// =============================================================================
+
+.footer-main--merci {
+  color: var(--color-text);
+
+  .footer-main__grid {
+    row-gap: 5rem;
+  }
+
+  .footer-main__heading {
+    margin-bottom: 2.4rem;
+    color: var(--color-heading, #000);
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .footer-main__list { gap: 1rem; }
+
+  .footer-main__link {
+    color: var(--color-text);
+    font-size: 1.3rem;
+
+    &:hover { color: var(--color-primary); }
+  }
+
+  .footer-main__text {
+    margin-bottom: 2.4rem;
+    font-size: 1.3rem;
+    line-height: 2;
+  }
+
+  .footer-main__copyright {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 1.2rem;
+    letter-spacing: normal;
+    text-align: left;
+    text-transform: none;
+  }
+
+  .footer-main__about-logo {
+    margin-bottom: 2.6rem;
+
+    img { display: block; width: 100%; height: auto; }
+  }
+
+  // Follow us: plain icons (no coloured circles), then payment icons
+  .footer-main__social {
+    gap: 2.4rem;
+    margin: 0 0 2rem;
+  }
+
+  .footer-main__social-link {
+    width: auto;
+    height: auto;
+    background: transparent;
+    color: var(--color-heading, #000);
+
+    svg { width: 1.4rem; height: 1.4rem; }
+
+    &:hover { background: transparent; color: var(--color-primary); transform: none; }
+  }
+
+  .footer-main__payments {
+    justify-content: flex-start;
+    gap: 0.8rem;
+    margin: 0;
+  }
+
+  .footer-main__payment-icon { width: 3.8rem; height: auto; }
+
+  // Newsletter: own row, centred
+  .footer-main__col--newsletter {
+    grid-column: 1 / -1;
+    max-width: 74rem;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+
+    .footer-main__heading {
+      margin-bottom: 0.8rem;
+      font-size: 2.4rem;
+    }
+  }
+
+  .footer-newsletter__form,
+  .footer-main__col--newsletter .footer-newsletter__form { width: 100%; max-width: none; }
+
+  .footer-main__newsletter-intro {
+    margin-bottom: 2.4rem;
+    color: var(--color-text);
+    font-size: 1.3rem;
+  }
+
+  .footer-newsletter__field {
+    max-width: none;
+    border: 0;
+    border-bottom: 1px solid var(--color-border-strong, #949494);
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .footer-newsletter__input {
+    padding-left: 0;
+    color: var(--color-text);
+    font-size: 1.3rem;
+    text-transform: uppercase;
+
+    &::placeholder { color: var(--color-primary); opacity: 1; }
+  }
+
+  .footer-newsletter__submit {
+    background: transparent;
+    color: var(--color-primary);
+
+    &:hover { background: transparent; color: var(--color-accent-dark); }
+  }
+
+  @media screen and (max-width: 991.98px) {
+    .footer-main__col--about { grid-column: 1 / -1; text-align: center; }
+    .footer-main__about-logo { margin-inline: auto; }
+    .footer-main__copyright { text-align: center; }
+    .footer-main__col--social { grid-column: 1 / -1; text-align: center; }
+    .footer-main__social,
+    .footer-main__payments { justify-content: center; }
+  }
+}
+
+// Mobile: keep the two menus side by side (v1 render home-mobile.png)
+@media screen and (max-width: 600px) {
+  .footer-main--merci .footer-main__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

@@ -1,0 +1,209 @@
+// =============================================================================
+// Merci — Header layout "centered" (SPEC §2 Header, render design/merci/sections/01-header-desktop.png)
+//   row 1 (99px): social icons | logo (centre) | currency, language, search, compare, wishlist, cart, account
+//   row 2 (40px): centred menu — dark bar (--mc-nav-bg) on inner pages,
+//                 transparent over the homepage hero (.mc-header--overlay) until the page scrolls.
+// Desktop only; below 992px header-mobile.liquid is used.
+// =============================================================================
+
+.header-middle--centered {
+  display: flex;
+  align-items: center;
+  min-height: 9.9rem;
+  padding: 0;
+  background: var(--header-middle-bg, #fff);
+  color: var(--header-middle-text, #2d2d2d);
+
+  > .container { width: 100%; }
+}
+
+.mc-header__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.mc-header__side {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+
+  &--end {
+    justify-content: flex-end;
+    gap: 0.8rem;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+}
+
+.mc-header__logo {
+  .header-middle__logo { justify-content: center; text-align: center; }
+  .header-middle__logo-image { width: var(--mc-logo-width, 125px); }
+  .header-middle__logo-text { font-size: 2.6rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .header-middle__logo-top { font-size: inherit; line-height: 1; }
+}
+
+// --- Social icons -----------------------------------------------------------
+.mc-header__social {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+  margin: 0;
+  padding: 0;
+}
+
+.mc-header__social-link {
+  display: grid;
+  place-items: center;
+  color: inherit;
+  transition: color 0.2s ease;
+
+  svg { width: 1.4rem; height: 1.4rem; }
+
+  &:hover { color: var(--color-primary); }
+}
+
+// --- Pickers / search / icons -------------------------------------------------
+.header-middle--centered {
+  .mc-header__picker {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    // pickers were built for the coloured top bar — keep them dark here
+    --header-top-text: var(--header-middle-text, #2d2d2d);
+    color: var(--header-middle-text, #2d2d2d);
+  }
+
+  .header-search-toggle { position: relative; display: block; }
+
+  .header-search-toggle__btn {
+    display: grid;
+    place-items: center;
+    padding: 0.5rem;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &:hover,
+    &[aria-expanded='true'] { color: var(--color-primary); }
+  }
+
+  .header-search-toggle__panel {
+    --header-middle-text: var(--color-heading, #1b1b1b);
+
+    position: absolute;
+    top: calc(100% + 1.6rem);
+    right: -1rem;
+    z-index: 1200;
+    width: 38rem;
+    padding: 1.6rem;
+    background: #fff;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14);
+
+    .header-middle__search { width: 100%; }
+  }
+
+  .header-middle__actions-list { align-items: center; gap: 0.4rem; }
+  .header-middle__action-link { padding: 0.5rem; color: inherit; }
+  .header-middle__action-icon svg { width: 2rem; height: 2rem; }
+
+  // Count bubble: 16px circle in the primary colour (SPEC §2 Header)
+  .header-middle__badge {
+    min-width: 1.6rem;
+    height: 1.6rem;
+    font-size: 1rem;
+    line-height: 1.6rem;
+    background: var(--header-badge-bg, var(--color-primary));
+    color: var(--header-badge-text, #fff);
+  }
+
+  // icons only — the label stays for screen readers
+  .header-middle__action-label {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+// --- Menu row ---------------------------------------------------------------
+.mc-header__nav {
+  display: none;
+  background: var(--mc-nav-bg, #231e17);
+  color: var(--mc-nav-text, #fff);
+
+  @media screen and (min-width: 992px) { display: block; }
+
+  > .container { position: relative; } // mega panels span the container
+
+  .header-inline-nav__list {
+    justify-content: center;
+    gap: 0 2.2rem;
+  }
+
+  .header-inline-nav__item { position: static; }
+
+  .header-inline-nav__link {
+    min-height: 4rem;
+    padding: 0;
+    color: var(--mc-nav-text, #fff);
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    &:hover,
+    &.is-active { color: var(--color-primary); }
+  }
+}
+
+// --- Homepage: header floats over the hero ------------------------------------
+@media screen and (min-width: 992px) {
+  .mc-header--overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 5;
+    transition: background-color 0.25s ease;
+
+    .header-middle--centered,
+    .mc-header__nav {
+      --header-middle-text: var(--mc-overlay-text, #2d2d2d);
+      --mc-nav-text: var(--mc-overlay-text, #2d2d2d);
+      background: transparent;
+      color: var(--mc-overlay-text, #2d2d2d);
+    }
+
+    .header-middle--centered { min-height: 7rem; }
+  }
+
+  // The header group is sticky; once scrolled, give the floating header a solid background.
+  html.mc-scrolled .mc-header--overlay {
+    position: fixed;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+
+    .header-middle--centered { min-height: 6rem; }
+  }
+
+  // Keep the header group out of the flow on the homepage so the hero starts at the top.
+  body:has(.mc-header--overlay) .shopify-section-group-header-group.section-header {
+    height: 0;
+    box-shadow: none;
+  }
+
+}
+
+// --- Mobile bar (centered layout): smaller logo, centred between menu and icons (v1 home-mobile.png)
+@media screen and (max-width: 991.98px) {
+  .header-wrapper:has(.mc-header) {
+    .header-mobile__logo-link { justify-self: center; }
+    .header-mobile__logo-image { max-height: 2.4rem; }
+  }
+}

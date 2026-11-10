@@ -16,7 +16,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": true,
-        "newsletter_heading": "NEWSLETTER",
+        "newsletter_heading": "Newsletter",
         "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": true,
@@ -24,53 +24,57 @@
         "payment_enable": true,
         "show_policy": true,
         "margin_top": 0,
-        "padding_top": 80,
-        "padding_bottom": 24,
-        "copyright_text": "© 2026 Merci. All Rights Reserved."
+        "padding_top": 72,
+        "padding_bottom": 40,
+        "copyright_text": "© 2026 Merci. All Rights Reserved",
+        "footer_layout": "merci",
+        "payment_mode": "shop_enabled"
       },
       "blocks": {
-        "col_company": {
-          "type": "link_list",
+        "about": {
+          "type": "about",
           "settings": {
-            "heading": "COMPANY",
-            "menu": "company"
+            "logo": "shopify://shop_images/logo.png",
+            "logo_width": 125,
+            "heading": "About the shop",
+            "text": "<p>Merci is a women’s fashion boutique: easy dresses, denim and everyday pieces, picked each season for comfort and style.</p>",
+            "show_copyright": true
           }
         },
-        "col_products": {
+        "account": {
           "type": "link_list",
           "settings": {
-            "heading": "PRODUCTS",
-            "menu": "products"
+            "heading": "My account",
+            "menu": "footer"
           }
         },
-        "col_profile": {
+        "links": {
           "type": "link_list",
           "settings": {
-            "heading": "PROFILE",
-            "menu": "profile"
+            "heading": "Link",
+            "menu": "link"
           }
         },
-        "col_language": {
-          "type": "link_list",
+        "social": {
+          "type": "social_payments",
           "settings": {
-            "heading": "LANGUAGE",
-            "menu": "language"
+            "heading": "Follow us"
           }
         },
-        "col_newsletter": {
+        "newsletter": {
           "type": "newsletter",
           "settings": {
-            "intro_text": "",
-            "placeholder": "Email"
+            "intro_text": "Sign up to receive our latest news & events",
+            "placeholder": "Enter your email"
           }
         }
       },
       "block_order": [
-        "col_company",
-        "col_products",
-        "col_profile",
-        "col_language",
-        "col_newsletter"
+        "about",
+        "account",
+        "links",
+        "social",
+        "newsletter"
       ]
     },
     "newsletter_popup": {
@@ -90,62 +94,6 @@
         "background_color": "#e5d8cf",
         "text_color": "#000000",
         "overlay_opacity": 40
-      }
-    },
-    "services_bar": {
-      "type": "home-services-bar",
-      "blocks": {
-        "service_shipping": {
-          "type": "service",
-          "settings": {
-            "icon": "shipping",
-            "title": "Free Shipping",
-            "subtitle": "Orders over $ 99.00",
-            "link": ""
-          }
-        },
-        "service_return": {
-          "type": "service",
-          "settings": {
-            "icon": "return",
-            "title": "90 Days Return",
-            "subtitle": "Secure & trustworthy",
-            "link": ""
-          }
-        },
-        "service_support": {
-          "type": "service",
-          "settings": {
-            "icon": "customer",
-            "title": "Support Team",
-            "subtitle": "Resolve 48 hours query",
-            "link": ""
-          }
-        },
-        "service_customer": {
-          "type": "service",
-          "settings": {
-            "icon": "secure",
-            "title": "Secure Checkout",
-            "subtitle": "Order & transaction team",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "service_shipping",
-        "service_return",
-        "service_support",
-        "service_customer"
-      ],
-      "settings": {
-        "background_color": "#34271f",
-        "text_color": "#b6acaa",
-        "accent_color": "#5eb11b",
-        "show_dividers": false,
-        "full_width": false,
-        "padding_top": 48,
-        "padding_bottom": 48
       }
     },
     "sales_popup": {
@@ -207,7 +155,6 @@
     }
   },
   "order": [
-    "services_bar",
     "footer",
     "newsletter_popup",
     "sales_popup"

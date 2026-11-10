@@ -666,3 +666,45 @@ $card-bar-gap: 14px; // space between the swatches and the bar
   .card-product__actions { align-items: flex-end; padding-bottom: 10px; }
   .card-product__action { width: 36px; height: 36px; opacity: 1; transform: none; }
 }
+
+// =============================================================================
+// Merci card (SPEC §3.1, render design/merci/render/collection-desktop.png):
+// centred text, title 13px #000 (hover primary), price 13px in the text colour,
+// compare price grey, small rectangular badge centred on top of the image,
+// small rating stars. Price colour stays overridable (Theme settings → Price color).
+// =============================================================================
+.card-wrapper {
+  .card__heading {
+    font-size: 1.3rem;
+    color: var(--color-product-title, #000);
+  }
+
+  .price {
+    font-size: 1.3rem;
+    font-weight: 400;
+
+    .price-item--regular,
+    .price-item--sale { color: var(--color-price, var(--color-text)); }
+
+    s.price-item--regular {
+      color: var(--color-compare-price, #9f9f9f);
+      font-size: 1.2rem;
+    }
+
+    @media screen and (max-width: 749px) {
+      font-size: 1.3rem;
+    }
+  }
+
+  .rating-star { font-size: 1.2rem; letter-spacing: 1px; }
+}
+
+.card-product__badge {
+  inset-inline-start: 50%;
+  min-width: 3.9rem;
+  height: 2.2rem;
+  padding: 0 0.8rem;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  font-weight: 400;
+}

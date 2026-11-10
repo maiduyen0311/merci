@@ -1,6 +1,6 @@
 # SPEC — Merci 2.0
 
-> Phase 02A · 2026-11-10 · trạng thái: **chờ duyệt**
+> Phase 02A · 2026-11-10 · trạng thái: **đã duyệt 2026-11-10 — §5 theo đề xuất**
 > Nguồn sự thật: theme Merci v1 (bản compare `161508229191`, giống hệt theme live `120883249223`).
 > Ký hiệu nguồn: `[css:<selector>]` computed style đo bằng headless Chrome · `[px:<file>@x,y]` mẫu pixel trên ảnh chụp ·
 > `[cfg:<key>]` `config/settings_data.json` của theme live · `[đề xuất]` Claude tự đưa ra — cần duyệt.

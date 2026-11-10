@@ -5,10 +5,10 @@
     "header": {
       "type": "header",
       "settings": {
-        "header_top_background": "#dc5414",
+        "header_top_background": "#231e17",
         "header_top_text_color": "#ffffff",
-        "header_middle_background": "#f05d17",
-        "header_middle_text_color": "#ffffff",
+        "header_middle_background": "#ffffff",
+        "header_middle_text_color": "#2d2d2d",
         "enable_country_selector": true,
         "enable_language_selector": true,
         "show_track_order": true,
@@ -18,7 +18,16 @@
         "show_account": true,
         "show_wishlist": true,
         "show_cart": true,
-        "currency_options": "USD:US, EUR:DE, AUD:AU, GBP:GB, JPY:JP, INR:IN"
+        "currency_options": "USD:US, CAD:CA, EUR:DE, GBP:GB",
+        "header_layout": "centered",
+        "overlay_home": true,
+        "show_social_icons": true,
+        "inline_menu": "main-menu",
+        "nav_row_text": "#ffffff",
+        "overlay_text": "#2d2d2d",
+        "show_compare": true,
+        "logo_image": "shopify://shop_images/logo.png",
+        "logo_width_desktop": 125
       }
     },
     "navigation": {
@@ -141,14 +150,15 @@
         "icon-seasonal"
       ],
       "settings": {
-        "header_bottom_background": "#f05d17",
-        "header_bottom_categories_background": "#e85d04",
+        "header_bottom_background": "#231e17",
+        "header_bottom_categories_background": "#231e17",
         "header_bottom_text_color": "#ffffff",
         "categories_label": "SHOP BY CATEGORIES",
         "menu": "main-menu",
         "show_promotion": true,
         "promotion_text": "Big promotion now!",
-        "categories_menu": "shop-by-categories"
+        "categories_menu": "shop-by-categories",
+        "show_desktop_bar": false
       }
     }
   },

@@ -1,4 +1,4 @@
-// Auto-generated from design/SPEC.md §1. Do not edit hex values directly —
+// Merci — synced from design/SPEC.md §1 (2026-11-10). Do not edit hex values directly —
 // update SPEC and re-run the `theme-tokens` agent.
 //
 // SCSS variables (compile-time) + CSS custom properties (runtime override).
@@ -15,9 +15,9 @@
 // Runtime-overridable colours: `*-hex` is the compile-time default; the plain
 // token reads the CSS variable set from Theme settings (theme-styles.liquid),
 // so every demo / merchant palette reaches the section partials.
-$color-primary-hex: #f05d17;
+$color-primary-hex: #bf7069; // SPEC §1.1 [cfg:color_link_hover]
 $color-primary: var(--color-primary, #{$color-primary-hex});
-$color-secondary-hex: #64af30;
+$color-secondary-hex: #f2d0d0; // NEW badge [px:collection@642,742]
 $color-secondary: var(--color-secondary, #{$color-secondary-hex});
 $color-heading-hex: #000000;
 $color-heading: var(--color-heading, #{$color-heading-hex});
@@ -29,36 +29,40 @@ $color-accent: var(--color-accent, #{$color-accent-hex});
 $color-accent-ink: var(--color-accent-ink, var(--color-accent, #{$color-accent-hex}));
 // text on accent backgrounds (Theme settings → "Text on accent color")
 $color-on-accent: var(--color-on-accent, #fff);
-$color-accent-dark-hex: #8a3409;
+$color-accent-dark-hex: #9c5550; // hover/deep accent [đề xuất]
 $color-accent-dark: var(--color-accent-dark, #{$color-accent-dark-hex});
-$color-accent-bright-hex: #f05d17;
+$color-accent-bright-hex: #bf7069;
 $color-accent-bright: var(--color-accent, #{$color-accent-bright-hex});
-$color-accent-soft: #fff3e0;
+$color-accent-soft: #f2d0d0;
 $color-sale-hex: $color-primary-hex;
 $color-sale: var(--color-sale, #{$color-sale-hex});
 $color-sale-text: #ffffff;
 $color-new-hex: $color-secondary-hex;
 $color-new: var(--color-new, #{$color-new-hex});
 $color-new-text: #ffffff;
-$color-hot: #fdc500;        // yellow circle (HOT) per design 13
-$color-hot-text: #111111;   // dark text on yellow for contrast
+$color-hot: #bf7069;        // HOT badge = primary (SPEC §3.1)
+$color-hot-text: #ffffff;
 $color-bestseller: #7c3aed;
 $color-bestseller-text: #ffffff;
 
 // Neutrals
 $color-bg: #ffffff;
-$color-bg-alt: #f7f7f7;
-$color-text-hex: #383838;
+$color-bg-alt: #f9f9f9; // footer bg [px:home@30,5400]
+$color-text-hex: #332c2c; // [cfg:color_body_text]
 $color-text: var(--color-text, #{$color-text-hex});
-$color-text-muted: #595959;  // 7:1 AAA on white (was #777 → 4.48:1, borderline)
+$color-text-muted: #666666; // [cfg:color_vendor] 5.7:1 on white
 $color-text-light: #767676;  // 4.54:1 AA on white (was #aaa → 2.85:1 fail)
-$color-border-hex: #e5e5e5;
+$color-border-hex: #e8e9eb; // [cfg:color_borders]
 $color-border: var(--color-border, #{$color-border-hex});
-$color-border-strong: #cccccc;
-$color-footer-bg-hex: #2b2118;
+$color-border-strong: #949494; // [cfg:color_text_field_border]
+$color-footer-bg-hex: #f9f9f9; // light footer
 $color-footer-bg: var(--color-footer-bg, #{$color-footer-bg-hex});
-$color-footer-text: #beb3ad; // sampled from Web_TopMarket_Full.jpg footer links
-$color-footer-heading: #ffffff;
+$color-footer-text: #332c2c;
+$color-footer-heading: #000000;
+$color-nav-dark-hex: #231e17; // inner-page menu bar [px:collection@30,118]
+$color-nav-dark: var(--color-nav-dark, #{$color-nav-dark-hex});
+$color-compare-price: #9f9f9f;
+$color-tab-bg: #f2f2f2; // PDP tabs [px:product@300,1288]
 
 // Promo banner pastels
 $color-banner-handbags: #c4a574;
@@ -86,7 +90,7 @@ $color-tag-blog: #d4a017;
 $color-tag-food: #8b6f47;
 
 // ---------------------------------------------------------------------------
-// 1.2 Typography — extracted from Web_TopMarket_Full.psd
+// 1.2 Typography — Merci SPEC §1.2: Mandali (bundled), script/serif kept for optional sections
 //   Sans-serif: Jost (Light/Regular/Medium/SemiBold/Bold) — replaces PSD's Jost
 //   Script (Summer/Trend/Spring): Yellowtail — replaces PSD's MTD-Stash-Vintage
 //   Script bouncy ("New"): Caveat — replaces PSD's MTDPortraitScriptBounce/Hijrnotes
@@ -96,17 +100,17 @@ $color-tag-food: #8b6f47;
 $font-script: "'Yellowtail', 'Sacramento', cursive";
 $font-script-bouncy: "'Caveat', 'Kalam', cursive";
 $font-display-serif: "'Playfair Display', Georgia, serif";
-$font-heading: "'Jost', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
-$font-body: "'Jost', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+$font-heading: "'Mandali', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+$font-body: "'Mandali', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 
 // Font size scale (desktop) — values measured from PSD at 1920× canvas
-$fs-display: 160px;  // PSD: 161px ("75" hero)
-$fs-h1: 60px;        // PSD: 60px ("FLASH SALE", "GET UP TO 50% OFF")
-$fs-h2: 30px;        // PSD: 30px ("Latest News"), 26px ("Top Trending") — use 30
-$fs-h3: 24px;        // PSD: 23.6-25px ("Best of Men's")
-$fs-h4: 18px;        // PSD: 18px (article excerpt)
-$fs-body: 15px;      // PSD: 13.4-14px (body text)
-$fs-small: 13px;     // PSD: 13.4px (badges, meta)
+$fs-display: 60px;   // hero heading [css:h2 60px]
+$fs-h1: 40px;        // parallax / WOMAN banner [css:h3 40px]
+$fs-h2: 24px;        // section titles [cfg:type_header_base_size]
+$fs-h3: 18px;        // PDP title, banner sub [css:PDP h1]
+$fs-h4: 16px;        // sidebar heading, blog title [css:COL h3]
+$fs-body: 13px;      // [cfg:type_base_size]
+$fs-small: 12px;     // badges
 $fs-tiny: 11px;
 
 // ---------------------------------------------------------------------------
@@ -118,23 +122,23 @@ $space-md: 14px;
 $space-lg: 22px;
 $space-xl: 36px;
 $space-2xl: 56px;
-$container-max: 1440px; // design Web_TopMarket_Full.jpg: 1410px content + 2×15px padding
+$container-max: 1200px; // 1170 content + 2×15 padding [css:.container]
 $container-padding: 1.5rem;
 
 // ---------------------------------------------------------------------------
 // 1.4 Radius
 // ---------------------------------------------------------------------------
-$radius-card: 12px;
-$radius-card-sm: 8px;
+$radius-card: 0;
+$radius-card-sm: 0;
 $radius-pill: 999px;
-$radius-button: 4px;
-$radius-badge: 999px;
-$radius-section: 12px;
+$radius-button: 25px; // pill buttons (SPEC §1.3)
+$radius-badge: 0;
+$radius-section: 0;
 
 // ---------------------------------------------------------------------------
 // 1.5 Shadow
 // ---------------------------------------------------------------------------
-$shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.08);
+$shadow-card-hover: none;
 
 // ---------------------------------------------------------------------------
 // CSS custom property bridge — consume these in section partials.
@@ -169,6 +173,9 @@ $shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.08);
   --color-footer-bg: #{$color-footer-bg-hex};
   --color-footer-text: #{$color-footer-text};
   --color-footer-heading: #{$color-footer-heading};
+  --color-nav-dark: #{$color-nav-dark-hex};
+  --color-compare-price: #{$color-compare-price};
+  --color-tab-bg: #{$color-tab-bg};
 
   // Banner pastels
   --color-banner-handbags: #{$color-banner-handbags};

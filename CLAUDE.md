@@ -6,8 +6,8 @@ Theme Merci của iPhoenix Themes, bán trên ThemeForest. Code nền clone từ
 
 **Đọc trước khi làm tiếp:** `.claude/memory/MEMORY.md` + các file trong `.claude/memory/`.
 
-- Phase hiện tại: 02A — `design/SPEC.md` xong, chờ duyệt (6 câu hỏi §5). Ảnh chụp ở `design/merci/render/` + `sections/`.
-- Việc tiếp theo: user duyệt SPEC → phase 03 (tokens, header, footer, card sản phẩm).
+- Phase hiện tại: 03 — Global xong (tokens, header centered, footer merci, card, primitives), chờ xem preview dev theme 161508261959.
+- Việc tiếp theo: user duyệt phase 03 → phase 04 (11 section trang chủ, SPEC Appendix A). Hero cần padding-top vì header nổi trên trang chủ (header_layout centered + overlay_home).
 
 ## Playbook
 

@@ -7,12 +7,12 @@
 {%- liquid
   assign header_middle_bg = section.settings.header_middle_background
   if header_middle_bg == blank
-    assign header_middle_bg = '#f05d17'
+    assign header_middle_bg = '#ffffff'
   endif
 
   assign header_middle_text = section.settings.header_middle_text_color
   if header_middle_text == blank
-    assign header_middle_text = '#ffffff'
+    assign header_middle_text = '#2d2d2d'
   endif
 -%}
 
@@ -26,12 +26,17 @@
   endif
 -%}
 {%- assign inline_layout = false -%}
+{%- assign centered_layout = false -%}
 {%- if section.settings.header_layout == 'inline' -%}
   {%- assign inline_layout = true -%}
+{%- elsif section.settings.header_layout == 'centered' -%}
+  {%- comment -%} Merci: overlay is applied to the whole header (sections/header.liquid), not this row {%- endcomment -%}
+  {%- assign centered_layout = true -%}
+  {%- assign overlay = false -%}
 {%- endif -%}
 
 <div
-  class="header-middle{% if inline_layout %} header-middle--inline{% endif %}{% if overlay %} header-middle--overlay{% endif %}"
+  class="header-middle{% if inline_layout %} header-middle--inline{% endif %}{% if centered_layout %} header-middle--centered{% endif %}{% if overlay %} header-middle--overlay{% endif %}"
   style="--header-middle-bg: {{ header_middle_bg }}; --header-middle-text: {{ header_middle_text }};"
 >
   <div class="container">
@@ -63,6 +68,35 @@
         {%- endif -%}
       </div>
       <div class="header-middle__col col-auto">
+        {% render 'header-middle-actions', section: section %}
+      </div>
+    </div>
+    {%- elsif centered_layout -%}
+    {%- comment -%} Merci (SPEC §2 Header): social | centered logo | pickers + icons {%- endcomment -%}
+    <div class="header-middle__inner mc-header__row">
+      <div class="mc-header__side mc-header__side--start">
+        {%- if section.settings.show_social_icons -%}
+          {% render 'mc-header-social' %}
+        {%- endif -%}
+      </div>
+      <div class="mc-header__logo">
+        {% render 'header-middle-logo', section: section %}
+      </div>
+      <div class="mc-header__side mc-header__side--end">
+        {%- if section.settings.enable_country_selector and section.settings.currency_options != blank -%}
+          <div class="mc-header__picker">{% render 'header-top-currency', section: section %}</div>
+        {%- endif -%}
+        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+          <div class="mc-header__picker">{% render 'header-top-language' %}</div>
+        {%- endif -%}
+        <header-top-dropdown class="header-search-toggle">
+          <button type="button" class="header-search-toggle__btn" data-dropdown-toggle aria-expanded="false" aria-label="{{ 'general.search.search' | t }}">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+          </button>
+          <div class="header-search-toggle__panel" data-dropdown-panel hidden>
+            {% render 'header-middle-search', section: section %}
+          </div>
+        </header-top-dropdown>
         {% render 'header-middle-actions', section: section %}
       </div>
     </div>

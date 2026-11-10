@@ -11,9 +11,33 @@
   {% endcomment %}
   {% render 'header-mobile', section: section %}
 
-  {% render 'header-top', section: section %}
+  {%- if section.settings.header_layout == 'centered' -%}
+    {%- comment -%}
+      Merci centered layout (SPEC §2 Header): logo row + centred menu row, no top bar.
+      Homepage + "Header over the homepage hero": both rows float over the first section
+      with a transparent background until the page scrolls (common/js/modules/header-fixed.js
+      toggles html.mc-scrolled).
+    {%- endcomment -%}
+    {%- liquid
+      assign mc_overlay = false
+      if section.settings.overlay_home and template.name == 'index'
+        assign mc_overlay = true
+      endif
+      assign nav_bg = section.settings.nav_row_background | default: settings.color_nav_dark | default: '#231e17'
+    -%}
+    <div class="mc-header{% if mc_overlay %} mc-header--overlay{% endif %}" style="--mc-nav-bg: {{ nav_bg }}; --mc-nav-text: {{ section.settings.nav_row_text | default: '#ffffff' }}; --mc-overlay-text: {{ section.settings.overlay_text | default: '#2d2d2d' }}; --mc-logo-width: {{ section.settings.logo_width_desktop | default: 125 }}px;">
+      {% render 'header-middle', section: section %}
+      <div class="mc-header__nav">
+        <div class="container">
+          {% render 'header-inline-nav', section: section %}
+        </div>
+      </div>
+    </div>
+  {%- else -%}
+    {% render 'header-top', section: section %}
 
-  {% render 'header-middle', section: section %}
+    {% render 'header-middle', section: section %}
+  {%- endif -%}
 </header>
 
 {% schema %}
@@ -31,6 +55,10 @@
       "label": "Desktop layout",
       "options": [
         {
+          "value": "centered",
+          "label": "Centered logo, menu row below (Merci)"
+        },
+        {
           "value": "classic",
           "label": "Classic (with navigation bar)"
         },
@@ -39,41 +67,53 @@
           "label": "Inline (logo, menu, icons in one row)"
         }
       ],
-      "default": "classic",
-      "info": "Inline: also turn off Navigation → Show desktop bar. Mobile is the same for both."
+      "default": "centered",
+      "info": "Centered: social icons, logo in the middle, icons on the right, menu row below (mega menus from \"Mega menu (menu row)\" blocks). Inline: also turn off Navigation → Show desktop bar."
     },
     {
       "type": "link_list",
       "id": "inline_menu",
-      "label": "Menu (inline layout)",
+      "label": "Menu (inline / centered layout)",
       "default": "main-menu",
-      "visible_if": "{{ section.settings.header_layout == 'inline' }}"
+      "visible_if": "{{ section.settings.header_layout != 'classic' }}"
     },
     {
       "type": "textarea",
       "id": "menu_badges",
-      "label": "Menu badges (inline layout)",
+      "label": "Menu badges (inline / centered layout)",
       "info": "One per line: Menu title|LABEL|#background|#text (text optional), e.g. Sale|HOT|#d64545",
-      "visible_if": "{{ section.settings.header_layout == 'inline' }}"
+      "visible_if": "{{ section.settings.header_layout != 'classic' }}"
     },
     {
       "type": "select",
       "id": "menu_badge_position",
-      "label": "Menu badge position (inline layout)",
+      "label": "Menu badge position (inline / centered layout)",
       "options": [
-        { "value": "inline", "label": "Next to the menu title" },
-        { "value": "above", "label": "Above the title, with an arrow" }
+        {
+          "value": "inline",
+          "label": "Next to the menu title"
+        },
+        {
+          "value": "above",
+          "label": "Above the title, with an arrow"
+        }
       ],
       "default": "inline",
-      "visible_if": "{{ section.settings.header_layout == 'inline' }}"
+      "visible_if": "{{ section.settings.header_layout != 'classic' }}"
     },
     {
       "type": "select",
       "id": "search_style",
       "label": "Search (inline layout)",
       "options": [
-        { "value": "bar", "label": "Search bar" },
-        { "value": "icon", "label": "Icon, opens a search dropdown" }
+        {
+          "value": "bar",
+          "label": "Search bar"
+        },
+        {
+          "value": "icon",
+          "label": "Icon, opens a search dropdown"
+        }
       ],
       "default": "bar",
       "visible_if": "{{ section.settings.header_layout == 'inline' }}"
@@ -83,7 +123,7 @@
       "id": "overlay_home",
       "label": "Header over the homepage hero",
       "default": false,
-      "info": "Desktop, homepage only: the logo / menu bar floats over the first section. Use with a full-width hero."
+      "info": "Desktop, homepage only: the header floats over the first section. Use with a full-width hero. Centered layout: transparent until the page scrolls."
     },
     {
       "type": "range",
@@ -94,7 +134,40 @@
       "step": 5,
       "unit": "%",
       "default": 80,
-      "visible_if": "{{ section.settings.overlay_home }}"
+      "visible_if": "{{ section.settings.overlay_home and section.settings.header_layout != 'centered' }}"
+    },
+    {
+      "type": "header",
+      "content": "Centered layout (Merci)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_icons",
+      "label": "Show social icons on the left",
+      "default": true,
+      "info": "Links from Theme settings → Social media.",
+      "visible_if": "{{ section.settings.header_layout == 'centered' }}"
+    },
+    {
+      "type": "color",
+      "id": "nav_row_background",
+      "label": "Menu row background",
+      "info": "Leave empty to use Theme settings → Merci — Colors → Dark navigation bar background.",
+      "visible_if": "{{ section.settings.header_layout == 'centered' }}"
+    },
+    {
+      "type": "color",
+      "id": "nav_row_text",
+      "label": "Menu row text",
+      "default": "#ffffff",
+      "visible_if": "{{ section.settings.header_layout == 'centered' }}"
+    },
+    {
+      "type": "color",
+      "id": "overlay_text",
+      "label": "Text color over the homepage hero",
+      "default": "#2d2d2d",
+      "visible_if": "{{ section.settings.header_layout == 'centered' and section.settings.overlay_home }}"
     },
     {
       "type": "header",
@@ -104,7 +177,7 @@
       "type": "color",
       "id": "header_top_background",
       "label": "Background color",
-      "default": "#dc5414"
+      "default": "#231e17"
     },
     {
       "type": "color",
@@ -486,13 +559,13 @@
       "type": "color",
       "id": "header_middle_background",
       "label": "Background color",
-      "default": "#b54e0a"
+      "default": "#ffffff"
     },
     {
       "type": "color",
       "id": "header_middle_text_color",
       "label": "Text and icon color",
-      "default": "#ffffff"
+      "default": "#2d2d2d"
     },
     {
       "type": "header",
@@ -502,6 +575,16 @@
       "type": "image_picker",
       "id": "logo_image",
       "label": "Logo image (optional)"
+    },
+    {
+      "type": "range",
+      "id": "logo_width_desktop",
+      "label": "Logo width (desktop)",
+      "min": 60,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "default": 125
     },
     {
       "type": "text",
@@ -656,9 +739,18 @@
           "id": "style",
           "label": "Style",
           "options": [
-            { "value": "columns", "label": "Link columns + featured product + banner" },
-            { "value": "products", "label": "Links + products from a collection" },
-            { "value": "cards", "label": "Image cards (one per sub-link)" }
+            {
+              "value": "columns",
+              "label": "Link columns + featured product + banner"
+            },
+            {
+              "value": "products",
+              "label": "Links + products from a collection"
+            },
+            {
+              "value": "cards",
+              "label": "Image cards (one per sub-link)"
+            }
           ],
           "default": "columns"
         },
@@ -749,12 +841,36 @@
           "type": "paragraph",
           "content": "Images follow the order of the sub-links (1st image → 1st sub-link)."
         },
-        { "type": "image_picker", "id": "card_image_1", "label": "Image 1" },
-        { "type": "image_picker", "id": "card_image_2", "label": "Image 2" },
-        { "type": "image_picker", "id": "card_image_3", "label": "Image 3" },
-        { "type": "image_picker", "id": "card_image_4", "label": "Image 4" },
-        { "type": "image_picker", "id": "card_image_5", "label": "Image 5" },
-        { "type": "image_picker", "id": "card_image_6", "label": "Image 6" },
+        {
+          "type": "image_picker",
+          "id": "card_image_1",
+          "label": "Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image_3",
+          "label": "Image 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image_4",
+          "label": "Image 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image_5",
+          "label": "Image 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image_6",
+          "label": "Image 6"
+        },
         {
           "type": "text",
           "id": "cards_heading",

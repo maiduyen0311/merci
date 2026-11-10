@@ -82,7 +82,7 @@
       "animations_reveal_on_scroll": true,
       "animations_hover_elements": "none",
       "card_style": "standard",
-      "card_text_alignment": "left",
+      "card_text_alignment": "center",
       "card_color_scheme": "scheme-2",
       "badge_position": "bottom left",
       "sale_badge_color_scheme": "scheme-4",
@@ -121,8 +121,17 @@
         }
       },
       "trust_strip_enabled": false,
-      "color_footer_bg": "#2f241e",
-      "social_proof_enabled": false
+      "color_footer_bg": "#f9f9f9",
+      "social_proof_enabled": false,
+      "color_primary": "#bf7069",
+      "color_secondary": "#f2d0d0",
+      "color_heading": "#000000",
+      "color_text": "#332c2c",
+      "color_product_title": "#000000",
+      "color_accent_dark": "#9c5550",
+      "color_border": "#e8e9eb",
+      "color_nav_dark": "#231e17",
+      "font_source": "merci"
     }
   }
 }

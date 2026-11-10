@@ -110,7 +110,7 @@ $mobile-break: 991.98px;
     min-width: 18px;
     height: 18px;
     padding: 0 4px;
-    background: var(--header-badge-bg, #2ec47a);
+    background: var(--header-badge-bg, var(--color-primary));
     color: var(--header-badge-text, #fff);
     font-size: 0.786em;
     font-weight: 600;

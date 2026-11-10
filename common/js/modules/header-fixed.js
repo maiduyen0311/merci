@@ -63,6 +63,19 @@ const HeaderFixed = {
         ro.observe(header);
       }
     }
+
+    // Merci centered header over the homepage hero: transparent at the top,
+    // solid once the page scrolls (CSS: html.mc-scrolled .mc-header--overlay).
+    const root = document.documentElement;
+    let ticking = false;
+    const onScroll = () => {
+      ticking = false;
+      root.classList.toggle('mc-scrolled', window.scrollY > 10);
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+    }, { passive: true });
+    onScroll();
   },
 };
 

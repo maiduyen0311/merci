@@ -16,10 +16,9 @@
     {%- endunless -%}
 
     {%- comment -%}
-      Top Market — fonts from PSD (Jost, Yellowtail, Caveat, Playfair
-      Display) are now served via Shopify's font CDN through font_picker
-      settings. Per-weight @font-face declarations are emitted in
-      snippets/theme-styles.liquid via the font_face filter.
+      Merci — default font Mandali is bundled (assets/mc-mandali-latin.woff2, preloaded below).
+      Theme settings → Merci — Typography → "Fonts selected below" switches to font_picker
+      fonts served by Shopify's font CDN (@font-face emitted in snippets/theme-styles.liquid).
     {%- endcomment -%}
 
 
@@ -67,16 +66,22 @@
     {%- endcomment -%}
     {%- render 'theme-styles' -%}
 
-    {%- unless settings.font_body.system? -%}
+    {%- if settings.font_source == 'merci' -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
-      <link rel="preload" as="font" href="{{ settings.font_body | font_url }}" type="font/woff2" crossorigin>
+      <link rel="preload" as="font" href="{{ 'mc-mandali-latin.woff2' | asset_url }}" type="font/woff2" crossorigin>
       {% comment %}theme-check-enable AssetPreload{% endcomment %}
-    {%- endunless -%}
-    {%- unless settings.font_heading.system? -%}
-      {% comment %}theme-check-disable AssetPreload{% endcomment %}
-      <link rel="preload" as="font" href="{{ settings.font_heading | font_url }}" type="font/woff2" crossorigin>
-      {% comment %}theme-check-enable AssetPreload{% endcomment %}
-    {%- endunless -%}
+    {%- else -%}
+      {%- unless settings.font_body.system? -%}
+        {% comment %}theme-check-disable AssetPreload{% endcomment %}
+        <link rel="preload" as="font" href="{{ settings.font_body | font_url }}" type="font/woff2" crossorigin>
+        {% comment %}theme-check-enable AssetPreload{% endcomment %}
+      {%- endunless -%}
+      {%- unless settings.font_heading.system? -%}
+        {% comment %}theme-check-disable AssetPreload{% endcomment %}
+        <link rel="preload" as="font" href="{{ settings.font_heading | font_url }}" type="font/woff2" crossorigin>
+        {% comment %}theme-check-enable AssetPreload{% endcomment %}
+      {%- endunless -%}
+    {%- endif -%}
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
       {{ 'component-localization-form.css' | asset_url | stylesheet_tag: preload: true }}
