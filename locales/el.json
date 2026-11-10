@@ -115,7 +115,8 @@
   },
   "onboarding": {
     "product_title": "Παράδειγμα τίτλου προϊόντος",
-    "collection_title": "Το όνομα της συλλογής σας"
+    "collection_title": "Το όνομα της συλλογής σας",
+    "blog_title": "Your blog post's title"
   },
   "products": {
     "product": {

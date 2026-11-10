@@ -1,0 +1,137 @@
+// Merci video banner — sections/mc-video-banner.liquid (SPEC §2 #3)
+.mc-video-banner__grid {
+  display: grid;
+  gap: 3rem;
+
+  @media screen and (min-width: 992px) {
+    grid-template-columns: 2fr 1fr;
+
+    &--reverse { grid-template-columns: 1fr 2fr; }
+    &--reverse .mc-video-banner__tile--video { order: 2; }
+  }
+}
+
+.mc-video-banner__tile {
+  position: relative;
+}
+
+.mc-video-banner__media {
+  aspect-ratio: 780 / 400;
+
+  .mc-video-banner__tile--image & { aspect-ratio: 380 / 400; }
+
+  @media screen and (min-width: 992px) {
+    height: 40rem;
+    aspect-ratio: auto;
+
+    .mc-video-banner__tile--image & { aspect-ratio: auto; }
+  }
+}
+
+.mc-video-banner__link {
+  display: block;
+  color: inherit;
+}
+
+// play button with a pulsing ring (Merci)
+.mc-video-banner__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 7.2rem;
+  height: 7.2rem;
+  padding: 0 0 0 0.3rem;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(2px);
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    animation: mc-pulse 2.4s ease-out infinite;
+  }
+
+  &::after { animation-delay: 1.2s; }
+
+  &:hover { background: #fff; color: var(--color-primary); }
+}
+
+@keyframes mc-pulse {
+  from { opacity: 0.8; transform: scale(1); }
+  to { opacity: 0; transform: scale(1.7); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-video-banner__play::before,
+  .mc-video-banner__play::after { animation: none; }
+}
+
+.mc-video-banner__word {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  color: var(--mc-word-color, #a6606d);
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  transform: translateY(-50%);
+  transition: letter-spacing 0.6s ease;
+  pointer-events: none;
+
+  @media screen and (min-width: 750px) { font-size: var(--fs-h1, 4rem); }
+
+  .mc-hover:hover & { letter-spacing: 0.22em; }
+}
+
+// --- popup ------------------------------------------------------------------
+.mc-video-dialog {
+  width: min(96rem, 92vw);
+  max-width: none;
+  padding: 0;
+  border: 0;
+  background: #000;
+  overflow: visible;
+
+  &::backdrop { background: rgba(20, 16, 14, 0.82); }
+}
+
+.mc-video-dialog__frame {
+  aspect-ratio: 16 / 9;
+
+  iframe { display: block; width: 100%; height: 100%; border: 0; }
+}
+
+.mc-video-dialog__close {
+  position: absolute;
+  top: -4.4rem;
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover { color: var(--color-primary); }
+}

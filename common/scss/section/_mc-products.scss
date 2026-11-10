@@ -1,0 +1,26 @@
+// Merci products — sections/mc-products.liquid (SPEC §2 #4, #6)
+.mc-products__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--mc-cols-sm, 2), minmax(0, 1fr));
+  gap: 3.6rem 1.6rem;
+  margin: 0;
+  padding: 0;
+
+  @media screen and (min-width: 750px) {
+    grid-template-columns: repeat(var(--mc-cols-md, 3), minmax(0, 1fr));
+    gap: 4.8rem 2.4rem;
+  }
+
+  @media screen and (min-width: 992px) {
+    grid-template-columns: repeat(var(--mc-cols, 5), minmax(0, 1fr));
+    gap: 5.6rem 3rem;
+  }
+}
+
+.mc-products__item {
+  min-width: 0;
+  list-style: none;
+}
+
+// arrows sit at image height
+.mc-products .tm-scroller { --nav-top: 36%; }

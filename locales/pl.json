@@ -117,7 +117,8 @@
   },
   "onboarding": {
     "product_title": "Przykładowy tytuł produktu",
-    "collection_title": "Nazwa Twojej kolekcji"
+    "collection_title": "Nazwa Twojej kolekcji",
+    "blog_title": "Your blog post's title"
   },
   "products": {
     "product": {

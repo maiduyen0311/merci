@@ -131,7 +131,9 @@
       "color_accent_dark": "#9c5550",
       "color_border": "#e8e9eb",
       "color_nav_dark": "#231e17",
-      "font_source": "merci"
+      "font_source": "merci",
+      "card_layout": "merci",
+      "card_show_compare": true
     }
   }
 }

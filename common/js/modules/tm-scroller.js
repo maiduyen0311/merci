@@ -79,6 +79,9 @@ class TmScroller extends HTMLElement {
     const max = this.track.scrollWidth - this.track.clientWidth;
     const scrollable = max > 2;
     this.classList.toggle('is-scrollable', scrollable);
+    // Merci progress bar (.mc-scroller__progress): visible share + position, 0–1
+    this.style.setProperty('--scroll-view', scrollable ? (this.track.clientWidth / this.track.scrollWidth).toFixed(4) : 1);
+    this.style.setProperty('--scroll-progress', scrollable ? (this.track.scrollLeft / max).toFixed(4) : 0);
     if (this.prevBtn) this.prevBtn.disabled = !scrollable || this.track.scrollLeft <= 2;
     if (this.nextBtn) this.nextBtn.disabled = !scrollable || this.track.scrollLeft >= max - 2;
   }

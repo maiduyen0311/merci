@@ -1,0 +1,200 @@
+// Merci slideshow — sections/mc-slideshow.liquid (SPEC §2 #1)
+.mc-slideshow {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-accent-soft, #f2d0d0);
+}
+
+.mc-slideshow__track {
+  position: relative;
+  display: flex;
+  height: var(--mc-slide-h-mobile, 440px);
+
+  @media screen and (min-width: 750px) { height: var(--mc-slide-h, 640px); }
+
+  // fade: slides stacked, only the active one visible
+  &[data-effect='fade'] {
+    display: block;
+
+    .mc-slideshow__slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.9s ease, visibility 0s linear 0.9s;
+    }
+
+    .mc-slideshow__slide.is-active {
+      z-index: 1;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.9s ease;
+    }
+  }
+}
+
+.mc-slideshow__slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+  color: var(--mc-slide-text, #000);
+}
+
+.mc-slideshow__media {
+  position: absolute;
+  inset: 0;
+
+  picture { display: contents; }
+}
+
+.mc-slideshow__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.06);
+  transition: transform 6s ease-out;
+
+  &--placeholder { background: #f2d0d0; fill: rgba(0, 0, 0, 0.1); }
+
+  .is-active & { transform: none; }
+}
+
+.mc-slideshow__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+// Homepage: header floats over the first slideshow (Header → "Header over the homepage hero")
+@media screen and (min-width: 992px) {
+  body:has(.mc-header--overlay) .mc-slideshow--first .mc-slideshow__content { padding-top: 13rem; }
+}
+
+.mc-slideshow__text {
+  max-width: 64rem;
+
+  .mc-slideshow__slide--center & { margin-inline: auto; text-align: center; }
+  .mc-slideshow__slide--right & { margin-inline-start: auto; text-align: right; }
+}
+
+.mc-slideshow__eyebrow {
+  margin: 0 0 1.6rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+
+  @media screen and (min-width: 750px) { font-size: 2rem; }
+}
+
+.mc-slideshow__heading {
+  margin: 0 0 3.2rem;
+  color: inherit;
+  font-family: var(--font-heading);
+  font-size: 3.2rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+
+  @media screen and (min-width: 750px) { font-size: 4.4rem; }
+  @media screen and (min-width: 1200px) { font-size: var(--fs-display, 6rem); }
+}
+
+// each heading line is masked and rises in turn
+.mc-slideshow__line {
+  display: block;
+  overflow: hidden;
+
+  > span { display: inline-block; }
+}
+
+.mc-slideshow__eyebrow > span,
+.mc-slideshow__line > span,
+.mc-slideshow__cta {
+  opacity: 0;
+  transform: translateY(110%);
+  transition: opacity 0.6s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.mc-slideshow__eyebrow > span { display: inline-block; transform: translateY(1.6rem); }
+.mc-slideshow__cta { transform: translateY(2rem); }
+
+.is-active {
+  .mc-slideshow__eyebrow > span,
+  .mc-slideshow__line > span,
+  .mc-slideshow__cta {
+    opacity: 1;
+    transform: none;
+    transition-delay: calc(0.25s + var(--i, 0) * 0.15s);
+  }
+
+  .mc-slideshow__eyebrow > span { transition-delay: 0.2s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-slideshow__img,
+  .mc-slideshow__eyebrow > span,
+  .mc-slideshow__line > span,
+  .mc-slideshow__cta { transform: none !important; transition: opacity 0.3s ease !important; }
+}
+
+// --- Controls ---------------------------------------------------------------
+.mc-slideshow__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: none;
+  width: 4.8rem;
+  height: 4.8rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-heading, #000);
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+
+  svg { width: 4rem; height: 1.6rem; }
+
+  &--prev { left: 2.4rem; }
+  &--next { right: 2.4rem; }
+
+  &:hover { opacity: 1; }
+  &--prev:hover { transform: translateX(-0.4rem); }
+  &--next:hover { transform: translateX(0.4rem); }
+
+  @media screen and (min-width: 992px) { display: grid; place-items: center; }
+}
+
+.mc-slideshow__dots {
+  position: absolute;
+  bottom: 2.4rem;
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  gap: 0.8rem;
+  transform: translateX(-50%);
+}
+
+.mc-slider__dot {
+  position: relative;
+  width: 2.8rem;
+  height: 1.6rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 50% 0 auto;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+  }
+
+  &.is-active::before { background: var(--color-heading, #000); }
+}

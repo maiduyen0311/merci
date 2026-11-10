@@ -19,7 +19,10 @@
 //   .home-hero__slide.is-active       on the visible slide
 //   .home-hero__dot.is-active         on the dot matching the current slide
 
-const SLIDER_SELECTOR = '.home-hero__slider';
+// Merci sections use a neutral data-attribute contract (no home-hero classes/styles):
+//   [data-mc-slider-root] > [data-mc-slider data-effect="fade|slide"] > [data-mc-slide]…
+//   [data-mc-slider-dots] (filled by JS with .mc-slider__dot), [data-mc-slider-prev] / [data-mc-slider-next]
+const SLIDER_SELECTOR = '.home-hero__slider, [data-mc-slider]';
 const BOUND_FLAG = 'sliderBound';
 
 function num(value, fallback) {
@@ -33,13 +36,13 @@ function readAutoplay(slider) {
   return raw === 'true' || raw === '1';
 }
 
-function createDots(host, count, onClick) {
+function createDots(host, count, onClick, dotClass = 'home-hero__dot') {
   host.innerHTML = '';
   const dots = [];
   for (let i = 0; i < count; i += 1) {
     const btn = document.createElement('button');
     btn.type = 'button';
-    btn.className = 'home-hero__dot';
+    btn.className = dotClass;
     btn.setAttribute('aria-label', `Slide ${i + 1}`);
     btn.addEventListener('click', () => onClick(i));
     host.appendChild(btn);
@@ -51,23 +54,27 @@ function createDots(host, count, onClick) {
 function initSlider(slider) {
   if (slider.dataset[BOUND_FLAG] === '1') return;
   const slides = Array.from(slider.children).filter((el) =>
-    el.classList.contains('home-hero__slide')
+    el.classList.contains('home-hero__slide') || el.hasAttribute('data-mc-slide')
   );
   if (!slides.length) return;
 
   slider.dataset[BOUND_FLAG] = '1';
 
-  const main = slider.closest('.home-hero__main');
-  const dotsHost = main ? main.querySelector('.home-hero__dots') : null;
-  const prevBtn = main ? main.querySelector('.home-hero__arrow--prev') : null;
-  const nextBtn = main ? main.querySelector('.home-hero__arrow--next') : null;
+  const isMc = slider.hasAttribute('data-mc-slider');
+  const fade = isMc && slider.dataset.effect === 'fade';
+  const main = slider.closest(isMc ? '[data-mc-slider-root]' : '.home-hero__main');
+  const dotsHost = main ? main.querySelector(isMc ? '[data-mc-slider-dots]' : '.home-hero__dots') : null;
+  const prevBtn = main ? main.querySelector(isMc ? '[data-mc-slider-prev]' : '.home-hero__arrow--prev') : null;
+  const nextBtn = main ? main.querySelector(isMc ? '[data-mc-slider-next]' : '.home-hero__arrow--next') : null;
 
   // Lay out slides side-by-side via flex; CSS does the rest.
   slider.classList.add('is-ready');
-  slides.forEach((slide) => {
-    slide.style.flex = '0 0 100%';
-    slide.style.maxWidth = '100%';
-  });
+  if (!fade) {
+    slides.forEach((slide) => {
+      slide.style.flex = '0 0 100%';
+      slide.style.maxWidth = '100%';
+    });
+  }
 
   const speed = num(slider.dataset.speed, 5) * 1000;
   const autoplay = readAutoplay(slider) && slides.length > 1;
@@ -78,7 +85,7 @@ function initSlider(slider) {
   let dots = [];
 
   const apply = () => {
-    slider.style.transform = `translateX(-${current * 100}%)`;
+    if (!fade) slider.style.transform = `translateX(-${current * 100}%)`;
     slides.forEach((slide, i) => {
       slide.classList.toggle('is-active', i === current);
       slide.setAttribute('aria-hidden', i === current ? 'false' : 'true');
@@ -116,8 +123,18 @@ function initSlider(slider) {
   };
 
   if (slides.length > 1) {
-    slider.style.transition = 'transform 0.5s ease';
-    if (dotsHost) dots = createDots(dotsHost, slides.length, goTo);
+    if (!fade) slider.style.transition = 'transform 0.5s ease';
+    if (dotsHost) dots = createDots(dotsHost, slides.length, goTo, isMc ? 'mc-slider__dot' : 'home-hero__dot');
+    // Touch swipe (Merci sliders)
+    if (isMc) {
+      let startX = null;
+      slider.addEventListener('pointerdown', (e) => { startX = e.clientX; }, { passive: true });
+      slider.addEventListener('pointerup', (e) => {
+        if (startX === null) return;
+        const dx = e.clientX - startX; startX = null;
+        if (Math.abs(dx) > 40) { (dx < 0 ? next : prev)(); startAutoplay(); }
+      }, { passive: true });
+    }
     if (prevBtn) prevBtn.addEventListener('click', () => { prev(); startAutoplay(); });
     if (nextBtn) nextBtn.addEventListener('click', () => { next(); startAutoplay(); });
     slider.addEventListener('mouseenter', stopAutoplay);

@@ -1,0 +1,68 @@
+// Merci parallax banner — sections/mc-parallax-banner.liquid (SPEC §2 #7)
+.mc-parallax__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--mc-banner-h-mobile, 300px);
+  overflow: hidden;
+  color: var(--mc-banner-text, #000);
+
+  @media screen and (min-width: 750px) { min-height: var(--mc-banner-h, 500px); }
+}
+
+.mc-parallax__media {
+  position: absolute;
+  inset: 0;
+
+  picture { display: contents; }
+
+  img,
+  svg { width: 100%; height: 100%; object-fit: cover; }
+
+  svg { background: #e3c7bc; fill: rgba(0, 0, 0, 0.08); }
+}
+
+// Desktop + mouse: the image is painted as a fixed background (true parallax, no JS)
+@media screen and (min-width: 992px) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .mc-parallax__inner--fixed {
+    background-image: var(--mc-banner-bg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+
+    .mc-parallax__media { display: none; }
+  }
+}
+
+.mc-parallax__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+
+  &--center { justify-content: center; text-align: center; }
+  &--right { justify-content: flex-end; text-align: right; }
+}
+
+.mc-parallax__text { max-width: 56rem; }
+
+.mc-parallax__eyebrow {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+
+  @media screen and (min-width: 750px) { font-size: 1.4rem; }
+}
+
+.mc-parallax__heading {
+  margin: 0 0 2.4rem;
+  color: inherit;
+  font-family: var(--font-heading);
+  font-size: 2.6rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  text-transform: uppercase;
+
+  @media screen and (min-width: 750px) { font-size: var(--fs-h1, 4rem); }
+}

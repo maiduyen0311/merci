@@ -117,7 +117,8 @@
   },
   "onboarding": {
     "product_title": "Vzorový názov produktu",
-    "collection_title": "Názov vašej kolekcie"
+    "collection_title": "Názov vašej kolekcie",
+    "blog_title": "Your blog post's title"
   },
   "products": {
     "product": {

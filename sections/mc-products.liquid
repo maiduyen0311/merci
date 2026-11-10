@@ -1,0 +1,151 @@
+{%- comment -%}
+  Merci — Products (SPEC §2 #4 "Trending" carousel and #6 "New arrival" grid)
+  One section, two layouts: carousel (tm-scroller + thin arrows + progress bar) or grid.
+  Cards: snippets/card-product.liquid (Theme settings → Product cards → layout "Merci").
+{%- endcomment -%}
+{%- liquid
+  assign collection = section.settings.collection
+  assign limit = section.settings.products_to_show
+  assign is_carousel = false
+  if section.settings.layout == 'carousel'
+    assign is_carousel = true
+  endif
+  assign cols = section.settings.columns_desktop
+  assign cols_md = cols | at_most: 3
+  assign cols_sm = section.settings.columns_mobile
+-%}
+{%- style -%}
+  #McProducts-{{ section.id }} {
+    --mc-pt: {{ section.settings.padding_top }}px;
+    --mc-pb: {{ section.settings.padding_bottom }}px;
+    --mc-cols: {{ cols }};
+    --mc-cols-md: {{ cols_md }};
+    --mc-cols-sm: {{ cols_sm }};
+  }
+{%- endstyle -%}
+
+{%- capture items -%}
+  {%- if collection != blank and collection.products_count > 0 -%}
+    {%- for product in collection.products limit: limit -%}
+      <li class="mc-products__item">
+        {% render 'card-product',
+          card_product: product,
+          media_aspect_ratio: section.settings.image_ratio,
+          show_secondary_image: section.settings.show_secondary_image,
+          show_rating: section.settings.show_rating,
+          show_discount_badge: true,
+          show_metafield_badge: true,
+          show_auto_new: section.settings.show_auto_new,
+          show_color_swatches: section.settings.show_color_swatches,
+          show_wishlist: true,
+          skip_styles: true,
+          section_id: section.id
+        %}
+      </li>
+    {%- endfor -%}
+  {%- else -%}
+    {%- for i in (1..limit) -%}
+      {%- assign pidx = forloop.index | modulo: 6 | plus: 1 -%}
+      {%- assign placeholder_image = 'product-apparel-' | append: pidx -%}
+      <li class="mc-products__item">
+        {% render 'card-product', media_aspect_ratio: section.settings.image_ratio, placeholder_image: placeholder_image %}
+      </li>
+    {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+<section id="McProducts-{{ section.id }}" class="mc-section mc-products mc-products--{{ section.settings.layout }}">
+  <div class="container">
+    {%- if section.settings.eyebrow != blank or section.settings.title != blank -%}
+      <div class="mc-heading">
+        {%- if section.settings.eyebrow != blank -%}<span class="mc-heading__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.title != blank -%}<h2 class="mc-heading__title">{{ section.settings.title }}</h2>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if is_carousel -%}
+      <tm-scroller class="tm-scroller mc-scroller" data-step="page" style="--per-view: {{ cols }}; --per-view-md: {{ cols_md }}; --per-view-sm: {{ cols_sm }}; --gap: 3rem;">
+        {% render 'tm-scroller-nav', class: 'mc-products__nav' %}
+        <ul class="tm-scroller__track mc-products__list" role="list" data-scroller-track>
+          {{ items }}
+        </ul>
+        <div class="mc-scroller__progress" aria-hidden="true"></div>
+      </tm-scroller>
+    {%- else -%}
+      <ul class="mc-products__grid list-unstyled" role="list">
+        {{ items }}
+      </ul>
+    {%- endif -%}
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="mc-section__footer">
+        <a
+          href="{% if section.settings.button_link != blank %}{{ section.settings.button_link }}{% elsif collection != blank %}{{ collection.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"
+          class="mc-btn mc-btn--outline mc-btn--small"
+        >
+          {{- section.settings.button_label | escape -}}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Merci products",
+  "tag": "div",
+  "class": "section-mc-products",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "inline_richtext", "id": "title", "label": "Heading", "default": "Trending" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 2, "max": 24, "step": 1, "default": 8 },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "carousel", "label": "Carousel" },
+        { "value": "grid", "label": "Grid" }
+      ],
+      "default": "carousel"
+    },
+    { "type": "range", "id": "columns_desktop", "label": "Products per row on desktop", "min": 2, "max": 6, "step": 1, "default": 4 },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Products per row on mobile",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "2"
+    },
+    { "type": "header", "content": "Product cards" },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "options": [
+        { "value": "adapt", "label": "Adapt to image" },
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "square", "label": "Square" }
+      ],
+      "default": "portrait"
+    },
+    { "type": "checkbox", "id": "show_secondary_image", "label": "Show second image on hover", "default": true },
+    { "type": "checkbox", "id": "show_color_swatches", "label": "Show color swatches", "default": true },
+    { "type": "checkbox", "id": "show_rating", "label": "Show product rating", "default": false, "info": "Shows ratings from a product reviews app." },
+    { "type": "checkbox", "id": "show_auto_new", "label": "NEW badge on products added in the last 30 days", "default": true },
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Show more" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Defaults to the collection." },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 }
+  ],
+  "presets": [
+    { "name": "Merci product carousel", "settings": { "title": "Trending", "layout": "carousel" } },
+    { "name": "Merci product grid", "settings": { "title": "New arrival", "layout": "grid", "columns_desktop": 5, "products_to_show": 10 } }
+  ]
+}
+{% endschema %}

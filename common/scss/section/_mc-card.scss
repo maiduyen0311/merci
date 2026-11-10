@@ -1,0 +1,139 @@
+// =============================================================================
+// Merci product card hover (Theme settings → Product cards → Card layout "Merci").
+// SPEC §3.1 + memory design-direction: must NOT reuse the Top Market motifs
+// (card border + side icon stack + coloured bar under the card).
+//   • image: cross-fade to the 2nd image + slow zoom
+//   • white strip slides up from the image bottom: ♡ | QUICK VIEW | ⇄ (thin rules)
+//   • price line swaps to an "Add to cart +" text link with a growing underline
+// Touch devices (no hover): strip hidden, price + link both visible.
+// =============================================================================
+
+.card-wrapper--merci {
+  // no Top Market hover frame
+  &::after { display: none; }
+
+  .card__media .media img {
+    transition: opacity 0.45s ease, transform 1.4s cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+
+  &:hover .card__media .media img { transform: scale(1.06); }
+}
+
+.mc-card__strip {
+  position: absolute;
+  inset: auto 1rem 1rem;
+  z-index: 6;
+  display: flex;
+  align-items: stretch;
+  height: 4rem;
+  background: #fff;
+  color: var(--color-heading, #000);
+  opacity: 0;
+  transform: translateY(1.2rem);
+  transition: opacity 0.3s ease, transform 0.35s ease;
+
+  > button + button { border-inline-start: 1px solid var(--color-border, #e8e9eb); }
+
+  button {
+    display: grid;
+    place-items: center;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &:hover,
+    &[aria-pressed='true'] { color: var(--color-primary); }
+  }
+}
+
+.mc-card__strip-icon {
+  flex: 0 0 4rem;
+
+  svg { width: 1.7rem; height: 1.7rem; }
+}
+
+.mc-card__strip-label {
+  flex: 1 1 auto;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.card-wrapper--merci:hover .mc-card__strip,
+.card-wrapper--merci:focus-within .mc-card__strip {
+  opacity: 1;
+  transform: none;
+}
+
+// --- price ⇄ add to cart ----------------------------------------------------
+.mc-card__price-swap {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  order: 2; // same slot as .price in the flattened card info
+
+  > .price,
+  > .mc-card__atc {
+    grid-area: 1 / 1;
+    transition: opacity 0.25s ease, transform 0.3s ease;
+  }
+}
+
+.mc-card__atc {
+  position: relative;
+  padding: 0 0 0.2rem;
+  border: 0;
+  background: transparent;
+  color: var(--color-heading, #000);
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(0.8rem);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover { color: var(--color-primary); }
+  &:hover::after { transform: scaleX(1); }
+
+  &--disabled { color: var(--color-text-muted, #666); cursor: default; }
+}
+
+@media (hover: hover) {
+  .card-wrapper--merci:hover .mc-card__price-swap {
+    > .price { opacity: 0; transform: translateY(-0.8rem); }
+    > .mc-card__atc { opacity: 1; transform: none; }
+  }
+
+  .card-wrapper--merci .mc-card__atc:focus-visible { opacity: 1; transform: none; }
+}
+
+// Touch: no hover — show the link under the price, hide the strip
+@media (hover: none) {
+  .mc-card__strip { display: none; }
+
+  .mc-card__price-swap {
+    > .price,
+    > .mc-card__atc { grid-area: auto; }
+  }
+
+  .mc-card__atc { opacity: 1; transform: none; margin-top: 0.4rem; }
+}

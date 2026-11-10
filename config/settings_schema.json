@@ -265,6 +265,10 @@
         "label": "Card layout",
         "options": [
           {
+            "value": "merci",
+            "label": "Merci (hover strip + add to cart link)"
+          },
+          {
             "value": "classic",
             "label": "Classic (stars, title, price, colors)"
           },
@@ -273,7 +277,7 @@
             "label": "Minimal (reviews, colors, title, price)"
           }
         ],
-        "default": "classic",
+        "default": "merci",
         "info": "Minimal: left-aligned info, square swatches, quick view / wishlist / cart icons on hover, \"SALE xx%\" label."
       },
       {

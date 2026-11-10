@@ -1,0 +1,51 @@
+// Merci image strip — sections/mc-image-strip.liquid (SPEC §2 #10, #11)
+.mc-image-strip__full { padding-inline: 0; }
+
+.mc-image-strip__link {
+  position: relative;
+  display: block;
+  color: inherit;
+}
+
+.mc-image-strip__media { aspect-ratio: 1; }
+
+.mc-image-strip--fade {
+  .mc-image-strip__media { background: transparent; }
+  .mc-image-strip__media > img { object-fit: contain; }
+
+  .mc-image-strip__item { transition: opacity 0.35s ease, filter 0.35s ease; }
+
+  @media (hover: hover) {
+    .mc-image-strip__list:hover .mc-image-strip__item:not(:hover) { opacity: 0.4; filter: grayscale(1); }
+  }
+}
+
+.mc-image-strip--social {
+  .mc-image-strip__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    background: color-mix(in srgb, var(--color-primary) 72%, transparent);
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+
+    svg {
+      width: 2.8rem;
+      height: 2.8rem;
+      transform: translateY(1.2rem);
+      transition: transform 0.4s ease;
+    }
+  }
+
+  .mc-image-strip__link:hover .mc-image-strip__overlay,
+  .mc-image-strip__link:focus-visible .mc-image-strip__overlay {
+    opacity: 1;
+
+    svg { transform: none; }
+  }
+
+  .mc-image-strip__link:hover .mc-media > img { transform: scale(1.06); }
+}

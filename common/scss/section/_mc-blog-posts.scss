@@ -1,0 +1,30 @@
+// Merci blog posts — sections/mc-blog-posts.liquid (SPEC §2 #9, §3.2)
+.mc-blog-card__media { aspect-ratio: 4 / 3; }
+
+.mc-blog-card__body { padding-top: 1.8rem; }
+
+.mc-blog-card__meta {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: var(--color-text-muted, #666);
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mc-blog-card__title {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.5;
+
+  a { color: var(--color-heading, #000); }
+  .mc-hover:hover & a { color: var(--color-primary); }
+}
+
+.mc-blog-card__excerpt {
+  margin: 0.8rem 0 0;
+  color: var(--color-text-muted, #666);
+  font-size: 1.3rem;
+}

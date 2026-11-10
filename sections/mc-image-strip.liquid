@@ -1,0 +1,122 @@
+{%- comment -%}
+  Merci — Image strip (SPEC §2 #10 brand showcase and #11 Instagram)
+  A row of linked images. Hover styles:
+    • fade    — brand / product strip: other items dim, the hovered one stays sharp
+    • social  — Instagram: primary tint + Instagram icon rising in
+  Instagram has no API in the theme: the merchant uploads the images and links each post (SPEC §5 Q4).
+{%- endcomment -%}
+{%- liquid
+  assign cols = section.settings.columns_desktop
+  assign social = false
+  if section.settings.hover_style == 'social'
+    assign social = true
+  endif
+-%}
+{%- style -%}
+  #McImageStrip-{{ section.id }} {
+    --mc-pt: {{ section.settings.padding_top }}px;
+    --mc-pb: {{ section.settings.padding_bottom }}px;
+    --mc-strip-gap: {{ section.settings.gap }}px;
+  }
+{%- endstyle -%}
+
+<section id="McImageStrip-{{ section.id }}" class="mc-section mc-image-strip mc-image-strip--{{ section.settings.hover_style }}">
+  <div class="{% if section.settings.full_width %}mc-image-strip__full{% else %}container{% endif %}">
+    {%- if section.settings.title != blank or section.settings.subtitle != blank -%}
+      <div class="mc-heading">
+        {%- if section.settings.title != blank -%}
+          <h2 class="mc-heading__title">
+            {%- if section.settings.profile_url != blank -%}<a href="{{ section.settings.profile_url }}" class="mc-link" target="_blank" rel="noopener">{{ section.settings.title }}</a>{%- else -%}{{ section.settings.title }}{%- endif -%}
+          </h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}<p class="mc-heading__text">{{ section.settings.subtitle }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <tm-scroller class="tm-scroller mc-scroller" style="--per-view: {{ cols }}; --per-view-md: {{ cols | at_most: 4 }}; --per-view-sm: {{ section.settings.columns_mobile }}; --gap: var(--mc-strip-gap);">
+      <ul class="tm-scroller__track mc-image-strip__list" role="list" data-scroller-track>
+        {%- for block in section.blocks -%}
+          <li class="mc-image-strip__item" {{ block.shopify_attributes }}>
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}" class="mc-image-strip__link"{% if social %} target="_blank" rel="noopener"{% endif %}>
+            {%- else -%}
+              <div class="mc-image-strip__link">
+            {%- endif -%}
+              <div class="mc-media mc-image-strip__media">
+                {%- if block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 600 | image_tag: widths: '300, 450, 600', sizes: '(min-width: 992px) 240px, 45vw', loading: 'lazy', alt: block.settings.image.alt | escape }}
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag }}
+                {%- endif -%}
+              </div>
+              {%- if social -%}
+                <span class="mc-image-strip__overlay" aria-hidden="true">{% render 'icon-instagram' %}</span>
+              {%- endif -%}
+            {%- if block.settings.link != blank -%}</a>{%- else -%}</div>{%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </tm-scroller>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Merci image strip",
+  "tag": "div",
+  "class": "section-mc-image-strip",
+  "settings": [
+    { "type": "inline_richtext", "id": "title", "label": "Heading" },
+    { "type": "text", "id": "subtitle", "label": "Sub-heading" },
+    { "type": "url", "id": "profile_url", "label": "Heading link", "info": "e.g. your Instagram profile" },
+    {
+      "type": "select",
+      "id": "hover_style",
+      "label": "Hover effect",
+      "options": [
+        { "value": "fade", "label": "Dim the other images" },
+        { "value": "social", "label": "Color overlay + Instagram icon" }
+      ],
+      "default": "fade"
+    },
+    { "type": "range", "id": "columns_desktop", "label": "Images per row on desktop", "min": 3, "max": 8, "step": 1, "default": 5 },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Images per view on mobile",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "2.5", "label": "2 + a peek of the next" },
+        { "value": "3", "label": "3" }
+      ],
+      "default": "2.5"
+    },
+    { "type": "range", "id": "gap", "label": "Space between images", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 30 },
+    { "type": "checkbox", "id": "full_width", "label": "Full width", "default": false },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "limit": 12,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Merci brand showcase",
+      "blocks": [{ "type": "image" }, { "type": "image" }, { "type": "image" }, { "type": "image" }, { "type": "image" }]
+    },
+    {
+      "name": "Merci Instagram",
+      "settings": { "title": "@merci_shop", "subtitle": "Follow us on Instagram", "hover_style": "social", "columns_desktop": 6, "gap": 0, "full_width": true },
+      "blocks": [{ "type": "image" }, { "type": "image" }, { "type": "image" }, { "type": "image" }, { "type": "image" }, { "type": "image" }]
+    }
+  ]
+}
+{% endschema %}

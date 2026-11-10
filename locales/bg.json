@@ -115,7 +115,8 @@
   },
   "onboarding": {
     "collection_title": "Име на вашата колекция",
-    "product_title": "Примерно название на продукт"
+    "product_title": "Примерно название на продукт",
+    "blog_title": "Your blog post's title"
   },
   "products": {
     "product": {

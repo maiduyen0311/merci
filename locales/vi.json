@@ -115,7 +115,8 @@
   },
   "onboarding": {
     "product_title": "Tiêu đề sản phẩm mẫu",
-    "collection_title": "Tên bộ sưu tập của bạn"
+    "collection_title": "Tên bộ sưu tập của bạn",
+    "blog_title": "Tiêu đề bài viết của bạn"
   },
   "products": {
     "product": {

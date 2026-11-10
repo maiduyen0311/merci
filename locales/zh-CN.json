@@ -115,7 +115,8 @@
   },
   "onboarding": {
     "product_title": "产品标题示例",
-    "collection_title": "您的产品系列的名称"
+    "collection_title": "您的产品系列的名称",
+    "blog_title": "Your blog post's title"
   },
   "products": {
     "product": {

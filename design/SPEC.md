@@ -168,3 +168,20 @@ Font duy nhất trên v1: **Mandali** (Google Fonts, OFL — dùng web hợp l�
 {% endstyle %}
 ```
 Token toàn cục khai báo trong `common/scss/_tokens.scss` + `snippets/theme-styles.liquid` (`--mc-color-primary`, `--mc-color-dark`, `--mc-radius-pill: 25px`, `--mc-container: 1200px`).
+
+## Appendix C — Thực thi phase 04 (2026-11-10, user yêu cầu khác Top Market / Occasion)
+Quyết định: trang chủ dùng bộ section riêng `sections/mc-*.liquid` (SCSS `common/scss/section/_mc-*.scss`) thay vì sửa section Top Market — layout + motif của Top Market khác quá xa và user muốn không trùng mô-típ. Section Top Market vẫn giữ trong theme làm section bổ sung.
+
+| Vị trí (Appendix A) | Section | Preset | Tương tác Merci |
+|---|---|---|---|
+| 1 hero | `mc-slideshow` | Merci slideshow | fade, từng dòng chữ trượt lên, ảnh zoom-out chậm, chỉ báo gạch ngang, mũi tên line dài; swipe mobile |
+| 2 3 ô chữ | `mc-text-columns` | Merci text columns | viền đổi primary, gạch chân sub-line chạy ra; mobile swipe |
+| 3 video + WOMAN | `mc-video-banner` | Merci video banner | nút play vòng sóng lan, popup `<dialog>` YouTube/Vimeo; chữ giãn letter-spacing khi hover |
+| 4 trending, 6 new arrival | `mc-products` (layout carousel / grid) | Merci product carousel / grid | thanh progress mảnh thay chấm, mũi tên line |
+| 5 ô collection, 8 cặp banner | `mc-image-tiles` | Merci collection tiles / banner pair | zoom chậm + khung viền mảnh hiện bên trong ảnh |
+| 7 parallax | `mc-parallax-banner` | Merci parallax banner | background-attachment fixed (desktop, chuột, không reduced-motion) |
+| 9 blog | `mc-blog-posts` | Merci blog posts | zoom + khung + gạch chân tiêu đề |
+| 10 brand, 11 Instagram | `mc-image-strip` (hover fade / social) | Merci brand showcase / Instagram | brand: ảnh khác mờ + xám; IG: phủ primary + icon trượt lên |
+
+§3.1 Card (thay [đề xuất] cũ) — Theme settings → Product cards → Card layout "Merci": ảnh chuyển ảnh 2 + zoom chậm; dải trắng trượt lên đáy ảnh (♡ | QUICK VIEW | ⇄); dòng giá đổi thành link "ADD TO CART +" / "CHOOSE OPTIONS +" gạch chân chạy ra; màn cảm ứng: không dải, link hiện dưới giá.
+§3.3 Button `.mc-btn`: viền pill, nền primary quét từ dưới lên khi hover (Top Market chỉ đổi màu).

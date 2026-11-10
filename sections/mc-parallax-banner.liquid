@@ -1,0 +1,83 @@
+{%- comment -%}
+  Merci — Parallax banner (SPEC §2 #7, render design/merci/sections/09-*-desktop.png)
+  Full-width image fixed behind the text on desktop (CSS background-attachment), normal image on
+  touch / mobile / reduced motion. Text: eyebrow + large uppercase heading + optional button.
+{%- endcomment -%}
+{%- liquid
+  assign img = section.settings.image
+  assign img_mobile = section.settings.image_mobile | default: img
+-%}
+{%- style -%}
+  #McParallax-{{ section.id }} {
+    --mc-pt: {{ section.settings.padding_top }}px;
+    --mc-pb: {{ section.settings.padding_bottom }}px;
+    --mc-banner-h: {{ section.settings.height }}px;
+    --mc-banner-h-mobile: {{ section.settings.height_mobile }}px;
+    --mc-banner-text: {{ section.settings.text_color }};
+    {%- if img != blank %}
+    --mc-banner-bg: url('{{ img | image_url: width: 2400 }}');
+    {%- endif %}
+  }
+{%- endstyle -%}
+
+<section id="McParallax-{{ section.id }}" class="mc-section mc-parallax">
+  <div class="mc-parallax__inner{% if section.settings.parallax and img != blank %} mc-parallax__inner--fixed{% endif %}">
+    <div class="mc-parallax__media">
+      {%- if img != blank -%}
+        {%- if section.settings.image_mobile != blank -%}
+          <picture>
+            <source media="(max-width: 749px)" srcset="{{ img_mobile | image_url: width: 750 }} 750w, {{ img_mobile | image_url: width: 1100 }} 1100w" sizes="100vw">
+            {{ img | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 1920, 2400', sizes: '100vw', loading: 'lazy', alt: img.alt | default: section.settings.heading | escape }}
+          </picture>
+        {%- else -%}
+          {{ img | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 1920, 2400', sizes: '100vw', loading: 'lazy', alt: img.alt | default: section.settings.heading | escape }}
+        {%- endif -%}
+      {%- else -%}
+        {{ 'hero-apparel-1' | placeholder_svg_tag }}
+      {%- endif -%}
+    </div>
+    <div class="container mc-parallax__content mc-parallax__content--{{ section.settings.text_position }}">
+      <div class="mc-parallax__text">
+        {%- if section.settings.eyebrow != blank -%}<p class="mc-parallax__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="mc-parallax__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <a {% if section.settings.link != blank %}href="{{ section.settings.link }}"{% else %}role="link" aria-disabled="true"{% endif %} class="mc-btn mc-btn--outline mc-btn--small">{{ section.settings.button_label | escape }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Merci parallax banner",
+  "tag": "div",
+  "class": "section-mc-parallax",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "1920 × 600 px recommended" },
+    { "type": "image_picker", "id": "image_mobile", "label": "Mobile image (optional)" },
+    { "type": "checkbox", "id": "parallax", "label": "Parallax effect on desktop", "default": true },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Spring woman" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "A summer ride" },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "link", "label": "Button link" },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#000000" },
+    { "type": "range", "id": "height", "label": "Height on desktop", "min": 300, "max": 800, "step": 10, "unit": "px", "default": 500 },
+    { "type": "range", "id": "height_mobile", "label": "Height on mobile", "min": 200, "max": 600, "step": 10, "unit": "px", "default": 300 },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 }
+  ],
+  "presets": [{ "name": "Merci parallax banner" }]
+}
+{% endschema %}

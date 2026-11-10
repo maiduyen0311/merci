@@ -115,7 +115,8 @@
   },
   "onboarding": {
     "product_title": "Példa terméknévre",
-    "collection_title": "Kollekció neve"
+    "collection_title": "Kollekció neve",
+    "blog_title": "Your blog post's title"
   },
   "products": {
     "product": {

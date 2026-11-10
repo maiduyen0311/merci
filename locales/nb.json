@@ -115,7 +115,8 @@
   },
   "onboarding": {
     "product_title": "Eksempel på produkttittel",
-    "collection_title": "Navnet på samlingen"
+    "collection_title": "Navnet på samlingen",
+    "blog_title": "Your blog post's title"
   },
   "products": {
     "product": {

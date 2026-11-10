@@ -69,6 +69,13 @@
     if settings.card_layout == 'minimal'
       assign card_minimal = true
     endif
+    # Merci layout (SPEC §3.1, design-direction memory): image cross-fade + slow zoom,
+    # strip sliding up from the image bottom (wishlist | QUICK VIEW | compare),
+    # price line swaps to an "Add to cart +" text link on hover.
+    assign card_merci = false
+    if settings.card_layout == 'merci'
+      assign card_merci = true
+    endif
 
     assign badge_type = ''
     assign badge_text = ''
@@ -134,7 +141,7 @@
     endif
 
   -%}
-  <div class="card-wrapper product-card-wrapper underline-links-hover{% if card_minimal %} card-wrapper--minimal{% endif %}{% if card_product.available == false %} is-sold-out{% endif %}">
+  <div class="card-wrapper product-card-wrapper underline-links-hover{% if card_minimal %} card-wrapper--minimal{% endif %}{% if card_merci %} card-wrapper--merci{% endif %}{% if card_product.available == false %} is-sold-out{% endif %}">
     <div
       class="
         card card--{{ settings.card_style }}
@@ -171,7 +178,46 @@
               Hover icons (design/Hover-product.jpg): wishlist + compare, stacked top-left.
               Wishlist → wishlist.js ([data-wishlist-toggle]); compare → card-actions.js.
             {%- endcomment -%}
-            {%- if card_minimal -%}
+            {%- if card_merci -%}
+              {%- comment -%} Merci strip: slides up from the image bottom on hover / focus {%- endcomment -%}
+              <div class="mc-card__strip">
+                {%- if show_wishlist -%}
+                  <button
+                    type="button"
+                    class="mc-card__strip-icon card-product__wishlist"
+                    data-wishlist-toggle="{{ card_product.handle }}"
+                    aria-label="{{ 'products.product.wishlist' | t | default: 'Add to wishlist' }}: {{ card_product.title | escape }}"
+                    title="{{ 'products.product.wishlist' | t | default: 'Add to wishlist' }}"
+                    aria-pressed="false"
+                  >
+                    {%- render 'icon-heart' -%}
+                  </button>
+                {%- endif -%}
+                {%- if settings.quick_view_enable != false -%}
+                  <button
+                    type="button"
+                    class="mc-card__strip-label"
+                    data-quick-view-trigger
+                    data-product-url="{{ card_product.url }}"
+                    aria-label="{{ settings.quick_view_button_label | default: 'Quick view' | escape }}: {{ card_product.title | escape }}"
+                  >
+                    {{- settings.quick_view_button_label | default: 'Quick view' | escape -}}
+                  </button>
+                {%- endif -%}
+                {%- if settings.card_show_compare -%}
+                  <button
+                    type="button"
+                    class="mc-card__strip-icon card-product__compare"
+                    data-compare-toggle="{{ card_product.handle }}"
+                    aria-label="{{ settings.card_compare_label | escape }}: {{ card_product.title | escape }}"
+                    title="{{ settings.card_compare_label | escape }}"
+                    aria-pressed="false"
+                  >
+                    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h15M15 4l4 4-4 4M20 16H5M9 12l-4 4 4 4"/></svg>
+                  </button>
+                {%- endif -%}
+              </div>
+            {%- elsif card_minimal -%}
               {%- comment -%} Minimal layout: quick view, wishlist, add to cart centred on the image {%- endcomment -%}
               {%- assign act_variant = card_product.selected_or_first_available_variant -%}
               <div class="card-product__actions">
@@ -414,7 +460,25 @@
               {%- endif -%}
             {%- endif -%}
 
-            {% render 'price', product: card_product, use_variant: true, price_class: '', show_compare_at_price: true %}
+            {%- if card_merci -%}
+              <div class="mc-card__price-swap">
+                {% render 'price', product: card_product, use_variant: true, price_class: '', show_compare_at_price: true %}
+                {%- assign mc_variant = card_product.selected_or_first_available_variant -%}
+                {%- if card_product.available == false -%}
+                  <span class="mc-card__atc mc-card__atc--disabled">{{ 'products.product.sold_out' | t }}</span>
+                {%- elsif card_product.has_only_default_variant -%}
+                  <button type="button" class="mc-card__atc" data-card-add="{{ mc_variant.id }}" aria-label="{{ 'products.product.add_to_cart' | t }}: {{ card_product.title | escape }}">
+                    {{- 'products.product.add_to_cart' | t -}}<span aria-hidden="true"> +</span>
+                  </button>
+                {%- else -%}
+                  <button type="button" class="mc-card__atc" data-quick-view-trigger data-product-url="{{ card_product.url }}" aria-label="{{ 'products.product.choose_options' | t | default: 'Choose options' }}: {{ card_product.title | escape }}">
+                    {{- 'products.product.choose_options' | t | default: 'Choose options' -}}<span aria-hidden="true"> +</span>
+                  </button>
+                {%- endif -%}
+              </div>
+            {%- else -%}
+              {% render 'price', product: card_product, use_variant: true, price_class: '', show_compare_at_price: true %}
+            {%- endif -%}
 
             {%- if show_color_swatches -%}
               {%- assign color_option = nil -%}
@@ -598,7 +662,7 @@
             {%- endif -%}
           </div>
         </div>
-        {%- if settings.card_show_hover_bar and card_minimal == false -%}
+        {%- if settings.card_show_hover_bar and card_minimal == false and card_merci == false -%}
           {%- assign bar_variant = card_product.selected_or_first_available_variant -%}
           <div class="card-product__bar">
             <button

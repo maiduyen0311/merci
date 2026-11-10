@@ -115,7 +115,8 @@
   },
   "onboarding": {
     "product_title": "제품명 예",
-    "collection_title": "컬렉션 이름"
+    "collection_title": "컬렉션 이름",
+    "blog_title": "Your blog post's title"
   },
   "products": {
     "product": {

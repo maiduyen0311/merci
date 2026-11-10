@@ -1,0 +1,130 @@
+{%- comment -%}
+  Merci — Image tiles (SPEC §2 #5 collection tiles ×3 and #8 banner pair ×2)
+  Image tiles with eyebrow / title / sub-line; text position per tile (9 positions).
+  Hover: slow zoom + thin inner frame + title underline. Mobile: swipe row with progress bar.
+{%- endcomment -%}
+{%- liquid
+  assign cols = section.settings.columns_desktop
+  assign tile_count = section.blocks.size
+-%}
+{%- style -%}
+  #McImageTiles-{{ section.id }} {
+    --mc-pt: {{ section.settings.padding_top }}px;
+    --mc-pb: {{ section.settings.padding_bottom }}px;
+    --mc-tile-ratio: {{ section.settings.ratio }};
+  }
+{%- endstyle -%}
+
+<section id="McImageTiles-{{ section.id }}" class="mc-section mc-image-tiles">
+  <div class="container">
+    {%- if section.settings.title != blank -%}
+      <div class="mc-heading"><h2 class="mc-heading__title">{{ section.settings.title }}</h2></div>
+    {%- endif -%}
+    <tm-scroller class="tm-scroller mc-scroller" style="--per-view: {{ cols }}; --per-view-md: {{ cols | at_most: 2 }}; --per-view-sm: {{ section.settings.columns_mobile }}; --gap: 3rem;">
+      <ul class="tm-scroller__track mc-image-tiles__list" role="list" data-scroller-track>
+        {%- for block in section.blocks -%}
+          <li class="mc-image-tiles__item mc-hover" {{ block.shopify_attributes }}>
+            {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" class="mc-image-tiles__tile">{%- else -%}<div class="mc-image-tiles__tile">{%- endif -%}
+              <div class="mc-media mc-frame mc-image-tiles__media">
+                {%- if block.settings.image != blank -%}
+                  {%- capture sizes -%}(min-width: 992px) {{ 1200 | divided_by: cols }}px, (min-width: 750px) 50vw, 90vw{%- endcapture -%}
+                  {{ block.settings.image | image_url: width: 1200 | image_tag: widths: '400, 600, 800, 1000, 1200', sizes: sizes, loading: 'lazy', alt: block.settings.image.alt | default: block.settings.title | escape }}
+                {%- else -%}
+                  {{ 'lifestyle-1' | placeholder_svg_tag }}
+                {%- endif -%}
+              </div>
+              <div class="mc-image-tiles__content mc-image-tiles__content--{{ block.settings.text_position }}" style="--mc-tile-text: {{ block.settings.text_color }};">
+                {%- if block.settings.eyebrow != blank -%}<span class="mc-image-tiles__eyebrow">{{ block.settings.eyebrow }}</span>{%- endif -%}
+                {%- if block.settings.title != blank -%}<h3 class="mc-image-tiles__title"><span class="mc-link">{{ block.settings.title }}</span></h3>{%- endif -%}
+                {%- if block.settings.subtitle != blank -%}<span class="mc-image-tiles__sub">{{ block.settings.subtitle }}</span>{%- endif -%}
+              </div>
+            {%- if block.settings.link != blank -%}</a>{%- else -%}</div>{%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+      {%- if tile_count > 1 -%}<div class="mc-scroller__progress" aria-hidden="true"></div>{%- endif -%}
+    </tm-scroller>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Merci image tiles",
+  "tag": "div",
+  "class": "section-mc-image-tiles",
+  "settings": [
+    { "type": "inline_richtext", "id": "title", "label": "Heading" },
+    { "type": "range", "id": "columns_desktop", "label": "Tiles per row on desktop", "min": 1, "max": 4, "step": 1, "default": 3 },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Tiles per view on mobile",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "1.2", "label": "1 + a peek of the next" }
+      ],
+      "default": "1.2"
+    },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "Image shape",
+      "options": [
+        { "value": "0.86", "label": "Portrait (Merci tiles)" },
+        { "value": "1.65", "label": "Landscape (Merci banners)" },
+        { "value": "1", "label": "Square" }
+      ],
+      "default": "0.86"
+    },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "limit": 8,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "New arrivals" },
+        { "type": "inline_richtext", "id": "title", "label": "Title", "default": "Merci collection" },
+        { "type": "text", "id": "subtitle", "label": "Sub-line" },
+        { "type": "url", "id": "link", "label": "Link" },
+        {
+          "type": "select",
+          "id": "text_position",
+          "label": "Text position",
+          "options": [
+            { "value": "top-left", "label": "Top left" },
+            { "value": "top-center", "label": "Top center" },
+            { "value": "middle-left", "label": "Middle left" },
+            { "value": "middle-center", "label": "Middle center" },
+            { "value": "bottom-left", "label": "Bottom left" },
+            { "value": "bottom-center", "label": "Bottom center" }
+          ],
+          "default": "middle-center"
+        },
+        { "type": "color", "id": "text_color", "label": "Text color", "default": "#000000" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Merci collection tiles",
+      "blocks": [
+        { "type": "tile" },
+        { "type": "tile", "settings": { "eyebrow": "Valkyrio", "title": "Sale up to 30% off" } },
+        { "type": "tile", "settings": { "eyebrow": "Maria all", "title": "Collection 2026" } }
+      ]
+    },
+    {
+      "name": "Merci banner pair",
+      "settings": { "columns_desktop": 2, "ratio": "1.65" },
+      "blocks": [
+        { "type": "tile", "settings": { "eyebrow": "", "title": "Plaid swimsuit", "subtitle": "#maystore", "text_position": "middle-left" } },
+        { "type": "tile", "settings": { "eyebrow": "", "title": "Sale up to 50% off", "subtitle": "#sweatshirt", "text_position": "bottom-left" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
