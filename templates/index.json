@@ -6,43 +6,37 @@
         "slide_1": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/tm-home-hero-slide-75off.jpg",
             "link": "shopify://collections/all"
           }
         },
         "slide_2": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/tm-home-hero-slide-2.png",
-            "link": "shopify://collections/womens"
+            "link": "shopify://collections/all"
           }
         },
         "banner_1": {
           "type": "promo_banner",
           "settings": {
-            "image": "shopify://shop_images/tm-home-hero-side-handbags.jpg",
-            "link": "shopify://collections/bags"
+            "link": "shopify://collections/all"
           }
         },
         "banner_2": {
           "type": "promo_banner",
           "settings": {
-            "image": "shopify://shop_images/tm-home-hero-side-collection.jpg",
-            "link": "shopify://collections/mens"
+            "link": "shopify://collections/all"
           }
         },
         "banner_3": {
           "type": "promo_banner",
           "settings": {
-            "image": "shopify://shop_images/tm-home-hero-side-sale50.jpg",
-            "link": "shopify://collections/womens"
+            "link": "shopify://collections/all"
           }
         },
         "slide_3": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/tm-home-hero-slide-3.png",
-            "link": "shopify://collections/mens"
+            "link": "shopify://collections/all"
           }
         }
       },
@@ -74,8 +68,7 @@
             "button_label": "SHOP NOW",
             "content_position": "bottom-right",
             "background_color": "#e8dfd0",
-            "image": "shopify://shop_images/tm-home-promo-women.png",
-            "link": "shopify://collections/womens"
+            "link": "shopify://collections/all"
           }
         },
         "banner_2": {
@@ -86,8 +79,7 @@
             "button_label": "SHOP NOW",
             "content_position": "top-left",
             "background_color": "#e5ddd0",
-            "image": "shopify://shop_images/tm-home-promo-men.png",
-            "link": "shopify://collections/mens"
+            "link": "shopify://collections/all"
           }
         },
         "banner_3": {
@@ -98,8 +90,7 @@
             "button_label": "SHOP NOW",
             "content_position": "top-right",
             "background_color": "#f0d4cc",
-            "image": "shopify://shop_images/tm-home-promo-bag.png",
-            "link": "shopify://collections/bags"
+            "link": "shopify://collections/all"
           }
         },
         "banner_4": {
@@ -110,8 +101,7 @@
             "button_label": "SHOP NOW",
             "content_position": "top-left",
             "background_color": "#d4e8f0",
-            "image": "shopify://shop_images/tm-home-promo-shoes.png",
-            "link": "shopify://collections/shoes"
+            "link": "shopify://collections/all"
           }
         },
         "banner_5": {
@@ -122,8 +112,7 @@
             "button_label": "SHOP NOW",
             "content_position": "top-right",
             "background_color": "#f5f0d8",
-            "image": "shopify://shop_images/tm-home-promo-accessories.png",
-            "link": "shopify://collections/accessories"
+            "link": "shopify://collections/all"
           }
         }
       },
@@ -201,7 +190,7 @@
         "accent_color": "#dc5414",
         "padding_top": 24,
         "padding_bottom": 48,
-        "view_all_link": "shopify://collections/tm-new-products"
+        "view_all_link": "shopify://collections/all"
       }
     },
     "video_banner": {
@@ -213,9 +202,8 @@
             "background_color": "#c9b08a",
             "text_script": "Summer",
             "text_bold": "SALE",
-            "image": "shopify://shop_images/tm-home-banner-summer-sale.jpg",
             "image_only": true,
-            "link": "shopify://collections/shoes"
+            "link": "shopify://collections/all"
           }
         },
         "banner_upto": {
@@ -224,9 +212,8 @@
             "background_color": "#7a9a8e",
             "text_script": "Up to",
             "text_bold": "30%",
-            "image": "shopify://shop_images/tm-home-banner-up-to-30.jpg",
             "image_only": true,
-            "link": "shopify://collections/bags"
+            "link": "shopify://collections/all"
           }
         }
       },
@@ -321,7 +308,6 @@
         "full_width": false,
         "padding_top": 36,
         "padding_bottom": 36,
-        "image_right": "shopify://shop_images/tm-home-banner-new-arrivals.jpg",
         "image_only": true
       }
     },
@@ -332,7 +318,7 @@
         "section_title": "Top Trending",
         "feature_eyebrow": "BEST OF MEN'S",
         "feature_button_label": "SHOP NOW",
-        "feature_link": "shopify://collections/mens",
+        "feature_link": "shopify://collections/all",
         "feature_background_color": "#dfe8d8",
         "collection": "tm-trending-men",
         "products_to_show": 4,
@@ -346,7 +332,6 @@
         "accent_color": "#dc5414",
         "padding_top": 48,
         "padding_bottom": 48,
-        "feature_image": "shopify://shop_images/tm-home-trending-men-card.jpg",
         "feature_image_only": true,
         "section_eyebrow": "FUTURE PRODUCT"
       }
@@ -363,7 +348,6 @@
         "full_width": false,
         "padding_top": 24,
         "padding_bottom": 24,
-        "image": "shopify://shop_images/tm-home-banner-50-off.jpg",
         "image_only": true
       }
     },
@@ -374,7 +358,7 @@
         "section_title": "Top Trending",
         "feature_eyebrow": "BEST OF WOMEN",
         "feature_button_label": "SHOP NOW",
-        "feature_link": "shopify://collections/womens",
+        "feature_link": "shopify://collections/all",
         "feature_background_color": "#efe6dc",
         "collection": "tm-trending-women",
         "products_to_show": 4,
@@ -388,7 +372,6 @@
         "accent_color": "#dc5414",
         "padding_top": 48,
         "padding_bottom": 48,
-        "feature_image": "shopify://shop_images/tm-home-trending-women-card.jpg",
         "feature_image_only": true
       }
     },
@@ -402,7 +385,6 @@
         "full_width": false,
         "padding_top": 36,
         "padding_bottom": 36,
-        "image_left": "shopify://shop_images/tm-home-banner-flash-sale.jpg",
         "image_only": true
       }
     },
@@ -413,7 +395,7 @@
         "section_title": "Top Trending",
         "feature_eyebrow": "BEST OF SHOES",
         "feature_button_label": "SHOP NOW",
-        "feature_link": "shopify://collections/shoes",
+        "feature_link": "shopify://collections/all",
         "feature_background_color": "#f1e6dc",
         "collection": "tm-shoes",
         "products_to_show": 4,
@@ -427,7 +409,6 @@
         "accent_color": "#dc5414",
         "padding_top": 48,
         "padding_bottom": 48,
-        "feature_image": "shopify://shop_images/tm-home-trending-shoes-card.jpg",
         "feature_image_only": true
       }
     },
@@ -440,9 +421,8 @@
             "background_color": "#f3d2c9",
             "eyebrow_script": "Spring Collection Day",
             "title_bold": "SALE 30%",
-            "link": "shopify://collections/bags",
+            "link": "shopify://collections/all",
             "image_position": "right",
-            "image": "shopify://shop_images/tm-home-banner-sale-30.jpg",
             "image_only": true
           }
         },
@@ -452,9 +432,8 @@
             "background_color": "#cdd8d4",
             "eyebrow_script": "Trend 2021",
             "title_bold": "Women's",
-            "link": "shopify://collections/womens",
+            "link": "shopify://collections/all",
             "image_position": "right",
-            "image": "shopify://shop_images/tm-home-banner-trend-2021.jpg",
             "image_only": true
           }
         }
@@ -478,40 +457,35 @@
           "type": "logo",
           "settings": {
             "alt": "ZARA",
-            "link": "",
-            "image": "shopify://shop_images/tm-home-brand-zara.png"
+            "link": ""
           }
         },
         "logo_vogue": {
           "type": "logo",
           "settings": {
             "alt": "VOGUE",
-            "link": "",
-            "image": "shopify://shop_images/tm-home-brand-vogue.png"
+            "link": ""
           }
         },
         "logo_mango": {
           "type": "logo",
           "settings": {
             "alt": "MANGO",
-            "link": "",
-            "image": "shopify://shop_images/tm-home-brand-mango.png"
+            "link": ""
           }
         },
         "logo_flair": {
           "type": "logo",
           "settings": {
             "alt": "flair",
-            "link": "",
-            "image": "shopify://shop_images/tm-home-brand-flair.png"
+            "link": ""
           }
         },
         "logo_adidas": {
           "type": "logo",
           "settings": {
             "alt": "adidas",
-            "link": "",
-            "image": "shopify://shop_images/tm-home-brand-adidas.png"
+            "link": ""
           }
         }
       },
@@ -558,43 +532,37 @@
         "ig_1": {
           "type": "image",
           "settings": {
-            "link": "",
-            "image": "shopify://shop_images/tm-home-instagram-1.png"
+            "link": ""
           }
         },
         "ig_2": {
           "type": "image",
           "settings": {
-            "link": "",
-            "image": "shopify://shop_images/tm-home-instagram-2.png"
+            "link": ""
           }
         },
         "ig_3": {
           "type": "image",
           "settings": {
-            "link": "",
-            "image": "shopify://shop_images/tm-home-instagram-3.png"
+            "link": ""
           }
         },
         "ig_4": {
           "type": "image",
           "settings": {
-            "link": "",
-            "image": "shopify://shop_images/tm-home-instagram-4.png"
+            "link": ""
           }
         },
         "ig_5": {
           "type": "image",
           "settings": {
-            "link": "",
-            "image": "shopify://shop_images/tm-home-instagram-5.png"
+            "link": ""
           }
         },
         "ig_6": {
           "type": "image",
           "settings": {
-            "link": "",
-            "image": "shopify://shop_images/tm-home-instagram-6.jpg"
+            "link": ""
           }
         }
       },
@@ -607,7 +575,7 @@
         "ig_6"
       ],
       "settings": {
-        "title": "Instagram #TOPMARKET",
+        "title": "Follow us on Instagram",
         "instagram_handle": "",
         "instagram_url": "https://instagram.com/",
         "show_overlay_logo": true,

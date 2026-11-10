@@ -4,8 +4,8 @@
 {%- endcomment -%}
 
 {%- liquid
-  assign logo_top = section.settings.logo_text_top | default: 'TOP'
-  assign logo_bottom = section.settings.logo_text_bottom | default: 'market'
+  assign logo_top = section.settings.logo_text_top | default: shop.name
+  assign logo_bottom = section.settings.logo_text_bottom
 -%}
 
 <div class="header-middle__logo">
@@ -22,20 +22,10 @@
           loading: 'eager'
       }}
     {%- else -%}
-      {%- if logo_top == 'TOP' and logo_bottom == 'market' -%}
-        <span class="header-middle__logo-mark">{% render 'logo-topmarket' %}</span>
-      {%- else -%}
-      <span class="header-middle__logo-text" aria-hidden="true">
-        <span class="header-middle__logo-top">
-          {%- if logo_top == 'TOP' -%}
-            T<span class="header-middle__logo-o"><span class="header-middle__logo-o-dot"></span>O</span>P
-          {%- else -%}
-            {{ logo_top }}
-          {%- endif -%}
+      <span class="header-middle__logo-text">
+          <span class="header-middle__logo-top">{{ logo_top }}</span>
+          {%- if logo_bottom != blank -%}<span class="header-middle__logo-bottom">{{ logo_bottom }}</span>{%- endif -%}
         </span>
-        <span class="header-middle__logo-bottom">{{ logo_bottom }}</span>
-      </span>
       {%- endif -%}
-    {%- endif -%}
   </a>
 </div>

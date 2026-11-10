@@ -36,8 +36,7 @@
             "featured_show_swatches": true,
             "featured_button_label": "Select Options",
             "show_promo_column": true,
-            "promo_image": "shopify://shop_images/mega-brn01.jpg",
-            "promo_url": "shopify://collections/womens"
+            "promo_url": "shopify://collections/all"
           }
         },
         "mega-mens": {
@@ -47,14 +46,11 @@
             "link_columns": 5,
             "column_layout": "1,2,1,1,1",
             "card_1_title": "Summer Sale",
-            "card_1_image": "shopify://shop_images/mega-card-summer.png",
-            "card_1_url": "shopify://collections/mens",
+            "card_1_url": "shopify://collections/all",
             "card_2_title": "Beach Style",
-            "card_2_image": "shopify://shop_images/mega-card-beach.png",
-            "card_2_url": "shopify://collections/mens",
+            "card_2_url": "shopify://collections/all",
             "card_3_title": "Sleep & Lounge",
-            "card_3_image": "shopify://shop_images/mega-card-sleep.png",
-            "card_3_url": "shopify://collections/mens"
+            "card_3_url": "shopify://collections/all"
           }
         },
         "mega-clothing": {
@@ -62,8 +58,7 @@
           "settings": {
             "match_title": "Clothing",
             "link_columns": 4,
-            "banner_image": "shopify://shop_images/mega-brn02.png",
-            "banner_url": "shopify://collections/clothing"
+            "banner_url": "shopify://collections/all"
           }
         },
         "mega-shoes": {
@@ -71,73 +66,62 @@
           "settings": {
             "match_title": "Shoes",
             "link_columns": 4,
-            "banner_1_image": "shopify://shop_images/mega-brn03.jpg",
-            "banner_1_url": "shopify://collections/shoes",
-            "banner_2_image": "shopify://shop_images/mega-brn04.jpg",
-            "banner_2_url": "shopify://collections/shoes"
+            "banner_1_url": "shopify://collections/all",
+            "banner_2_url": "shopify://collections/all"
           }
         },
         "icon-womens": {
           "type": "category_icon",
           "settings": {
-            "match_title": "Women's",
-            "icon_image": "shopify://shop_images/tm-cat-icon-womens.png"
+            "match_title": "Women's"
           }
         },
         "icon-mens": {
           "type": "category_icon",
           "settings": {
-            "match_title": "Men's",
-            "icon_image": "shopify://shop_images/tm-cat-icon-mens.png"
+            "match_title": "Men's"
           }
         },
         "icon-clothing": {
           "type": "category_icon",
           "settings": {
-            "match_title": "Clothing",
-            "icon_image": "shopify://shop_images/tm-cat-icon-clothing.png"
+            "match_title": "Clothing"
           }
         },
         "icon-shoes": {
           "type": "category_icon",
           "settings": {
-            "match_title": "Shoes",
-            "icon_image": "shopify://shop_images/tm-cat-icon-shoes.png"
+            "match_title": "Shoes"
           }
         },
         "icon-accessories": {
           "type": "category_icon",
           "settings": {
-            "match_title": "Accessories",
-            "icon_image": "shopify://shop_images/tm-cat-icon-accessories.png"
+            "match_title": "Accessories"
           }
         },
         "icon-bags": {
           "type": "category_icon",
           "settings": {
-            "match_title": "Bags",
-            "icon_image": "shopify://shop_images/tm-cat-icon-bags.png"
+            "match_title": "Bags"
           }
         },
         "icon-watches": {
           "type": "category_icon",
           "settings": {
-            "match_title": "Watches",
-            "icon_image": "shopify://shop_images/tm-cat-icon-watches.png"
+            "match_title": "Watches"
           }
         },
         "icon-jewellery": {
           "type": "category_icon",
           "settings": {
-            "match_title": "Jewellery & Watches",
-            "icon_image": "shopify://shop_images/tm-cat-icon-jewellery.png"
+            "match_title": "Jewellery & Watches"
           }
         },
         "icon-seasonal": {
           "type": "category_icon",
           "settings": {
-            "match_title": "Seasonal Wear",
-            "icon_image": "shopify://shop_images/tm-cat-icon-seasonal-wear.png"
+            "match_title": "Seasonal Wear"
           }
         }
       },

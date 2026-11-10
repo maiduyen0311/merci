@@ -1,6 +1,6 @@
 # BRIEF — Merci
 
-> Phase 00 · 2026-11-10 · trạng thái: **chờ duyệt**
+> Phase 00 · 2026-11-10 · trạng thái: **đã duyệt**
 
 ## 1. Tóm tắt
 - Ngách / ngành hàng: thời trang nữ (váy, denim, áo sơ mi, hoodie, áo khoác, đồ bơi, phụ kiện).
@@ -109,3 +109,12 @@ Section Top Market không dùng ở demo Merci (giữ lại làm tính năng bá
 5. Giá $59 và 1 demo cho v1.0 — đồng ý? Có muốn thêm demo 2 (vd tối giản đen trắng) không?
 6. Giữ ngôn ngữ EN + DE như store cũ, hay theo bộ locale của Top Market?
 7. Có chỉnh gì trên bản live muốn sửa luôn khi làm lại (typo "recelve", "Spring wonman", nhãn menu sai link "Jeans → /collections/jewelry")? Mặc định: sửa lỗi chính tả, giữ nguyên bố cục.
+
+### Trả lời của user (2026-11-10) — BRIEF đã duyệt
+1. Item **mới hoàn toàn** (Merci cũ chưa từng bán).
+2. Nhân bản theme live làm bản so sánh (`161508229191`); Merci 2.0 sẽ được **publish** trên merci-demo (dev theme `161508261959`).
+3. Tạo repo GitHub mới.
+4. Ảnh demo: thư mục `../product` hoặc ảnh đang có trên site live.
+5. $59, 1 demo / 1 layout cho v1.0 — **bán bằng chức năng**: tích hợp sẵn các tính năng kiểu app phổ biến; lên kế hoạch add-on (phase 11) sớm.
+6. Ngôn ngữ: giữ bộ locale như các theme trước (Top Market).
+7. Sửa lỗi chính tả, text sai, thêm nội dung khi cần.

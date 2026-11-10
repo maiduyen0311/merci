@@ -29,8 +29,7 @@
         "stat_3_value": "4.9★",
         "stat_3_label": "Average rating",
         "padding_top": 56,
-        "padding_bottom": 32,
-        "image": "shopify://shop_images/tm-about-story.jpg"
+        "padding_bottom": 32
       }
     },
     "brand_story_split": {
@@ -49,8 +48,7 @@
         "stat_3_value": "30-day",
         "stat_3_label": "Free returns",
         "padding_top": 64,
-        "padding_bottom": 64,
-        "image": "shopify://shop_images/tm-about-mission.jpg"
+        "padding_bottom": 64
       }
     },
     "testimonials": {
@@ -140,7 +138,7 @@
       ],
       "settings": {
         "eyebrow": "ABOUT US",
-        "heading": "More about Top Market",
+        "heading": "More about Merci",
         "subheading": "The answers to questions we hear most often from new customers.",
         "single_open": true,
         "enable_seo": false,

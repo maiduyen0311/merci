@@ -1,1 +1,3 @@
-- [Theme project](theme-project.md) - Merci, option A, base Top-market, slug merci
+- [Theme project](theme-project.md) - Merci 2.0, option A (live storefront = design), base Top Market, slug merci, prefix mc-
+- [Store and themes](store-and-themes.md) - merci-demo theme ids (live 120883249223, compare 161508229191, dev 161508261959) + publish rule
+- [Business decisions](business-decisions.md) - new item, $59, 1 demo, revenue from bundled app-like features

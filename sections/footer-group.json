@@ -26,7 +26,7 @@
         "margin_top": 0,
         "padding_top": 80,
         "padding_bottom": 24,
-        "copyright_text": "COPYRIGHT © 2021 TOPMARKET"
+        "copyright_text": "© 2026 Merci. All Rights Reserved."
       },
       "blocks": {
         "col_company": {
@@ -80,7 +80,6 @@
         "show_on": "all",
         "delay": 5,
         "dismiss_days": 7,
-        "image": "shopify://shop_images/newsletter-popup-model.jpg",
         "image_layout": "right",
         "title": "Newsletter Sign Up",
         "title_font": "script",

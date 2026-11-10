@@ -15,5 +15,8 @@
       }
     }
   },
-  "order": ["wishlist", "recently-viewed"]
+  "order": [
+    "wishlist",
+    "recently-viewed"
+  ]
 }

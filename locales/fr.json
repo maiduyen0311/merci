@@ -1,12 +1,12 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "general": {
     "password_page": {
@@ -539,8 +539,8 @@
       "placeholder_tag": "BLOG"
     },
     "home_instagram": {
-      "title": "Instagram #TOPMARKET",
-      "handle": "@topmarket",
+      "title": "Follow us on Instagram",
+      "handle": "@merci_shop",
       "view_on_instagram": "View on Instagram",
       "default_alt": "Instagram photo"
     },

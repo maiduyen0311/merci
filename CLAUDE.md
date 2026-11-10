@@ -6,8 +6,8 @@ Theme Merci của iPhoenix Themes, bán trên ThemeForest. Code nền clone từ
 
 **Đọc trước khi làm tiếp:** `.claude/memory/MEMORY.md` + các file trong `.claude/memory/`.
 
-- Phase hiện tại: 00 — Intake. (Cập nhật dòng này bằng `/handover`.)
-- Việc tiếp theo: user duyệt `design/BRIEF.md` (+ trả lời §7) → phase 01 Scaffold. Design gốc = theme đang live trên merci-demo.myshopify.com; code cũ ở `../legacy-source`.
+- Phase hiện tại: 01 — Scaffold xong (2026-11-10), chờ duyệt. Dev theme 161508261959 trên merci-demo.
+- Việc tiếp theo: tạo repo GitHub + push; rồi phase 02A — đo design trên bản compare 161508229191 (theme live cũ).
 
 ## Playbook
 

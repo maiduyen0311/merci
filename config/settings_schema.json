@@ -1,11 +1,11 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Top Market",
-    "theme_version": "1.1.0",
+    "theme_name": "Merci",
+    "theme_version": "1.0.0",
     "theme_author": "iPhoenix Themes",
-    "theme_documentation_url": "https://iphoenixthemes.com/top-market/documentation/",
-    "theme_support_url": "https://iphoenixthemes.com/top-market/#support"
+    "theme_documentation_url": "https://iphoenixthemes.com/themes/merci/documentation/",
+    "theme_support_url": "https://iphoenixthemes.com/themes/merci/#support"
   },
   {
     "name": "t:settings_schema.logo.name",
@@ -578,7 +578,7 @@
       },
       {
         "type": "header",
-        "content": "Top Market — Mini cart (drawer)"
+        "content": "Merci — Mini cart (drawer)"
       },
       {
         "type": "text",
@@ -619,7 +619,7 @@
     ]
   },
   {
-    "name": "Top Market — Colors",
+    "name": "Merci — Colors",
     "settings": [
       {
         "type": "paragraph",
@@ -724,7 +724,7 @@
     ]
   },
   {
-    "name": "Top Market — Typography",
+    "name": "Merci — Typography",
     "settings": [
       {
         "type": "paragraph",
@@ -763,7 +763,7 @@
     ]
   },
   {
-    "name": "Top Market — Quick view",
+    "name": "Merci — Quick view",
     "settings": [
       {
         "type": "checkbox",

@@ -1,4 +1,4 @@
-# Top Market — Shopify Theme (source)
+# Merci — Shopify Theme (source)
 
 Multipurpose Shopify **Online Store 2.0** theme: SCSS + vanilla JavaScript, Bootstrap 5 grid, no jQuery.
 Buyer-facing setup guide: [`documentation/index.html`](documentation/index.html).
