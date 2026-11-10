@@ -45,7 +45,10 @@
       "label": "Phân trang",
       "page": "Trang {{ number }}",
       "next": "Trang sau",
-      "previous": "Trang trước"
+      "previous": "Trang trước",
+      "showing_html": "Hiển thị <strong>{{ from }}–{{ to }}</strong> trên {{ total }}",
+      "previous_short": "Trước",
+      "next_short": "Sau"
     },
     "search": {
       "search": "Tìm kiếm",
@@ -110,7 +113,8 @@
       "back_to_blog": "Quay lại blog",
       "share": "Chia sẻ bài viết này",
       "success": "Bạn đã gửi bình luận thành công! Xin cảm ơn!",
-      "success_moderated": "Bạn đã gửi bình luận thành công. Chúng tôi sẽ đăng bình luận sau chốc lát, khi blog của chúng tôi được kiểm duyệt."
+      "success_moderated": "Bạn đã gửi bình luận thành công. Chúng tôi sẽ đăng bình luận sau chốc lát, khi blog của chúng tôi được kiểm duyệt.",
+      "by_author": "Đăng bởi {{ author }}"
     }
   },
   "onboarding": {
@@ -566,7 +570,10 @@
         "chest": "Ngực",
         "waist": "Eo",
         "hips": "Hông"
-      }
+      },
+      "availability": "Tình trạng",
+      "in_stock_count": "Còn {{ count }} sản phẩm",
+      "sold_hint_html": "Đã bán <strong>{{ count }}</strong> trong {{ hours }} giờ qua"
     },
     "free_shipping": {
       "reached": "🎉 Bạn đã được miễn phí vận chuyển!",

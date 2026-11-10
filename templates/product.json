@@ -15,7 +15,7 @@
         "show_short_description": true,
         "show_vendor": true,
         "show_product_type": true,
-        "show_live_viewers": true,
+        "show_live_viewers": false,
         "live_viewers_count": 25,
         "show_low_stock": true,
         "low_stock_fallback_qty": 38,
@@ -26,10 +26,10 @@
         "show_subtotal": true,
         "subtotal_label": "Subtotal:",
         "show_action_row": true,
-        "action_size_guide_label": "Size Guide",
+        "action_size_guide_label": "Size guide",
         "action_ask_label": "Ask a question",
-        "action_compare_label": "Add Compare",
-        "show_terms_checkbox": true,
+        "action_compare_label": "Add to compare",
+        "show_terms_checkbox": false,
         "terms_prefix": "I agree with",
         "terms_link_text": "Terms & Conditions",
         "show_delivery_info": true,
@@ -39,7 +39,12 @@
         "delivery_shipping_text": "On all orders over $75",
         "show_free_shipping_bar": false,
         "show_trust_strip": false,
-        "option_order": "Size, Color"
+        "option_order": "Size, Color",
+        "layout_style": "merci",
+        "show_sales_hint": true,
+        "show_countdown": true,
+        "show_wishlist_button": true,
+        "wishlist_label": "Add wish list"
       }
     },
     "tabs": {
@@ -48,32 +53,34 @@
         "description": {
           "type": "description",
           "settings": {
-            "heading": "DESCRIPTION",
+            "heading": "Description",
             "use_product_description": true
           }
         },
         "reviews": {
           "type": "reviews",
           "settings": {
-            "heading": "REVIEWS"
+            "heading": "Reviews"
           }
         },
         "size_fit": {
           "type": "size_fit",
           "settings": {
-            "heading": "SIZE & FIT"
+            "heading": "Size chart"
           }
         },
         "shipping_return": {
           "type": "shipping_return",
           "settings": {
-            "heading": "SHIPPING & RETURN"
+            "heading": "Shipping & return"
           }
         },
         "custom": {
           "type": "custom",
           "settings": {
-            "heading": "CUSTOMTAB"
+            "heading": "Material & care",
+            "content": "<p><strong>Composition</strong></p><p>Shell: 100% cotton. Lining: 100% polyester. Trims: 60% zamak, 40% iron.</p><p>Fabrics are chosen to soften with every wash and keep their colour season after season.</p>",
+            "content_2": "<p><strong>Care</strong></p><ul><li>Machine wash cold, gentle cycle</li><li>Do not bleach</li><li>Do not tumble dry — dry flat in the shade</li><li>Iron on low heat, inside out</li></ul>"
           }
         }
       },
@@ -92,16 +99,16 @@
     "related-products": {
       "type": "related-products",
       "settings": {
-        "heading": "Related Products",
+        "heading": "You may also like",
         "heading_size": "h2",
-        "products_to_show": 10,
-        "columns_desktop": 5,
+        "products_to_show": 8,
+        "columns_desktop": 4,
         "color_scheme": "scheme-1",
-        "image_ratio": "square",
+        "image_ratio": "portrait",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
-        "show_rating": true,
+        "show_rating": false,
         "show_metafield_badge": true,
         "show_wishlist": true,
         "columns_mobile": "2",
@@ -112,7 +119,7 @@
     "recently-viewed": {
       "type": "recently-viewed",
       "settings": {
-        "heading": "Recently Viewed Products",
+        "heading": "Recently viewed",
         "products_to_show": 10,
         "padding_top": 36,
         "padding_bottom": 36

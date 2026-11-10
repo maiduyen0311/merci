@@ -5,7 +5,7 @@
  * pages, blog posts and menus. Safe to re-run: everything is looked up by
  * handle and updated instead of duplicated.
  *
- *   node scripts/demo-import.js <demo> --store <shop>.myshopify.com [--only languages,files,products,collections,pages,blog,menus,discounts] [--prune]
+ *   node scripts/demo-import.js <demo> --store <shop>.myshopify.com [--only languages,metafields,files,products,collections,pages,blog,menus,discounts] [--prune]
  *   --prune archives this demo's products that are no longer in content.json
  *   npm run demo:import -- fashion --store haley-demo.myshopify.com
  *
@@ -149,9 +149,10 @@ if (step('languages') && content.languages) {
 // ---------------------------------------------------------------------------
 // 1. Metafield definitions
 // ---------------------------------------------------------------------------
-if (step('products')) {
+if (step('products') || step('metafields')) {
   for (const def of content.metafields || []) {
     const definition = { name: def.name, namespace: def.namespace, key: def.key, type: def.type, ownerType: 'PRODUCT' };
+    if (def.description) definition.description = def.description;
     if (def.choices) definition.validations = [{ name: 'choices', value: JSON.stringify(def.choices) }];
     const r = gql('mutation($d: MetafieldDefinitionInput!) { metafieldDefinitionCreate(definition: $d) { createdDefinition { id } userErrors { field message code } } }', { d: definition });
     userErrors(r, `metafield ${def.namespace}.${def.key}`);
@@ -291,9 +292,18 @@ if (step('collections')) {
 // 5. Pages
 // ---------------------------------------------------------------------------
 if (step('pages')) {
-  const existing = new Set(gql('{ pages(first: 250) { nodes { handle } } }').pages.nodes.map((p) => p.handle));
+  const existingPages = gql('{ pages(first: 250) { nodes { id handle templateSuffix } } }').pages.nodes;
+  const existing = new Set(existingPages.map((p) => p.handle));
   for (const pg of content.pages) {
-    if (existing.has(pg.handle)) { console.log(`  · ${pg.handle} exists`); continue; }
+    if (existing.has(pg.handle)) {
+      // existing page: only switch its template (e.g. Merci v1 pages kept old suffixes)
+      const found = existingPages.find((p) => p.handle === pg.handle);
+      if (pg.template && found.templateSuffix !== pg.template) {
+        userErrors(gql('mutation($id: ID!, $page: PageUpdateInput!) { pageUpdate(id: $id, page: $page) { page { id } userErrors { field message code } } }', { id: found.id, page: { templateSuffix: pg.template } }), pg.handle);
+        console.log(`  ✔ ${pg.handle} → template ${pg.template}`);
+      } else console.log(`  · ${pg.handle} exists`);
+      continue;
+    }
     const page = { title: pg.title, handle: pg.handle, body: pg.body || '', isPublished: true };
     if (pg.template) page.templateSuffix = pg.template;
     userErrors(gql('mutation($page: PageCreateInput!) { pageCreate(page: $page) { page { id } userErrors { field message code } } }', { page }), pg.handle);

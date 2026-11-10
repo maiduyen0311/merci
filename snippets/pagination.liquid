@@ -14,6 +14,14 @@
 
 {%- if paginate.parts.size > 0 -%}
   <div class="pagination-wrapper">
+    {%- liquid
+      assign pg_from = paginate.current_offset | plus: 1
+      assign pg_to = paginate.current_offset | plus: paginate.page_size
+      if pg_to > paginate.items
+        assign pg_to = paginate.items
+      endif
+    -%}
+    <p class="pagination__count">{{ 'general.pagination.showing_html' | t: from: pg_from, to: pg_to, total: paginate.items }}</p>
     <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
       <ul class="pagination__list list-unstyled" role="list">
         {%- if paginate.previous -%}
@@ -24,6 +32,7 @@
               aria-label="{{ 'general.pagination.previous' | t }}"
             >
               {% render 'icon-caret' %}
+              <span class="pagination__word">{{ 'general.pagination.previous_short' | t }}</span>
             </a>
           </li>
         {%- endif -%}
@@ -63,6 +72,7 @@
               class="pagination__item pagination__item--prev pagination__item-arrow link motion-reduce"
               aria-label="{{ 'general.pagination.next' | t }}"
             >
+              <span class="pagination__word">{{ 'general.pagination.next_short' | t }}</span>
               {%- render 'icon-caret' -%}
             </a>
           </li>

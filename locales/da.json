@@ -42,7 +42,10 @@
       "label": "Sideinddeling",
       "page": "Side {{ number }}",
       "next": "Næste side",
-      "previous": "Forrige side"
+      "previous": "Forrige side",
+      "showing_html": "Showing <strong>{{ from }}–{{ to }}</strong> of {{ total }}",
+      "previous_short": "Previous",
+      "next_short": "Next"
     },
     "search": {
       "search": "Søg",
@@ -110,7 +113,8 @@
       "back_to_blog": "Tilbage til blog",
       "share": "Del denne artikel",
       "success": "Din kommentar er blevet offentliggjort! Tak!",
-      "success_moderated": "Din kommentar er blevet offentliggjort. Den bliver offentliggjort om lidt, da vores blog er under opsyn."
+      "success_moderated": "Din kommentar er blevet offentliggjort. Den bliver offentliggjort om lidt, da vores blog er under opsyn.",
+      "by_author": "Posted by {{ author }}"
     }
   },
   "onboarding": {
@@ -566,7 +570,10 @@
         "chest": "Chest",
         "waist": "Waist",
         "hips": "Hips"
-      }
+      },
+      "availability": "Availability",
+      "in_stock_count": "{{ count }} in stock",
+      "sold_hint_html": "<strong>{{ count }}</strong> sold in last {{ hours }} hours"
     },
     "free_shipping": {
       "reached": "🎉 You've unlocked free shipping!",

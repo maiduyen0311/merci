@@ -42,7 +42,10 @@
       "label": "Stránkovanie",
       "page": "Stránka {{ number }}",
       "next": "Nasledujúca stránka",
-      "previous": "Predchádzajúca stránka"
+      "previous": "Predchádzajúca stránka",
+      "showing_html": "Showing <strong>{{ from }}–{{ to }}</strong> of {{ total }}",
+      "previous_short": "Previous",
+      "next_short": "Next"
     },
     "search": {
       "search": "Vyhľadať",
@@ -112,7 +115,8 @@
         "other": "Počet komentárov: {{ count }}",
         "few": "Počet komentárov: {{ count }}",
         "many": "Počet komentárov: {{ count }}"
-      }
+      },
+      "by_author": "Posted by {{ author }}"
     }
   },
   "onboarding": {
@@ -590,7 +594,10 @@
         "chest": "Chest",
         "waist": "Waist",
         "hips": "Hips"
-      }
+      },
+      "availability": "Availability",
+      "in_stock_count": "{{ count }} in stock",
+      "sold_hint_html": "<strong>{{ count }}</strong> sold in last {{ hours }} hours"
     },
     "free_shipping": {
       "reached": "🎉 You've unlocked free shipping!",

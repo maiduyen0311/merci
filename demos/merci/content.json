@@ -1,0 +1,294 @@
+{
+  "storeName": "merci",
+  "metafields": [
+    {
+      "name": "Badge",
+      "namespace": "custom",
+      "key": "badge",
+      "type": "single_line_text_field",
+      "choices": [
+        "new",
+        "hot",
+        "bestseller",
+        "sale"
+      ]
+    },
+    {
+      "name": "Sold count",
+      "namespace": "custom",
+      "key": "sold_count",
+      "type": "number_integer",
+      "description": "Real units sold in the period below — shown as \"N sold in last H hours\" when the product page setting is on."
+    },
+    {
+      "name": "Sold in last (hours)",
+      "namespace": "custom",
+      "key": "sold_hours",
+      "type": "number_integer"
+    },
+    {
+      "name": "Offer ends",
+      "namespace": "custom",
+      "key": "offer_ends",
+      "type": "date_time",
+      "description": "End of the limited-time offer — the product page countdown hides itself after this time."
+    }
+  ],
+  "images": {
+    "instagram-1": {
+      "file": "images/instagram-1.jpg"
+    },
+    "instagram-2": {
+      "file": "images/instagram-2.jpg"
+    },
+    "instagram-3": {
+      "file": "images/instagram-3.jpg"
+    },
+    "instagram-4": {
+      "file": "images/instagram-4.jpg"
+    },
+    "instagram-5": {
+      "file": "images/instagram-5.jpg"
+    },
+    "instagram-6": {
+      "file": "images/instagram-6.jpg"
+    },
+    "lookbook-1": {
+      "file": "images/lookbook-1.jpg"
+    },
+    "lookbook-2": {
+      "file": "images/lookbook-2.jpg"
+    },
+    "lookbook-3": {
+      "file": "images/lookbook-3.jpg"
+    }
+  },
+  "files": [
+    {
+      "key": "instagram-1",
+      "filename": "merci-demo-instagram-1.jpg"
+    },
+    {
+      "key": "instagram-2",
+      "filename": "merci-demo-instagram-2.jpg"
+    },
+    {
+      "key": "instagram-3",
+      "filename": "merci-demo-instagram-3.jpg"
+    },
+    {
+      "key": "instagram-4",
+      "filename": "merci-demo-instagram-4.jpg"
+    },
+    {
+      "key": "instagram-5",
+      "filename": "merci-demo-instagram-5.jpg"
+    },
+    {
+      "key": "instagram-6",
+      "filename": "merci-demo-instagram-6.jpg"
+    },
+    {
+      "key": "lookbook-1",
+      "filename": "merci-demo-lookbook-1.jpg"
+    },
+    {
+      "key": "lookbook-2",
+      "filename": "merci-demo-lookbook-2.jpg"
+    },
+    {
+      "key": "lookbook-3",
+      "filename": "merci-demo-lookbook-3.jpg"
+    }
+  ],
+  "products": [],
+  "collections": [],
+  "pages": [
+    {
+      "handle": "faq",
+      "title": "FAQ",
+      "template": "faq"
+    },
+    {
+      "handle": "lookbook",
+      "title": "Lookbook",
+      "template": "lookbook"
+    },
+    {
+      "handle": "contact-us",
+      "title": "Contact us",
+      "template": "contact"
+    },
+    {
+      "handle": "wishlist",
+      "title": "My wishlist",
+      "template": "wishlist"
+    },
+    {
+      "handle": "compare",
+      "title": "Compare",
+      "template": "compare"
+    }
+  ],
+  "menus": [
+    {
+      "handle": "main-menu",
+      "title": "Main menu",
+      "items": [
+        {
+          "title": "Home",
+          "url": "/"
+        },
+        {
+          "title": "Shop",
+          "url": "/collections/all",
+          "items": [
+            {
+              "title": "Clothing",
+              "url": "/collections/all",
+              "items": [
+                {
+                  "title": "Cardigans & Sweaters",
+                  "url": "/collections/lorem-ipsum-dolor"
+                },
+                {
+                  "title": "Hoodies & Sweatshirts",
+                  "url": "/collections/clothings"
+                },
+                {
+                  "title": "Jackets & Coats",
+                  "url": "/collections/new-in"
+                },
+                {
+                  "title": "Jeans",
+                  "url": "/collections/jewelry"
+                },
+                {
+                  "title": "Shirts & Blouses",
+                  "url": "/collections/clearance"
+                },
+                {
+                  "title": "Loungewear",
+                  "url": "/collections/lorem-ipsum-dolor-4"
+                }
+              ]
+            },
+            {
+              "title": "Accessories",
+              "url": "/collections/cornershops",
+              "items": [
+                {
+                  "title": "Bags & Hats",
+                  "url": "/collections/cornershops"
+                },
+                {
+                  "title": "Shoes",
+                  "url": "/collections/merci-1"
+                },
+                {
+                  "title": "Socks & Tights",
+                  "url": "/collections/lorem-ipsum-dolor-3"
+                },
+                {
+                  "title": "Swimwear & Beachwear",
+                  "url": "/collections/lorem-ipsum-dolor-1"
+                },
+                {
+                  "title": "Beauty",
+                  "url": "/collections/lorem-ipsum-dolor-2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Collection",
+          "url": "/collections",
+          "items": [
+            {
+              "title": "New arrival",
+              "url": "/collections/new-arrival"
+            },
+            {
+              "title": "Trending",
+              "url": "/collections/trending"
+            },
+            {
+              "title": "Loungewear",
+              "url": "/collections/lorem-ipsum-dolor-4"
+            },
+            {
+              "title": "Swimwear",
+              "url": "/collections/lorem-ipsum-dolor-1"
+            },
+            {
+              "title": "All collections",
+              "url": "/collections"
+            }
+          ]
+        },
+        {
+          "title": "Blog",
+          "url": "/blogs/news"
+        },
+        {
+          "title": "Lookbook",
+          "url": "/pages/lookbook"
+        },
+        {
+          "title": "FAQ",
+          "url": "/pages/faq"
+        },
+        {
+          "title": "Contact",
+          "url": "/pages/contact-us"
+        }
+      ]
+    },
+    {
+      "handle": "footer",
+      "title": "Footer — My account",
+      "items": [
+        {
+          "title": "My account",
+          "url": "/account"
+        },
+        {
+          "title": "Wishlist",
+          "url": "/pages/wishlist"
+        },
+        {
+          "title": "Compare",
+          "url": "/pages/compare"
+        },
+        {
+          "title": "Contact",
+          "url": "/pages/contact-us"
+        }
+      ]
+    },
+    {
+      "handle": "link",
+      "title": "Footer — Link",
+      "items": [
+        {
+          "title": "Shipping policy",
+          "url": "/policies/shipping-policy"
+        },
+        {
+          "title": "Refund policy",
+          "url": "/policies/refund-policy"
+        },
+        {
+          "title": "Privacy policy",
+          "url": "/policies/privacy-policy"
+        },
+        {
+          "title": "FAQs",
+          "url": "/pages/faq"
+        }
+      ]
+    }
+  ],
+  "discounts": []
+}

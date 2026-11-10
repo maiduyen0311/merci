@@ -1,0 +1,156 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "newsletter_enable": true,
+        "newsletter_heading": "Newsletter",
+        "show_social": true,
+        "payment_enable": true,
+        "padding_top": 72,
+        "padding_bottom": 40,
+        "copyright_text": "© 2026 Merci. All Rights Reserved",
+        "footer_layout": "merci",
+        "payment_mode": "shop_enabled"
+      },
+      "blocks": {
+        "about": {
+          "type": "about",
+          "settings": {
+            "logo": "shopify://shop_images/logo.png",
+            "logo_width": 125,
+            "heading": "About the shop",
+            "text": "<p>Merci is a women’s fashion boutique: easy dresses, denim and everyday pieces, picked each season for comfort and style.</p>",
+            "show_copyright": true
+          }
+        },
+        "account": {
+          "type": "link_list",
+          "settings": {
+            "heading": "My account",
+            "menu": "footer"
+          }
+        },
+        "links": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Link",
+            "menu": "link"
+          }
+        },
+        "social": {
+          "type": "social_payments",
+          "settings": {
+            "heading": "Follow us"
+          }
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {
+            "intro_text": "Sign up to receive our latest news & events",
+            "placeholder": "Enter your email"
+          }
+        }
+      },
+      "block_order": [
+        "about",
+        "account",
+        "links",
+        "social",
+        "newsletter"
+      ]
+    },
+    "newsletter_popup": {
+      "type": "newsletter-popup",
+      "settings": {
+        "enable_popup": true,
+        "show_on": "all",
+        "delay": 5,
+        "dismiss_days": 7,
+        "image_layout": "right",
+        "title": "Newsletter Sign Up",
+        "title_font": "script",
+        "text": "<p>Enter your email below to receive a $30 coupon, special offers, exclusive discounts and more!</p>",
+        "placeholder": "Your email address",
+        "dont_show_label": "Don't Show This Popup Again",
+        "success_message": "Thanks for subscribing!",
+        "background_color": "#e5d8cf",
+        "text_color": "#000000",
+        "overlay_opacity": 40
+      }
+    },
+    "sales_popup": {
+      "type": "sales-popup",
+      "settings": {
+        "enabled": true,
+        "position": "left",
+        "delay": 8,
+        "duration": 6,
+        "interval": 20,
+        "show_on_mobile": false,
+        "bought_label": "recently bought",
+        "location_prefix": "in"
+      },
+      "blocks": {
+        "sale_1": {
+          "type": "sale",
+          "settings": {
+            "product": "phasellus-bibendum-turpis-ut-ipsum-egestas",
+            "customer_name": "Miles",
+            "city": "Miami",
+            "time_ago": "1 minute ago"
+          }
+        },
+        "sale_2": {
+          "type": "sale",
+          "settings": {
+            "product": "consectetur-adipiscing-elit",
+            "customer_name": "Emma",
+            "city": "London",
+            "time_ago": "4 minutes ago"
+          }
+        },
+        "sale_3": {
+          "type": "sale",
+          "settings": {
+            "product": "lorem-ipsum-dolor-sit-amet",
+            "customer_name": "Lucas",
+            "city": "Paris",
+            "time_ago": "12 minutes ago"
+          }
+        },
+        "sale_4": {
+          "type": "sale",
+          "settings": {
+            "product": "duis-aute-irure-dolor-in",
+            "customer_name": "Sofia",
+            "city": "Berlin",
+            "time_ago": "25 minutes ago"
+          }
+        }
+      },
+      "block_order": [
+        "sale_1",
+        "sale_2",
+        "sale_3",
+        "sale_4"
+      ]
+    }
+  },
+  "order": [
+    "footer",
+    "newsletter_popup",
+    "sales_popup"
+  ]
+}

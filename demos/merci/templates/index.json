@@ -1,0 +1,404 @@
+{
+  "sections": {
+    "slideshow": {
+      "type": "mc-slideshow",
+      "blocks": {
+        "s1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Slider_01.jpg",
+            "eyebrow": "New arrivals",
+            "heading": "Enjoy this\nsummer trend 2026",
+            "button_label": "Shop now",
+            "link": "shopify://collections/all",
+            "button_style": "outline",
+            "text_position": "left",
+            "text_color": "#000000"
+          }
+        },
+        "s2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Slider_02.png",
+            "eyebrow": "Hot trend summer",
+            "heading": "Introducing our\nnew suit collection",
+            "button_label": "Shop now",
+            "link": "shopify://collections/all",
+            "button_style": "outline",
+            "text_position": "right",
+            "text_color": "#000000"
+          }
+        },
+        "s3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Image.png",
+            "eyebrow": "Stock limit top dress",
+            "heading": "Sale 40% off",
+            "button_label": "Shop now",
+            "link": "shopify://collections/all",
+            "button_style": "solid",
+            "text_position": "center",
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {
+        "height_desktop": 640,
+        "height_mobile": 440,
+        "effect": "fade",
+        "autoplay": true,
+        "autoplay_speed": 6,
+        "show_arrows": true,
+        "accessibility_label": "Merci summer collection"
+      }
+    },
+    "services": {
+      "type": "mc-text-columns",
+      "blocks": {
+        "c1": {
+          "type": "column",
+          "settings": {
+            "heading": "New styles have landed",
+            "subheading": "Get ready to shop",
+            "link": "shopify://collections/all"
+          }
+        },
+        "c2": {
+          "type": "column",
+          "settings": {
+            "heading": "Why not visit us in store?",
+            "subheading": "Take me there",
+            "link": "shopify://pages/contact-us"
+          }
+        },
+        "c3": {
+          "type": "column",
+          "settings": {
+            "heading": "Buy now, pay later",
+            "subheading": "Find out more",
+            "link": "shopify://pages/faq"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "video": {
+      "type": "mc-video-banner",
+      "settings": {
+        "poster": "shopify://shop_images/banner.png",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_title": "Merci summer lookbook",
+        "banner_image": "shopify://shop_images/Image_05.png",
+        "banner_word": "Woman",
+        "word_color": "#a6606d",
+        "banner_link": "shopify://collections/all",
+        "reverse": false,
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "trending": {
+      "type": "mc-products",
+      "settings": {
+        "title": "Trending",
+        "collection": "trending",
+        "products_to_show": 8,
+        "layout": "carousel",
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "image_ratio": "portrait",
+        "show_secondary_image": true,
+        "show_color_swatches": true,
+        "show_rating": false,
+        "show_auto_new": true,
+        "button_label": "",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "tiles": {
+      "type": "mc-image-tiles",
+      "blocks": {
+        "t1": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/1.png",
+            "eyebrow": "New arrivals",
+            "title": "Merci collection",
+            "link": "shopify://collections/all",
+            "text_position": "middle-center",
+            "text_color": "#000000"
+          }
+        },
+        "t2": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/2-layers.png",
+            "eyebrow": "Valkyrio",
+            "title": "Sale up to 30% off",
+            "link": "shopify://collections/all",
+            "text_position": "middle-center",
+            "text_color": "#000000"
+          }
+        },
+        "t3": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/Image_13.png",
+            "eyebrow": "Maria all",
+            "title": "Collection 2026",
+            "link": "shopify://collections/all",
+            "text_position": "middle-center",
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "settings": {
+        "columns_desktop": 3,
+        "columns_mobile": "1.2",
+        "ratio": "0.86",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "new_arrival": {
+      "type": "mc-products",
+      "settings": {
+        "title": "New arrival",
+        "collection": "new-arrival",
+        "products_to_show": 10,
+        "layout": "grid",
+        "columns_desktop": 5,
+        "columns_mobile": "2",
+        "image_ratio": "portrait",
+        "show_secondary_image": true,
+        "show_color_swatches": true,
+        "show_rating": false,
+        "show_auto_new": true,
+        "button_label": "Show more",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "parallax": {
+      "type": "mc-parallax-banner",
+      "settings": {
+        "image": "shopify://shop_images/Banner_parallax_scrolling.png",
+        "parallax": true,
+        "eyebrow": "Spring woman",
+        "heading": "A summer ride",
+        "button_label": "Discover",
+        "link": "shopify://collections/all",
+        "text_position": "left",
+        "text_color": "#000000",
+        "height": 500,
+        "height_mobile": 300,
+        "padding_top": 72,
+        "padding_bottom": 0
+      }
+    },
+    "banners": {
+      "type": "mc-image-tiles",
+      "blocks": {
+        "b1": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/222.png",
+            "eyebrow": "",
+            "title": "Plaid swimsuit",
+            "subtitle": "#maystore",
+            "link": "shopify://collections/all",
+            "text_position": "middle-left",
+            "text_color": "#000000"
+          }
+        },
+        "b2": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/3333.png",
+            "eyebrow": "",
+            "title": "Sale up to 50% off",
+            "subtitle": "#sweatshirt",
+            "link": "shopify://collections/all",
+            "text_position": "bottom-left",
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2"
+      ],
+      "settings": {
+        "columns_desktop": 2,
+        "columns_mobile": "1.2",
+        "ratio": "1.65",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "blog": {
+      "type": "mc-blog-posts",
+      "settings": {
+        "title": "Latest blogs",
+        "blog": "news",
+        "posts_to_show": 3,
+        "columns_desktop": 3,
+        "show_date": true,
+        "show_excerpt": false,
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "brands": {
+      "type": "mc-image-strip",
+      "blocks": {
+        "i1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1_02f20a96-69ab-4801-aa7f-15b297250a56.png"
+          }
+        },
+        "i2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2.png"
+          }
+        },
+        "i3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3.png"
+          }
+        },
+        "i4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/4.png"
+          }
+        },
+        "i5": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/4_86c6a04b-5c12-4e8c-aa06-36b2e5ecae7d.png"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4",
+        "i5"
+      ],
+      "settings": {
+        "hover_style": "fade",
+        "columns_desktop": 5,
+        "columns_mobile": "2.5",
+        "gap": 30,
+        "full_width": false,
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "instagram": {
+      "type": "mc-image-strip",
+      "blocks": {
+        "g0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/merci-demo-instagram-1.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "g1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/merci-demo-instagram-2.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "g2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/merci-demo-instagram-3.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "g3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/merci-demo-instagram-4.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "g4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/merci-demo-instagram-5.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "g5": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/merci-demo-instagram-6.jpg",
+            "link": "https://instagram.com/"
+          }
+        }
+      },
+      "block_order": [
+        "g0",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5"
+      ],
+      "settings": {
+        "title": "@merci_shop",
+        "subtitle": "Follow us on Instagram",
+        "profile_url": "https://instagram.com/",
+        "hover_style": "social",
+        "columns_desktop": 6,
+        "columns_mobile": "2.5",
+        "gap": 0,
+        "full_width": true,
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "slideshow",
+    "services",
+    "video",
+    "trending",
+    "tiles",
+    "new_arrival",
+    "parallax",
+    "banners",
+    "blog",
+    "brands",
+    "instagram"
+  ]
+}

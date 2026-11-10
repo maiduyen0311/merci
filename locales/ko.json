@@ -42,7 +42,10 @@
       "label": "페이지 매김",
       "page": "{{ number }}페이지",
       "next": "다음 페이지",
-      "previous": "이전 페이지"
+      "previous": "이전 페이지",
+      "showing_html": "Showing <strong>{{ from }}–{{ to }}</strong> of {{ total }}",
+      "previous_short": "Previous",
+      "next_short": "Next"
     },
     "search": {
       "search": "검색",
@@ -110,7 +113,8 @@
       "back_to_blog": "블로그로 돌아가기",
       "share": "이 문서 공유하기",
       "success": "댓글이 성공적으로 게시되었습니다. 감사합니다!",
-      "success_moderated": "댓글이 성공적으로 게시되었습니다. 블로그를 조정 중이므로 잠시 후에 게시됩니다."
+      "success_moderated": "댓글이 성공적으로 게시되었습니다. 블로그를 조정 중이므로 잠시 후에 게시됩니다.",
+      "by_author": "Posted by {{ author }}"
     }
   },
   "onboarding": {
@@ -566,7 +570,10 @@
         "chest": "Chest",
         "waist": "Waist",
         "hips": "Hips"
-      }
+      },
+      "availability": "Availability",
+      "in_stock_count": "{{ count }} in stock",
+      "sold_hint_html": "<strong>{{ count }}</strong> sold in last {{ hours }} hours"
     },
     "free_shipping": {
       "reached": "🎉 You've unlocked free shipping!",

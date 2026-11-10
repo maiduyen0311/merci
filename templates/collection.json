@@ -13,9 +13,16 @@
       "type": "main-collection-banner",
       "settings": {
         "show_breadcrumb": true,
-        "show_collection_description": true,
+        "show_collection_description": false,
         "show_collection_image": false,
-        "color_scheme": "scheme-1"
+        "color_scheme": "scheme-1",
+        "layout": "banner",
+        "banner_source": "setting",
+        "banner_image": "shopify://shop_images/banner-collection_a8644c5e-909d-4616-943e-55cae531e17a.jpg",
+        "banner_eyebrow": "",
+        "banner_heading": "",
+        "banner_overlay": 0,
+        "show_title": true
       }
     },
     "circles": {
@@ -28,14 +35,14 @@
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
-        "products_per_page": 16,
-        "columns_desktop": 4,
+        "products_per_page": 12,
+        "columns_desktop": 3,
         "color_scheme": "scheme-1",
-        "image_ratio": "square",
+        "image_ratio": "portrait",
         "image_shape": "default",
-        "show_secondary_image": false,
+        "show_secondary_image": true,
         "show_vendor": false,
-        "show_rating": true,
+        "show_rating": false,
         "show_metafield_badge": true,
         "show_wishlist": true,
         "quick_add": "none",
@@ -45,8 +52,8 @@
         "sidebar_categories_count": 8,
         "popular_collection": "all",
         "columns_mobile": "2",
-        "padding_top": 36,
-        "padding_bottom": 36,
+        "padding_top": 24,
+        "padding_bottom": 60,
         "circle_collections": [
           "tm-bags",
           "seasonal-wear",
@@ -57,7 +64,12 @@
         "show_view_switcher": true,
         "sidebar_categories_menu": "sidebar-categories",
         "price_max": 0,
-        "hidden_filters": "Product rating count, More filters"
+        "hidden_filters": "Product rating count, More filters",
+        "sidebar_banner_image": "shopify://shop_images/banner-sidebar_49aa45da-fc46-40f7-8bd5-7d233c884ed7.jpg",
+        "sidebar_banner_link": "shopify://collections/all",
+        "sidebar_banner_eyebrow": "",
+        "sidebar_banner_title": "",
+        "sidebar_banner_button": ""
       }
     }
   },

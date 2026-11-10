@@ -1,0 +1,169 @@
+{
+  "name": "Header",
+  "type": "header",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "header_top_background": "#231e17",
+        "header_top_text_color": "#ffffff",
+        "header_middle_background": "#ffffff",
+        "header_middle_text_color": "#2d2d2d",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "show_track_order": true,
+        "track_order_label": "Track Order",
+        "track_order_icon_source": "library",
+        "track_order_icon": "truck",
+        "show_account": true,
+        "show_wishlist": true,
+        "show_cart": true,
+        "currency_options": "USD:US, CAD:CA, EUR:DE, GBP:GB",
+        "header_layout": "centered",
+        "overlay_home": true,
+        "show_social_icons": true,
+        "inline_menu": "main-menu",
+        "nav_row_text": "#ffffff",
+        "overlay_text": "#2d2d2d",
+        "show_compare": true,
+        "logo_image": "shopify://shop_images/logo.png",
+        "logo_width_desktop": 125
+      }
+    },
+    "navigation": {
+      "type": "navigation",
+      "blocks": {
+        "mega-womens": {
+          "type": "megamenu_1",
+          "settings": {
+            "match_title": "Women's",
+            "link_columns": 3,
+            "featured_heading": "Featured Products",
+            "show_featured_product": true,
+            "featured_product": "consectetur-adipiscing-elit",
+            "featured_show_rating": true,
+            "featured_show_swatches": true,
+            "featured_button_label": "Select Options",
+            "show_promo_column": true,
+            "promo_url": "shopify://collections/all"
+          }
+        },
+        "mega-mens": {
+          "type": "megamenu_2",
+          "settings": {
+            "match_title": "Men's",
+            "link_columns": 5,
+            "column_layout": "1,2,1,1,1",
+            "card_1_title": "Summer Sale",
+            "card_1_url": "shopify://collections/all",
+            "card_2_title": "Beach Style",
+            "card_2_url": "shopify://collections/all",
+            "card_3_title": "Sleep & Lounge",
+            "card_3_url": "shopify://collections/all"
+          }
+        },
+        "mega-clothing": {
+          "type": "megamenu_3",
+          "settings": {
+            "match_title": "Clothing",
+            "link_columns": 4,
+            "banner_url": "shopify://collections/all"
+          }
+        },
+        "mega-shoes": {
+          "type": "megamenu_4",
+          "settings": {
+            "match_title": "Shoes",
+            "link_columns": 4,
+            "banner_1_url": "shopify://collections/all",
+            "banner_2_url": "shopify://collections/all"
+          }
+        },
+        "icon-womens": {
+          "type": "category_icon",
+          "settings": {
+            "match_title": "Women's"
+          }
+        },
+        "icon-mens": {
+          "type": "category_icon",
+          "settings": {
+            "match_title": "Men's"
+          }
+        },
+        "icon-clothing": {
+          "type": "category_icon",
+          "settings": {
+            "match_title": "Clothing"
+          }
+        },
+        "icon-shoes": {
+          "type": "category_icon",
+          "settings": {
+            "match_title": "Shoes"
+          }
+        },
+        "icon-accessories": {
+          "type": "category_icon",
+          "settings": {
+            "match_title": "Accessories"
+          }
+        },
+        "icon-bags": {
+          "type": "category_icon",
+          "settings": {
+            "match_title": "Bags"
+          }
+        },
+        "icon-watches": {
+          "type": "category_icon",
+          "settings": {
+            "match_title": "Watches"
+          }
+        },
+        "icon-jewellery": {
+          "type": "category_icon",
+          "settings": {
+            "match_title": "Jewellery & Watches"
+          }
+        },
+        "icon-seasonal": {
+          "type": "category_icon",
+          "settings": {
+            "match_title": "Seasonal Wear"
+          }
+        }
+      },
+      "block_order": [
+        "mega-womens",
+        "mega-mens",
+        "mega-clothing",
+        "mega-shoes",
+        "icon-womens",
+        "icon-mens",
+        "icon-clothing",
+        "icon-shoes",
+        "icon-accessories",
+        "icon-bags",
+        "icon-watches",
+        "icon-jewellery",
+        "icon-seasonal"
+      ],
+      "settings": {
+        "header_bottom_background": "#231e17",
+        "header_bottom_categories_background": "#231e17",
+        "header_bottom_text_color": "#ffffff",
+        "categories_label": "SHOP BY CATEGORIES",
+        "menu": "main-menu",
+        "show_promotion": true,
+        "promotion_text": "Big promotion now!",
+        "categories_menu": "shop-by-categories",
+        "show_desktop_bar": false
+      }
+    }
+  },
+  "order": [
+    "header",
+    "navigation"
+  ]
+}

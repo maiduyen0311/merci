@@ -1,0 +1,92 @@
+{%- comment -%}
+  Merci product facts (main-product → Style "Merci"), v1 order:
+    rating · "N sold in last H hours"   (metafields custom.sold_count + custom.sold_hours, off by default)
+    SKU / Availability / Vendor / Product type   (two-column facts table)
+    "Limited-time offer, ends in" countdown       (metafield custom.offer_ends — fixes the v1 NaN bug:
+                                                   nothing renders when the date is missing or in the past)
+  Nothing here is invented: every number comes from the product or its metafields.
+{%- endcomment -%}
+{%- liquid
+  assign sold_count = product.metafields.custom.sold_count.value | default: 0
+  assign sold_hours = product.metafields.custom.sold_hours.value | default: 0
+  assign show_sold = false
+  if section.settings.show_sales_hint and sold_count > 0 and sold_hours > 0
+    assign show_sold = true
+  endif
+
+  assign offer_end = product.metafields.custom.offer_ends.value
+  assign show_countdown = false
+  if section.settings.show_countdown and offer_end != blank
+    assign end_ts = offer_end | date: '%s' | plus: 0
+    assign now_ts = 'now' | date: '%s' | plus: 0
+    if end_ts > now_ts
+      assign show_countdown = true
+    endif
+  endif
+
+  assign qty = current_variant.inventory_quantity
+-%}
+{%- if section.settings.show_rating and has_rating or show_sold -%}
+  <div class="mc-pdp__hint">
+    {%- if section.settings.show_rating and has_rating -%}
+      {%- assign rating_round = rating_value | round -%}
+      <span class="mc-pdp__rating" role="img" aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: rating_value, rating_max: rating_max }}">
+        {%- for i in (1..rating_max) -%}<span class="star{% if i <= rating_round %} is-filled{% endif %}" aria-hidden="true">★</span>{%- endfor -%}
+        <span class="mc-pdp__rating-count">({{ rating_count }})</span>
+      </span>
+    {%- endif -%}
+    {%- if show_sold -%}
+      <span class="mc-pdp__sold">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5.7s.7 2.6.7 4.7c0 2-1.3 3.7-3.4 3.7S7.4 7.4 7.4 5.4l.1-.4C5.4 7.5 4.1 10.8 4.1 14.4 4.1 19.2 8 23 12.7 23s8.7-3.8 8.7-8.6c0-5.8-2.8-11-7.9-13.7zm-1 19.6c-1.7 0-3-1.3-3-3 0-1.6 1-2.7 2.8-3 1.8-.4 3.6-1.2 4.7-2.6.4 1.4.6 2.8.6 4.3 0 2.4-2.1 4.3-5.1 4.3z"/></svg>
+        {{ 'sections.main_product.sold_hint_html' | t: count: sold_count, hours: sold_hours }}
+      </span>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+<dl class="mc-pdp__facts">
+  {%- if section.settings.show_sku -%}
+    <div class="mc-pdp__fact"{% if sku == blank %} hidden{% endif %}>
+      <dt>{{ 'products.product.sku' | t }}:</dt>
+      <dd class="main-product__sku"><strong>{{ sku }}</strong></dd>
+    </div>
+  {%- endif -%}
+  {%- if section.settings.show_stock_badge -%}
+    <div class="mc-pdp__fact">
+      <dt>{{ 'sections.main_product.availability' | t }}:</dt>
+      <dd class="mc-pdp__stock{% unless in_stock %} is-out{% endunless %}">
+        {%- if in_stock == false -%}
+          {{ section.settings.out_stock_label | default: 'Out of stock' }}
+        {%- elsif current_variant.inventory_management == 'shopify' and qty > 0 -%}
+          {{ 'sections.main_product.in_stock_count' | t: count: qty }}
+        {%- else -%}
+          {{ section.settings.in_stock_label | default: 'In stock' }}
+        {%- endif -%}
+      </dd>
+    </div>
+  {%- endif -%}
+  {%- if section.settings.show_vendor and product.vendor != blank -%}
+    <div class="mc-pdp__fact">
+      <dt>{{ 'products.product.vendor' | t }}:</dt>
+      <dd><a href="{{ product.vendor | url_for_vendor }}">{{ product.vendor }}</a></dd>
+    </div>
+  {%- endif -%}
+  {%- if section.settings.show_product_type and product.type != blank -%}
+    <div class="mc-pdp__fact">
+      <dt>{{ 'sections.main_product.product_type' | t }}:</dt>
+      <dd><a href="{{ product.type | url_for_type }}">{{ product.type }}</a></dd>
+    </div>
+  {%- endif -%}
+</dl>
+
+{%- if show_countdown -%}
+  <div class="mc-pdp__countdown">
+    <span class="mc-pdp__countdown-label">{{ section.settings.countdown_label }}</span>
+    <div class="mc-pdp__timer" data-flash-countdown data-end="{{ offer_end | date: '%Y-%m-%dT%H:%M:%S' }}">
+      <span><b data-days>--</b> {{ 'sections.home_flash_deals.countdown.days' | t }}</span>
+      <span><b data-hours>--</b> {{ 'sections.home_flash_deals.countdown.hours' | t }}</span>
+      <span><b data-mins>--</b> {{ 'sections.home_flash_deals.countdown.mins' | t }}</span>
+      <span><b data-secs>--</b> {{ 'sections.home_flash_deals.countdown.secs' | t }}</span>
+    </div>
+  </div>
+{%- endif -%}

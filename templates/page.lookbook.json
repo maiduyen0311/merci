@@ -1,0 +1,160 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "show_breadcrumb": true,
+        "show_title": true,
+        "show_content": true,
+        "title_alignment": "center",
+        "width": "narrow",
+        "padding_top": 24,
+        "padding_bottom": 0
+      }
+    },
+    "look1": {
+      "type": "lookbook",
+      "blocks": {
+        "spot1": {
+          "type": "hotspot",
+          "settings": {
+            "x": 52,
+            "y": 38,
+            "show_card": true
+          }
+        },
+        "spot2": {
+          "type": "hotspot",
+          "settings": {
+            "x": 46,
+            "y": 72,
+            "show_card": true
+          }
+        },
+        "spot3": {
+          "type": "hotspot",
+          "settings": {
+            "x": 60,
+            "y": 90,
+            "show_card": true
+          }
+        }
+      },
+      "block_order": [
+        "spot1",
+        "spot2",
+        "spot3"
+      ],
+      "settings": {
+        "layout": "split",
+        "image_position": "left",
+        "eyebrow": "Look 01",
+        "heading": "Soft tailoring",
+        "subheading": "A pale blue blazer over a crisp shirt and relaxed denim — easy polish for city days.",
+        "image": "",
+        "cta_label": "Shop the look",
+        "cta_url": "shopify://collections/all",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "look2": {
+      "type": "lookbook",
+      "blocks": {
+        "spot1": {
+          "type": "hotspot",
+          "settings": {
+            "x": 55,
+            "y": 42,
+            "show_card": true
+          }
+        },
+        "spot2": {
+          "type": "hotspot",
+          "settings": {
+            "x": 48,
+            "y": 66,
+            "show_card": true
+          }
+        },
+        "spot3": {
+          "type": "hotspot",
+          "settings": {
+            "x": 40,
+            "y": 92,
+            "show_card": true
+          }
+        }
+      },
+      "block_order": [
+        "spot1",
+        "spot2",
+        "spot3"
+      ],
+      "settings": {
+        "layout": "split",
+        "image_position": "right",
+        "eyebrow": "Look 02",
+        "heading": "Weekend green",
+        "subheading": "Knitted crop top, sand shorts and white trainers for slow summer mornings.",
+        "image": "",
+        "cta_label": "Shop the look",
+        "cta_url": "shopify://collections/all",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "look3": {
+      "type": "lookbook",
+      "blocks": {
+        "spot1": {
+          "type": "hotspot",
+          "settings": {
+            "x": 38,
+            "y": 30,
+            "show_card": true
+          }
+        },
+        "spot2": {
+          "type": "hotspot",
+          "settings": {
+            "x": 55,
+            "y": 62,
+            "show_card": true
+          }
+        },
+        "spot3": {
+          "type": "hotspot",
+          "settings": {
+            "x": 52,
+            "y": 94,
+            "show_card": true
+          }
+        }
+      },
+      "block_order": [
+        "spot1",
+        "spot2",
+        "spot3"
+      ],
+      "settings": {
+        "layout": "split",
+        "image_position": "left",
+        "eyebrow": "Look 03",
+        "heading": "Denim on denim",
+        "subheading": "Light wash on light wash: an oversized jacket with straight-leg jeans and black heels.",
+        "image": "",
+        "cta_label": "Shop the look",
+        "cta_url": "shopify://collections/all",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "main",
+    "look1",
+    "look2",
+    "look3"
+  ]
+}

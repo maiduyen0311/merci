@@ -42,7 +42,10 @@
       "label": "Sayfalara ayırma",
       "page": "Sayfa {{ number }}",
       "next": "Sonraki sayfa",
-      "previous": "Önceki sayfa"
+      "previous": "Önceki sayfa",
+      "showing_html": "Showing <strong>{{ from }}–{{ to }}</strong> of {{ total }}",
+      "previous_short": "Previous",
+      "next_short": "Next"
     },
     "search": {
       "search": "Ara",
@@ -110,7 +113,8 @@
       "back_to_blog": "Bloga dön",
       "share": "Bu makaleyi paylaş",
       "success": "Yorumunuz başarıyla paylaşıldı! Teşekkür ederiz.",
-      "success_moderated": "Yorumunuz başarıyla paylaşıldı. Blogumuz denetlendiğinden yorumunuzu kısa bir süre sonra yayınlayacağız."
+      "success_moderated": "Yorumunuz başarıyla paylaşıldı. Blogumuz denetlendiğinden yorumunuzu kısa bir süre sonra yayınlayacağız.",
+      "by_author": "Posted by {{ author }}"
     }
   },
   "onboarding": {
@@ -566,7 +570,10 @@
         "chest": "Chest",
         "waist": "Waist",
         "hips": "Hips"
-      }
+      },
+      "availability": "Availability",
+      "in_stock_count": "{{ count }} in stock",
+      "sold_hint_html": "<strong>{{ count }}</strong> sold in last {{ hours }} hours"
     },
     "free_shipping": {
       "reached": "🎉 You've unlocked free shipping!",

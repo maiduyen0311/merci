@@ -42,7 +42,10 @@
       "label": "Pembagian Halaman",
       "page": "Halaman {{ number }}",
       "next": "Halaman berikutnya",
-      "previous": "Halaman sebelumnya"
+      "previous": "Halaman sebelumnya",
+      "showing_html": "Showing <strong>{{ from }}–{{ to }}</strong> of {{ total }}",
+      "previous_short": "Previous",
+      "next_short": "Next"
     },
     "search": {
       "search": "Cari",
@@ -110,7 +113,8 @@
       "back_to_blog": "Kembali ke blog",
       "share": "Bagikan artikel ini",
       "success": "Komentar Anda berhasil diposting! Terima kasih!",
-      "success_moderated": "Komentar Anda berhasil diposting. Kami akan memublikasikannya sebentar lagi, blog kami sedang dimoderasi."
+      "success_moderated": "Komentar Anda berhasil diposting. Kami akan memublikasikannya sebentar lagi, blog kami sedang dimoderasi.",
+      "by_author": "Posted by {{ author }}"
     }
   },
   "onboarding": {
@@ -566,7 +570,10 @@
         "chest": "Chest",
         "waist": "Waist",
         "hips": "Hips"
-      }
+      },
+      "availability": "Availability",
+      "in_stock_count": "{{ count }} in stock",
+      "sold_hint_html": "<strong>{{ count }}</strong> sold in last {{ hours }} hours"
     },
     "free_shipping": {
       "reached": "🎉 You've unlocked free shipping!",

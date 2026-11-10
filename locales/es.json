@@ -42,7 +42,10 @@
       "label": "Paginación",
       "page": "Página {{ number }}",
       "next": "Página siguiente",
-      "previous": "Pagina anterior"
+      "previous": "Pagina anterior",
+      "showing_html": "Mostrando <strong>{{ from }}–{{ to }}</strong> de {{ total }}",
+      "previous_short": "Anterior",
+      "next_short": "Siguiente"
     },
     "search": {
       "search": "Búsqueda",
@@ -111,7 +114,8 @@
       "back_to_blog": "Regresar al blog",
       "share": "Compartir este artículo",
       "success": "Tu comentario se publicó correctamente. ¡Gracias!",
-      "success_moderated": "Tu comentario se publicó correctamente. Lo publicaremos en breve, cuando se modere nuestro blog."
+      "success_moderated": "Tu comentario se publicó correctamente. Lo publicaremos en breve, cuando se modere nuestro blog.",
+      "by_author": "Publicado por {{ author }}"
     }
   },
   "onboarding": {
@@ -578,7 +582,10 @@
         "chest": "Chest",
         "waist": "Waist",
         "hips": "Hips"
-      }
+      },
+      "availability": "Disponibilidad",
+      "in_stock_count": "{{ count }} en stock",
+      "sold_hint_html": "<strong>{{ count }}</strong> vendidos en las últimas {{ hours }} horas"
     },
     "free_shipping": {
       "reached": "🎉 You've unlocked free shipping!",

@@ -42,7 +42,10 @@
       "label": "Numeriranje stranica",
       "page": "Stranica {{ number }}",
       "next": "Sljedeća stranica",
-      "previous": "Prethodna stranica"
+      "previous": "Prethodna stranica",
+      "showing_html": "Showing <strong>{{ from }}–{{ to }}</strong> of {{ total }}",
+      "previous_short": "Previous",
+      "next_short": "Next"
     },
     "search": {
       "search": "Traži",
@@ -111,7 +114,8 @@
         "one": "{{ count }} komentar",
         "other": "{{ count }} komentara",
         "few": "{{ count }} komentara"
-      }
+      },
+      "by_author": "Posted by {{ author }}"
     }
   },
   "onboarding": {
@@ -578,7 +582,10 @@
         "chest": "Chest",
         "waist": "Waist",
         "hips": "Hips"
-      }
+      },
+      "availability": "Availability",
+      "in_stock_count": "{{ count }} in stock",
+      "sold_hint_html": "<strong>{{ count }}</strong> sold in last {{ hours }} hours"
     },
     "free_shipping": {
       "reached": "🎉 You've unlocked free shipping!",

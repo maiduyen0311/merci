@@ -1,0 +1,39 @@
+{
+  "note": "Built by scripts/demo/merci-images.ps1 from ../instagram and ../banner (licence unknown — demo store only).",
+  "instagram-1": {
+    "src": "instagram/1.jpg",
+    "square": 1080
+  },
+  "instagram-2": {
+    "src": "instagram/3.jpg",
+    "square": 1080
+  },
+  "instagram-3": {
+    "src": "instagram/5.jpg",
+    "square": 1080
+  },
+  "instagram-4": {
+    "src": "instagram/7.jpg",
+    "square": 1080
+  },
+  "instagram-5": {
+    "src": "instagram/8.jpg",
+    "square": 1080
+  },
+  "instagram-6": {
+    "src": "instagram/9.jpg",
+    "square": 1080
+  },
+  "lookbook-1": {
+    "src": "banner/15.jpg",
+    "max": 1200
+  },
+  "lookbook-2": {
+    "src": "banner/7.jpg",
+    "max": 1200
+  },
+  "lookbook-3": {
+    "src": "banner/9.jpg",
+    "max": 1200
+  }
+}

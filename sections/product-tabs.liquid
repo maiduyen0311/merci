@@ -56,7 +56,8 @@
               {%- when 'description' -%}
                 <div class="product-tabs__body rte">
                   {%- if block.settings.use_product_description and product.description != blank -%}
-                    {{ product.description }}
+                    {%- comment -%} Merci v1 data kept extra tab content after a "[des]" shortcode — show only the real description {%- endcomment -%}
+                    {{ product.description | split: '[des]' | first }}
                   {%- else -%}
                     {{ block.settings.content }}
                   {%- endif -%}

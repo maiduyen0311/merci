@@ -172,7 +172,8 @@
         "eyebrow": "WHY CHOOSE US",
         "heading": "Compare and choose",
         "subheading": "Here's how we stack up against the alternatives — feature by feature."
-      }
+      },
+      "disabled": true
     }
   },
   "order": [

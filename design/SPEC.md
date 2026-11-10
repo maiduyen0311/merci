@@ -185,3 +185,22 @@ Quyết định: trang chủ dùng bộ section riêng `sections/mc-*.liquid` (S
 
 §3.1 Card (thay [đề xuất] cũ) — Theme settings → Product cards → Card layout "Merci": ảnh chuyển ảnh 2 + zoom chậm; dải trắng trượt lên đáy ảnh (♡ | QUICK VIEW | ⇄); dòng giá đổi thành link "ADD TO CART +" / "CHOOSE OPTIONS +" gạch chân chạy ra; màn cảm ứng: không dải, link hiện dưới giá.
 §3.3 Button `.mc-btn`: viền pill, nền primary quét từ dưới lên khi hover (Top Market chỉ đổi màu).
+
+## Appendix D — Thực thi phase 05 (2026-11-10, trang con — tham khảo ThemeForest, khác Top Market / Occasion)
+Quyết định: giữ section Top Market của trang con (filter, phân trang, biến thể, cart… đã chạy ổn) và phủ một lớp giao diện Merci `common/scss/section/_mc-pages.scss` (nạp cuối `styles.scss`). Chỉ sửa markup khi cần hành vi mới.
+
+| Trang | Merci (khác Top Market) |
+|---|---|
+| Chung | breadcrumb không nền, chữ nhỏ uppercase, phân cách gạch mảnh; tiêu đề trang uppercase giãn chữ; input vuông 44px viền mảnh; `.tm-btn` nền quét từ dưới lên; card bỏ bo góc |
+| Collection | banner ảnh full container (`layout: banner`), tiêu đề giữa; widget sidebar uppercase + kẻ mảnh (bỏ gạch cam 60px); hover danh mục có gạch trượt vào; chấm màu có vòng; toolbar mở giữa 2 đường kẻ; 3 cột, ảnh dọc, không sao vàng; phân trang chữ "Showing 1–12 of 27 · Previous 1 2 3 Next" (`snippets/pagination.liquid`) |
+| Product | `main-product` Style "Merci" (`layout_style`): bảng SKU / Availability / Vendor / Type (`snippets/mc-product-meta.liquid`); dòng "N sold in last H hours" từ metafield `custom.sold_count` + `custom.sold_hours` (mặc định tắt); countdown "Limited-time offer, ends in" từ `custom.offer_ends` — tự ẩn khi trống / hết hạn (sửa lỗi NaN v1); gallery 50/50 không viền, thumbnail gạch chân; swatch tròn 30px, size tròn; ATC pill primary + "Add wish list" pill viền + Buy it now đen full width, cùng hiệu ứng quét. Bỏ số giả: "live viewers" mặc định tắt, "Only N left" chỉ hiện khi kho được theo dõi. Tab kiểu v1: dải `#f2f2f2`, tab active nền trắng + vạch primary trên. Mô tả cắt bỏ shortcode v1 sau `[des]` |
+| Blog | Card style "Merci": byline (ngày — tác giả) trên tiêu đề, nút vuông đen "READ MORE"; sidebar trái, tag cloud ô vuông viền |
+| FAQ | hàng kẻ mảnh, câu hỏi uppercase, dấu +/− vẽ bằng 2 vạch (bỏ hộp bo góc + chevron tròn); bảng so sánh tắt trên trang FAQ |
+| Contact | icon line trần màu primary, các dòng ngăn bằng kẻ mảnh, form mở cạnh 1 đường kẻ dọc (bỏ icon tròn nền màu + card bo góc) |
+| Lookbook | `page.lookbook.json`: 3 look `lookbook` layout split xen kẽ trái/phải, hotspot "+" mảnh xoay thành "×", vòng mảnh thay pulse đặc, card sản phẩm vuông |
+| Login / register | form giữa trang, tiêu đề uppercase, nút pill full width |
+| 404 | số "404" viền (text-stroke) thay khối màu đặc |
+| Collections list | ảnh vuông góc + khung mảnh khi hover |
+| Wishlist / cart | empty state không khung nét đứt, lợi ích ngăn bằng kẻ dọc; tiêu đề/nhãn uppercase, tổng tiền màu chữ |
+
+Nội dung demo: `scripts/demo/merci.js` → `demos/merci/` (không tạo sản phẩm — store đã có catalogue v1). Import: `--only metafields,files,pages,menus`.

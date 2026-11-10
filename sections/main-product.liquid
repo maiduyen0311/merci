@@ -34,6 +34,10 @@
   assign sku = current_variant.sku | default: product.variants.first.sku
 
   assign product_form_id = 'product-form-' | append: section.id
+  assign mc_style = false
+  if section.settings.layout_style == 'merci'
+    assign mc_style = true
+  endif
 -%}
 {%- comment -%}
   Shopify-required product features in this section: unit price, tax / shipping note, Shop Pay
@@ -43,7 +47,7 @@
 
 <section
   id="MainProduct-{{ section.id }}"
-  class="main-product section-{{ section.id }}"
+  class="main-product section-{{ section.id }}{% if mc_style %} main-product--merci{% endif %}"
   data-section="{{ section.id }}"
   data-product-id="{{ product.id }}"
   data-product-handle="{{ product.handle }}"
@@ -155,7 +159,7 @@
 
       {%- comment -%} ============ INFO COLUMN ============ {%- endcomment -%}
       <div class="col-12 col-lg-7 main-product__info">
-        {%- if section.settings.show_stock_badge -%}
+        {%- if section.settings.show_stock_badge and mc_style == false -%}
           <span class="main-product__info-pill {% if in_stock %}is-in{% else %}is-out{% endif %}">
             <svg width="6" height="6" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" fill="currentColor"/></svg>
             {%- if in_stock -%}{{ section.settings.in_stock_label | default: 'In stock' }}{%- else -%}{{ section.settings.out_stock_label | default: 'Out of stock' }}{%- endif -%}
@@ -164,6 +168,9 @@
 
         <h1 class="main-product__title">{{ product.title | escape }}</h1>
 
+        {%- if mc_style -%}
+          {%- render 'mc-product-meta', product: product, current_variant: current_variant, section: section, sku: sku, in_stock: in_stock, has_rating: has_rating, rating_value: rating_value, rating_max: rating_max, rating_count: rating_count -%}
+        {%- else -%}
         <div class="main-product__meta-top">
           {%- if section.settings.show_rating and has_rating -%}
             <div class="main-product__rating" role="img" aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: rating_value, rating_max: rating_max }}">
@@ -179,12 +186,15 @@
           {%- endif -%}
         </div>
 
-        {%- if section.settings.show_short_description and product.description != blank -%}
+        {%- endif -%}
+
+        {%- if section.settings.show_short_description and product.description != blank and mc_style == false -%}
           {%- comment -%} First paragraph only, so headings / lists of the description don't run into it {%- endcomment -%}
           {%- assign short_desc = product.description | split: '</p>' | first | strip_html | strip -%}
           <p class="main-product__short-desc">{{ short_desc | truncatewords: 30 }}</p>
         {%- endif -%}
 
+        {%- unless mc_style -%}
         <ul class="main-product__attrs" role="list">
           {%- if section.settings.show_vendor and product.vendor != blank -%}
             <li><span class="attr-label">{{ 'products.product.vendor' | t }}:</span> <a href="{{ product.vendor | url_for_vendor }}">{{ product.vendor }}</a></li>
@@ -193,12 +203,18 @@
             <li><span class="attr-label">{{ 'sections.main_product.product_type' | t }}:</span> <a href="{{ product.type | url_for_type }}">{{ product.type }}</a></li>
           {%- endif -%}
         </ul>
+        {%- endunless -%}
 
         <div class="main-product__price" id="price-{{ section.id }}">
           <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span>
           <span class="main-product__price-current">{{ current_variant.price | money }}</span>
           <s class="main-product__price-compare" {% unless on_sale %}style="display:none"{% endunless %}>{{ current_variant.compare_at_price | money }}</s>
         </div>
+
+        {%- if mc_style and section.settings.show_short_description and product.description != blank -%}
+          {%- assign short_desc = product.description | split: '[des]' | first | split: '</p>' | first | strip_html | strip -%}
+          <p class="main-product__short-desc">{{ short_desc | truncatewords: 40 }}</p>
+        {%- endif -%}
 
         {%- comment -%} Unit price (e.g. €12.50/100 ml), updated on variant change {%- endcomment -%}
         <p class="main-product__unit-price" data-unit-price{% unless current_variant.unit_price_measurement %} hidden{% endunless %}>
@@ -266,9 +282,10 @@
               assign urgency_state = 'low'
             endif
             if inventory_qty <= 0 and in_stock
-              assign urgency_qty = section.settings.low_stock_fallback_qty | default: 37
+              assign urgency_state = 'untracked'
             endif
           -%}
+          {%- unless urgency_state == 'untracked' -%}
           <div class="main-product__low-stock main-product__low-stock--{{ urgency_state }}" data-stock-state="{{ urgency_state }}">
             {%- if urgency_state == 'sold_out' -%}
               <p class="main-product__low-stock-text main-product__low-stock-text--out">
@@ -322,6 +339,7 @@
               </div>
             {%- endif -%}
           </div>
+          {%- endunless -%}
         {%- endif -%}
 
         {%- form 'product', product, id: product_form_id, class: 'main-product__form', novalidate: 'novalidate' -%}
@@ -446,6 +464,7 @@
                 title="{{ section.settings.wishlist_label | escape }}"
               >
                 <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 20.3l-1.3-1.2C6 14.9 3 12.2 3 8.8 3 6.1 5.1 4 7.8 4c1.5 0 3 .7 4.2 1.9C13.2 4.7 14.7 4 16.2 4 18.9 4 21 6.1 21 8.8c0 3.4-3 6.1-7.7 10.3L12 20.3z"/></svg>
+                {%- if mc_style %}<span class="main-product__wishlist-label">{{ section.settings.wishlist_label }}</span>{% endif -%}
               </button>
             {%- endif -%}
             {%- if section.settings.show_share_button -%}
@@ -1252,6 +1271,16 @@
   "class": "section main-product-section",
   "settings": [
     { "type": "header", "content": "Layout" },
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "Style",
+      "options": [
+        { "value": "merci", "label": "Merci — facts table, round swatches" },
+        { "value": "classic", "label": "Classic" }
+      ],
+      "default": "merci"
+    },
     { "type": "checkbox", "id": "show_breadcrumb", "label": "Show breadcrumb", "default": true },
     { "type": "header", "content": "Media" },
     { "type": "checkbox", "id": "show_thumbnails", "label": "Show thumbnails", "default": true },
@@ -1287,11 +1316,15 @@
     { "type": "checkbox", "id": "show_product_type", "label": "Show product type", "default": true },
 
     { "type": "header", "content": "Urgency" },
-    { "type": "checkbox", "id": "show_live_viewers", "label": "Show live viewers line", "default": true },
+    { "type": "paragraph", "content": "Merci style only. Values come from product metafields — nothing is invented: custom.sold_count + custom.sold_hours (number) and custom.offer_ends (date and time)." },
+    { "type": "checkbox", "id": "show_sales_hint", "label": "Show \"sold in last hours\" line", "default": false },
+    { "type": "checkbox", "id": "show_countdown", "label": "Show offer countdown", "default": true },
+    { "type": "text", "id": "countdown_label", "label": "Countdown label", "default": "Limited-time offer, ends in:" },
+    { "type": "checkbox", "id": "show_live_viewers", "label": "Show live viewers line", "info": "Shows a fixed number, not real visitors. Some marketplaces treat this as misleading.", "default": false },
     { "type": "range", "id": "live_viewers_count", "label": "Live viewers count (display only)", "min": 5, "max": 200, "step": 5, "default": 25 },
     { "type": "checkbox", "id": "show_low_stock", "label": "Show low-stock urgency bar", "default": true },
     { "type": "range", "id": "stock_progress_max", "label": "Progress bar denominator", "min": 10, "max": 500, "step": 5, "default": 100 },
-    { "type": "range", "id": "low_stock_fallback_qty", "label": "Fallback qty when inventory not tracked", "min": 2, "max": 200, "step": 2, "default": 38 },
+    { "type": "range", "id": "low_stock_fallback_qty", "label": "Unused (kept for saved settings)", "min": 2, "max": 200, "step": 2, "default": 38 },
     { "type": "range", "id": "low_stock_threshold", "label": "Low-stock threshold (qty ≤ shows orange)", "min": 3, "max": 50, "step": 1, "default": 10 },
     { "type": "range", "id": "critical_stock_threshold", "label": "Critical-stock threshold (qty ≤ shows red 🔥)", "min": 1, "max": 10, "step": 1, "default": 3 },
     { "type": "text", "id": "low_stock_prefix", "label": "Low-stock prefix", "default": "Only" },
