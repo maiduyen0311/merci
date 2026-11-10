@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run check:*)",
+      "Bash(npm run sass:*)",
+      "Bash(npm run webpack:*)",
+      "Bash(npm run package:*)",
+      "Bash(npm run release:*)",
+      "Bash(npm run qa:check:*)",
+      "Bash(npm run qa:e2e:*)",
+      "Bash(npm run qa:lh:*)",
+      "Bash(npx playwright test:*)",
+      "Bash(shopify theme dev:*)",
+      "Bash(shopify theme check:*)",
+      "Bash(shopify theme list:*)",
+      "Bash(shopify theme package:*)",
+      "Bash(node scripts/validate-templates.js:*)",
+      "Bash(node scripts/sass-build.js:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git fetch:*)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(git merge:*)",
+      "Bash(npm install:*)",
+      "Bash(shopify theme push:*)",
+      "Bash(npm run qa:push:*)",
+      "Bash(npm run deploy:preview:*)",
+      "Bash(node scripts/demo-import.js:*)",
+      "Bash(npm run demo:import:*)",
+      "Bash(node scripts/deploy-demo.js:*)"
+    ],
+    "deny": [
+      "Bash(shopify theme push --live:*)",
+      "Bash(shopify theme publish:*)",
+      "Bash(shopify theme delete:*)",
+      "Bash(npm run deploy:live:*)",
+      "Bash(npm run theme:pull:live:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git reset --hard:*)",
+      "Read(./.env)",
+      "Read(./.env.qa)"
+    ]
+  }
+}
