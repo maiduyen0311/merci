@@ -158,6 +158,24 @@
   }
 
   select { text-transform: none; letter-spacing: 0; }
+
+  // "27 PRODUCTS" stays on one line next to the sort select
+  .product-count-vertical { flex-shrink: 0; }
+  .product-count__text { white-space: nowrap; }
+
+  @media (max-width: 575.98px) {
+    .facets-vertical-form { gap: 1rem; }
+
+    // the select already reads "Date, new to old" — keep the label for screen readers only
+    .facet-filters__label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+  }
 }
 
 // --- Pagination: "Showing 1–12 of 27"  ·  ‹ Previous 1 2 3 Next › -----------

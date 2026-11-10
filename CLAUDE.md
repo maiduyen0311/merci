@@ -6,8 +6,8 @@ Theme Merci của iPhoenix Themes, bán trên ThemeForest. Code nền clone từ
 
 **Đọc trước khi làm tiếp:** `.claude/memory/MEMORY.md` + các file trong `.claude/memory/`.
 
-- Phase hiện tại: 05 — 05A trang con xong (SPEC Appendix D, `_mc-pages.scss`); 05B generator `scripts/demo/merci.js` → `demos/merci/` xong; 05C import CHƯA chạy (chờ user cho phép + `shopify store auth`).
-- Việc tiếp theo: user duyệt preview → `shopify store auth --store merci-demo.myshopify.com --scopes write_products,write_files,write_content,write_online_store_pages,write_online_store_navigation` → `npm run demo:import -- merci --store merci-demo.myshopify.com --only metafields,files,pages,menus` → `node scripts/deploy-demo.js merci --store merci-demo.myshopify.com --theme 161508261959`. (import đã chạy 2026-11-10)
+- Phase hiện tại: 05 xong — 05A trang con (SPEC Appendix D), 05B generator, 05C import (2026-11-10). Merci 2.0 (161508261959) đã LIVE trên merci-demo. Thêm 78 sản phẩm demo (`scripts/demo/merci-catalogue.js`, tag `demo-merci`) để mọi collection có phân trang; sửa banner collection mobile, toolbar đếm sản phẩm, bảng màu swatch.
+- Việc tiếp theo: user duyệt → push theme live (`node scripts/deploy-demo.js merci --store merci-demo.myshopify.com --theme 161508261959`, hỏi trước vì theme đang live) → phase 06 (test environment).
 
 ## Playbook
 

@@ -15,7 +15,7 @@
 {%- endcomment -%}
 
 {%- if image != blank -%}
-  <div class="collection-hero__banner" style="--collection-banner-text: {{ text_color | default: '#ffffff' }}; --collection-banner-overlay: {{ overlay | default: 0 | divided_by: 100.0 }};">
+  <div class="collection-hero__banner{% if eyebrow == blank and heading == blank %} collection-hero__banner--image-only{% endif %}" style="--collection-banner-text: {{ text_color | default: '#ffffff' }}; --collection-banner-overlay: {{ overlay | default: 0 | divided_by: 100.0 }};">
     {{
       image
       | image_url: width: 2000

@@ -22,8 +22,8 @@
     assign swatch_focal_point = swatch.image.presentation.focal_point
   elsif swatch.color
     assign swatch_value = 'rgb(' | append: swatch.color.rgb | append: ')'
-  elsif name != blank and 'multi,multicolor,multicolour,mixed,rainbow' contains swatch_name
-    # multi-colour values: a small colour wheel
+  elsif name != blank and 'multi,multicolor,multicolour,mixed,rainbow' contains swatch_name or swatch_name contains 'multi'
+    # multi-colour values ("Multi", "Multi Stripe"…): a small colour wheel
     assign swatch_value = 'conic-gradient(#e0524d, #f2b134, #5fb36b, #3f7fd0, #9a5fc7, #e0524d)'
   elsif name != blank
     capture named_hex

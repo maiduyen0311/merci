@@ -231,7 +231,7 @@ if (step('products') || step('collections')) {
 
     const input = {
       title: p.title, handle: p.handle, descriptionHtml: p.body, vendor: p.vendor, productType: p.type, status: 'ACTIVE',
-      tags: [p.type, ...(p.collections || [])], productOptions: options, variants, metafields,
+      tags: [p.type, ...(p.collections || []), `demo-${prefix}`], productOptions: options, variants, metafields,
     };
     if (files.length) input.files = files;
     const r = gql(
@@ -245,11 +245,11 @@ if (step('products') || step('collections')) {
   }
   console.log('✔ products');
 
-  // --prune: archive this demo's products that are no longer in content.json
+  // --prune: archive this demo's products that are no longer in content.json. Only products this
+  // script created (tag demo-<prefix>) — a store's own catalogue can share the vendor (Merci v1).
   if (argv.includes('--prune')) {
     const keep = new Set(content.products.map((p) => p.handle));
-    const vendor = content.products[0] && content.products[0].vendor;
-    const old = gql('query($q: String!) { products(first: 250, query: $q) { nodes { id handle status } } }', { q: `vendor:'${vendor}'` }).products.nodes
+    const old = gql('query($q: String!) { products(first: 250, query: $q) { nodes { id handle status } } }', { q: `tag:'demo-${prefix}'` }).products.nodes
       .filter((p) => !keep.has(p.handle) && p.status !== 'ARCHIVED');
     for (const p of old) userErrors(gql('mutation($p: ProductUpdateInput!) { productUpdate(product: $p) { userErrors { field message } } }', { p: { id: p.id, status: 'ARCHIVED' } }), `archive ${p.handle}`);
     console.log(`✔ archived ${old.length} old products`);
@@ -264,6 +264,7 @@ if (step('collections')) {
     const members = content.products.filter((p) => (p.collections || []).includes(c.handle)).map((p) => productIds[p.handle]).filter(Boolean);
     const existing = gql('query($h: String!) { collectionByIdentifier(identifier: { handle: $h }) { id } }', { h: c.handle }).collectionByIdentifier;
     let id = existing && existing.id;
+    if (!id && !c.title) { console.warn(`  ! ${c.handle}: not in the store and no title to create it`); continue; }
     if (!id) {
       const r = gql('mutation($input: CollectionInput!) { collectionCreate(input: $input) { collection { id } userErrors { field message } } }', {
         input: { title: c.title, handle: c.handle, descriptionHtml: `<p>${c.description}</p>`, image: { src: imageUrl(c.image), altText: c.title }, products: members },
@@ -271,13 +272,24 @@ if (step('collections')) {
       if (!userErrors(r, c.handle) || !r.collectionCreate.collection) continue;
       id = r.collectionCreate.collection.id;
     } else {
-      if (members.length) userErrors(gql('mutation($id: ID!, $p: [ID!]!) { collectionAddProducts(id: $id, productIds: $p) { userErrors { field message } } }', { id, p: members }), `${c.handle} products`);
-      const update = { id, descriptionHtml: `<p>${c.description}</p>` };
-      if (content.images[c.image]) update.image = { src: imageUrl(c.image), altText: c.title };
-      userErrors(gql('mutation($input: CollectionInput!) { collectionUpdate(input: $input) { userErrors { field message } } }', { input: update }), `${c.handle} update`);
+      // collectionAddProducts fails as a whole when one product is already in → add only the missing ones
+      const have = new Set();
+      for (let after = null, more = true; more;) {
+        const page = gql('query($id: ID!, $after: String) { collection(id: $id) { products(first: 250, after: $after) { nodes { id } pageInfo { hasNextPage endCursor } } } }', { id, after }).collection.products;
+        page.nodes.forEach((p) => have.add(p.id));
+        ({ hasNextPage: more, endCursor: after } = page.pageInfo);
+      }
+      const add = members.filter((m) => !have.has(m));
+      if (add.length) userErrors(gql('mutation($id: ID!, $p: [ID!]!) { collectionAddProducts(id: $id, productIds: $p) { userErrors { field message } } }', { id, p: add }), `${c.handle} products`);
+      // membership-only entry ({ handle }) → leave the store's title / description / image alone
+      if (c.description) {
+        const update = { id, descriptionHtml: `<p>${c.description}</p>` };
+        if (content.images[c.image]) update.image = { src: imageUrl(c.image), altText: c.title };
+        userErrors(gql('mutation($input: CollectionInput!) { collectionUpdate(input: $input) { userErrors { field message } } }', { input: update }), `${c.handle} update`);
+      }
     }
     publish(id);
-    console.log(`  ✔ ${c.title} (${members.length})`);
+    console.log(`  ✔ ${c.title || c.handle} (${members.length})`);
   }
   console.log('✔ collections');
 

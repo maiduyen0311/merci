@@ -1154,3 +1154,10 @@
     aspect-ratio: 16 / 9;
   }
 }
+
+// No overlay text → the artwork usually carries its own text: show it whole at its own ratio
+.collection-hero__banner.collection-hero__banner--image-only {
+  aspect-ratio: auto;
+
+  .collection-hero__banner-image { height: auto; }
+}

@@ -83,11 +83,31 @@
       assign out = '#d4af37'
     when 'crystal', 'clear', 'transparent'
       assign out = '#eef2f4'
+    when 'oat', 'oatmeal', 'linen'
+      assign out = '#ddd0b8'
+    when 'mint', 'pistachio'
+      assign out = '#b7dcc0'
+    when 'peach', 'apricot'
+      assign out = '#f4c3a5'
+    when 'plum', 'berry', 'mauve'
+      assign out = '#7d3c6b'
+    when 'fuchsia', 'magenta', 'hot pink'
+      assign out = '#d63384'
+    when 'cherry', 'scarlet', 'poppy red', 'classic red'
+      assign out = '#b3122e'
+    when 'espresso', 'mocha', 'coffee'
+      assign out = '#4b2e24'
+    when 'denim', 'mid blue', 'indigo'
+      assign out = '#4f6f9f'
+    when 'cornflower', 'cornflower blue'
+      assign out = '#6495ed'
+    when 'charcoal'
+      assign out = '#3b3b3b'
   endcase
 
   if out == ''
-    assign words = 'navy,black,white,ivory,cream,grey,gray,silver,red,pink,blush,rose,orange,yellow,mustard,green,sage,olive,teal,blue,cobalt,purple,lavender,brown,camel,tan,sand,cognac,beige,gold' | split: ','
-    assign hexes = '#1f2f5c,#111111,#ffffff,#f6f0e1,#f3e9d6,#8a8a8a,#8a8a8a,#c0c0c0,#d93025,#f4a6b8,#e8c4bb,#c99a95,#f08a24,#f5c518,#d8a531,#3aa655,#a9b49a,#7b7a45,#1f9a7a,#4a7bd0,#4a7bd0,#8e6bbf,#c8b6dc,#8b5a2b,#c19a6b,#d2b48c,#d2b48c,#9a4e25,#e6d5b8,#d4af37' | split: ','
+    assign words = 'navy,black,white,ivory,cream,grey,gray,silver,red,pink,blush,rose,orange,yellow,mustard,green,sage,olive,teal,blue,cobalt,purple,lavender,brown,camel,tan,sand,cognac,beige,gold,denim,plum,mint,peach' | split: ','
+    assign hexes = '#1f2f5c,#111111,#ffffff,#f6f0e1,#f3e9d6,#8a8a8a,#8a8a8a,#c0c0c0,#d93025,#f4a6b8,#e8c4bb,#c99a95,#f08a24,#f5c518,#d8a531,#3aa655,#a9b49a,#7b7a45,#1f9a7a,#4a7bd0,#4a7bd0,#8e6bbf,#c8b6dc,#8b5a2b,#c19a6b,#d2b48c,#d2b48c,#9a4e25,#e6d5b8,#d4af37,#4f6f9f,#7d3c6b,#b7dcc0,#f4c3a5' | split: ','
     for word in words
       if n contains word
         assign out = hexes[forloop.index0]

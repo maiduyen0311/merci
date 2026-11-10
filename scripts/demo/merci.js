@@ -4,15 +4,17 @@
  *
  *   node scripts/demo/merci.js            (then: node scripts/validate-templates.js)
  *
- * The demo store merci-demo.myshopify.com already holds the v1 catalogue (≈50 products,
- * 13 collections, blog "news", pages). Unlike Occasion's clone generators this one does NOT
- * create products: it only adds what v1 is missing and fixes broken v1 data.
+ * The demo store merci-demo.myshopify.com already holds the v1 catalogue (27 products,
+ * 13 collections, blog "news", pages). The v1 products are never touched: this generator only
+ * adds what v1 is missing and fixes broken v1 data.
  *
  *   content.json      metafield definitions (sold count, offer end), Files (Instagram + Lookbook
  *                     photos from scripts/demo/merci-images.ps1), page template suffixes,
- *                     menus (v1 sub-links all pointed to "/" → every item looked active).
- *                     products / collections stay empty on purpose — demo-import must not
- *                     overwrite the v1 catalogue. Use: --only metafields,files,pages,menus
+ *                     menus (v1 sub-links all pointed to "/" → every item looked active),
+ *                     catalogue extension (merci-catalogue.js: ~80 products under new handles so
+ *                     every collection paginates) and membership-only entries for the v1
+ *                     collections (no description → demo-import only adds products to them).
+ *                     Use: --only metafields,files,pages,menus  /  --only products,collections
  *   templates/, sections/, config/
  *                     snapshot of the theme's own JSON (the theme ships the Merci demo as its
  *                     defaults) + the demo-only references: uploaded Files and product handles.
@@ -21,6 +23,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const catalogue = require('./merci-catalogue');
 
 const ROOT = path.join(__dirname, '..', '..');
 const OUT = path.join(ROOT, 'demos', 'merci');
@@ -76,10 +79,11 @@ const content = {
     { name: 'Sold in last (hours)', namespace: 'custom', key: 'sold_hours', type: 'number_integer' },
     { name: 'Offer ends', namespace: 'custom', key: 'offer_ends', type: 'date_time', description: 'End of the limited-time offer — the product page countdown hides itself after this time.' },
   ],
-  images,
+  images: { ...images, ...catalogue.images },
   files,
-  products: [],
-  collections: [],
+  products: catalogue.products,
+  // existing v1 collections: membership only (demo-import leaves title/description/image alone)
+  collections: [...new Set(catalogue.products.flatMap((p) => p.collections))].map((handle) => ({ handle })),
   // existing v1 pages: only their template is switched (demo-import updates templateSuffix)
   pages: [
     { handle: 'faq', title: 'FAQ', template: 'faq' },
@@ -233,4 +237,4 @@ writeJson(path.join(OUT, 'images.manifest.json'), {
   'lookbook-2': { src: 'banner/7.jpg', max: 1200 },
   'lookbook-3': { src: 'banner/9.jpg', max: 1200 },
 });
-console.log(`✔ demos/merci: ${files.length} files, ${content.pages.length} pages, ${content.menus.length} menus`);
+console.log(`✔ demos/merci: ${files.length} files, ${content.products.length} products, ${content.pages.length} pages, ${content.menus.length} menus`);
