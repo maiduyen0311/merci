@@ -61,7 +61,7 @@ $color-footer-text: #332c2c;
 $color-footer-heading: #000000;
 $color-nav-dark-hex: #231e17; // inner-page menu bar [px:collection@30,118]
 $color-nav-dark: var(--color-nav-dark, #{$color-nav-dark-hex});
-$color-compare-price: #9f9f9f;
+$color-compare-price: #767676; // v1 #9f9f9f fails WCAG AA (2.65:1) — darkest grey that passes
 $color-tab-bg: #f2f2f2; // PDP tabs [px:product@300,1288]
 
 // Promo banner pastels

@@ -44,7 +44,8 @@
             {%- endif -%}
               <div class="mc-media mc-image-strip__media">
                 {%- if block.settings.image != blank -%}
-                  {{ block.settings.image | image_url: width: 600 | image_tag: widths: '300, 450, 600', sizes: '(min-width: 992px) 240px, 45vw', loading: 'lazy', alt: block.settings.image.alt | escape }}
+                  {%- assign mc_alt = block.settings.image.alt | default: section.settings.title | default: shop.name | escape -%}
+                  {{ block.settings.image | image_url: width: 600 | image_tag: widths: '300, 450, 600', sizes: '(min-width: 992px) 240px, 45vw', loading: 'lazy', alt: mc_alt }}
                 {%- else -%}
                   {{ 'image' | placeholder_svg_tag }}
                 {%- endif -%}

@@ -56,10 +56,12 @@
             {%- if block.settings.image_mobile != blank -%}
               <picture>
                 <source media="(max-width: 749px)" srcset="{{ block.settings.image_mobile | image_url: width: 750 }} 750w, {{ block.settings.image_mobile | image_url: width: 1100 }} 1100w" sizes="100vw">
-                {{ block.settings.image | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 1920, 2400', sizes: sizes, loading: img_loading, fetchpriority: img_priority, class: 'mc-slideshow__img', alt: block.settings.image.alt | default: block.settings.heading | escape }}
+                {%- assign mc_alt = block.settings.image.alt | default: block.settings.heading | escape -%}
+                {{ block.settings.image | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 1920, 2400', sizes: sizes, loading: img_loading, fetchpriority: img_priority, class: 'mc-slideshow__img', alt: mc_alt }}
               </picture>
             {%- else -%}
-              {{ block.settings.image | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 1920, 2400', sizes: sizes, loading: img_loading, fetchpriority: img_priority, class: 'mc-slideshow__img', alt: block.settings.image.alt | default: block.settings.heading | escape }}
+              {%- assign mc_alt = block.settings.image.alt | default: block.settings.heading | escape -%}
+              {{ block.settings.image | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 1920, 2400', sizes: sizes, loading: img_loading, fetchpriority: img_priority, class: 'mc-slideshow__img', alt: mc_alt }}
             {%- endif -%}
           {%- else -%}
             {{ 'lifestyle-1' | placeholder_svg_tag: 'mc-slideshow__img mc-slideshow__img--placeholder' }}

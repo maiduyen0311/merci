@@ -65,7 +65,7 @@
 
   &::after { animation-delay: 1.2s; }
 
-  &:hover { background: #fff; color: var(--color-primary); }
+  &:hover { background: #fff; color: var(--color-accent-ink, var(--color-primary)); }
 }
 
 @keyframes mc-pulse {
@@ -133,5 +133,5 @@
   color: #fff;
   cursor: pointer;
 
-  &:hover { color: var(--color-primary); }
+  &:hover { color: var(--color-accent-ink, var(--color-primary)); }
 }

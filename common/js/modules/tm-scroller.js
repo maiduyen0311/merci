@@ -24,6 +24,11 @@ class TmScroller extends HTMLElement {
     this.track = this.querySelector('[data-scroller-track]');
     if (!this.track) return;
     this.dataset.bound = '1';
+    // A track with nothing focusable inside (e.g. plain brand logos) must still be
+    // reachable by keyboard so it can be scrolled with the arrow keys (WCAG 2.1.1).
+    if (!this.track.hasAttribute('tabindex') && !this.track.querySelector('a[href], button, input, select, textarea, [tabindex]')) {
+      this.track.setAttribute('tabindex', '0');
+    }
     this.prevBtn = this.querySelector('[data-scroller-prev]');
     this.nextBtn = this.querySelector('[data-scroller-next]');
 

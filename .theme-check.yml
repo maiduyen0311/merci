@@ -1,0 +1,8 @@
+# Theme Check — only theme folders. dist/ (deploy-demo staging copy), demos/, tests and tooling are not theme code.
+ignore:
+  - dist/**
+  - demos/**
+  - node_modules/**
+  - tests/**
+  - test-results/**
+  - qa/**

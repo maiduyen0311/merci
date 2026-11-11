@@ -33,5 +33,5 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
 
-  .mc-hover:hover & { color: var(--color-primary); }
+  .mc-hover:hover & { color: var(--color-accent-ink, var(--color-primary)); }
 }

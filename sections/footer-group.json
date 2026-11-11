@@ -79,15 +79,16 @@
         "delay": 5,
         "dismiss_days": 7,
         "image_layout": "right",
-        "title": "Newsletter Sign Up",
-        "title_font": "script",
-        "text": "<p>Enter your email below to receive a $30 coupon, special offers, exclusive discounts and more!</p>",
+        "title": "Join the Merci list",
+        "title_font": "heading",
+        "text": "<p>New arrivals, lookbooks and private sales — straight to your inbox, about twice a month.</p>",
         "placeholder": "Your email address",
-        "dont_show_label": "Don't Show This Popup Again",
+        "dont_show_label": "Don’t show this again",
         "success_message": "Thanks for subscribing!",
-        "background_color": "#e5d8cf",
+        "background_color": "#ffffff",
         "text_color": "#000000",
-        "overlay_opacity": 40
+        "overlay_opacity": 40,
+        "image": "shopify://shop_images/merci-demo-lookbook-2.jpg"
       }
     },
     "sales_popup": {

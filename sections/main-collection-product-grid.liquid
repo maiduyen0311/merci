@@ -195,6 +195,7 @@
                 assign sb_tag = 'a'
               endif
             -%}
+            {%- assign sb_alt = section.settings.sidebar_banner_image.alt | default: section.settings.sidebar_banner_title | default: collection.title | strip_html | escape -%}
             <{{ sb_tag }}
               class="sidebar-banner"
               {% if section.settings.sidebar_banner_link != blank %}href="{{ section.settings.sidebar_banner_link }}"{% endif %}
@@ -203,7 +204,7 @@
               {{
                 section.settings.sidebar_banner_image
                 | image_url: width: 700
-                | image_tag: class: 'sidebar-banner__image', loading: 'lazy', widths: '350, 500, 700', sizes: '300px', alt: section.settings.sidebar_banner_title
+                | image_tag: class: 'sidebar-banner__image', loading: 'lazy', widths: '350, 500, 700', sizes: '300px', alt: sb_alt
               }}
               {%- if section.settings.sidebar_banner_eyebrow != blank or section.settings.sidebar_banner_title != blank -%}
                 <span class="sidebar-banner__content">

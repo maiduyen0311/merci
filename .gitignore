@@ -47,3 +47,4 @@ dist/
 qa/playwright-report/
 test-results/
 design/**/*.psd
+test-results/

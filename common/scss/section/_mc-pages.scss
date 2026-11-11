@@ -22,7 +22,7 @@
     text-transform: uppercase;
 
     a { color: var(--color-text-muted, #666); }
-    a:hover { color: var(--color-primary); }
+    a:hover { color: var(--color-accent-ink, var(--color-primary)); }
   }
 
   &__sep {
@@ -87,7 +87,7 @@
     font-size: 1.3rem;
     transition: color 0.2s ease, padding 0.25s ease;
 
-    &:hover { padding-inline-start: 1.4rem; color: var(--color-primary); }
+    &:hover { padding-inline-start: 1.4rem; color: var(--color-accent-ink, var(--color-primary)); }
 
     // thin dash slides in before the hovered category
     &::before {
@@ -272,12 +272,12 @@
 
     &::after { display: none; }
 
-    &:hover { color: var(--color-primary); }
+    &:hover { color: var(--color-accent-ink, var(--color-primary)); }
 
     &.is-active {
       border-top-color: var(--color-primary);
       background: #fff;
-      color: var(--color-primary);
+      color: var(--color-accent-ink, var(--color-primary));
     }
 
     @media screen and (max-width: 749px) { padding: 1.2rem 1.6rem; font-size: 1.1rem; }
@@ -345,10 +345,9 @@
   .main-product__thumbs-nav.tm-scroller__nav {
     background: #fff;
 
-    &:hover:not(:disabled) { background: #fff; color: var(--color-primary); }
+    &:hover:not(:disabled) { background: #fff; color: var(--color-accent-ink, var(--color-primary)); }
   }
 
-  .main-product__payments { opacity: 0.8; }
   .main-product__guarantee { font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase; }
 
   // info column
@@ -362,7 +361,7 @@
   .main-product__price {
     margin-block: 1.6rem 1.2rem;
 
-    &-current { color: var(--color-sale, #e23f3f); font-size: 2rem; font-weight: 600; }
+    &-current { color: var(--color-accent-ink, var(--color-sale)); font-size: 2rem; font-weight: 600; }
     &-compare { color: var(--color-compare-price, #9f9f9f); font-size: 1.5rem; }
   }
 
@@ -379,7 +378,7 @@
     padding: 0;
     border: 0;
     background: transparent;
-    color: var(--color-primary);
+    color: var(--color-accent-ink, var(--color-primary));
   }
 
   // options: round swatches (30px, name in the label) + round size chips
@@ -554,7 +553,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  color: var(--color-primary);
+  color: var(--color-accent-ink, var(--color-primary));
 }
 
 .mc-pdp__facts {
@@ -576,7 +575,7 @@
   dt { color: var(--color-text-muted, #666); font-weight: 400; }
   dd { margin: 0; color: var(--color-heading, #000); }
   dd a { color: inherit; text-decoration: none; }
-  dd a:hover { color: var(--color-primary); }
+  dd a:hover { color: var(--color-accent-ink, var(--color-primary)); }
   strong { font-weight: 400; }
 }
 
@@ -647,7 +646,7 @@
     box-shadow: none;
     color: var(--color-heading, #000);
 
-    &:hover:not(:disabled) { background: transparent; color: var(--color-primary); }
+    &:hover:not(:disabled) { background: transparent; color: var(--color-accent-ink, var(--color-primary)); }
   }
 }
 
@@ -707,7 +706,7 @@
       background: transparent;
       color: var(--color-heading, #000);
 
-      &:hover { background: transparent; color: var(--color-primary); }
+      &:hover { background: transparent; color: var(--color-accent-ink, var(--color-primary)); }
     }
   }
 
@@ -739,7 +738,7 @@
   }
 
   &__post-title { font-size: 1.3rem; }
-  a:hover &__post-title { color: var(--color-primary); }
+  a:hover &__post-title { color: var(--color-accent-ink, var(--color-primary)); }
   &__date { font-size: 1.1rem; letter-spacing: 0.08em; text-transform: uppercase; }
 }
 
@@ -782,7 +781,7 @@
     line-height: 1.35;
 
     a { color: var(--color-heading, #000); text-decoration: none; }
-    a:hover { color: var(--color-primary); }
+    a:hover { color: var(--color-accent-ink, var(--color-primary)); }
   }
 
   .news-card__excerpt {
@@ -850,7 +849,7 @@
     height: 2.4rem;
     border-radius: 0;
     background: transparent;
-    color: var(--color-primary);
+    color: var(--color-accent-ink, var(--color-primary));
 
     svg { width: 2.2rem; height: 2.2rem; }
   }
@@ -978,7 +977,7 @@
 // --- Lookbook: thin "+" markers that turn into "×", square product card ------------
 .lookbook {
   &__eyebrow {
-    color: var(--color-primary);
+    color: var(--color-accent-ink, var(--color-primary));
     font-size: 1.2rem;
     letter-spacing: 0.24em;
     text-transform: uppercase;
@@ -1075,7 +1074,7 @@
     height: auto;
     border-radius: 0;
     background: transparent;
-    color: var(--color-primary);
+    color: var(--color-accent-ink, var(--color-primary));
   }
 
   &__empty-heading { font-size: 2rem; letter-spacing: 0.04em; text-transform: uppercase; }
@@ -1115,7 +1114,7 @@
     &[open],
     &:hover { border-color: var(--color-border, #e8e9eb); box-shadow: none; }
 
-    &[open] .faq-section__question { color: var(--color-primary); }
+    &[open] .faq-section__question { color: var(--color-accent-ink, var(--color-primary)); }
   }
 
   &__question {
@@ -1124,7 +1123,7 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
 
-    &:hover { color: var(--color-primary); }
+    &:hover { color: var(--color-accent-ink, var(--color-primary)); }
   }
 
   &__indicator {
@@ -1200,3 +1199,16 @@
 
 .cart-page__thumb,
 .mini-cart__thumb { border-radius: 0; background: var(--color-bg-alt, #f9f9f9); }
+
+// --- WCAG AA text contrast (phase 06 axe run) -------------------------------------
+// links / highlights in the accent colour use the deeper "accent ink" (#a95b55, 4.9:1 on white)
+.underlined-link,
+.customer a,
+.tm-search__terms { color: var(--color-accent-ink, var(--color-primary)); }
+
+.price__sale s,
+.price s,
+.sidebar-popular__price-compare,
+.main-product__price-compare { color: var(--color-compare-price, #767676); }
+
+[data-sticky-price] { color: var(--color-accent-ink, var(--color-primary)); }

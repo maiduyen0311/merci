@@ -27,10 +27,12 @@
         {%- if section.settings.image_mobile != blank -%}
           <picture>
             <source media="(max-width: 749px)" srcset="{{ img_mobile | image_url: width: 750 }} 750w, {{ img_mobile | image_url: width: 1100 }} 1100w" sizes="100vw">
-            {{ img | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 1920, 2400', sizes: '100vw', loading: 'lazy', alt: img.alt | default: section.settings.heading | escape }}
+            {%- assign mc_alt = img.alt | default: section.settings.heading | escape -%}
+            {{ img | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 1920, 2400', sizes: '100vw', loading: 'lazy', alt: mc_alt }}
           </picture>
         {%- else -%}
-          {{ img | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 1920, 2400', sizes: '100vw', loading: 'lazy', alt: img.alt | default: section.settings.heading | escape }}
+          {%- assign mc_alt = img.alt | default: section.settings.heading | escape -%}
+          {{ img | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 1920, 2400', sizes: '100vw', loading: 'lazy', alt: mc_alt }}
         {%- endif -%}
       {%- else -%}
         {{ 'hero-apparel-1' | placeholder_svg_tag }}

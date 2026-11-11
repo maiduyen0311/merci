@@ -27,7 +27,7 @@
     color: var(--color-text);
     font-size: 1.3rem;
 
-    &:hover { color: var(--color-primary); }
+    &:hover { color: var(--color-accent-ink, var(--color-primary)); }
   }
 
   .footer-main__text {
@@ -65,7 +65,7 @@
 
     svg { width: 1.4rem; height: 1.4rem; }
 
-    &:hover { background: transparent; color: var(--color-primary); transform: none; }
+    &:hover { background: transparent; color: var(--color-accent-ink, var(--color-primary)); transform: none; }
   }
 
   .footer-main__payments {
@@ -113,12 +113,12 @@
     font-size: 1.3rem;
     text-transform: uppercase;
 
-    &::placeholder { color: var(--color-primary); opacity: 1; }
+    &::placeholder { color: var(--color-accent-ink, var(--color-primary)); opacity: 1; }
   }
 
   .footer-newsletter__submit {
     background: transparent;
-    color: var(--color-primary);
+    color: var(--color-accent-ink, var(--color-primary));
 
     &:hover { background: transparent; color: var(--color-accent-dark); }
   }

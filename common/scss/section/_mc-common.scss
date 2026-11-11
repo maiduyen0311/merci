@@ -28,7 +28,7 @@
   &__eyebrow {
     display: block;
     margin-bottom: 0.6rem;
-    color: var(--color-primary);
+    color: var(--color-accent-ink, var(--color-primary));
     font-size: 1.2rem;
     letter-spacing: 0.24em;
     text-transform: uppercase;
@@ -207,7 +207,7 @@
 
     svg { width: 2.2rem; height: 2.2rem; stroke-width: 1.2; }
 
-    &:hover:not(:disabled) { background: transparent; color: var(--color-primary); }
+    &:hover:not(:disabled) { background: transparent; color: var(--color-accent-ink, var(--color-primary)); }
 
     &--prev { left: -0.8rem; }
     &--next { right: -0.8rem; }

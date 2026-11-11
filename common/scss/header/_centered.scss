@@ -61,7 +61,7 @@
 
   svg { width: 1.4rem; height: 1.4rem; }
 
-  &:hover { color: var(--color-primary); }
+  &:hover { color: var(--color-accent-ink, var(--color-primary)); }
 }
 
 // --- Pickers / search / icons -------------------------------------------------
@@ -89,7 +89,7 @@
     transition: color 0.2s ease;
 
     &:hover,
-    &[aria-expanded='true'] { color: var(--color-primary); }
+    &[aria-expanded='true'] { color: var(--color-accent-ink, var(--color-primary)); }
   }
 
   .header-search-toggle__panel {
@@ -158,13 +158,14 @@
     text-transform: uppercase;
 
     &:hover,
-    &.is-active { color: var(--color-primary); }
+    &.is-active { color: var(--mc-nav-active, var(--color-primary)); } // #bf7069 on the dark bar = 4.5:1
   }
 }
 
 // --- Homepage: header floats over the hero ------------------------------------
 @media screen and (min-width: 992px) {
   .mc-header--overlay {
+    --mc-nav-active: var(--color-accent-ink, var(--color-primary)); // light hero behind the menu
     position: absolute;
     top: 0;
     right: 0;
@@ -245,7 +246,7 @@
       transition: width 0.25s ease;
     }
 
-    &:hover { padding-inline-start: 1.4rem; color: var(--color-primary); }
+    &:hover { padding-inline-start: 1.4rem; color: var(--color-accent-ink, var(--color-primary)); }
     &:hover::before { width: 0.8rem; }
   }
 
@@ -259,7 +260,7 @@
   }
 
   .tm-imega__banner-eyebrow {
-    color: var(--color-primary);
+    color: var(--color-accent-ink, var(--color-primary));
     letter-spacing: 0.24em;
     text-transform: uppercase;
   }

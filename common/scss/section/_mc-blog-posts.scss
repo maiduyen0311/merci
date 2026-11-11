@@ -20,7 +20,7 @@
   line-height: 1.5;
 
   a { color: var(--color-heading, #000); }
-  .mc-hover:hover & a { color: var(--color-primary); }
+  .mc-hover:hover & a { color: var(--color-accent-ink, var(--color-primary)); }
 }
 
 .mc-blog-card__excerpt {

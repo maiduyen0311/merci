@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-11T03:28:37.061Z",
+  "base": "https://merci-demo.myshopify.com",
+  "themeId": null,
+  "results": [
+    {
+      "formFactor": "mobile",
+      "name": "home",
+      "url": "https://merci-demo.myshopify.com/",
+      "scores": {
+        "performance": 91,
+        "accessibility": 97,
+        "best-practices": 77,
+        "seo": 92,
+        "agentic-browsing": 75
+      },
+      "below": [
+        "best-practices"
+      ]
+    },
+    {
+      "formFactor": "mobile",
+      "name": "collection",
+      "url": "https://merci-demo.myshopify.com/collections/all",
+      "scores": {
+        "performance": 62,
+        "accessibility": 97,
+        "best-practices": 100,
+        "seo": 92,
+        "agentic-browsing": 75
+      },
+      "below": []
+    },
+    {
+      "formFactor": "mobile",
+      "name": "product",
+      "url": "https://merci-demo.myshopify.com/products/scallop-edge-laser-cut",
+      "scores": {
+        "performance": 81,
+        "accessibility": 96,
+        "best-practices": 96,
+        "seo": 100,
+        "agentic-browsing": 75
+      },
+      "below": []
+    },
+    {
+      "formFactor": "desktop",
+      "name": "home",
+      "url": "https://merci-demo.myshopify.com/",
+      "scores": {
+        "performance": 56,
+        "accessibility": 97,
+        "best-practices": 96,
+        "seo": 92,
+        "agentic-browsing": 75
+      },
+      "below": [
+        "performance"
+      ]
+    },
+    {
+      "formFactor": "desktop",
+      "name": "collection",
+      "url": "https://merci-demo.myshopify.com/collections/all",
+      "scores": {
+        "performance": 65,
+        "accessibility": 93,
+        "best-practices": 96,
+        "seo": 92,
+        "agentic-browsing": 75
+      },
+      "below": []
+    },
+    {
+      "formFactor": "desktop",
+      "name": "product",
+      "url": "https://merci-demo.myshopify.com/products/scallop-edge-laser-cut",
+      "scores": {
+        "performance": 62,
+        "accessibility": 96,
+        "best-practices": 96,
+        "seo": 100,
+        "agentic-browsing": 75
+      },
+      "below": []
+    }
+  ]
+}

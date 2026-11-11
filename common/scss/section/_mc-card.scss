@@ -46,7 +46,7 @@
     transition: color 0.2s ease;
 
     &:hover,
-    &[aria-pressed='true'] { color: var(--color-primary); }
+    &[aria-pressed='true'] { color: var(--color-accent-ink, var(--color-primary)); }
   }
 }
 
@@ -111,7 +111,7 @@
     transition: transform 0.3s ease;
   }
 
-  &:hover { color: var(--color-primary); }
+  &:hover { color: var(--color-accent-ink, var(--color-primary)); }
   &:hover::after { transform: scaleX(1); }
 
   &--disabled { color: var(--color-text-muted, #666); cursor: default; }
@@ -126,9 +126,22 @@
   .card-wrapper--merci .mc-card__atc:focus-visible { opacity: 1; transform: none; }
 }
 
-// Touch: no hover — show the link under the price, hide the strip
+// Touch: no hover — the link sits under the price; the strip shrinks to a round ♡ in the image corner
 @media (hover: none) {
-  .mc-card__strip { display: none; }
+  .mc-card__strip {
+    inset: 0.8rem 0.8rem auto auto;
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    opacity: 1;
+    transform: none;
+
+    > :not(.card-product__wishlist) { display: none; }
+  }
+
+  .mc-card__strip .card-product__wishlist { flex: 1 1 auto; }
 
   .mc-card__price-swap {
     > .price,
