@@ -15,7 +15,13 @@ for (const name of PAGES_TO_CHECK) {
       .exclude('#shopify-pc__banner') // Shopify cookie banner (not theme code)
       .exclude('iframe')
       .analyze();
-    const bad = results.violations.filter((v) => ['critical', 'serious'].includes(v.impact));
+    // Accepted by the user 2026-11-11: white text on the Merci pink #bf7069 (buttons, badges) stays as designed
+    // even though it is 3.66:1. Every other contrast failure still fails the test.
+    const accepted = (n) => /foreground color: #ffffff, background color: #bf7069/i.test(((n.any || [])[0] || {}).message || '');
+    const bad = results.violations
+      .filter((v) => ['critical', 'serious'].includes(v.impact))
+      .map((v) => (v.id === 'color-contrast' ? { ...v, nodes: v.nodes.filter((n) => !accepted(n)) } : v))
+      .filter((v) => v.nodes.length);
     const summary = bad.map((v) => `${v.impact} ${v.id}: ${v.help} (${v.nodes.length}) → ${v.nodes[0].target.join(' ')}`);
     expect(summary, 'axe critical/serious').toEqual([]);
   });

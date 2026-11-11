@@ -8,8 +8,8 @@ Theme Merci của iPhoenix Themes, bán trên ThemeForest. Code nền clone từ
 
 - Phase hiện tại: 05 xong — 05A trang con (SPEC Appendix D), 05B generator, 05C import (2026-11-10). Merci 2.0 (161508261959) đã LIVE trên merci-demo. Thêm 78 sản phẩm demo (`scripts/demo/merci-catalogue.js`, tag `demo-merci`) để mọi collection có phân trang; sửa banner collection mobile, toolbar đếm sản phẩm, bảng màu swatch.
 - 2026-11-11: mega menu Shop (cột link + Editor’s pick + banner Lookbook) và Collection (link + 4 sản phẩm New arrival); badge NEW chữ tối (tương phản), BEST màu nav dark; ảnh card `cover`; chữ parallax gọn trên mobile. User 2026-11-11: không dùng staging — làm và push thẳng lên theme live 161508261959.
-- Phase 06 (2026-11-11): `npm run qa` = theme check + Playwright (tests/, target live demo, 3 viewport) + Lighthouse (`scripts/lighthouse.js`). Báo cáo `qa/REPORT-2026-11-11.md`. Còn mở: chữ trắng trên nền #bf7069 (chờ user quyết), baseline visual (sau khi duyệt), test matrix thủ công.
-- Việc tiếp theo: user quyết màu nút → chụp baseline `npm run qa:visual:update` → test matrix thủ công → phase 07 (docs).
+- Phase 06 (2026-11-11): `npm run qa` = theme check + Playwright (tests/, target live demo, 3 viewport) + Lighthouse (`scripts/lighthouse.js`). Báo cáo `qa/REPORT-2026-11-11.md`. User 2026-11-11: giữ màu nút #bf7069 như design (a11y test chấp nhận đúng cặp này), giữ sales popup. Baseline visual đã chụp (tests/visual.spec.js-snapshots, win32). Còn mở: test matrix thủ công.
+- Việc tiếp theo: test matrix thủ công (theme editor, Safari/iOS, dữ liệu biên, checkout Bogus) → phase 07 (docs). Sau mỗi thay đổi giao diện có chủ đích: `npm run qa:visual:update`.
 
 ## Playbook
 

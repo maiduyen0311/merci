@@ -1212,3 +1212,6 @@
 .main-product__price-compare { color: var(--color-compare-price, #767676); }
 
 [data-sticky-price] { color: var(--color-accent-ink, var(--color-primary)); }
+
+// open accordion title (product tabs on phones) — accent text on white uses the ink shade
+body { --tm-acc-accent: var(--color-accent-ink, var(--color-primary)); }
