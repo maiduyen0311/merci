@@ -6,10 +6,10 @@ metadata:
 ---
 
 Store: merci-demo.myshopify.com.
-- 161508261959 "Merci 2.0 [DEV]" — **LIVE since 2026-11-10** (user published it). Pushing to it = pushing live → ask the user first (CLAUDE.md rule), e.g. `node scripts/deploy-demo.js merci --store merci-demo.myshopify.com --theme 161508261959`.
+- 161508261959 "Merci 2.0 [DEV]" — **LIVE since 2026-11-10**. User 2026-11-11: work directly on this live theme — no staging/QA environment. Push to it without asking (`node scripts/deploy-demo.js merci --store merci-demo.myshopify.com --theme 161508261959`); still never publish/delete themes.
 - 120883249223 "Merci [LIVE]" — now unpublished, old Debut theme = design reference (code in ../legacy-source).
 - 161508229191 "Merci v1 Debut [COMPARE 2026-11-10]" — unpublished duplicate of the v1 theme for side-by-side compare. Do not modify.
-- 161552465991 "Merci 2.0 [STAGING]" — unpublished, created 2026-11-11 for reviewing changes before they go live (push here freely).
+- 161552465991 "Merci 2.0 [STAGING]" — created 2026-11-11, NOT used any more (user does not want staging); the user may delete it in admin.
 Store already has ~16 themes (limit 20) — do not create more without cleaning up. `shopify theme dev` creates a hidden development theme (fine).
 
 User decision 2026-11-10: Merci 2.0 is the public demo; the compare copy keeps the old design. Publish stays denied in .claude/settings.json — the user publishes.

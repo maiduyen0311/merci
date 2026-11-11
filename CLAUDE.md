@@ -7,8 +7,8 @@ Theme Merci của iPhoenix Themes, bán trên ThemeForest. Code nền clone từ
 **Đọc trước khi làm tiếp:** `.claude/memory/MEMORY.md` + các file trong `.claude/memory/`.
 
 - Phase hiện tại: 05 xong — 05A trang con (SPEC Appendix D), 05B generator, 05C import (2026-11-10). Merci 2.0 (161508261959) đã LIVE trên merci-demo. Thêm 78 sản phẩm demo (`scripts/demo/merci-catalogue.js`, tag `demo-merci`) để mọi collection có phân trang; sửa banner collection mobile, toolbar đếm sản phẩm, bảng màu swatch.
-- 2026-11-11: mega menu Shop (cột link + Editor’s pick + banner Lookbook) và Collection (link + 4 sản phẩm New arrival); badge NEW chữ tối (tương phản), BEST màu nav dark; ảnh card `cover`; chữ parallax gọn trên mobile. Theme staging chưa publish **161552465991 "Merci 2.0 [STAGING]"** để duyệt trước khi đẩy live.
-- Việc tiếp theo: user duyệt staging → `node scripts/deploy-demo.js merci --store merci-demo.myshopify.com --theme 161508261959` (live) → phase 06 (test environment).
+- 2026-11-11: mega menu Shop (cột link + Editor’s pick + banner Lookbook) và Collection (link + 4 sản phẩm New arrival); badge NEW chữ tối (tương phản), BEST màu nav dark; ảnh card `cover`; chữ parallax gọn trên mobile. User 2026-11-11: không dùng staging — làm và push thẳng lên theme live 161508261959.
+- Việc tiếp theo: phase 06 (test) — chạy trên theme live, chờ user chọn có cài dependency test hay không.
 
 ## Playbook
 
