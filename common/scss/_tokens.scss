@@ -39,10 +39,10 @@ $color-sale: var(--color-sale, #{$color-sale-hex});
 $color-sale-text: #ffffff;
 $color-new-hex: $color-secondary-hex;
 $color-new: var(--color-new, #{$color-new-hex});
-$color-new-text: #ffffff;
+$color-new-text: #332c2c; // dark text: white on #f2d0d0 fails WCAG contrast
 $color-hot: #bf7069;        // HOT badge = primary (SPEC §3.1)
 $color-hot-text: #ffffff;
-$color-bestseller: #7c3aed;
+$color-bestseller: #231e17; // Merci nav dark (Top Market used violet)
 $color-bestseller-text: #ffffff;
 
 // Neutrals

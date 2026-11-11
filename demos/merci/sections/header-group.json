@@ -28,7 +28,39 @@
         "show_compare": true,
         "logo_image": "shopify://shop_images/logo.png",
         "logo_width_desktop": 125
-      }
+      },
+      "blocks": {
+        "mega-shop": {
+          "type": "inline_mega",
+          "settings": {
+            "match_title": "Shop",
+            "style": "columns",
+            "featured_heading": "Editor’s pick",
+            "featured_product": "oversized-linen-blazer",
+            "banner_image": "shopify://shop_images/merci-demo-lookbook-1.jpg",
+            "banner_url": "shopify://pages/lookbook",
+            "banner_eyebrow": "Look 01",
+            "banner_heading": "Soft tailoring",
+            "banner_button": "Shop the look",
+            "banner_text_color": "#000000"
+          }
+        },
+        "mega-collection": {
+          "type": "inline_mega",
+          "settings": {
+            "match_title": "Collection",
+            "style": "products",
+            "collection": "new-arrival",
+            "products_count": 4,
+            "links_heading": "Collections",
+            "view_all_label": "View all new in"
+          }
+        }
+      },
+      "block_order": [
+        "mega-shop",
+        "mega-collection"
+      ]
     },
     "navigation": {
       "type": "navigation",

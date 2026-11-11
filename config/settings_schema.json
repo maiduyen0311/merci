@@ -346,7 +346,7 @@
             "label": "Cover (lifestyle photos fill the image box)"
           }
         ],
-        "default": "contain"
+        "default": "cover"
       },
       {
         "type": "color_scheme",

@@ -66,3 +66,9 @@
 
   @media screen and (min-width: 750px) { font-size: var(--fs-h1, 4rem); }
 }
+
+// phones: keep the copy in the left half so it does not run over the photo's subject
+@media screen and (max-width: 749px) {
+  .mc-parallax__text { max-width: 55%; }
+  .mc-parallax__heading { font-size: 2rem; line-height: 1.25; }
+}
