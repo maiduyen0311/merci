@@ -24,6 +24,7 @@
   - sizes {String} image sizes attribute
   - loading {String} 'lazy' (default) | 'eager'
   - alt {String}
+  - decor {String} 'botanical' (default: leaf branch + sparkles) | 'playful' (sparkles + squiggle) | 'minimal'
 {%- endcomment -%}
 {%- liquid
   assign art_shape = shape | default: 'arch'
@@ -31,6 +32,7 @@
   assign art_loading = loading | default: 'lazy'
   assign art_sizes = sizes | default: '(min-width: 992px) 520px, 90vw'
   assign art_alt = alt | default: image.alt | default: word | escape
+  assign art_decor = decor | default: 'botanical'
   assign art_uid = 'mcArt' | append: section.id | append: forloop.index | append: art_shape | handleize
 -%}
 <div class="mc-art mc-art--{{ art_shape }} mc-art--{{ art_size }}" data-mc-art>
@@ -39,6 +41,14 @@
   {%- endif -%}
   <span class="mc-art__blob" aria-hidden="true" data-depth="0.35"></span>
   <span class="mc-art__dots" aria-hidden="true" data-depth="0.55"></span>
+  {%- case art_decor -%}
+    {%- when 'botanical' -%}
+      <span class="mc-art__decor mc-art__decor--branch" data-depth="0.3">{% render 'mc-decor', name: 'leaves' %}</span>
+      <span class="mc-art__decor mc-art__decor--spark" data-depth="0.65">{% render 'mc-decor', name: 'sparkles' %}</span>
+    {%- when 'playful' -%}
+      <span class="mc-art__decor mc-art__decor--spark" data-depth="0.65">{% render 'mc-decor', name: 'sparkles' %}</span>
+      <span class="mc-art__decor mc-art__decor--wave" data-depth="0.4">{% render 'mc-decor', name: 'squiggle' %}</span>
+  {%- endcase -%}
   <span class="mc-art__outline" aria-hidden="true" data-depth="0.25"></span>
   <div class="mc-art__frame" data-depth="0.08">
     {%- if image != blank -%}

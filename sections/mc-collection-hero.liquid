@@ -27,6 +27,10 @@
 <section id="McCollectionHero-{{ section.id }}" class="mc-section mc-banner mc-collection-hero mc-banner--pattern-{{ s.pattern }}">
   <div class="container">
     <div class="mc-banner__panel mc-collection-hero__panel">
+      {%- unless s.decor == 'minimal' -%}
+        <span class="mc-banner__bg mc-banner__bg--arches" aria-hidden="true">{% render 'mc-decor', name: 'arches' %}</span>
+        <span class="mc-banner__bg mc-banner__bg--leaf" aria-hidden="true">{% render 'mc-decor', name: 'leaf' %}</span>
+      {%- endunless -%}
       <div class="mc-banner__copy mc-collection-hero__copy">
         <nav class="mc-collection-hero__crumbs" aria-label="{{ 'sections.main_product.breadcrumb' | t }}">
           <a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a>
@@ -60,6 +64,7 @@
 
       <div class="mc-banner__art mc-collection-hero__art">
         {% render 'mc-art',
+          decor: s.decor,
           image: hero_image,
           shape: s.shape,
           word: hero_word,
@@ -110,6 +115,17 @@
     { "type": "richtext", "id": "fallback_text", "label": "Text when the collection has no description" },
     { "type": "text", "id": "sticker", "label": "Sticker", "default": "New in" },
     { "type": "collection_list", "id": "quick_links", "label": "Quick links (chips)", "limit": 8 },
+    {
+      "type": "select",
+      "id": "decor",
+      "label": "Decor",
+      "options": [
+        { "value": "botanical", "label": "Botanical — leaf branch, sparkles, arches" },
+        { "value": "playful", "label": "Playful — sparkles, wavy line, arches" },
+        { "value": "minimal", "label": "Minimal — no vector decor" }
+      ],
+      "default": "botanical"
+    },
     { "type": "header", "content": "Colours" },
     { "type": "color", "id": "background", "label": "Panel background", "default": "#f9f1ef" },
     { "type": "color", "id": "blob_color", "label": "Disc behind the photo", "default": "#f2d0d0" },

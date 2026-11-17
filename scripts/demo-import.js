@@ -95,11 +95,12 @@ function uploadLocal(key) {
   if (!node) {
     const abs = path.join(ROOT, 'demos', demo, img.file);
     const size = fs.statSync(abs).size;
+    const mime = /.png$/i.test(abs) ? 'image/png' : 'image/jpeg'; // PNG keeps cut-out transparency
     const staged = gql('mutation($input: [StagedUploadInput!]!) { stagedUploadsCreate(input: $input) { stagedTargets { url resourceUrl parameters { name value } } userErrors { field message } } }', {
-      input: [{ resource: 'IMAGE', filename, mimeType: 'image/jpeg', httpMethod: 'POST', fileSize: String(size) }],
+      input: [{ resource: 'IMAGE', filename, mimeType: mime, httpMethod: 'POST', fileSize: String(size) }],
     }).stagedUploadsCreate.stagedTargets[0];
     // multipart POST with curl (synchronous, no extra dependency)
-    const form = staged.parameters.flatMap((p) => ['-F', `${p.name}=${p.value}`]).concat(['-F', `file=@${abs};type=image/jpeg`]);
+    const form = staged.parameters.flatMap((p) => ['-F', `${p.name}=${p.value}`]).concat(['-F', `file=@${abs};type=${mime}`]);
     execFileSync('curl', ['-s', '-f', '-o', process.platform === 'win32' ? 'NUL' : '/dev/null', ...form, staged.url]);
     userErrors(gql('mutation($files: [FileCreateInput!]!) { fileCreate(files: $files) { files { id } userErrors { field message code } } }', {
       files: [{ originalSource: staged.resourceUrl, filename, contentType: 'IMAGE', alt: alt(key) }],

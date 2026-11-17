@@ -19,3 +19,7 @@ Decided by user 2026-11-10 (BRIEF §7):
 User 2026-11-11 (phase 06 QA): keep the design pink #bf7069 behind white text on buttons/badges even though it is 3.66:1 (WCAG AA wants 4.5:1) — tests/a11y.spec.js accepts exactly that pair. Keep the sales popup ("recently bought") enabled by default.
 **Why:** brand look over strict AA; sales popup is a selling feature.
 **How to apply:** do not darken buttons/badges or disable the sales popup unless the user asks; text in the accent colour on white still uses color_accent_ink #a95b55.
+
+User 2026-11-17: product images must show the PRODUCT ONLY — no model photos (cards, hover image, PDP gallery). Banners may use model photos.
+**Why:** cleaner, catalogue-like look for the demo.
+**How to apply:** demo catalogue (scripts/demo/merci-catalogue.js) uses packshots only; archiving the 21 model-photo demo products and removing model images from v1 products needs the user's go-ahead (store data change, was blocked as destructive).

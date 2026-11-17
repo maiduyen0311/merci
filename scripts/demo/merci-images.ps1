@@ -58,3 +58,50 @@ $looks = [ordered]@{
 }
 foreach ($k in $instagram.Keys) { Save-Resized (Join-Path $src $instagram[$k]) (Join-Path $out "$k.jpg") 1080 $true }
 foreach ($k in $looks.Keys) { Save-Resized (Join-Path $src $looks[$k]) (Join-Path $out "$k.jpg") 1200 $false }
+
+# Product packshots for the demo catalogue (scripts/demo/merci-catalogue.js) — products only,
+# no model photos (user 2026-11-17). PNG cut-outs are flattened onto white.
+function Save-Packshot($inPath, $outPath, $maxW) {
+  $img = [System.Drawing.Image]::FromFile($inPath)
+  try {
+    $w = [Math]::Min($maxW, $img.Width)
+    $h = [int]([Math]::Round($img.Height * $w / $img.Width))
+    $bmp = New-Object System.Drawing.Bitmap $w, $h
+    $g = [System.Drawing.Graphics]::FromImage($bmp)
+    $g.Clear([System.Drawing.Color]::White)
+    $g.InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
+    $g.DrawImage($img, 0, 0, $w, $h)
+    $bmp.Save($outPath, $jpeg, $params)
+    $g.Dispose(); $bmp.Dispose()
+    Write-Output ("{0} {1}x{2}" -f (Split-Path -Leaf $outPath), $w, $h)
+  } finally { $img.Dispose() }
+}
+$packshots = [ordered]@{
+  'p-headband' = 'product\png\22.png'
+  'p-bucket-patch' = 'product\png\20.png'
+  'p-bucket-cobalt' = 'product\png\18.png'
+  'p-scrunchie' = 'product\27b.jpg'
+  'p-sneaker-pink' = 'product\31.jpg'
+  'p-cardigan-pink' = 'product\32a.jpg'
+  'p-backpack' = 'product\11a.jpg'
+}
+foreach ($k in $packshots.Keys) { Save-Packshot (Join-Path $src $packshots[$k]) (Join-Path $out "$k.jpg") 1000 }
+
+# Cut-outs for the homepage layered tiles — kept as PNG so they stand on the panel colour
+function Save-Cutout($inPath, $outPath, $maxW) {
+  $img = [System.Drawing.Image]::FromFile($inPath)
+  try {
+    $w = [Math]::Min($maxW, $img.Width)
+    $h = [int]([Math]::Round($img.Height * $w / $img.Width))
+    $bmp = New-Object System.Drawing.Bitmap $w, $h, ([System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
+    $g = [System.Drawing.Graphics]::FromImage($bmp)
+    $g.InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
+    $g.DrawImage($img, 0, 0, $w, $h)
+    $bmp.Save($outPath, [System.Drawing.Imaging.ImageFormat]::Png)
+    $g.Dispose(); $bmp.Dispose()
+    Write-Output ("{0} {1}x{2}" -f (Split-Path -Leaf $outPath), $w, $h)
+  } finally { $img.Dispose() }
+}
+Save-Cutout (Join-Path $src 'product\png\8.png') (Join-Path $out 'tile-dress.png') 900
+Save-Cutout (Join-Path $src 'product\png\23.png') (Join-Path $out 'tile-tote.png') 900
+Save-Cutout (Join-Path $src 'product\png\1.png') (Join-Path $out 'tile-shirt.png') 900

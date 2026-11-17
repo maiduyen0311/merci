@@ -223,3 +223,45 @@
 // hovering the banner slowly zooms the photo
 .mc-hover:hover .mc-art__img,
 .mc-art:hover .mc-art__img { transform: scale(1.05); }
+
+// --- vector decor (snippets/mc-decor.liquid) -------------------------------------------
+.mc-decor { display: block; width: 100%; height: auto; overflow: visible; }
+
+.mc-art__decor {
+  position: absolute;
+  color: var(--art-accent);
+  pointer-events: none;
+}
+
+.mc-art__decor--branch {
+  bottom: 4%;
+  right: -4%;
+  z-index: 1;
+  width: 30%;
+  opacity: 0.8;
+  transform: rotate(14deg);
+  transform-origin: bottom center;
+  animation: mc-art-sway 7s ease-in-out infinite;
+}
+
+.mc-art__decor--spark {
+  top: 2%;
+  left: 6%;
+  z-index: 5;
+  width: 16%;
+  animation: mc-art-twinkle 3.6s ease-in-out infinite;
+}
+
+.mc-art__decor--wave {
+  bottom: 2%;
+  right: 4%;
+  z-index: 4;
+  width: 34%;
+}
+
+@keyframes mc-art-sway { 50% { transform: rotate(6deg); } }
+@keyframes mc-art-twinkle { 50% { opacity: 0.45; transform: scale(0.86) rotate(12deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-art__decor { animation: none; }
+}

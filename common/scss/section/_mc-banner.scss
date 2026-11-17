@@ -1007,3 +1007,35 @@ html body .tm-article {
 .mc-grid-promo__inner,
 .mc-usp__list,
 .mc-page-band { --color-accent-ink: #9c524c; }
+
+// panel background vectors (snippets/mc-decor.liquid)
+.mc-banner__bg {
+  position: absolute;
+  z-index: 0;
+  color: var(--color-primary);
+  pointer-events: none;
+}
+
+.mc-banner__bg--arches {
+  right: 34%;
+  bottom: -6%;
+  width: 26rem;
+  opacity: 0.22;
+
+  .mc-banner--art-left & { right: auto; left: 34%; }
+
+  @media screen and (max-width: 991px) { right: -4rem; width: 18rem; }
+}
+
+.mc-banner__bg--leaf {
+  top: 2.4rem;
+  right: 46%;
+  width: 6.4rem;
+  opacity: 0.5;
+  transform: rotate(-24deg);
+
+  .mc-banner--art-left & { right: 3.2rem; }
+  .mc-banner--compact & { display: none; }
+
+  @media screen and (max-width: 991px) { right: 2.4rem; }
+}

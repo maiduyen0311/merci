@@ -70,6 +70,11 @@ const addFile = (key) => {
   files.push({ key, filename: `${PREFIX}-${key}.jpg` });
 };
 ['instagram-1', 'instagram-2', 'instagram-3', 'instagram-4', 'instagram-5', 'instagram-6', 'lookbook-1', 'lookbook-2', 'lookbook-3', 'art-knit', 'art-pink', 'art-shirt', 'art-green', 'art-scarf', 'art-cardigan'].forEach(addFile);
+// homepage layered tiles: transparent cut-outs (PNG)
+for (const k of ['tile-dress', 'tile-tote', 'tile-shirt']) {
+  images[k] = { file: `images/${k}.png` };
+  files.push({ key: k, filename: `${PREFIX}-${k}.png` });
+}
 
 const content = {
   storeName: 'merci',

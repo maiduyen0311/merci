@@ -220,3 +220,8 @@ outlined background word (text-stroke) · soft disc that breathes · dotted patc
 | Article | centred header with accent rule, pill tags, layered hero (offset outline + soft disc), reading column |
 
 Running strip `mc-marquee`: phrases with a four-point star, paused on hover, off for reduced motion.
+
+**Update 2026-11-17 (user feedback: "banner hơi đơn điệu… thêm vector / background", "chỉ hiển thị sản phẩm, không model", homepage tiles not the same height):**
+- Vector decor library `snippets/mc-decor.liquid` (original line art, stroke = accent): leaf branch, single leaf, sparkles, squiggle, scribble loop, concentric arches. Layered art gets a `decor` option (botanical = branch that sways + twinkling sparkles; playful = sparkles + wavy line; minimal). Banner panels add faint concentric arches + a leaf (setting "Decor").
+- Homepage collection tiles (`mc-image-tiles` Style "Layered", default): every tile is the same box; panel colour per tile over a fine grid; cut-out products (PNG) stand on the panel over line-art arches with a soft drop shadow; outlined word, sticker, sparkles; caption on a white plate that lifts on hover. Photo tiles keep only sparkles above the photo.
+- Demo products show **product packshots only**: catalogue products whose photos showed a model were dropped (21) and 7 packshot products added from `../product`; model shots removed from hover images.

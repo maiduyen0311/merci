@@ -26,6 +26,10 @@
 <section id="McBanner-{{ section.id }}" class="mc-section mc-banner mc-banner--{{ s.layout }} mc-banner--art-{{ s.art_position }} mc-banner--pattern-{{ s.pattern }}">
   <div class="{% if s.full_width %}mc-banner__full{% else %}container{% endif %}">
     <div class="mc-banner__panel mc-hover">
+      {%- unless s.decor == 'minimal' -%}
+        <span class="mc-banner__bg mc-banner__bg--arches" aria-hidden="true">{% render 'mc-decor', name: 'arches' %}</span>
+        <span class="mc-banner__bg mc-banner__bg--leaf" aria-hidden="true">{% render 'mc-decor', name: 'leaf' %}</span>
+      {%- endunless -%}
       <div class="mc-banner__copy">
         {%- if s.eyebrow != blank -%}
           <p class="mc-banner__eyebrow"><span>{{ s.eyebrow | escape }}</span></p>
@@ -75,6 +79,7 @@
           endif
         -%}
         {% render 'mc-art',
+          decor: s.decor,
           image: s.image,
           shape: s.shape,
           word: s.word,
@@ -148,6 +153,17 @@
     { "type": "url", "id": "badge_link", "label": "Stamp link" },
     { "type": "text", "id": "sticker", "label": "Sticker", "default": "-30%" },
     { "type": "text", "id": "caption", "label": "Vertical caption", "default": "SS — 2026" },
+    {
+      "type": "select",
+      "id": "decor",
+      "label": "Decor",
+      "options": [
+        { "value": "botanical", "label": "Botanical — leaf branch, sparkles, arches" },
+        { "value": "playful", "label": "Playful — sparkles, wavy line, arches" },
+        { "value": "minimal", "label": "Minimal — no vector decor" }
+      ],
+      "default": "botanical"
+    },
     { "type": "header", "content": "Colours" },
     { "type": "color", "id": "background", "label": "Panel background", "default": "#f9f1ef" },
     { "type": "color", "id": "blob_color", "label": "Disc behind the photo", "default": "#f2d0d0" },
