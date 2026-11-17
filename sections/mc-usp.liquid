@@ -1,0 +1,75 @@
+{%- comment -%}
+  Merci — Promise row (product / cart / pages, SPEC Appendix E). Icon in a thin circle that
+  fills on hover, title + text, hairline dividers; becomes a 2×2 grid on phones.
+{%- endcomment -%}
+{%- style -%}
+  #McUsp-{{ section.id }} { --mc-pt: {{ section.settings.padding_top }}px; --mc-pb: {{ section.settings.padding_bottom }}px; --mc-usp-bg: {{ section.settings.background }}; }
+{%- endstyle -%}
+<section id="McUsp-{{ section.id }}" class="mc-section mc-usp">
+  <div class="container">
+    <ul class="mc-usp__list list-unstyled" role="list">
+      {%- for block in section.blocks -%}
+        <li class="mc-usp__item" {{ block.shopify_attributes }}>
+          <span class="mc-usp__icon">{% render 'mc-icon', name: block.settings.icon %}</span>
+          <span class="mc-usp__text">
+            <strong>{{ block.settings.title | escape }}</strong>
+            {%- if block.settings.text != blank %}<span>{{ block.settings.text | escape }}</span>{% endif -%}
+          </span>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Merci promises",
+  "tag": "div",
+  "class": "section-mc-usp",
+  "settings": [
+    { "type": "color", "id": "background", "label": "Background", "default": "#f9f1ef" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Promise",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "truck", "label": "Delivery" },
+            { "value": "return", "label": "Returns" },
+            { "value": "leaf", "label": "Natural / sustainable" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "shield", "label": "Secure" },
+            { "value": "lock", "label": "Lock" },
+            { "value": "chat", "label": "Support" },
+            { "value": "star", "label": "Star" },
+            { "value": "scissors", "label": "Tailoring" }
+          ],
+          "default": "truck"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Free delivery" },
+        { "type": "text", "id": "text", "label": "Text", "default": "On orders over $75" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Merci promises",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "truck", "title": "Free delivery", "text": "On orders over $75" } },
+        { "type": "item", "settings": { "icon": "return", "title": "30-day returns", "text": "Free and easy" } },
+        { "type": "item", "settings": { "icon": "lock", "title": "Secure checkout", "text": "SSL encrypted payment" } },
+        { "type": "item", "settings": { "icon": "chat", "title": "Here to help", "text": "Mon – Sat, 9:00 – 18:00" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

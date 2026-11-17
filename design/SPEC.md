@@ -204,3 +204,19 @@ Quyết định: giữ section Top Market của trang con (filter, phân trang, 
 | Wishlist / cart | empty state không khung nét đứt, lợi ích ngăn bằng kẻ dọc; tiêu đề/nhãn uppercase, tổng tiền màu chữ |
 
 Nội dung demo: `scripts/demo/merci.js` → `demos/merci/` (không tạo sản phẩm — store đã có catalogue v1). Import: `--only metafields,files,pages,menus`.
+
+## Appendix E — Inner-page redesign (2026-11-17, user: "tự design layout dựa trên layout có sẵn… banner nhiều chi tiết, trên 1 layer, không chỉ ảnh ghép nền")
+Principle: no banner is a flat photo with baked-in text. Every banner is **live layers** (`snippets/mc-art.liquid`, `_mc-art.scss`), so copy is editable and translatable and any photo works:
+outlined background word (text-stroke) · soft disc that breathes · dotted patch (CSS pattern) · photo clipped to an **arch / circle / rectangle** · thin outline repeating the shape, offset · **rotating round stamp** (SVG textPath) with an arrow core · tilted sticker pill · vertical caption with a rule. On pointer devices the layers drift by depth on hover (`mc-art.js`, `translate`). Panels: soft `#f9f1ef` with a fine grid or diagonal-line pattern (gradients, no image) and a thin inner frame. Headings: uppercase, with an *italic accent word* in the ink colour and a hand-drawn underline.
+
+| Page | Layout |
+|---|---|
+| Collection | `mc-collection-hero`: breadcrumb, huge title + count in superscript, description, quick-link chips (pill + count bubble, dark fill sweeps in); art = collection image in an arch, word = collection title, stamp "Shop {title}", caption "N styles". Sidebar promo "layered" (arch photo + sticker + copy, replaces the baked "End Year Sale" image). Promo tile inside the grid (position N, first page): diagonal lines, circle photo, sticker, title with accent word |
+| List collections | `mc-banner` H1 hero with stats + running strip; `mc-collections-list` mosaic: first tile tall, every 7th wide; outlined index number, white caption plate (title + count) that lifts, round arrow that turns |
+| Product | info column sticky on desktop; after tabs: `mc-usp` promise row (icon circles fill + tilt on hover, hairline dividers) and a story `mc-banner` (art left, points), then related |
+| Cart | `mc-cart-steps` (01 Cart — 02 Checkout — 03 Done); with items `main` becomes a 2-column grid: items · summary card ("Order summary", stacked rows, full-width buttons); promises + "Complete the look" banner below (also dresses up the empty cart) |
+| About (page.about) | H1 hero banner with stats + strip, `mc-story` ×2 (chapter label, drop cap, pull quote with oversized “ and signature over a circle art with stamp), promises, Instagram |
+| Generic page | `main-page` Title style "Merci band": grid pattern, outlined page title behind, accent rules; content in a reading column with drop cap, styled quotes |
+| Article | centred header with accent rule, pill tags, layered hero (offset outline + soft disc), reading column |
+
+Running strip `mc-marquee`: phrases with a four-point star, paused on hover, off for reduced motion.

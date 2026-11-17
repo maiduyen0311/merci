@@ -1,0 +1,212 @@
+{
+  "sections": {
+    "hero": {
+      "type": "mc-banner",
+      "blocks": {
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "value": "2020",
+            "title": "Founded",
+            "text": "In a one-rail studio"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "value": "30",
+            "title": "Day returns",
+            "text": "Free and easy"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2"
+      ],
+      "settings": {
+        "layout": "split",
+        "art_position": "right",
+        "full_width": false,
+        "heading_as_h1": true,
+        "eyebrow": "About us",
+        "heading": "Hello, we are <em>Merci</em>",
+        "text": "<p>A women’s boutique for easy dresses, washed denim and everyday knits — picked each season for comfort and style.</p>",
+        "button_label": "Shop the collection",
+        "button_link": "shopify://collections/all",
+        "button_2_label": "Get in touch",
+        "button_2_link": "shopify://pages/contact-us",
+        "image": "shopify://shop_images/merci-demo-art-scarf.jpg",
+        "shape": "arch",
+        "word": "Hello",
+        "badge": "Since 2020 • Merci studio • ",
+        "badge_link": "",
+        "sticker": "Est. 2020",
+        "caption": "Our story",
+        "background": "#f9f1ef",
+        "blob_color": "#f2d0d0",
+        "text_color": "#231e17",
+        "pattern": "grid",
+        "marquee_text": "Fewer better pieces, Tried and washed by us, Made to be lived in",
+        "padding_top": 24,
+        "padding_bottom": 0
+      }
+    },
+    "story": {
+      "type": "mc-story",
+      "settings": {
+        "chapter": "01 — Our story",
+        "heading": "A small shop with a <em>slow</em> wardrobe",
+        "text": "<p>Merci started in a tiny studio with one rail of clothes and a simple idea: fewer, better pieces that feel good from the first wear and still look right years later.</p><p>Today we work with a handful of family-run workshops. We visit them, we know the people who cut and sew our clothes, and we pay for the time good work takes.</p><p>Every style is tried on, washed and worn by our team before it joins the collection.</p>",
+        "reverse": false,
+        "quote": "Clothes should make life easier, not louder. That is the whole brief.",
+        "author": "Anna Merci",
+        "role": "Founder",
+        "image": "shopify://shop_images/merci-demo-art-knit.jpg",
+        "word": "Story",
+        "badge": "Since 2020 • Merci studio • ",
+        "padding_top": 88,
+        "padding_bottom": 48
+      }
+    },
+    "usp": {
+      "type": "mc-usp",
+      "blocks": {
+        "a": {
+          "type": "item",
+          "settings": {
+            "icon": "leaf",
+            "title": "Natural fibres",
+            "text": "Cotton, linen and wool"
+          }
+        },
+        "b": {
+          "type": "item",
+          "settings": {
+            "icon": "scissors",
+            "title": "Small workshops",
+            "text": "Family-run, visited by us"
+          }
+        },
+        "c": {
+          "type": "item",
+          "settings": {
+            "icon": "heart",
+            "title": "Tried by us",
+            "text": "Washed and worn first"
+          }
+        },
+        "d": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "title": "30-day returns",
+            "text": "Free and easy"
+          }
+        }
+      },
+      "block_order": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "settings": {
+        "background": "#f9f1ef",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "promise": {
+      "type": "mc-story",
+      "settings": {
+        "chapter": "02 — Our promise",
+        "heading": "Made to be <em>lived in</em>",
+        "text": "<p>We design for real days: pockets that hold a phone, waistbands you can sit in, fabrics that soften instead of pilling.</p><p>If something does not work for you, send it back within 30 days — we will make it right.</p>",
+        "reverse": true,
+        "quote": "I still wear the first linen shirt I bought here. It just gets better.",
+        "author": "Claire D.",
+        "role": "Customer since 2020",
+        "image": "shopify://shop_images/merci-demo-art-shirt.jpg",
+        "word": "Promise",
+        "badge": "Made to be lived in • Merci • ",
+        "padding_top": 48,
+        "padding_bottom": 24
+      }
+    },
+    "instagram": {
+      "type": "mc-image-strip",
+      "blocks": {
+        "g0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/merci-demo-instagram-1.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "g1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/merci-demo-instagram-2.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "g2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/merci-demo-instagram-3.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "g3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/merci-demo-instagram-4.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "g4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/merci-demo-instagram-5.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "g5": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/merci-demo-instagram-6.jpg",
+            "link": "https://instagram.com/"
+          }
+        }
+      },
+      "block_order": [
+        "g0",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5"
+      ],
+      "settings": {
+        "title": "@merci_shop",
+        "subtitle": "Follow us on Instagram",
+        "profile_url": "https://instagram.com/",
+        "hover_style": "social",
+        "columns_desktop": 6,
+        "columns_mobile": "2.5",
+        "gap": 0,
+        "full_width": true,
+        "padding_top": 72,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "story",
+    "usp",
+    "promise",
+    "instagram"
+  ]
+}

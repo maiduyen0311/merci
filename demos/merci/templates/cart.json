@@ -1,0 +1,145 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "cart-items": {
+      "type": "main-cart-items",
+      "settings": {
+        "heading": "Shopping cart",
+        "free_shipping_threshold": 40,
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "cart-footer": {
+      "type": "main-cart-footer",
+      "blocks": {
+        "subtotal": {
+          "type": "subtotal",
+          "settings": {}
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "subtotal",
+        "buttons"
+      ],
+      "settings": {
+        "show_terms": true,
+        "show_note": true,
+        "show_coupon": true,
+        "show_shipping_estimate": true,
+        "gift_wrap_product": "gift-wrap",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "steps": {
+      "type": "mc-cart-steps",
+      "settings": {
+        "step_1": "Shopping cart",
+        "step_2": "Checkout",
+        "step_3": "Order complete",
+        "padding_top": 32,
+        "padding_bottom": 0
+      }
+    },
+    "usp": {
+      "type": "mc-usp",
+      "blocks": {
+        "a": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Free delivery",
+            "text": "On orders over $75"
+          }
+        },
+        "b": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "title": "30-day returns",
+            "text": "Free and easy"
+          }
+        },
+        "c": {
+          "type": "item",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure checkout",
+            "text": "SSL encrypted payment"
+          }
+        },
+        "d": {
+          "type": "item",
+          "settings": {
+            "icon": "gift",
+            "title": "Gift wrapping",
+            "text": "Add it in the summary"
+          }
+        }
+      },
+      "block_order": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "settings": {
+        "background": "#f9f1ef",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "promo": {
+      "type": "mc-banner",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "layout": "split",
+        "art_position": "left",
+        "full_width": false,
+        "heading_as_h1": false,
+        "eyebrow": "Before you go",
+        "heading": "Complete the <em>look</em>",
+        "text": "<p>Soft knits and washed denim that go with everything in your bag — picked by our stylists this week.</p>",
+        "button_label": "Shop new arrivals",
+        "button_link": "shopify://collections/new-arrival",
+        "button_2_label": "See the lookbook",
+        "button_2_link": "shopify://pages/lookbook",
+        "image": "shopify://shop_images/merci-demo-art-pink.jpg",
+        "shape": "arch",
+        "word": "Look",
+        "badge": "Complete the look • Merci • ",
+        "badge_link": "shopify://collections/new-arrival",
+        "sticker": "Stylist pick",
+        "caption": "This week",
+        "background": "#f9f1ef",
+        "blob_color": "#f2d0d0",
+        "text_color": "#231e17",
+        "pattern": "lines",
+        "marquee_text": "",
+        "padding_top": 24,
+        "padding_bottom": 64
+      }
+    }
+  },
+  "order": [
+    "steps",
+    "cart-items",
+    "cart-footer",
+    "usp",
+    "promo"
+  ]
+}

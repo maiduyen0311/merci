@@ -598,6 +598,17 @@
     },
     "trust_strip": {
       "label": "Vì sao mua sắm cùng chúng tôi"
+    },
+    "mc_collection_hero": {
+      "count": "{{ count }} mẫu",
+      "badge": "Mua {{ title }} • Merci • ",
+      "collections": "Bộ sưu tập"
+    },
+    "mc_cart_steps": {
+      "label": "Tiến trình thanh toán"
+    },
+    "mc_cart_summary": {
+      "title": "Tóm tắt đơn hàng"
     }
   },
   "localization": {

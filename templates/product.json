@@ -175,11 +175,113 @@
         "static_count": 0
       },
       "disabled": true
+    },
+    "usp": {
+      "type": "mc-usp",
+      "blocks": {
+        "a": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Free delivery",
+            "text": "On orders over $75"
+          }
+        },
+        "b": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "title": "30-day returns",
+            "text": "Free and easy"
+          }
+        },
+        "c": {
+          "type": "item",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure checkout",
+            "text": "SSL encrypted payment"
+          }
+        },
+        "d": {
+          "type": "item",
+          "settings": {
+            "icon": "chat",
+            "title": "Here to help",
+            "text": "Mon – Sat, 9:00 – 18:00"
+          }
+        }
+      },
+      "block_order": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "settings": {
+        "background": "#f9f1ef",
+        "padding_top": 8,
+        "padding_bottom": 24
+      }
+    },
+    "story": {
+      "type": "mc-banner",
+      "blocks": {
+        "p1": {
+          "type": "point",
+          "settings": {
+            "icon": "leaf",
+            "title": "Natural fibres",
+            "text": "Cotton, linen and wool blends"
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "icon": "scissors",
+            "title": "Cut to last",
+            "text": "Reinforced seams, true sizing"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2"
+      ],
+      "settings": {
+        "layout": "split",
+        "art_position": "left",
+        "full_width": false,
+        "heading_as_h1": false,
+        "eyebrow": "The Merci way",
+        "heading": "Made to be <em>lived in</em>",
+        "text": "<p>Every piece is tried on, washed and worn before it joins the collection — so it still feels like your favourite after the hundredth wear.</p>",
+        "button_label": "Our story",
+        "button_link": "shopify://pages/about-us",
+        "button_2_label": "Care guide",
+        "button_2_link": "shopify://pages/faq",
+        "image": "shopify://shop_images/merci-demo-art-cardigan.jpg",
+        "shape": "arch",
+        "word": "Merci",
+        "badge": "Made to be lived in • Merci • ",
+        "badge_link": "",
+        "sticker": "Since 2020",
+        "caption": "Studio notes",
+        "background": "#f9f1ef",
+        "blob_color": "#f2d0d0",
+        "text_color": "#231e17",
+        "pattern": "lines",
+        "marquee_text": "",
+        "padding_top": 40,
+        "padding_bottom": 24
+      }
     }
   },
   "order": [
     "main",
     "tabs",
+    "usp",
+    "story",
     "reviews",
     "related-products",
     "recently-viewed"

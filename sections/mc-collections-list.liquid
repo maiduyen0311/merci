@@ -1,0 +1,86 @@
+{%- comment -%}
+  Merci — Collections list (list-collections template, SPEC Appendix E).
+  Editorial mosaic: the first tile is tall (2 rows), the rest fill around it. Each tile has a
+  big index number, a white caption plate (title + product count) and a round arrow that turns
+  on hover; the photo zooms slowly behind a thin inner frame.
+  Source: all collections (paginated) or a hand-picked list.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign per_page = s.per_page
+-%}
+{%- style -%}
+  #McCollectionsList-{{ section.id }} {
+    --mc-pt: {{ s.padding_top }}px;
+    --mc-pb: {{ s.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<section id="McCollectionsList-{{ section.id }}" class="mc-section mc-collections-list mc-collections-list--{{ s.layout }}">
+  <div class="container">
+    {%- if s.heading != blank -%}
+      <div class="mc-heading">
+        {%- if s.eyebrow != blank -%}<span class="mc-heading__eyebrow">{{ s.eyebrow | escape }}</span>{%- endif -%}
+        <h2 class="mc-heading__title">{{ s.heading }}</h2>
+      </div>
+    {%- endif -%}
+
+    {%- capture tiles -%}
+      {%- if s.source == 'picked' and s.collections.size > 0 -%}
+        {%- for c in s.collections -%}{% render 'mc-collection-tile', c: c, index: forloop.index, show_count: s.show_count %}{%- endfor -%}
+      {%- endif -%}
+    {%- endcapture -%}
+
+    {%- if tiles != blank -%}
+      <ul class="mc-collections-list__grid list-unstyled" role="list">{{ tiles }}</ul>
+    {%- else -%}
+      {%- paginate collections by per_page -%}
+        <ul class="mc-collections-list__grid list-unstyled" role="list">
+          {%- for c in collections -%}
+            {%- assign idx = paginate.current_offset | plus: forloop.index -%}
+            {% render 'mc-collection-tile', c: c, index: idx, show_count: s.show_count %}
+          {%- endfor -%}
+        </ul>
+        {%- if paginate.pages > 1 -%}{% render 'pagination', paginate: paginate %}{%- endif -%}
+      {%- endpaginate -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Merci collections list",
+  "tag": "div",
+  "class": "section-mc-collections-list",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Explore" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Shop by collection" },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "mosaic", "label": "Mosaic — first tile tall" },
+        { "value": "grid", "label": "Even grid" }
+      ],
+      "default": "mosaic"
+    },
+    {
+      "type": "select",
+      "id": "source",
+      "label": "Collections",
+      "options": [
+        { "value": "all", "label": "All collections" },
+        { "value": "picked", "label": "Picked below" }
+      ],
+      "default": "all"
+    },
+    { "type": "collection_list", "id": "collections", "label": "Picked collections", "limit": 24 },
+    { "type": "range", "id": "per_page", "label": "Collections per page (all)", "min": 6, "max": 24, "step": 1, "default": 13 },
+    { "type": "checkbox", "id": "show_count", "label": "Show product count", "default": true },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 }
+  ],
+  "presets": [{ "name": "Merci collections list" }]
+}
+{% endschema %}

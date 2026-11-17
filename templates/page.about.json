@@ -1,158 +1,212 @@
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "hero": {
+      "type": "mc-banner",
+      "blocks": {
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "value": "2020",
+            "title": "Founded",
+            "text": "In a one-rail studio"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "value": "30",
+            "title": "Day returns",
+            "text": "Free and easy"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2"
+      ],
       "settings": {
-        "show_breadcrumb": true,
-        "show_title": false,
-        "show_content": false,
-        "title_alignment": "center",
-        "width": "narrow",
-        "padding_top": 0,
+        "layout": "split",
+        "art_position": "right",
+        "full_width": false,
+        "heading_as_h1": true,
+        "eyebrow": "About us",
+        "heading": "Hello, we are <em>Merci</em>",
+        "text": "<p>A women’s boutique for easy dresses, washed denim and everyday knits — picked each season for comfort and style.</p>",
+        "button_label": "Shop the collection",
+        "button_link": "shopify://collections/all",
+        "button_2_label": "Get in touch",
+        "button_2_link": "shopify://pages/contact-us",
+        "image": "shopify://shop_images/merci-demo-art-scarf.jpg",
+        "shape": "arch",
+        "word": "Hello",
+        "badge": "Since 2020 • Merci studio • ",
+        "badge_link": "",
+        "sticker": "Est. 2020",
+        "caption": "Our story",
+        "background": "#f9f1ef",
+        "blob_color": "#f2d0d0",
+        "text_color": "#231e17",
+        "pattern": "grid",
+        "marquee_text": "Fewer better pieces, Tried and washed by us, Made to be lived in",
+        "padding_top": 24,
         "padding_bottom": 0
       }
     },
-    "brand_story_hero": {
-      "type": "brand-story",
+    "story": {
+      "type": "mc-story",
       "settings": {
-        "layout": "split-right",
-        "eyebrow": "OUR STORY",
-        "heading": "Crafted for everyday icons",
-        "body": "<p>From a small studio to thousands of happy customers worldwide — we believe great style should be accessible, sustainable, and made to last. Every piece is designed in-house and produced in small batches.</p>",
-        "cta_primary_label": "Discover the collection",
-        "cta_primary_url": "/collections/all",
-        "cta_secondary_label": "Watch our journey",
-        "stat_1_value": "10k+",
-        "stat_1_label": "Happy customers",
-        "stat_2_value": "120",
-        "stat_2_label": "Cities shipped to",
-        "stat_3_value": "4.9★",
-        "stat_3_label": "Average rating",
-        "padding_top": 56,
-        "padding_bottom": 32
+        "chapter": "01 — Our story",
+        "heading": "A small shop with a <em>slow</em> wardrobe",
+        "text": "<p>Merci started in a tiny studio with one rail of clothes and a simple idea: fewer, better pieces that feel good from the first wear and still look right years later.</p><p>Today we work with a handful of family-run workshops. We visit them, we know the people who cut and sew our clothes, and we pay for the time good work takes.</p><p>Every style is tried on, washed and worn by our team before it joins the collection.</p>",
+        "reverse": false,
+        "quote": "Clothes should make life easier, not louder. That is the whole brief.",
+        "author": "Anna Merci",
+        "role": "Founder",
+        "image": "shopify://shop_images/merci-demo-art-knit.jpg",
+        "word": "Story",
+        "badge": "Since 2020 • Merci studio • ",
+        "padding_top": 88,
+        "padding_bottom": 48
       }
     },
-    "brand_story_split": {
-      "type": "brand-story",
-      "settings": {
-        "layout": "split-left",
-        "eyebrow": "OUR MISSION",
-        "heading": "Made to be worn — and remembered",
-        "body": "<p>Every piece passes through 11 quality checks before it leaves our workshop. We use only certified materials and partner with factories that share our commitment to fair pay and safe working conditions.</p><p>Quality you can feel. Style you'll keep coming back to.</p>",
-        "cta_primary_label": "Shop best sellers",
-        "cta_primary_url": "/collections/all",
-        "stat_1_value": "100%",
-        "stat_1_label": "Quality-checked",
-        "stat_2_value": "11",
-        "stat_2_label": "QC stages",
-        "stat_3_value": "30-day",
-        "stat_3_label": "Free returns",
-        "padding_top": 64,
-        "padding_bottom": 64
-      }
-    },
-    "testimonials": {
-      "type": "testimonials-carousel",
+    "usp": {
+      "type": "mc-usp",
       "blocks": {
-        "t1": {
-          "type": "testimonial",
+        "a": {
+          "type": "item",
           "settings": {
-            "quote": "Absolutely love it — fits perfectly and the fabric is even better than the photos suggest. Will be back for more!",
-            "author": "Sarah J.",
-            "role": "Verified buyer • Hanoi",
-            "rating": 5
+            "icon": "leaf",
+            "title": "Natural fibres",
+            "text": "Cotton, linen and wool"
           }
         },
-        "t2": {
-          "type": "testimonial",
+        "b": {
+          "type": "item",
           "settings": {
-            "quote": "Customer service was outstanding when I needed to exchange a size. Will definitely shop here again.",
-            "author": "James K.",
-            "role": "Verified buyer • Singapore",
-            "rating": 5
+            "icon": "scissors",
+            "title": "Small workshops",
+            "text": "Family-run, visited by us"
           }
         },
-        "t3": {
-          "type": "testimonial",
+        "c": {
+          "type": "item",
           "settings": {
-            "quote": "The quality is way better than I expected for the price. Shipping was fast too.",
-            "author": "Linh P.",
-            "role": "Verified buyer • Saigon",
-            "rating": 5
+            "icon": "heart",
+            "title": "Tried by us",
+            "text": "Washed and worn first"
           }
         },
-        "t4": {
-          "type": "testimonial",
+        "d": {
+          "type": "item",
           "settings": {
-            "quote": "Beautiful packaging, excellent fit, and the colour was exactly as pictured. Highly recommend!",
-            "author": "Maya R.",
-            "role": "Verified buyer • Bangkok",
-            "rating": 5
+            "icon": "return",
+            "title": "30-day returns",
+            "text": "Free and easy"
           }
         }
       },
       "block_order": [
-        "t1",
-        "t2",
-        "t3",
-        "t4"
+        "a",
+        "b",
+        "c",
+        "d"
       ],
       "settings": {
-        "eyebrow": "REVIEWS",
-        "heading": "Loved by 10,000+ shoppers",
-        "subheading": "Real reviews from real customers.",
-        "show_rating": true,
-        "show_dots": true,
-        "autoplay": false
+        "background": "#f9f1ef",
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
-    "about_faq": {
-      "type": "faq-accordion",
+    "promise": {
+      "type": "mc-story",
+      "settings": {
+        "chapter": "02 — Our promise",
+        "heading": "Made to be <em>lived in</em>",
+        "text": "<p>We design for real days: pockets that hold a phone, waistbands you can sit in, fabrics that soften instead of pilling.</p><p>If something does not work for you, send it back within 30 days — we will make it right.</p>",
+        "reverse": true,
+        "quote": "I still wear the first linen shirt I bought here. It just gets better.",
+        "author": "Claire D.",
+        "role": "Customer since 2020",
+        "image": "shopify://shop_images/merci-demo-art-shirt.jpg",
+        "word": "Promise",
+        "badge": "Made to be lived in • Merci • ",
+        "padding_top": 48,
+        "padding_bottom": 24
+      }
+    },
+    "instagram": {
+      "type": "mc-image-strip",
       "blocks": {
-        "q1": {
-          "type": "question",
+        "g0": {
+          "type": "image",
           "settings": {
-            "question": "Where are your products made?",
-            "answer": "<p>All of our pieces are designed in-house and produced in small batches at our partner workshops in Vietnam and Portugal. Every factory we work with is independently certified for fair labour practices.</p>"
+            "image": "shopify://shop_images/Image.png",
+            "link": "https://instagram.com/"
           }
         },
-        "q2": {
-          "type": "question",
+        "g1": {
+          "type": "image",
           "settings": {
-            "question": "What materials do you use?",
-            "answer": "<p>We use OEKO-TEX certified cotton, recycled polyester, and responsibly-sourced leather. The composition of every product is listed on its product page.</p>"
+            "image": "shopify://shop_images/Slider_01.jpg",
+            "link": "https://instagram.com/"
           }
         },
-        "q3": {
-          "type": "question",
+        "g2": {
+          "type": "image",
           "settings": {
-            "question": "How can I get in touch?",
-            "answer": "<p>The fastest way is email — <a href=\"mailto:hello@example.com\">hello@example.com</a>. We reply within 1 business day. You can also reach us via the contact form or live chat (bottom-right).</p>"
+            "image": "shopify://shop_images/Image_05.png",
+            "link": "https://instagram.com/"
+          }
+        },
+        "g3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/222.png",
+            "link": "https://instagram.com/"
+          }
+        },
+        "g4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3333.png",
+            "link": "https://instagram.com/"
+          }
+        },
+        "g5": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Image_13.png",
+            "link": "https://instagram.com/"
           }
         }
       },
       "block_order": [
-        "q1",
-        "q2",
-        "q3"
+        "g0",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5"
       ],
       "settings": {
-        "eyebrow": "ABOUT US",
-        "heading": "More about Merci",
-        "subheading": "The answers to questions we hear most often from new customers.",
-        "single_open": true,
-        "enable_seo": false,
-        "footer_text": "Have a different question?",
-        "cta_label": "Contact us →",
-        "cta_url": "/pages/contact"
+        "title": "@merci_shop",
+        "subtitle": "Follow us on Instagram",
+        "profile_url": "https://instagram.com/",
+        "hover_style": "social",
+        "columns_desktop": 6,
+        "columns_mobile": "2.5",
+        "gap": 0,
+        "full_width": true,
+        "padding_top": 72,
+        "padding_bottom": 0
       }
     }
   },
   "order": [
-    "main",
-    "brand_story_hero",
-    "brand_story_split",
-    "testimonials",
-    "about_faq"
+    "hero",
+    "story",
+    "usp",
+    "promise",
+    "instagram"
   ]
 }

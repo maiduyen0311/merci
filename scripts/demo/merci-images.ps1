@@ -48,6 +48,13 @@ $looks = [ordered]@{
   'lookbook-1' = 'banner\15.jpg'
   'lookbook-2' = 'banner\7.jpg'
   'lookbook-3' = 'banner\9.jpg'
+  # layered banners (snippets/mc-art.liquid) — portrait photos on light backgrounds
+  'art-knit' = 'banner\1.jpg'
+  'art-pink' = 'banner\2.jpg'
+  'art-shirt' = 'banner\4.jpg'
+  'art-green' = 'banner\6a.jpg'
+  'art-scarf' = 'banner\10.jpg'
+  'art-cardigan' = 'banner\11.jpg'
 }
 foreach ($k in $instagram.Keys) { Save-Resized (Join-Path $src $instagram[$k]) (Join-Path $out "$k.jpg") 1080 $true }
 foreach ($k in $looks.Keys) { Save-Resized (Join-Path $src $looks[$k]) (Join-Path $out "$k.jpg") 1200 $false }

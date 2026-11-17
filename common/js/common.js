@@ -28,6 +28,7 @@ import CardActions from './modules/card-actions.js';
 import WishlistPage from './modules/wishlist-page.js';
 import ComparePage from './modules/compare-page.js';
 import McVideoPopup from './modules/mc-video-popup.js';
+import { McArt } from './modules/mc-art.js';
 import './modules/tm-scroller.js'; // defines <tm-scroller>
 import { formatMoney } from './modules/money.js';
 
@@ -62,6 +63,7 @@ const initThemeScripts = () => {
   WishlistPage.init();
   ComparePage.init();
   McVideoPopup.init();
+  McArt.init();
 };
 
 const onReady = (fn) => {

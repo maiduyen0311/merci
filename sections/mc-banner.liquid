@@ -1,0 +1,222 @@
+{%- comment -%}
+  Merci — Layered banner (SPEC Appendix E). One section for every promo on inner pages:
+  collection / list-collections / product / cart / pages.
+  Layout "split": copy + layered art side by side on a patterned panel.
+  Layout "compact": art on top, copy below — sidebars, cart, narrow columns.
+  The art (snippets/mc-art.liquid) is made of live layers, not a flat picture with baked text.
+  Optional running strip (marquee) under the panel.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign heading_tag = 'h2'
+  if s.heading_as_h1
+    assign heading_tag = 'h1'
+  endif
+-%}
+{%- style -%}
+  #McBanner-{{ section.id }} {
+    --mc-pt: {{ s.padding_top }}px;
+    --mc-pb: {{ s.padding_bottom }}px;
+    --mc-banner-bg: {{ s.background }};
+    --mc-art-blob: {{ s.blob_color }};
+    --mc-banner-text: {{ s.text_color }};
+  }
+{%- endstyle -%}
+
+<section id="McBanner-{{ section.id }}" class="mc-section mc-banner mc-banner--{{ s.layout }} mc-banner--art-{{ s.art_position }} mc-banner--pattern-{{ s.pattern }}">
+  <div class="{% if s.full_width %}mc-banner__full{% else %}container{% endif %}">
+    <div class="mc-banner__panel mc-hover">
+      <div class="mc-banner__copy">
+        {%- if s.eyebrow != blank -%}
+          <p class="mc-banner__eyebrow"><span>{{ s.eyebrow | escape }}</span></p>
+        {%- endif -%}
+        {%- if s.heading != blank -%}
+          <{{ heading_tag }} class="mc-banner__heading">{{ s.heading }}</{{ heading_tag }}>
+        {%- endif -%}
+        {%- if s.text != blank -%}
+          <div class="mc-banner__text rte">{{ s.text }}</div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="mc-banner__points list-unstyled" role="list">
+            {%- for block in section.blocks -%}
+              <li class="mc-banner__point mc-banner__point--{{ block.type }}" {{ block.shopify_attributes }}>
+                {%- if block.type == 'stat' -%}
+                  <span class="mc-banner__stat">{{ block.settings.value | escape }}</span>
+                {%- else -%}
+                  <span class="mc-banner__icon" aria-hidden="true">{% render 'mc-icon', name: block.settings.icon %}</span>
+                {%- endif -%}
+                <span class="mc-banner__point-text">
+                  <strong>{{ block.settings.title | escape }}</strong>
+                  {%- if block.settings.text != blank %}<span>{{ block.settings.text | escape }}</span>{% endif -%}
+                </span>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        {%- if s.button_label != blank or s.button_2_label != blank -%}
+          <div class="mc-banner__actions">
+            {%- if s.button_label != blank -%}
+              <a href="{{ s.button_link | default: routes.all_products_collection_url }}" class="mc-btn mc-btn--solid">{{ s.button_label | escape }}</a>
+            {%- endif -%}
+            {%- if s.button_2_label != blank -%}
+              <a href="{{ s.button_2_link | default: routes.collections_url }}" class="mc-link mc-banner__link">{{ s.button_2_label | escape }} <span aria-hidden="true">→</span></a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="mc-banner__art">
+        {%- liquid
+          assign art_size = 'lg'
+          if s.layout == 'compact'
+            assign art_size = 'sm'
+          endif
+        -%}
+        {% render 'mc-art',
+          image: s.image,
+          shape: s.shape,
+          word: s.word,
+          badge: s.badge,
+          badge_url: s.badge_link,
+          sticker: s.sticker,
+          caption: s.caption,
+          size: art_size,
+          sizes: '(min-width: 992px) 480px, 80vw'
+        %}
+      </div>
+    </div>
+
+    {%- if s.marquee_text != blank -%}
+      {% render 'mc-marquee', text: s.marquee_text %}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Merci layered banner",
+  "tag": "div",
+  "class": "section-mc-banner",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "split", "label": "Split — copy beside the art" },
+        { "value": "compact", "label": "Compact — art above the copy" }
+      ],
+      "default": "split"
+    },
+    {
+      "type": "select",
+      "id": "art_position",
+      "label": "Art position (split)",
+      "options": [
+        { "value": "right", "label": "Right" },
+        { "value": "left", "label": "Left" }
+      ],
+      "default": "right"
+    },
+    { "type": "checkbox", "id": "full_width", "label": "Full width", "default": false },
+    { "type": "checkbox", "id": "heading_as_h1", "label": "Use the heading as the page title (H1)", "default": false },
+    { "type": "header", "content": "Copy" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "New season" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "info": "Italic words are set in the accent colour.", "default": "Made to be <em>lived in</em>" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Soft tailoring, washed denim and easy knits — picked each season for comfort and style.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop now" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "button_2_label", "label": "Second link label", "default": "View lookbook" },
+    { "type": "url", "id": "button_2_link", "label": "Second link" },
+    { "type": "header", "content": "Layered art" },
+    { "type": "image_picker", "id": "image", "label": "Photo", "info": "Portrait photos work best (about 4:5)." },
+    {
+      "type": "select",
+      "id": "shape",
+      "label": "Photo shape",
+      "options": [
+        { "value": "arch", "label": "Arch" },
+        { "value": "circle", "label": "Circle" },
+        { "value": "rect", "label": "Rectangle" }
+      ],
+      "default": "arch"
+    },
+    { "type": "text", "id": "word", "label": "Outlined background word", "default": "Merci" },
+    { "type": "text", "id": "badge", "label": "Rotating stamp text", "info": "Leave empty to hide the stamp.", "default": "New collection • Shop now • " },
+    { "type": "url", "id": "badge_link", "label": "Stamp link" },
+    { "type": "text", "id": "sticker", "label": "Sticker", "default": "-30%" },
+    { "type": "text", "id": "caption", "label": "Vertical caption", "default": "SS — 2026" },
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "background", "label": "Panel background", "default": "#f9f1ef" },
+    { "type": "color", "id": "blob_color", "label": "Disc behind the photo", "default": "#f2d0d0" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#231e17" },
+    {
+      "type": "select",
+      "id": "pattern",
+      "label": "Panel pattern",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "grid", "label": "Fine grid" },
+        { "value": "lines", "label": "Diagonal lines" }
+      ],
+      "default": "grid"
+    },
+    { "type": "header", "content": "Running strip" },
+    { "type": "text", "id": "marquee_text", "label": "Strip text", "info": "Separate phrases with a comma. Leave empty to hide the strip.", "default": "Free shipping over $75, New arrivals every week, Easy 30-day returns" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Point",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "truck", "label": "Delivery" },
+            { "value": "return", "label": "Returns" },
+            { "value": "leaf", "label": "Natural / sustainable" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "shield", "label": "Secure" },
+            { "value": "star", "label": "Star" },
+            { "value": "scissors", "label": "Tailoring" }
+          ],
+          "default": "truck"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Free delivery" },
+        { "type": "text", "id": "text", "label": "Text", "default": "On orders over $75" }
+      ]
+    },
+    {
+      "type": "stat",
+      "name": "Number",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Number", "default": "120+" },
+        { "type": "text", "id": "title", "label": "Label", "default": "New styles" },
+        { "type": "text", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Merci layered banner",
+      "blocks": [
+        { "type": "point", "settings": { "icon": "truck", "title": "Free delivery", "text": "On orders over $75" } },
+        { "type": "point", "settings": { "icon": "return", "title": "30-day returns", "text": "Free and easy" } }
+      ]
+    },
+    {
+      "name": "Merci compact banner",
+      "settings": { "layout": "compact", "heading": "End of <em>season</em>", "text": "", "button_2_label": "", "marquee_text": "", "word": "Sale", "caption": "" }
+    }
+  ]
+}
+{% endschema %}

@@ -26,6 +26,7 @@
   data-id="{{ section.id }}"
 >
   <div class="container section-{{ section.id }}-padding">
+    <h2 class="mc-cart-summary__title">{{ 'sections.mc_cart_summary.title' | t }}</h2>
     {%- for block in section.blocks -%}
       {%- case block.type -%}
         {%- when '@app' -%}

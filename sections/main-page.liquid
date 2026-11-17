@@ -28,15 +28,34 @@
     assign show_body = true
   endif
 -%}
-{%- if section.settings.show_title or show_body -%}
+{%- assign band = false -%}
+{%- if section.settings.show_title and section.settings.title_style == 'banner' -%}
+  {%- assign band = true -%}
+  {%- comment -%} Merci title band: fine grid, outlined page title behind, two accent rules (SPEC Appendix E) {%- endcomment -%}
+  <div class="mc-page-band">
+    <div class="container">
+      <span class="mc-page-band__word" aria-hidden="true">{{ page.title | escape }}</span>
+      <h1 class="mc-page-band__title">{{ page.title | escape }}</h1>
+      {%- if section.settings.subtitle != blank -%}<p class="mc-page-band__sub">{{ section.settings.subtitle | escape }}</p>{%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+{%- liquid
+  # Liquid groups and/or right to left — compute the flag in steps
+  assign plain_title = false
+  if section.settings.show_title and band == false
+    assign plain_title = true
+  endif
+-%}
+{%- if plain_title or show_body -%}
   <div class="container tm-page tm-page-content section-{{ section.id }}-padding">
     <div class="row justify-content-center">
       <div class="col-12{% if section.settings.width == 'narrow' %} col-lg-10 col-xl-8{% endif %}">
-        {%- if section.settings.show_title -%}
+        {%- if plain_title -%}
           <h1 class="tm-page__title text-{{ section.settings.title_alignment }}">{{ page.title | escape }}</h1>
         {%- endif -%}
         {%- if show_body -%}
-          <div class="tm-rich rte">{{ page.content }}</div>
+          <div class="tm-rich rte mc-reading">{{ page.content }}</div>
         {%- endif -%}
       </div>
     </div>
@@ -61,6 +80,17 @@
       "label": "Show page title",
       "default": true
     },
+    {
+      "type": "select",
+      "id": "title_style",
+      "label": "Title style",
+      "options": [
+        { "value": "plain", "label": "Plain" },
+        { "value": "banner", "label": "Merci band (pattern + outlined word)" }
+      ],
+      "default": "banner"
+    },
+    { "type": "text", "id": "subtitle", "label": "Band subtitle" },
     {
       "type": "checkbox",
       "id": "show_content",

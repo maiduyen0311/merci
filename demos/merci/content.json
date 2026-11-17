@@ -62,6 +62,24 @@
     "lookbook-3": {
       "file": "images/lookbook-3.jpg"
     },
+    "art-knit": {
+      "file": "images/art-knit.jpg"
+    },
+    "art-pink": {
+      "file": "images/art-pink.jpg"
+    },
+    "art-shirt": {
+      "file": "images/art-shirt.jpg"
+    },
+    "art-green": {
+      "file": "images/art-green.jpg"
+    },
+    "art-scarf": {
+      "file": "images/art-scarf.jpg"
+    },
+    "art-cardigan": {
+      "file": "images/art-cardigan.jpg"
+    },
     "cat-tee-orange-model": {
       "url": "https://cdn.shopify.com/s/files/1/0083/1658/4007/products/14_34d94d92-6de1-4343-863d-961fb839b167.jpg"
     },
@@ -354,6 +372,30 @@
     {
       "key": "lookbook-3",
       "filename": "merci-demo-lookbook-3.jpg"
+    },
+    {
+      "key": "art-knit",
+      "filename": "merci-demo-art-knit.jpg"
+    },
+    {
+      "key": "art-pink",
+      "filename": "merci-demo-art-pink.jpg"
+    },
+    {
+      "key": "art-shirt",
+      "filename": "merci-demo-art-shirt.jpg"
+    },
+    {
+      "key": "art-green",
+      "filename": "merci-demo-art-green.jpg"
+    },
+    {
+      "key": "art-scarf",
+      "filename": "merci-demo-art-scarf.jpg"
+    },
+    {
+      "key": "art-cardigan",
+      "filename": "merci-demo-art-cardigan.jpg"
     }
   ],
   "products": [
@@ -2903,6 +2945,12 @@
       "handle": "faq",
       "title": "FAQ",
       "template": "faq"
+    },
+    {
+      "handle": "about-us",
+      "title": "About us",
+      "template": "about",
+      "body": "<p>Merci is a women’s fashion boutique: easy dresses, denim and everyday pieces, picked each season for comfort and style.</p>"
     },
     {
       "handle": "lookbook",

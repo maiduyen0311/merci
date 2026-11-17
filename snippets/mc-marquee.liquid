@@ -1,0 +1,19 @@
+{%- comment -%}
+  Merci running strip: phrases separated by a small star, scrolling slowly (paused on hover
+  and for reduced motion). Accepts: text {String} comma separated phrases; tone {String} 'dark' (default) | 'light'
+{%- endcomment -%}
+{%- assign phrases = text | split: ',' -%}
+<div class="mc-marquee mc-marquee--{{ tone | default: 'dark' }}" role="marquee" aria-label="{{ text | escape }}">
+  <div class="mc-marquee__track" aria-hidden="true">
+    {%- for i in (1..2) -%}
+      <span class="mc-marquee__group">
+        {%- for p in phrases -%}
+          {%- for r in (1..2) -%}
+            <span class="mc-marquee__item">{{ p | strip | escape }}</span>
+            <svg class="mc-marquee__star" viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 0c.7 6.3 5.7 11.3 12 12-6.3.7-11.3 5.7-12 12-.7-6.3-5.7-11.3-12-12C6.3 11.3 11.3 6.3 12 0Z"/></svg>
+          {%- endfor -%}
+        {%- endfor -%}
+      </span>
+    {%- endfor -%}
+  </div>
+</div>

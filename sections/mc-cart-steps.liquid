@@ -1,0 +1,31 @@
+{%- comment -%}
+  Merci — Checkout steps strip (cart page, SPEC Appendix E): 01 Cart → 02 Checkout → 03 Done,
+  the current step filled, thin connectors between. Purely informative (no links past the cart).
+{%- endcomment -%}
+{%- style -%}
+  #McCartSteps-{{ section.id }} { --mc-pt: {{ section.settings.padding_top }}px; --mc-pb: {{ section.settings.padding_bottom }}px; }
+{%- endstyle -%}
+<section id="McCartSteps-{{ section.id }}" class="mc-section mc-cart-steps">
+  <div class="container">
+    <ol class="mc-cart-steps__list list-unstyled" role="list" aria-label="{{ 'sections.mc_cart_steps.label' | t }}">
+      <li class="is-current" aria-current="step"><span class="mc-cart-steps__num">01</span><span>{{ section.settings.step_1 | escape }}</span></li>
+      <li><span class="mc-cart-steps__num">02</span><span>{{ section.settings.step_2 | escape }}</span></li>
+      <li><span class="mc-cart-steps__num">03</span><span>{{ section.settings.step_3 | escape }}</span></li>
+    </ol>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Merci checkout steps",
+  "tag": "div",
+  "class": "section-mc-cart-steps",
+  "settings": [
+    { "type": "text", "id": "step_1", "label": "Step 1", "default": "Shopping cart" },
+    { "type": "text", "id": "step_2", "label": "Step 2", "default": "Checkout" },
+    { "type": "text", "id": "step_3", "label": "Step 3", "default": "Order complete" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 32 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 0 }
+  ],
+  "presets": [{ "name": "Merci checkout steps" }]
+}
+{% endschema %}

@@ -1,0 +1,60 @@
+{%- comment -%}
+  Merci — Editorial story (about / generic pages, SPEC Appendix E).
+  Left: chapter number + heading + rich text with a drop cap. Right: a pull quote with an
+  oversized quotation mark and signature, over a small layered art (circle photo + stamp).
+{%- endcomment -%}
+{%- assign s = section.settings -%}
+{%- style -%}
+  #McStory-{{ section.id }} { --mc-pt: {{ s.padding_top }}px; --mc-pb: {{ s.padding_bottom }}px; }
+{%- endstyle -%}
+<section id="McStory-{{ section.id }}" class="mc-section mc-story{% if s.reverse %} mc-story--reverse{% endif %}">
+  <div class="container">
+    <div class="mc-story__grid">
+      <div class="mc-story__body">
+        {%- if s.chapter != blank -%}<span class="mc-story__chapter">{{ s.chapter | escape }}</span>{%- endif -%}
+        {%- if s.heading != blank -%}<h2 class="mc-story__heading">{{ s.heading }}</h2>{%- endif -%}
+        <div class="mc-story__text rte">{{ s.text }}</div>
+      </div>
+      <aside class="mc-story__aside">
+        {%- if s.image != blank or s.badge != blank -%}
+          <div class="mc-story__art">
+            {% render 'mc-art', image: s.image, shape: 'circle', word: s.word, badge: s.badge, size: 'sm', sizes: '(min-width: 992px) 360px, 70vw' %}
+          </div>
+        {%- endif -%}
+        {%- if s.quote != blank -%}
+          <figure class="mc-story__quote">
+            <blockquote>{{ s.quote }}</blockquote>
+            {%- if s.author != blank -%}
+              <figcaption><span class="mc-story__sign">{{ s.author | escape }}</span>{% if s.role != blank %}<span>{{ s.role | escape }}</span>{% endif %}</figcaption>
+            {%- endif -%}
+          </figure>
+        {%- endif -%}
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Merci story",
+  "tag": "div",
+  "class": "section-mc-story",
+  "settings": [
+    { "type": "text", "id": "chapter", "label": "Chapter label", "default": "01 — Our story" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "A small shop with a <em>slow</em> wardrobe" },
+    { "type": "richtext", "id": "text", "label": "Text", "info": "The first letter is set as a large drop cap.", "default": "<p>Merci started in a tiny studio with one rail of clothes and a simple idea: fewer, better pieces that feel good from the first wear.</p><p>We still try on, wash and wear every style before it joins the collection.</p>" },
+    { "type": "checkbox", "id": "reverse", "label": "Quote on the left", "default": false },
+    { "type": "header", "content": "Quote" },
+    { "type": "textarea", "id": "quote", "label": "Quote", "default": "Clothes should make life easier, not louder. That is the whole brief." },
+    { "type": "text", "id": "author", "label": "Name", "default": "Anna Merci" },
+    { "type": "text", "id": "role", "label": "Role", "default": "Founder" },
+    { "type": "header", "content": "Small layered art" },
+    { "type": "image_picker", "id": "image", "label": "Photo" },
+    { "type": "text", "id": "word", "label": "Outlined word", "default": "Story" },
+    { "type": "text", "id": "badge", "label": "Rotating stamp text", "default": "Since 2020 • Merci studio • " },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 }
+  ],
+  "presets": [{ "name": "Merci story" }]
+}
+{% endschema %}

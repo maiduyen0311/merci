@@ -1,0 +1,19 @@
+{%- comment -%}
+  Merci line icons (1.4 stroke, 24 grid) for banner points, cart and product USP rows.
+  Accepts: name {String} truck | return | leaf | heart | gift | shield | star | scissors | lock | chat
+{%- endcomment -%}
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  {%- case name -%}
+    {%- when 'truck' -%}<path d="M2.5 6.5h11v9h-11zM13.5 9.5h4l3 3v3h-7"/><circle cx="6.5" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/>
+    {%- when 'return' -%}<path d="M4 9h11a5 5 0 0 1 0 10H8"/><path d="M8 5 4 9l4 4"/>
+    {%- when 'leaf' -%}<path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19 13 11"/>
+    {%- when 'heart' -%}<path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10C19.5 15.4 12 20 12 20Z"/>
+    {%- when 'gift' -%}<path d="M3.5 9.5h17v4h-17zM5 13.5h14v7H5zM12 9.5v11"/><path d="M12 9.5S10.5 4 8 5s.5 4.5 4 4.5zM12 9.5S13.5 4 16 5s-.5 4.5-4 4.5z"/>
+    {%- when 'shield' -%}<path d="M12 3 5 6v5.5c0 4.3 3 8 7 9.5 4-1.5 7-5.2 7-9.5V6z"/><path d="m9 12 2 2 4-4"/>
+    {%- when 'star' -%}<path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/>
+    {%- when 'scissors' -%}<circle cx="6" cy="7" r="2.5"/><circle cx="6" cy="17" r="2.5"/><path d="M8 8.5 20 18M8 15.5 20 6"/>
+    {%- when 'lock' -%}<rect x="5" y="10.5" width="14" height="10" rx="1.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/>
+    {%- when 'chat' -%}<path d="M4 5.5h16v10H9l-5 4z"/>
+    {%- else -%}<circle cx="12" cy="12" r="8"/>
+  {%- endcase -%}
+</svg>

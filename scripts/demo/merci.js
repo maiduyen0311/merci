@@ -69,7 +69,7 @@ const addFile = (key) => {
   images[key] = { file: `images/${key}.jpg` };
   files.push({ key, filename: `${PREFIX}-${key}.jpg` });
 };
-['instagram-1', 'instagram-2', 'instagram-3', 'instagram-4', 'instagram-5', 'instagram-6', 'lookbook-1', 'lookbook-2', 'lookbook-3'].forEach(addFile);
+['instagram-1', 'instagram-2', 'instagram-3', 'instagram-4', 'instagram-5', 'instagram-6', 'lookbook-1', 'lookbook-2', 'lookbook-3', 'art-knit', 'art-pink', 'art-shirt', 'art-green', 'art-scarf', 'art-cardigan'].forEach(addFile);
 
 const content = {
   storeName: 'merci',
@@ -87,6 +87,7 @@ const content = {
   // existing v1 pages: only their template is switched (demo-import updates templateSuffix)
   pages: [
     { handle: 'faq', title: 'FAQ', template: 'faq' },
+    { handle: 'about-us', title: 'About us', template: 'about', body: '<p>Merci is a women’s fashion boutique: easy dresses, denim and everyday pieces, picked each season for comfort and style.</p>' },
     { handle: 'lookbook', title: 'Lookbook', template: 'lookbook' },
     { handle: 'contact-us', title: 'Contact us', template: 'contact' },
     { handle: 'wishlist', title: 'My wishlist', template: 'wishlist' },
@@ -179,16 +180,16 @@ if (!fs.existsSync(imgDir)) {
   console.warn('! demos/merci/images missing — run: powershell -ExecutionPolicy Bypass -File scripts/demo/merci-images.ps1');
 }
 
-// index: Instagram grid → uploaded Instagram photos
-{
-  const { head, data } = readJson(path.join(ROOT, 'templates', 'index.json'));
+// index + about: Instagram grid → uploaded Instagram photos
+for (const tpl of ['index.json', 'page.about.json']) {
+  const { head, data } = readJson(path.join(ROOT, 'templates', tpl));
   const ig = data.sections.instagram;
   if (ig) {
     ig.block_order.forEach((id, i) => {
       ig.blocks[id].settings.image = shopImage(`instagram-${(i % 6) + 1}`);
     });
   }
-  writeJson(path.join(OUT, 'templates', 'index.json'), data, head);
+  writeJson(path.join(OUT, 'templates', tpl), data, head);
 }
 
 // lookbook: photos + hotspot products (v1 catalogue handles)
@@ -211,7 +212,7 @@ if (!fs.existsSync(imgDir)) {
 }
 
 // everything else the demo uses is the theme default — copy so deploy-demo pushes one coherent set
-for (const f of ['collection.json', 'product.json', 'blog.json', 'page.faq.json', 'page.contact.json']) {
+for (const f of ['collection.json', 'product.json', 'blog.json', 'page.faq.json', 'page.contact.json', 'list-collections.json', 'cart.json', 'page.json']) {
   const { head, data } = readJson(path.join(ROOT, 'templates', f));
   writeJson(path.join(OUT, 'templates', f), data, head);
 }

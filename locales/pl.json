@@ -622,6 +622,17 @@
     },
     "trust_strip": {
       "label": "Why shop with us"
+    },
+    "mc_collection_hero": {
+      "count": "{{ count }} styles",
+      "badge": "Shop {{ title }} • Merci • ",
+      "collections": "Collections"
+    },
+    "mc_cart_steps": {
+      "label": "Checkout progress"
+    },
+    "mc_cart_summary": {
+      "title": "Order summary"
     }
   },
   "localization": {

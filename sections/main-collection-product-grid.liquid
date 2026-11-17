@@ -188,7 +188,28 @@
             </div>
           {%- endif -%}
           {%- comment -%} Sidebar banner (section settings "Sidebar banner") {%- endcomment -%}
-          {%- if section.settings.sidebar_banner_image != blank -%}
+          {%- if section.settings.sidebar_banner_style == 'layered' -%}
+            {%- comment -%} Merci layered promo: live layers + editable copy (SPEC Appendix E) {%- endcomment -%}
+            <div class="mc-side-promo mc-hover">
+              {% render 'mc-art',
+                image: section.settings.sidebar_banner_image,
+                shape: 'arch',
+                word: section.settings.sidebar_banner_word,
+                sticker: section.settings.sidebar_banner_sticker,
+                badge: section.settings.sidebar_banner_badge,
+                badge_url: section.settings.sidebar_banner_link,
+                size: 'sm',
+                sizes: '280px'
+              %}
+              <div class="mc-side-promo__copy">
+                {%- if section.settings.sidebar_banner_eyebrow != blank -%}<p class="mc-side-promo__eyebrow">{{ section.settings.sidebar_banner_eyebrow }}</p>{%- endif -%}
+                {%- if section.settings.sidebar_banner_title != blank -%}<p class="mc-side-promo__title">{{ section.settings.sidebar_banner_title }}</p>{%- endif -%}
+                {%- if section.settings.sidebar_banner_button != blank -%}
+                  <a href="{{ section.settings.sidebar_banner_link | default: routes.all_products_collection_url }}" class="mc-btn mc-btn--solid mc-btn--small">{{ section.settings.sidebar_banner_button | escape }}</a>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- elsif section.settings.sidebar_banner_image != blank -%}
             {%- liquid
               assign sb_tag = 'div'
               if section.settings.sidebar_banner_link != blank
@@ -413,6 +434,17 @@
                     list_extras: true
                   %}
                 </li>
+                {%- if section.settings.grid_promo_position > 0 and forloop.index == section.settings.grid_promo_position and paginate.current_page == 1 -%}
+                  {%- comment -%} Merci promo tile in the grid flow (section setting "Promo tile in the grid") {%- endcomment -%}
+                  <li class="grid__item mc-grid-promo" style="--mc-banner-bg: {{ section.settings.grid_promo_background }};">
+                    <a class="mc-grid-promo__inner mc-hover" href="{{ section.settings.grid_promo_link | default: routes.all_products_collection_url }}">
+                      <span class="mc-grid-promo__eyebrow">{{ section.settings.grid_promo_eyebrow | escape }}</span>
+                      <span class="mc-grid-promo__title">{{ section.settings.grid_promo_title }}</span>
+                      {% render 'mc-art', image: section.settings.grid_promo_image, shape: 'circle', word: section.settings.grid_promo_word, sticker: section.settings.grid_promo_sticker, size: 'sm', sizes: '(min-width: 992px) 300px, 45vw' %}
+                      {%- if section.settings.grid_promo_button != blank -%}<span class="mc-link mc-grid-promo__cta">{{ section.settings.grid_promo_button | escape }} <span aria-hidden="true">→</span></span>{%- endif -%}
+                    </a>
+                  </li>
+                {%- endif -%}
                 {%- assign skip_card_product_styles = true -%}
               {%- endfor -%}
             </ul>
@@ -679,6 +711,19 @@
       "label": "Popular Products collection (bottom of sidebar)"
     },
     {
+      "type": "select",
+      "id": "sidebar_banner_style",
+      "label": "Sidebar banner style",
+      "options": [
+        { "value": "image", "label": "Image (text on the photo)" },
+        { "value": "layered", "label": "Merci layered (photo in an arch + live layers)" }
+      ],
+      "default": "layered"
+    },
+    { "type": "text", "id": "sidebar_banner_word", "label": "Layered — outlined word", "default": "Sale" },
+    { "type": "text", "id": "sidebar_banner_sticker", "label": "Layered — sticker", "default": "-25%" },
+    { "type": "text", "id": "sidebar_banner_badge", "label": "Layered — rotating stamp", "info": "Leave empty to hide the stamp." },
+    {
       "type": "image_picker",
       "id": "sidebar_banner_image",
       "label": "Sidebar banner image",
@@ -795,6 +840,16 @@
       "label": "t:sections.all.padding.padding_top",
       "default": 36
     },
+    { "type": "header", "content": "Promo tile in the grid" },
+    { "type": "range", "id": "grid_promo_position", "label": "Show after product number", "info": "0 hides the tile. First page only.", "min": 0, "max": 12, "step": 1, "default": 0 },
+    { "type": "text", "id": "grid_promo_eyebrow", "label": "Eyebrow", "default": "Members only" },
+    { "type": "inline_richtext", "id": "grid_promo_title", "label": "Title", "default": "Extra <em>15%</em> off knitwear" },
+    { "type": "image_picker", "id": "grid_promo_image", "label": "Photo" },
+    { "type": "text", "id": "grid_promo_word", "label": "Outlined word", "default": "Knit" },
+    { "type": "text", "id": "grid_promo_sticker", "label": "Sticker", "default": "-15%" },
+    { "type": "text", "id": "grid_promo_button", "label": "Link label", "default": "Shop knitwear" },
+    { "type": "url", "id": "grid_promo_link", "label": "Link" },
+    { "type": "color", "id": "grid_promo_background", "label": "Background", "default": "#f9f1ef" },
     {
       "type": "range",
       "id": "padding_bottom",

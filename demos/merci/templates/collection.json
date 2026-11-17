@@ -23,7 +23,8 @@
         "banner_heading": "",
         "banner_overlay": 0,
         "show_title": true
-      }
+      },
+      "disabled": true
     },
     "circles": {
       "type": "collection-circles",
@@ -65,15 +66,49 @@
         "sidebar_categories_menu": "sidebar-categories",
         "price_max": 0,
         "hidden_filters": "Product rating count, More filters",
-        "sidebar_banner_image": "shopify://shop_images/banner-sidebar_49aa45da-fc46-40f7-8bd5-7d233c884ed7.jpg",
-        "sidebar_banner_link": "shopify://collections/all",
-        "sidebar_banner_eyebrow": "",
-        "sidebar_banner_title": "",
-        "sidebar_banner_button": ""
+        "sidebar_banner_image": "shopify://shop_images/merci-demo-art-pink.jpg",
+        "sidebar_banner_link": "shopify://collections/clearance",
+        "sidebar_banner_eyebrow": "End of season",
+        "sidebar_banner_title": "Up to <em>25%</em> off",
+        "sidebar_banner_button": "Shop the sale",
+        "sidebar_banner_style": "layered",
+        "sidebar_banner_word": "Sale",
+        "sidebar_banner_sticker": "-25%",
+        "sidebar_banner_badge": "",
+        "grid_promo_position": 5,
+        "grid_promo_image": "shopify://shop_images/merci-demo-art-knit.jpg",
+        "grid_promo_link": "shopify://collections/lorem-ipsum-dolor"
+      }
+    },
+    "hero": {
+      "type": "mc-collection-hero",
+      "settings": {
+        "image_source": "collection",
+        "fallback_image": "shopify://shop_images/merci-demo-art-knit.jpg",
+        "shape": "arch",
+        "show_count": true,
+        "show_description": true,
+        "fallback_text": "<p>Easy pieces picked each season for comfort and style — mix them, layer them, live in them.</p>",
+        "sticker": "New in",
+        "quick_links": [
+          "new-arrival",
+          "trending",
+          "cornershops",
+          "clearance",
+          "jewelry",
+          "new-in",
+          "lorem-ipsum-dolor-4"
+        ],
+        "background": "#f9f1ef",
+        "blob_color": "#f2d0d0",
+        "pattern": "grid",
+        "padding_top": 24,
+        "padding_bottom": 8
       }
     }
   },
   "order": [
+    "hero",
     "banner",
     "circles",
     "product-grid"

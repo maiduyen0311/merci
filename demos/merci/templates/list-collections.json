@@ -1,0 +1,98 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-list-collections",
+      "settings": {
+        "title": "Collections",
+        "sort": "alphabetical",
+        "image_ratio": "landscape",
+        "show_count": true,
+        "show_description": true,
+        "description_words": 18,
+        "button_label": "Shop now",
+        "columns_desktop": 3,
+        "columns_mobile": "1"
+      },
+      "disabled": true
+    },
+    "hero": {
+      "type": "mc-banner",
+      "blocks": {
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "value": "13",
+            "title": "Collections",
+            "text": "Updated every season"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "value": "100+",
+            "title": "Styles",
+            "text": "Easy pieces to mix"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2"
+      ],
+      "settings": {
+        "layout": "split",
+        "art_position": "right",
+        "full_width": false,
+        "heading_as_h1": true,
+        "eyebrow": "The Merci edit",
+        "heading": "Our <em>collections</em>",
+        "text": "<p>From soft knits to washed denim — every collection is a small, considered edit. Start with a mood, finish with a look.</p>",
+        "button_label": "Shop new arrivals",
+        "button_link": "shopify://collections/new-arrival",
+        "button_2_label": "Browse the lookbook",
+        "button_2_link": "shopify://pages/lookbook",
+        "image": "shopify://shop_images/merci-demo-art-knit.jpg",
+        "shape": "arch",
+        "word": "Edit",
+        "badge": "Explore • The Merci edit • ",
+        "badge_link": "shopify://collections/all",
+        "sticker": "New season",
+        "caption": "AW — 2026",
+        "background": "#f9f1ef",
+        "blob_color": "#f2d0d0",
+        "text_color": "#231e17",
+        "pattern": "grid",
+        "marquee_text": "Free shipping over $75, New arrivals every week, Easy 30-day returns",
+        "padding_top": 24,
+        "padding_bottom": 0
+      }
+    },
+    "list": {
+      "type": "mc-collections-list",
+      "settings": {
+        "eyebrow": "Explore",
+        "heading": "Shop by collection",
+        "layout": "mosaic",
+        "source": "all",
+        "per_page": 13,
+        "show_count": true,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "list",
+    "main"
+  ]
+}

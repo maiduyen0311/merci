@@ -1,0 +1,131 @@
+{%- comment -%}
+  Merci — Collection hero (collection template, SPEC Appendix E).
+  Patterned panel: breadcrumb, collection title + product count, description and quick-link chips
+  on the left; the collection image in layered art on the right (word = collection title,
+  rotating stamp, sticker, caption with the product count). Everything except the copy comes
+  from the collection itself, so every collection gets its own banner without designing one.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign hero_image = collection.image | default: collection.featured_image | default: s.fallback_image
+  if s.image_source == 'setting' and s.fallback_image != blank
+    assign hero_image = s.fallback_image
+  endif
+  assign hero_word = collection.title | split: ' ' | first
+  assign count_label = 'sections.mc_collection_hero.count' | t: count: collection.products_count
+  assign badge_text = 'sections.mc_collection_hero.badge' | t: title: collection.title
+-%}
+{%- style -%}
+  #McCollectionHero-{{ section.id }} {
+    --mc-pt: {{ s.padding_top }}px;
+    --mc-pb: {{ s.padding_bottom }}px;
+    --mc-banner-bg: {{ s.background }};
+    --mc-art-blob: {{ s.blob_color }};
+  }
+{%- endstyle -%}
+
+<section id="McCollectionHero-{{ section.id }}" class="mc-section mc-banner mc-collection-hero mc-banner--pattern-{{ s.pattern }}">
+  <div class="container">
+    <div class="mc-banner__panel mc-collection-hero__panel">
+      <div class="mc-banner__copy mc-collection-hero__copy">
+        <nav class="mc-collection-hero__crumbs" aria-label="{{ 'sections.main_product.breadcrumb' | t }}">
+          <a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a>
+          <span aria-hidden="true"></span>
+          <a href="{{ routes.collections_url }}">{{ 'sections.mc_collection_hero.collections' | t }}</a>
+        </nav>
+
+        <h1 class="mc-collection-hero__title">
+          {{- collection.title | escape -}}
+          {%- if s.show_count %}<sup class="mc-collection-hero__count">{{ collection.products_count }}</sup>{% endif -%}
+        </h1>
+
+        {%- if s.show_description and collection.description != blank -%}
+          <div class="mc-banner__text mc-collection-hero__text">{{ collection.description | strip_html | truncatewords: 34 }}</div>
+        {%- elsif s.fallback_text != blank -%}
+          <div class="mc-banner__text mc-collection-hero__text">{{ s.fallback_text }}</div>
+        {%- endif -%}
+
+        {%- if s.quick_links.size > 0 -%}
+          <ul class="mc-collection-hero__chips list-unstyled" role="list">
+            {%- for c in s.quick_links -%}
+              <li>
+                <a href="{{ c.url }}" class="mc-chip{% if c.handle == collection.handle %} is-current{% endif %}"{% if c.handle == collection.handle %} aria-current="page"{% endif %}>
+                  {{- c.title | escape -}}<span class="mc-chip__count">{{ c.products_count }}</span>
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+
+      <div class="mc-banner__art mc-collection-hero__art">
+        {% render 'mc-art',
+          image: hero_image,
+          shape: s.shape,
+          word: hero_word,
+          badge: badge_text,
+          sticker: s.sticker,
+          caption: count_label,
+          size: 'md',
+          loading: 'eager',
+          sizes: '(min-width: 992px) 420px, 70vw',
+          alt: collection.title
+        %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Merci collection hero",
+  "tag": "div",
+  "class": "section-mc-collection-hero",
+  "settings": [
+    { "type": "paragraph", "content": "Title, count, description and photo come from the collection. The settings below are fallbacks and decoration." },
+    {
+      "type": "select",
+      "id": "image_source",
+      "label": "Photo",
+      "options": [
+        { "value": "collection", "label": "Collection image (fallback below if empty)" },
+        { "value": "setting", "label": "Always the fallback image" }
+      ],
+      "default": "collection"
+    },
+    { "type": "image_picker", "id": "fallback_image", "label": "Fallback image" },
+    {
+      "type": "select",
+      "id": "shape",
+      "label": "Photo shape",
+      "options": [
+        { "value": "arch", "label": "Arch" },
+        { "value": "circle", "label": "Circle" },
+        { "value": "rect", "label": "Rectangle" }
+      ],
+      "default": "arch"
+    },
+    { "type": "checkbox", "id": "show_count", "label": "Show product count", "default": true },
+    { "type": "checkbox", "id": "show_description", "label": "Show collection description", "default": true },
+    { "type": "richtext", "id": "fallback_text", "label": "Text when the collection has no description" },
+    { "type": "text", "id": "sticker", "label": "Sticker", "default": "New in" },
+    { "type": "collection_list", "id": "quick_links", "label": "Quick links (chips)", "limit": 8 },
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "background", "label": "Panel background", "default": "#f9f1ef" },
+    { "type": "color", "id": "blob_color", "label": "Disc behind the photo", "default": "#f2d0d0" },
+    {
+      "type": "select",
+      "id": "pattern",
+      "label": "Panel pattern",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "grid", "label": "Fine grid" },
+        { "value": "lines", "label": "Diagonal lines" }
+      ],
+      "default": "grid"
+    },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 8 }
+  ]
+}
+{% endschema %}

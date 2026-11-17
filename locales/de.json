@@ -598,6 +598,17 @@
     },
     "trust_strip": {
       "label": "Why shop with us"
+    },
+    "mc_collection_hero": {
+      "count": "{{ count }} Styles",
+      "badge": "{{ title }} entdecken • Merci • ",
+      "collections": "Kollektionen"
+    },
+    "mc_cart_steps": {
+      "label": "Bestellschritte"
+    },
+    "mc_cart_summary": {
+      "title": "Bestellübersicht"
     }
   },
   "localization": {

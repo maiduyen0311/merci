@@ -610,6 +610,17 @@
     },
     "trust_strip": {
       "label": "Why shop with us"
+    },
+    "mc_collection_hero": {
+      "count": "{{ count }} modelli",
+      "badge": "Scopri {{ title }} • Merci • ",
+      "collections": "Collezioni"
+    },
+    "mc_cart_steps": {
+      "label": "Passaggi dell'ordine"
+    },
+    "mc_cart_summary": {
+      "title": "Riepilogo ordine"
     }
   },
   "localization": {
