@@ -434,7 +434,7 @@
                     list_extras: true
                   %}
                 </li>
-                {%- if section.settings.grid_promo_position > 0 and forloop.index == section.settings.grid_promo_position and paginate.current_page == 1 -%}
+                {%- if section.settings.grid_promo_position > 0 and forloop.index == section.settings.grid_promo_position -%}
                   {%- comment -%} Merci promo tile in the grid flow (section setting "Promo tile in the grid") {%- endcomment -%}
                   <li class="grid__item mc-grid-promo" style="--mc-banner-bg: {{ section.settings.grid_promo_background }};">
                     <a class="mc-grid-promo__inner mc-hover" href="{{ section.settings.grid_promo_link | default: routes.all_products_collection_url }}">
@@ -470,9 +470,9 @@
     {
       "type": "range",
       "id": "products_per_page",
-      "min": 8,
+      "min": 4,
       "max": 36,
-      "step": 4,
+      "step": 1,
       "default": 16,
       "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
     },
@@ -841,7 +841,7 @@
       "default": 36
     },
     { "type": "header", "content": "Promo tile in the grid" },
-    { "type": "range", "id": "grid_promo_position", "label": "Show after product number", "info": "0 hides the tile. First page only.", "min": 0, "max": 12, "step": 1, "default": 0 },
+    { "type": "range", "id": "grid_promo_position", "label": "Show after product number", "info": "0 hides the tile. Shown on every page — set products per page to one less than a full grid (e.g. 11 for 3 or 4 columns) so rows stay even.", "min": 0, "max": 12, "step": 1, "default": 0 },
     { "type": "text", "id": "grid_promo_eyebrow", "label": "Eyebrow", "default": "Members only" },
     { "type": "inline_richtext", "id": "grid_promo_title", "label": "Title", "default": "Extra <em>15%</em> off knitwear" },
     { "type": "image_picker", "id": "grid_promo_image", "label": "Photo" },

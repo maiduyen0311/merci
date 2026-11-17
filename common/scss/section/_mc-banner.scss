@@ -80,7 +80,7 @@
 }
 
 .mc-banner__heading {
-  margin: 0 0 2rem;
+  margin: 0 0 3.2rem;
   color: inherit;
   font-family: var(--font-heading);
   font-size: clamp(3.2rem, 4.2vw, 5.6rem);
@@ -450,6 +450,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-auto-rows: 30rem;
+  grid-auto-flow: row dense; // a wide tile that does not fit leaves no hole
   gap: 2.4rem;
   margin: 0;
 
@@ -679,7 +680,14 @@
 }
 
 .mc-story__aside { position: relative; }
-.mc-story__art { width: min(100%, 34rem); margin: 0 auto -6rem; }
+.mc-story__art {
+  width: min(100%, 34rem);
+  margin: 0 auto -4rem;
+
+  // the quote card covers the lower half: stamp moves to the top, word is hidden
+  .mc-art__badge { top: 2%; bottom: auto; }
+  .mc-art__word { display: none; }
+}
 
 .mc-story__quote {
   position: relative;
@@ -841,7 +849,8 @@
     .cart-page-footer .row > [class*='col-md-6'] { flex: 0 0 100%; max-width: 100%; text-align: start !important; }
     .cart-page-footer__addons > [class*='col-lg-6'] { flex: 0 0 100%; max-width: 100%; }
     .cart-page-footer__buttons .tm-btn,
-    .cart-page-footer__buttons button { width: 100%; }
+    .cart-page-footer__buttons button,
+    .cart-page-footer__buttons a { width: 100%; }
   }
 
   // the steps strip sits in the full-width row above the grid
@@ -915,8 +924,9 @@
 
 // =============================================================================
 // Article (main-article) — editorial header, layered hero, reading column
+// `html body` outranks _blog.scss, which loads after this file
 // =============================================================================
-.tm-article {
+html body .tm-article {
   &__header { position: relative; margin-bottom: 4rem; padding-bottom: 2.8rem; }
 
   &__header::after {
@@ -985,3 +995,15 @@
 
   &__social { border-radius: 50%; background: transparent; border: 1px solid var(--color-border, #e8e9eb); }
 }
+
+// phones / tablets: the sidebar stacks above the products — keep only the in-grid promo there
+@media screen and (max-width: 991px) {
+  .facets-wrapper .mc-side-promo { display: none; }
+}
+
+// accent text on the tinted #f9f1ef panels needs a deeper ink (5.06:1) than on white
+.mc-banner__panel,
+.mc-side-promo,
+.mc-grid-promo__inner,
+.mc-usp__list,
+.mc-page-band { --color-accent-ink: #9c524c; }

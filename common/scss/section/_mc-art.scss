@@ -23,20 +23,22 @@
 
 // --- background word ---------------------------------------------------------
 .mc-art__word {
+  // crosses the photo near the bottom, like a magazine cover line
   position: absolute;
-  top: 4%;
-  left: 50%;
-  z-index: 0;
+  bottom: 9%;
+  left: 60%; // clear of the stamp in the bottom-left corner
+  z-index: 4;
   color: transparent;
   font-family: var(--font-heading);
-  font-size: 13em;
+  font-size: 11em;
   font-weight: 400;
   letter-spacing: 0.04em;
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
   transform: translateX(-50%);
-  -webkit-text-stroke: 1px color-mix(in srgb, var(--art-accent) 55%, transparent);
+  -webkit-text-stroke: 1.5px #fff;
+  text-shadow: 0 0.3em 1.6em rgba(35, 30, 23, 0.12);
   pointer-events: none;
   user-select: none;
 }
