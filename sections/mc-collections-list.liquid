@@ -27,7 +27,7 @@
 
     {%- capture tiles -%}
       {%- if s.source == 'picked' and s.collections.size > 0 -%}
-        {%- for c in s.collections -%}{% render 'mc-collection-tile', c: c, index: forloop.index, show_count: s.show_count %}{%- endfor -%}
+        {%- for c in s.collections -%}{% render 'mc-collection-tile', c: c, index: forloop.index, show_count: s.show_count, image_source: s.image_source %}{%- endfor -%}
       {%- endif -%}
     {%- endcapture -%}
 
@@ -38,7 +38,7 @@
         <ul class="mc-collections-list__grid list-unstyled" role="list">
           {%- for c in collections -%}
             {%- assign idx = paginate.current_offset | plus: forloop.index -%}
-            {% render 'mc-collection-tile', c: c, index: idx, show_count: s.show_count %}
+            {% render 'mc-collection-tile', c: c, index: idx, show_count: s.show_count, image_source: s.image_source %}
           {%- endfor -%}
         </ul>
         {%- if paginate.pages > 1 -%}{% render 'pagination', paginate: paginate %}{%- endif -%}
@@ -55,6 +55,16 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Explore" },
     { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Shop by collection" },
+    {
+      "type": "select",
+      "id": "image_source",
+      "label": "Tile image",
+      "options": [
+        { "value": "product", "label": "First product's image" },
+        { "value": "collection", "label": "Collection image" }
+      ],
+      "default": "product"
+    },
     {
       "type": "select",
       "id": "layout",

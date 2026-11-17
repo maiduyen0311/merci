@@ -10,6 +10,9 @@
   assign hero_image = collection.image | default: collection.featured_image | default: s.fallback_image
   if s.image_source == 'setting' and s.fallback_image != blank
     assign hero_image = s.fallback_image
+  elsif s.image_source == 'product'
+    assign hero_image = collection.products.first.featured_image | default: s.fallback_image
+    assign hero_packshot = true
   endif
   assign hero_word = collection.title | split: ' ' | first
   assign count_label = 'sections.mc_collection_hero.count' | t: count: collection.products_count
@@ -66,6 +69,7 @@
         {% render 'mc-art',
           decor: s.decor,
           image: hero_image,
+          packshot: hero_packshot,
           shape: s.shape,
           word: hero_word,
           badge: badge_text,
@@ -94,6 +98,7 @@
       "label": "Photo",
       "options": [
         { "value": "collection", "label": "Collection image (fallback below if empty)" },
+        { "value": "product", "label": "First product's image" },
         { "value": "setting", "label": "Always the fallback image" }
       ],
       "default": "collection"

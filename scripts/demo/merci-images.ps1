@@ -102,6 +102,53 @@ function Save-Cutout($inPath, $outPath, $maxW) {
     Write-Output ("{0} {1}x{2}" -f (Split-Path -Leaf $outPath), $w, $h)
   } finally { $img.Dispose() }
 }
+# Staged packshots for the layered banners (mc-art) — products only, no model (user 2026-11-17).
+# The cut-out is trimmed to its alpha box and centred on a soft tinted backdrop with a floor
+# shadow, so the JPG works in any mc-art frame (arch / circle / rectangle, object-fit: cover).
+function Save-Stage($inPath, $outPath, $hex, $scale) {
+  $img = New-Object System.Drawing.Bitmap $inPath
+  try {
+    $x0 = $img.Width; $y0 = $img.Height; $x1 = 0; $y1 = 0
+    for ($y = 0; $y -lt $img.Height; $y += 3) { for ($x = 0; $x -lt $img.Width; $x += 3) {
+      if ($img.GetPixel($x, $y).A -gt 24) { if ($x -lt $x0) { $x0 = $x }; if ($x -gt $x1) { $x1 = $x }; if ($y -lt $y0) { $y0 = $y }; if ($y -gt $y1) { $y1 = $y } }
+    } }
+    $bw = $x1 - $x0 + 1; $bh = $y1 - $y0 + 1
+    $W = 960; $H = 1200
+    $bmp = New-Object System.Drawing.Bitmap $W, $H
+    $g = [System.Drawing.Graphics]::FromImage($bmp)
+    $g.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
+    $g.InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
+    $tint = [System.Drawing.ColorTranslator]::FromHtml($hex)
+    $light = [System.Drawing.Color]::FromArgb(255, [int](($tint.R + 255 * 2) / 3), [int](($tint.G + 255 * 2) / 3), [int](($tint.B + 255 * 2) / 3))
+    $bg = New-Object System.Drawing.Drawing2D.LinearGradientBrush ([System.Drawing.Point]::new(0, 0)), ([System.Drawing.Point]::new(0, $H)), $light, $tint
+    $g.FillRectangle($bg, 0, 0, $W, $H)
+    # fit the product in a box ($scale of the canvas), centred a little above the middle
+    $k = [Math]::Min($W * $scale / $bw, $H * $scale / $bh)
+    $dw = [int]($bw * $k); $dh = [int]($bh * $k)
+    $dx = [int](($W - $dw) / 2); $dy = [int](($H - $dh) / 2 - $H * 0.03)
+    $shadowW = [int]($dw * 0.8)
+    $sh = New-Object System.Drawing.Drawing2D.GraphicsPath
+    $sh.AddEllipse([int](($W - $shadowW) / 2), $dy + $dh - 22, $shadowW, 50)
+    $pb = New-Object System.Drawing.Drawing2D.PathGradientBrush $sh
+    $pb.CenterColor = [System.Drawing.Color]::FromArgb(70, 60, 40, 35)
+    $pb.SurroundColors = @([System.Drawing.Color]::FromArgb(0, 60, 40, 35))
+    $g.FillPath($pb, $sh)
+    $g.DrawImage($img, (New-Object System.Drawing.Rectangle $dx, $dy, $dw, $dh), $x0, $y0, $bw, $bh, [System.Drawing.GraphicsUnit]::Pixel)
+    $bmp.Save($outPath, $jpeg, $params)
+    $g.Dispose(); $bmp.Dispose()
+    Write-Output ("{0} 960x1200" -f (Split-Path -Leaf $outPath))
+  } finally { $img.Dispose() }
+}
+$stages = [ordered]@{
+  'stage-jacket' = @('product\png\10.png', '#f2dcd8', 0.6)
+  'stage-straw' = @('product\png\18.png', '#f4e3d3', 0.56)
+  'stage-hat' = @('product\png\25.png', '#efe1d6', 0.58)
+  'stage-shirt' = @('product\png\9.png', '#dfece4', 0.6)
+  'stage-tote' = @('product\png\19.png', '#f6dede', 0.6)
+  'stage-tee' = @('product\png\5a.png', '#f3e2da', 0.6)
+}
+foreach ($k in $stages.Keys) { $v = $stages[$k]; Save-Stage (Join-Path $src $v[0]) (Join-Path $out "$k.jpg") $v[1] $v[2] }
+
 Save-Cutout (Join-Path $src 'product\png\8.png') (Join-Path $out 'tile-dress.png') 900
-Save-Cutout (Join-Path $src 'product\png\23.png') (Join-Path $out 'tile-tote.png') 900
+Save-Cutout (Join-Path $src 'product\png\19.png') (Join-Path $out 'tile-beach.png') 900
 Save-Cutout (Join-Path $src 'product\png\1.png') (Join-Path $out 'tile-shirt.png') 900

@@ -66,7 +66,7 @@
         "sidebar_categories_menu": "sidebar-categories",
         "price_max": 0,
         "hidden_filters": "Product rating count, More filters",
-        "sidebar_banner_image": "shopify://shop_images/merci-demo-art-pink.jpg",
+        "sidebar_banner_image": "shopify://shop_images/merci-demo-stage-tote.jpg",
         "sidebar_banner_link": "shopify://collections/clearance",
         "sidebar_banner_eyebrow": "End of season",
         "sidebar_banner_title": "Up to <em>25%</em> off",
@@ -76,15 +76,15 @@
         "sidebar_banner_sticker": "-25%",
         "sidebar_banner_badge": "",
         "grid_promo_position": 5,
-        "grid_promo_image": "shopify://shop_images/merci-demo-art-knit.jpg",
+        "grid_promo_image": "shopify://shop_images/merci-demo-stage-straw.jpg",
         "grid_promo_link": "shopify://collections/lorem-ipsum-dolor"
       }
     },
     "hero": {
       "type": "mc-collection-hero",
       "settings": {
-        "image_source": "collection",
-        "fallback_image": "shopify://shop_images/merci-demo-art-knit.jpg",
+        "image_source": "product",
+        "fallback_image": "shopify://shop_images/merci-demo-stage-jacket.jpg",
         "shape": "arch",
         "show_count": true,
         "show_description": true,

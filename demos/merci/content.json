@@ -80,11 +80,29 @@
     "art-cardigan": {
       "file": "images/art-cardigan.jpg"
     },
+    "stage-jacket": {
+      "file": "images/stage-jacket.jpg"
+    },
+    "stage-straw": {
+      "file": "images/stage-straw.jpg"
+    },
+    "stage-hat": {
+      "file": "images/stage-hat.jpg"
+    },
+    "stage-shirt": {
+      "file": "images/stage-shirt.jpg"
+    },
+    "stage-tote": {
+      "file": "images/stage-tote.jpg"
+    },
+    "stage-tee": {
+      "file": "images/stage-tee.jpg"
+    },
     "tile-dress": {
       "file": "images/tile-dress.png"
     },
-    "tile-tote": {
-      "file": "images/tile-tote.png"
+    "tile-beach": {
+      "file": "images/tile-beach.png"
     },
     "tile-shirt": {
       "file": "images/tile-shirt.png"
@@ -428,12 +446,36 @@
       "filename": "merci-demo-art-cardigan.jpg"
     },
     {
+      "key": "stage-jacket",
+      "filename": "merci-demo-stage-jacket.jpg"
+    },
+    {
+      "key": "stage-straw",
+      "filename": "merci-demo-stage-straw.jpg"
+    },
+    {
+      "key": "stage-hat",
+      "filename": "merci-demo-stage-hat.jpg"
+    },
+    {
+      "key": "stage-shirt",
+      "filename": "merci-demo-stage-shirt.jpg"
+    },
+    {
+      "key": "stage-tote",
+      "filename": "merci-demo-stage-tote.jpg"
+    },
+    {
+      "key": "stage-tee",
+      "filename": "merci-demo-stage-tee.jpg"
+    },
+    {
       "key": "tile-dress",
       "filename": "merci-demo-tile-dress.png"
     },
     {
-      "key": "tile-tote",
-      "filename": "merci-demo-tile-tote.png"
+      "key": "tile-beach",
+      "filename": "merci-demo-tile-beach.png"
     },
     {
       "key": "tile-shirt",

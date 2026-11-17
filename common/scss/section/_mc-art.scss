@@ -30,7 +30,7 @@
   z-index: 4;
   color: transparent;
   font-family: var(--font-heading);
-  font-size: 11em;
+  font-size: min(11em, calc(46em / var(--len, 4))); // long words shrink to stay inside the art
   font-weight: 400;
   letter-spacing: 0.04em;
   line-height: 1;
@@ -206,7 +206,7 @@
 }
 
 .mc-art--sm {
-  .mc-art__word { font-size: 9em; }
+  .mc-art__word { font-size: min(9em, calc(42em / var(--len, 4))); }
   .mc-art__badge { width: 15em; }
   .mc-art__sticker { font-size: 2em; }
 }
@@ -264,4 +264,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   .mc-art__decor { animation: none; }
+}
+
+// --- packshot: a product photo on a white studio background (collection hero → first product).
+// Shown whole (contain) and multiplied onto a tinted frame, so the white box disappears.
+.mc-art--packshot {
+  .mc-art__frame { background: radial-gradient(circle at 50% 38%, #fff 0%, #fbf3f1 45%, var(--art-blob) 140%); }
+  .mc-art__img { object-fit: contain; padding: 14% 12% 22%; mix-blend-mode: multiply; filter: brightness(1.1) contrast(1.1); }
+  .mc-art__word { -webkit-text-stroke-color: var(--art-accent); text-shadow: none; opacity: 0.7; }
 }

@@ -25,6 +25,7 @@
   - loading {String} 'lazy' (default) | 'eager'
   - alt {String}
   - decor {String} 'botanical' (default: leaf branch + sparkles) | 'playful' (sparkles + squiggle) | 'minimal'
+  - packshot {Boolean} product photo on a white studio background: shown whole on a tinted frame
 {%- endcomment -%}
 {%- liquid
   assign art_shape = shape | default: 'arch'
@@ -35,9 +36,9 @@
   assign art_decor = decor | default: 'botanical'
   assign art_uid = 'mcArt' | append: section.id | append: forloop.index | append: art_shape | handleize
 -%}
-<div class="mc-art mc-art--{{ art_shape }} mc-art--{{ art_size }}" data-mc-art>
+<div class="mc-art mc-art--{{ art_shape }} mc-art--{{ art_size }}{% if packshot %} mc-art--packshot{% endif %}" data-mc-art>
   {%- if word != blank -%}
-    <span class="mc-art__word" aria-hidden="true" data-depth="0.15">{{ word | escape }}</span>
+    <span class="mc-art__word" aria-hidden="true" data-depth="0.15" style="--len: {{ word.size | at_least: 4 }}">{{ word | escape }}</span>
   {%- endif -%}
   <span class="mc-art__blob" aria-hidden="true" data-depth="0.35"></span>
   <span class="mc-art__dots" aria-hidden="true" data-depth="0.55"></span>

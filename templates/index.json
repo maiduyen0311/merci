@@ -168,7 +168,7 @@
         "t3": {
           "type": "tile",
           "settings": {
-            "image": "shopify://shop_images/merci-demo-tile-tote.png",
+            "image": "shopify://shop_images/merci-demo-tile-beach.png",
             "eyebrow": "Summer edit",
             "title": "Beach <em>2026</em>",
             "link": "shopify://collections/lorem-ipsum-dolor-1",

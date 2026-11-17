@@ -1,15 +1,26 @@
 {%- comment -%}
-  One tile of the Merci collections list. Accepts: c {Collection}, index {Number}, show_count {Boolean}
+  One tile of the Merci collections list. Accepts: c {Collection}, index {Number}, show_count {Boolean},
+  image_source {String} 'product' (first product's image, default) | 'collection' (collection image)
 {%- endcomment -%}
 {%- liquid
-  assign tile_image = c.image | default: c.featured_image
+  if image_source == 'collection'
+    assign tile_image = c.image | default: c.featured_image
+  else
+    assign tile_image = c.products.first.featured_image | default: c.image
+  endif
   assign num = index | prepend: '0' | slice: -2, 2
   if index > 99
     assign num = index
   endif
 -%}
-<li class="mc-ctile mc-hover">
+<li class="mc-ctile mc-hover{% unless image_source == 'collection' %} mc-ctile--packshot{% endunless %}">
   <a href="{{ c.url }}" class="mc-ctile__link">
+    {%- unless image_source == 'collection' -%}
+      <span class="mc-ctile__decor" aria-hidden="true">
+        {%- render 'mc-decor', name: 'arches', class: 'mc-ctile__arches' -%}
+        {%- render 'mc-decor', name: 'sparkles', class: 'mc-ctile__spark' -%}
+      </span>
+    {%- endunless -%}
     <span class="mc-ctile__media mc-media mc-frame">
       {%- if tile_image != blank -%}
         {%- assign mc_alt = tile_image.alt | default: c.title | escape -%}

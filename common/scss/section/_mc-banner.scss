@@ -487,6 +487,70 @@
   > svg { height: 100%; }
 }
 
+// Packshot tiles (image source "first product's image") — product on a tinted panel with line
+// arches + sparkles, like the homepage layered tiles. White studio backgrounds melt into the
+// panel through `multiply`, so the whole product shows instead of a cropped white box.
+.mc-ctile--packshot {
+  --ctile-bg: #f9f1ef;
+  &:nth-child(4n + 2) { --ctile-bg: #eef3f6; }
+  &:nth-child(4n + 3) { --ctile-bg: #fbeee4; }
+  &:nth-child(4n + 4) { --ctile-bg: #f1f0ea; }
+
+  .mc-ctile__link {
+    background:
+      linear-gradient(rgba(191, 112, 105, 0.07) 1px, transparent 1px) 0 0 / 2.4rem 2.4rem,
+      linear-gradient(90deg, rgba(191, 112, 105, 0.07) 1px, transparent 1px) 0 0 / 2.4rem 2.4rem,
+      var(--ctile-bg);
+  }
+
+  .mc-ctile__media.mc-media { background: transparent; }
+
+  .mc-ctile__media > img {
+    object-fit: contain;
+    padding: 4rem 12% 9.6rem; // rem vertically: % padding follows the width and squashes wide tiles
+    filter: brightness(1.1) contrast(1.1); // lifts light-grey studio backdrops to white before multiply
+
+    @media screen and (max-width: 575px) { padding: 2.4rem 10% 7.4rem; }
+    mix-blend-mode: multiply;
+    transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  &:hover .mc-ctile__media > img { transform: translateY(-0.8rem) scale(1.03); }
+
+  .mc-ctile__num {
+    -webkit-text-stroke-color: var(--color-primary, #bf7069);
+    text-shadow: none;
+    opacity: 0.55;
+  }
+}
+
+.mc-ctile__decor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  color: var(--color-primary, #bf7069);
+  pointer-events: none;
+
+  .mc-ctile__arches {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: min(70%, 26rem);
+    height: auto;
+    opacity: 0.4;
+    transform: translateX(-50%);
+  }
+  .mc-ctile__spark {
+    position: absolute;
+    top: 12%;
+    right: 8%;
+    width: 4.4rem;
+    height: auto;
+    opacity: 0.7;
+    animation: mc-art-twinkle 4s ease-in-out infinite;
+  }
+}
+
+
 .mc-ctile__num {
   position: absolute;
   top: 1.6rem;
