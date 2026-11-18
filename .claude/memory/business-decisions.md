@@ -23,3 +23,7 @@ User 2026-11-11 (phase 06 QA): keep the design pink #bf7069 behind white text on
 User 2026-11-17: product images must show the PRODUCT ONLY — no model photos (cards, hover image, PDP gallery). Layered banners (mc-art), homepage tiles, collection hero and collections list also use products only (staged cut-outs / first product packshot). User 2026-11-18: KEEP model photos in lifestyle areas — homepage slideshow, homepage big banners + parallax, Instagram strip, Lookbook page + mega-menu Lookbook banner.
 **Why:** cleaner, catalogue-like look for the demo.
 **How to apply:** demo catalogue (scripts/demo/merci-catalogue.js) uses packshots only. Done 2026-11-17 with user OK: 21 model-photo demo products archived, 28 model images removed from 7 v1 products (restore list qa/removed-model-media.json). New banner art → `stage-*` images (merci-images.ps1 Save-Stage), never model photos.
+
+User 2026-11-18: all font sizes +0.1rem (+1px) — body 14px, small 13px, tiny 12px, h4 17 / h3 19 / h2 25 / h1 41 / display 61px; every px/rem `font-size` in common/scss bumped once (em/vw/% and the `.mc-art` composition scale untouched).
+**Why:** text read too small on the live demo.
+**How to apply:** new styles use the bumped scale (body copy ≥ 1.4rem). design/SPEC.md tokens still list the old sizes — update only with user approval.
