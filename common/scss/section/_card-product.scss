@@ -675,12 +675,13 @@ $card-bar-gap: 14px; // space between the swatches and the bar
 // =============================================================================
 .card-wrapper {
   .card__heading {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    line-height: 1.4;
     color: var(--color-product-title, #000);
   }
 
   .price {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 400;
 
     .price-item--regular,
@@ -688,7 +689,7 @@ $card-bar-gap: 14px; // space between the swatches and the bar
 
     s.price-item--regular {
       color: var(--color-compare-price, #9f9f9f);
-      font-size: 1.3rem;
+      font-size: 1.4rem;
     }
 
     @media screen and (max-width: 749px) {

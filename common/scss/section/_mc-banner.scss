@@ -806,6 +806,8 @@
 .main-page .rte {
   max-width: 76rem;
   margin-inline: auto;
+  font-size: 1.6rem;
+  line-height: 1.8;
 
   h2, h3 { margin-top: 3.6rem; font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; }
   blockquote {
@@ -1057,7 +1059,7 @@ html body .tm-article {
     @media screen and (max-width: 991px) { &::after { display: none; } }
   }
 
-  &__content { max-width: 76rem; margin-inline: auto; }
+  &__content { max-width: 76rem; margin-inline: auto; font-size: 1.6rem; line-height: 1.8; }
 
   &__social { border-radius: 50%; background: transparent; border: 1px solid var(--color-border, #e8e9eb); }
 }

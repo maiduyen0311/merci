@@ -76,7 +76,9 @@ const fileNameFor = (key) => {
   // product images: content hash in the name, so an edited image is uploaded again
   const abs = path.join(ROOT, 'demos', demo, content.images[key].file);
   const hash = require('crypto').createHash('md5').update(fs.readFileSync(abs)).digest('hex').slice(0, 8);
-  return `${prefix}-hd-${key}-${hash}.jpg`;
+  // keep the real extension: a PNG cut-out named .jpg can lose its transparency on Shopify Files
+  const ext = /\.png$/i.test(abs) ? 'png' : 'jpg';
+  return `${prefix}-hd-${key}-${hash}.${ext}`;
 };
 const cdnCache = {};
 // The filename search is fuzzy (banner-b-wide also matches banner-wide) → keep the exact name only.
@@ -254,6 +256,14 @@ if (step('products') || step('collections')) {
       .filter((p) => !keep.has(p.handle) && p.status !== 'ARCHIVED');
     for (const p of old) userErrors(gql('mutation($p: ProductUpdateInput!) { productUpdate(product: $p) { userErrors { field message } } }', { p: { id: p.id, status: 'ARCHIVED' } }), `archive ${p.handle}`);
     console.log(`✔ archived ${old.length} old products`);
+    // the store's own products this demo replaces (content.draftProducts) → Draft: hidden, kept for restore
+    let drafted = 0;
+    for (const h of content.draftProducts || []) {
+      const p = gql('query($h: String!) { productByIdentifier(identifier: { handle: $h }) { id status } }', { h }).productByIdentifier;
+      if (!p || p.status === 'DRAFT') continue;
+      if (userErrors(gql('mutation($p: ProductUpdateInput!) { productUpdate(product: $p) { userErrors { field message } } }', { p: { id: p.id, status: 'DRAFT' } }), `draft ${h}`)) drafted++;
+    }
+    if (content.draftProducts) console.log(`✔ drafted ${drafted} store products`);
   }
 }
 

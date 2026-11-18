@@ -10,7 +10,7 @@ const THEME_ID = preview.searchParams.get('preview_theme_id');
 const PAGES = {
   home: '/',
   collection: process.env.QA_COLLECTION || '/collections/all',
-  product: process.env.QA_PRODUCT || '/products/' + (process.env.QA_PRODUCT_HANDLE || 'scallop-edge-laser-cut'),
+  product: process.env.QA_PRODUCT || '/products/' + (process.env.QA_PRODUCT_HANDLE || 'short-sleeve-poplin-shirt'),
   cart: '/cart',
   search: '/search?q=dress',
   blog: process.env.QA_BLOG || '/blogs/news',

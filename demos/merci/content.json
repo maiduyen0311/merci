@@ -98,6 +98,12 @@
     "stage-tee": {
       "file": "images/stage-tee.jpg"
     },
+    "banner-dress": {
+      "file": "images/derived/banner-dress.png"
+    },
+    "banner-hat": {
+      "file": "images/derived/banner-hat.png"
+    },
     "tile-dress": {
       "file": "images/tile-dress.png"
     },
@@ -362,26 +368,203 @@
     "cat-tee-peach-2": {
       "url": "https://cdn.shopify.com/s/files/1/0083/1658/4007/products/5a.png"
     },
-    "cat-p-headband": {
-      "file": "images/p-headband.jpg"
+    "cat-d-scarf-leopard": {
+      "file": "images/derived/scarf-leopard.png"
     },
-    "cat-p-bucket-patch": {
-      "file": "images/p-bucket-patch.jpg"
+    "cat-d-sneaker-knit-blush": {
+      "file": "images/derived/sneaker-knit-blush.png"
     },
-    "cat-p-bucket-cobalt": {
-      "file": "images/p-bucket-cobalt.jpg"
+    "cat-d-cardigan-blush": {
+      "file": "images/derived/cardigan-blush.png"
     },
-    "cat-p-scrunchie": {
-      "file": "images/p-scrunchie.jpg"
+    "cat-d-backpack-black": {
+      "file": "images/derived/backpack-black.png"
     },
-    "cat-p-sneaker-pink": {
-      "file": "images/p-sneaker-pink.jpg"
+    "cat-d-crossbody-straw": {
+      "file": "images/derived/crossbody-straw.png"
     },
-    "cat-p-cardigan-pink": {
-      "file": "images/p-cardigan-pink.jpg"
+    "cat-d-banner-dress": {
+      "file": "images/derived/banner-dress.png"
     },
-    "cat-p-backpack": {
-      "file": "images/p-backpack.jpg"
+    "cat-d-banner-hat": {
+      "file": "images/derived/banner-hat.png"
+    },
+    "cat-d-beanie-brown--cream": {
+      "file": "images/derived/beanie-brown--cream.png"
+    },
+    "cat-d-beanie-brown--forest": {
+      "file": "images/derived/beanie-brown--forest.png"
+    },
+    "cat-d-beanie-brown--burgundy": {
+      "file": "images/derived/beanie-brown--burgundy.png"
+    },
+    "cat-d-bucket-green--butter": {
+      "file": "images/derived/bucket-green--butter.png"
+    },
+    "cat-d-bucket-denim--light-wash": {
+      "file": "images/derived/bucket-denim--light-wash.png"
+    },
+    "cat-d-bucket-denim--washed-black": {
+      "file": "images/derived/bucket-denim--washed-black.png"
+    },
+    "cat-d-bucket-green--cobalt": {
+      "file": "images/derived/bucket-green--cobalt.png"
+    },
+    "cat-d-bucket-green--pink": {
+      "file": "images/derived/bucket-green--pink.png"
+    },
+    "cat-d-hat-boater-2--black": {
+      "file": "images/derived/hat-boater-2--black.png"
+    },
+    "cat-d-hat-fedora-2--ivory": {
+      "file": "images/derived/hat-fedora-2--ivory.png"
+    },
+    "cat-d-hat-boater--sand": {
+      "file": "images/derived/hat-boater--sand.png"
+    },
+    "cat-d-crossbody-straw--black": {
+      "file": "images/derived/crossbody-straw--black.png"
+    },
+    "cat-d-tote-stripe--blue-stripe": {
+      "file": "images/derived/tote-stripe--blue-stripe.png"
+    },
+    "cat-d-tote-canvas--olive": {
+      "file": "images/derived/tote-canvas--olive.png"
+    },
+    "cat-d-tote-canvas--black": {
+      "file": "images/derived/tote-canvas--black.png"
+    },
+    "cat-d-sneaker-beige--grey": {
+      "file": "images/derived/sneaker-beige--grey.png"
+    },
+    "cat-d-sneaker-beige-2--sand": {
+      "file": "images/derived/sneaker-beige-2--sand.png"
+    },
+    "cat-d-sneaker-knit-blush--grey": {
+      "file": "images/derived/sneaker-knit-blush--grey.png"
+    },
+    "cat-d-sneaker-knit-blush--sky": {
+      "file": "images/derived/sneaker-knit-blush--sky.png"
+    },
+    "cat-d-slide-woven--black": {
+      "file": "images/derived/slide-woven--black.png"
+    },
+    "cat-d-slide-woven--ivory": {
+      "file": "images/derived/slide-woven--ivory.png"
+    },
+    "cat-d-mule-camel--black": {
+      "file": "images/derived/mule-camel--black.png"
+    },
+    "cat-d-mule-camel--cream": {
+      "file": "images/derived/mule-camel--cream.png"
+    },
+    "cat-d-mule-camel-2--rose": {
+      "file": "images/derived/mule-camel-2--rose.png"
+    },
+    "cat-d-shorts-denim--light-wash": {
+      "file": "images/derived/shorts-denim--light-wash.png"
+    },
+    "cat-d-shorts-denim--washed-black": {
+      "file": "images/derived/shorts-denim--washed-black.png"
+    },
+    "cat-d-shorts-denim-2--ecru": {
+      "file": "images/derived/shorts-denim-2--ecru.png"
+    },
+    "cat-d-shorts-denim-3--indigo": {
+      "file": "images/derived/shorts-denim-3--indigo.png"
+    },
+    "cat-d-jacket-denim-light--mid-blue": {
+      "file": "images/derived/jacket-denim-light--mid-blue.png"
+    },
+    "cat-d-jacket-denim-light--washed-black": {
+      "file": "images/derived/jacket-denim-light--washed-black.png"
+    },
+    "cat-d-jacket-denim-mid--light-wash": {
+      "file": "images/derived/jacket-denim-mid--light-wash.png"
+    },
+    "cat-d-jacket-denim-crop--ecru": {
+      "file": "images/derived/jacket-denim-crop--ecru.png"
+    },
+    "cat-d-top-denim-halter--rose": {
+      "file": "images/derived/top-denim-halter--rose.png"
+    },
+    "cat-d-shirt-green--navy": {
+      "file": "images/derived/shirt-green--navy.png"
+    },
+    "cat-d-shirt-green--terracotta": {
+      "file": "images/derived/shirt-green--terracotta.png"
+    },
+    "cat-d-shirt-green-2--sky": {
+      "file": "images/derived/shirt-green-2--sky.png"
+    },
+    "cat-d-shirt-green-2--ecru": {
+      "file": "images/derived/shirt-green-2--ecru.png"
+    },
+    "cat-d-dress-shirt-blue--blush": {
+      "file": "images/derived/dress-shirt-blue--blush.png"
+    },
+    "cat-d-dress-shirt-blue--sage": {
+      "file": "images/derived/dress-shirt-blue--sage.png"
+    },
+    "cat-d-tee-blue--off-white": {
+      "file": "images/derived/tee-blue--off-white.png"
+    },
+    "cat-d-tee-peach-2--sage": {
+      "file": "images/derived/tee-peach-2--sage.png"
+    },
+    "cat-d-tee-peach-2--charcoal": {
+      "file": "images/derived/tee-peach-2--charcoal.png"
+    },
+    "cat-d-tee-blue-2--lilac": {
+      "file": "images/derived/tee-blue-2--lilac.png"
+    },
+    "cat-d-tee-blue-2--butter": {
+      "file": "images/derived/tee-blue-2--butter.png"
+    },
+    "cat-d-knit-oat-2--sage": {
+      "file": "images/derived/knit-oat-2--sage.png"
+    },
+    "cat-d-knit-oat-2--rose": {
+      "file": "images/derived/knit-oat-2--rose.png"
+    },
+    "cat-d-knit-mustard-2--navy": {
+      "file": "images/derived/knit-mustard-2--navy.png"
+    },
+    "cat-d-knit-mustard-2--brick": {
+      "file": "images/derived/knit-mustard-2--brick.png"
+    },
+    "cat-d-knit-mustard--olive": {
+      "file": "images/derived/knit-mustard--olive.png"
+    },
+    "cat-d-knit-oat--lavender": {
+      "file": "images/derived/knit-oat--lavender.png"
+    },
+    "cat-d-knit-mustard-2--teal": {
+      "file": "images/derived/knit-mustard-2--teal.png"
+    },
+    "cat-d-cardigan-blush--cream": {
+      "file": "images/derived/cardigan-blush--cream.png"
+    },
+    "cat-d-cardigan-blush--sage": {
+      "file": "images/derived/cardigan-blush--sage.png"
+    },
+    "cat-d-dress-crochet--ivory": {
+      "file": "images/derived/dress-crochet--ivory.png"
+    },
+    "cat-d-dress-crochet--sky": {
+      "file": "images/derived/dress-crochet--sky.png"
+    },
+    "cat-d-skirt-black--navy": {
+      "file": "images/derived/skirt-black--navy.png"
+    },
+    "cat-d-skirt-black--bottle-green": {
+      "file": "images/derived/skirt-black--bottle-green.png"
+    },
+    "cat-d-skirt-mustard-2--rust": {
+      "file": "images/derived/skirt-mustard-2--rust.png"
+    },
+    "cat-d-skirt-mustard-2--sage": {
+      "file": "images/derived/skirt-mustard-2--sage.png"
     }
   },
   "files": [
@@ -470,6 +653,14 @@
       "filename": "merci-demo-stage-tee.jpg"
     },
     {
+      "key": "banner-dress",
+      "filename": "merci-demo-banner-dress.png"
+    },
+    {
+      "key": "banner-hat",
+      "filename": "merci-demo-banner-hat.png"
+    },
+    {
       "key": "tile-dress",
       "filename": "merci-demo-tile-dress.png"
     },
@@ -498,6 +689,10 @@
         {
           "name": "Black",
           "image": "cat-beanie-black"
+        },
+        {
+          "name": "Cream",
+          "image": "cat-d-beanie-brown--cream"
         }
       ],
       "sizes": [],
@@ -521,8 +716,12 @@
       "body": "<p>The chunky knit beanie — made to finish an outfit and keep its shape season after season.</p><ul><li>One size, adjustable inner band</li><li>Packs flat for travel</li><li>Spot clean only</li></ul>",
       "colors": [
         {
-          "name": "Black",
-          "image": "cat-beanie-black"
+          "name": "Forest",
+          "image": "cat-d-beanie-brown--forest"
+        },
+        {
+          "name": "Burgundy",
+          "image": "cat-d-beanie-brown--burgundy"
         },
         {
           "name": "Brown",
@@ -555,6 +754,10 @@
           "image": "cat-bucket-green"
         },
         {
+          "name": "Butter",
+          "image": "cat-d-bucket-green--butter"
+        },
+        {
           "name": "Denim",
           "image": "cat-bucket-denim"
         }
@@ -584,8 +787,12 @@
           "image": "cat-bucket-denim"
         },
         {
-          "name": "Green",
-          "image": "cat-bucket-green"
+          "name": "Light Wash",
+          "image": "cat-d-bucket-denim--light-wash"
+        },
+        {
+          "name": "Washed Black",
+          "image": "cat-d-bucket-denim--washed-black"
         }
       ],
       "sizes": [],
@@ -599,6 +806,158 @@
         57
       ],
       "sold": 95,
+      "badge": "new"
+    },
+    {
+      "handle": "terry-bucket-hat",
+      "title": "Terry Bucket Hat",
+      "vendor": "Merci Demo",
+      "type": "Hats",
+      "price": 35,
+      "body": "<p>The terry bucket hat — made to finish an outfit and keep its shape season after season.</p><ul><li>One size, adjustable inner band</li><li>Packs flat for travel</li><li>Spot clean only</li></ul>",
+      "colors": [
+        {
+          "name": "Cobalt",
+          "image": "cat-d-bucket-green--cobalt"
+        },
+        {
+          "name": "Pink",
+          "image": "cat-d-bucket-green--pink"
+        },
+        {
+          "name": "Green",
+          "image": "cat-bucket-green"
+        }
+      ],
+      "sizes": [],
+      "extraImages": [],
+      "collections": [
+        "cornershops",
+        "lorem-ipsum-dolor-1"
+      ],
+      "rating": [
+        4.2,
+        74
+      ],
+      "sold": 124,
+      "compare": 42,
+      "badge": "sale"
+    },
+    {
+      "handle": "wide-brim-straw-boater",
+      "title": "Wide Brim Straw Boater",
+      "vendor": "Merci Demo",
+      "type": "Hats",
+      "price": 49,
+      "body": "<p>The wide brim straw boater — made to finish an outfit and keep its shape season after season.</p><ul><li>One size, adjustable inner band</li><li>Packs flat for travel</li><li>Spot clean only</li></ul>",
+      "colors": [
+        {
+          "name": "Natural",
+          "image": "cat-hat-boater-2"
+        },
+        {
+          "name": "Black",
+          "image": "cat-d-hat-boater-2--black"
+        }
+      ],
+      "sizes": [],
+      "extraImages": [],
+      "collections": [
+        "cornershops",
+        "lorem-ipsum-dolor-1"
+      ],
+      "rating": [
+        4.5,
+        91
+      ],
+      "sold": 13
+    },
+    {
+      "handle": "straw-fedora-with-ribbon",
+      "title": "Straw Fedora with Ribbon",
+      "vendor": "Merci Demo",
+      "type": "Hats",
+      "price": 52,
+      "body": "<p>The straw fedora with ribbon — made to finish an outfit and keep its shape season after season.</p><ul><li>One size, adjustable inner band</li><li>Packs flat for travel</li><li>Spot clean only</li></ul>",
+      "colors": [
+        {
+          "name": "Natural",
+          "image": "cat-hat-fedora-2"
+        },
+        {
+          "name": "Ivory",
+          "image": "cat-d-hat-fedora-2--ivory"
+        }
+      ],
+      "sizes": [],
+      "extraImages": [],
+      "collections": [
+        "cornershops",
+        "lorem-ipsum-dolor-1"
+      ],
+      "rating": [
+        4.8,
+        18
+      ],
+      "sold": 42,
+      "compare": 65,
+      "badge": "sale"
+    },
+    {
+      "handle": "classic-panama-hat",
+      "title": "Classic Panama Hat",
+      "vendor": "Merci Demo",
+      "type": "Hats",
+      "price": 58,
+      "body": "<p>The classic panama hat — made to finish an outfit and keep its shape season after season.</p><ul><li>One size, adjustable inner band</li><li>Packs flat for travel</li><li>Spot clean only</li></ul>",
+      "colors": [
+        {
+          "name": "Sand",
+          "image": "cat-d-hat-boater--sand"
+        },
+        {
+          "name": "Natural",
+          "image": "cat-hat-boater"
+        }
+      ],
+      "sizes": [],
+      "extraImages": [],
+      "collections": [
+        "cornershops",
+        "lorem-ipsum-dolor-1",
+        "new-arrival"
+      ],
+      "rating": [
+        4.1,
+        35
+      ],
+      "sold": 71,
+      "badge": "new"
+    },
+    {
+      "handle": "leopard-scarf-scrunchie",
+      "title": "Leopard Scarf Scrunchie",
+      "vendor": "Merci Demo",
+      "type": "Scarves",
+      "price": 15,
+      "body": "<p>The leopard scarf scrunchie — a soft scarf scrunchie you can wear in your hair, round your wrist or tied to a bag.</p><ul><li>Satin-feel woven fabric</li><li>Covered elastic</li><li>Hand wash</li></ul>",
+      "colors": [
+        {
+          "name": "Leopard",
+          "image": "cat-d-scarf-leopard"
+        }
+      ],
+      "sizes": [],
+      "extraImages": [],
+      "collections": [
+        "cornershops",
+        "new-arrival"
+      ],
+      "rating": [
+        4.4,
+        52
+      ],
+      "sold": 100,
       "badge": "new"
     },
     {
@@ -622,95 +981,41 @@
         "trending"
       ],
       "rating": [
-        4.2,
-        74
+        4.7,
+        69
       ],
-      "sold": 124,
+      "sold": 129,
       "badge": "hot"
     },
     {
-      "handle": "wide-brim-straw-boater",
-      "title": "Wide Brim Straw Boater",
+      "handle": "straw-crossbody-bag",
+      "title": "Straw Crossbody Bag",
       "vendor": "Merci Demo",
-      "type": "Hats",
-      "price": 49,
-      "body": "<p>The wide brim straw boater — made to finish an outfit and keep its shape season after season.</p><ul><li>One size, adjustable inner band</li><li>Packs flat for travel</li><li>Spot clean only</li></ul>",
+      "type": "Bags",
+      "price": 55,
+      "body": "<p>The straw crossbody bag — roomy enough for a laptop, a book and everything in between.</p><ul><li>Inner zip pocket</li><li>Reinforced handles</li><li>Wipe clean</li></ul>",
       "colors": [
         {
           "name": "Natural",
-          "image": "cat-hat-boater-2"
-        }
-      ],
-      "sizes": [],
-      "extraImages": [
-        "cat-hat-fedora"
-      ],
-      "collections": [
-        "cornershops",
-        "lorem-ipsum-dolor-1"
-      ],
-      "rating": [
-        4.5,
-        91
-      ],
-      "sold": 13
-    },
-    {
-      "handle": "straw-fedora-with-ribbon",
-      "title": "Straw Fedora with Ribbon",
-      "vendor": "Merci Demo",
-      "type": "Hats",
-      "price": 52,
-      "body": "<p>The straw fedora with ribbon — made to finish an outfit and keep its shape season after season.</p><ul><li>One size, adjustable inner band</li><li>Packs flat for travel</li><li>Spot clean only</li></ul>",
-      "colors": [
+          "image": "cat-d-crossbody-straw"
+        },
         {
-          "name": "Natural",
-          "image": "cat-hat-fedora-2"
+          "name": "Black",
+          "image": "cat-d-crossbody-straw--black"
         }
       ],
       "sizes": [],
-      "extraImages": [
-        "cat-hat-boater-2"
-      ],
-      "collections": [
-        "cornershops",
-        "lorem-ipsum-dolor-1"
-      ],
-      "rating": [
-        4.8,
-        18
-      ],
-      "sold": 42,
-      "compare": 65,
-      "badge": "sale"
-    },
-    {
-      "handle": "classic-panama-hat",
-      "title": "Classic Panama Hat",
-      "vendor": "Merci Demo",
-      "type": "Hats",
-      "price": 58,
-      "body": "<p>The classic panama hat — made to finish an outfit and keep its shape season after season.</p><ul><li>One size, adjustable inner band</li><li>Packs flat for travel</li><li>Spot clean only</li></ul>",
-      "colors": [
-        {
-          "name": "Natural",
-          "image": "cat-hat-fedora"
-        }
-      ],
-      "sizes": [],
-      "extraImages": [
-        "cat-hat-boater"
-      ],
+      "extraImages": [],
       "collections": [
         "cornershops",
         "lorem-ipsum-dolor-1",
         "new-arrival"
       ],
       "rating": [
-        4.1,
-        35
+        4,
+        86
       ],
-      "sold": 71,
+      "sold": 18,
       "badge": "new"
     },
     {
@@ -722,25 +1027,27 @@
       "body": "<p>The striped straw tote — roomy enough for a laptop, a book and everything in between.</p><ul><li>Inner zip pocket</li><li>Reinforced handles</li><li>Wipe clean</li></ul>",
       "colors": [
         {
-          "name": "Multi Stripe",
+          "name": "Pink Stripe",
           "image": "cat-tote-stripe"
         },
         {
-          "name": "Natural",
-          "image": "cat-tote-canvas"
+          "name": "Blue Stripe",
+          "image": "cat-d-tote-stripe--blue-stripe"
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "cat-tote-stripe-2"
+      ],
       "collections": [
         "cornershops",
         "lorem-ipsum-dolor-1"
       ],
       "rating": [
-        4.4,
-        52
+        4.3,
+        13
       ],
-      "sold": 100,
+      "sold": 47,
       "badge": "bestseller"
     },
     {
@@ -753,24 +1060,30 @@
       "colors": [
         {
           "name": "Natural",
-          "image": "cat-tote-canvas-2"
+          "image": "cat-tote-canvas"
         },
         {
-          "name": "Multi Stripe",
-          "image": "cat-tote-stripe-2"
+          "name": "Olive",
+          "image": "cat-d-tote-canvas--olive"
+        },
+        {
+          "name": "Black",
+          "image": "cat-d-tote-canvas--black"
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "cat-tote-canvas-2"
+      ],
       "collections": [
         "cornershops",
         "merci-1"
       ],
       "rating": [
-        4.7,
-        69
+        4.6,
+        30
       ],
-      "sold": 129
+      "sold": 76
     },
     {
       "handle": "quilted-puffer-tote",
@@ -794,10 +1107,10 @@
         "merci-1"
       ],
       "rating": [
-        4,
-        86
+        4.9,
+        47
       ],
-      "sold": 18,
+      "sold": 105,
       "compare": 110,
       "badge": "sale"
     },
@@ -824,67 +1137,39 @@
         "trending"
       ],
       "rating": [
-        4.3,
-        13
+        4.2,
+        64
       ],
-      "sold": 47,
+      "sold": 134,
       "badge": "bestseller"
     },
     {
-      "handle": "woven-beach-bag",
-      "title": "Woven Beach Bag",
+      "handle": "leather-mini-backpack",
+      "title": "Leather Mini Backpack",
       "vendor": "Merci Demo",
       "type": "Bags",
-      "price": 49,
-      "body": "<p>The woven beach bag — roomy enough for a laptop, a book and everything in between.</p><ul><li>Inner zip pocket</li><li>Reinforced handles</li><li>Wipe clean</li></ul>",
-      "colors": [
-        {
-          "name": "Multi Stripe",
-          "image": "cat-tote-stripe-2"
-        }
-      ],
-      "sizes": [],
-      "extraImages": [
-        "cat-tote-canvas"
-      ],
-      "collections": [
-        "lorem-ipsum-dolor-1",
-        "cornershops"
-      ],
-      "rating": [
-        4.6,
-        30
-      ],
-      "sold": 76,
-      "compare": 59,
-      "badge": "sale"
-    },
-    {
-      "handle": "structured-mini-hobo",
-      "title": "Structured Mini Hobo",
-      "vendor": "Merci Demo",
-      "type": "Bags",
-      "price": 95,
-      "body": "<p>The structured mini hobo — roomy enough for a laptop, a book and everything in between.</p><ul><li>Inner zip pocket</li><li>Reinforced handles</li><li>Wipe clean</li></ul>",
+      "price": 110,
+      "body": "<p>The leather mini backpack — roomy enough for a laptop, a book and everything in between.</p><ul><li>Inner zip pocket</li><li>Reinforced handles</li><li>Wipe clean</li></ul>",
       "colors": [
         {
           "name": "Black",
-          "image": "cat-bag-hobo-2"
+          "image": "cat-d-backpack-black"
         }
       ],
       "sizes": [],
-      "extraImages": [
-        "cat-bag-quilted"
-      ],
+      "extraImages": [],
       "collections": [
         "cornershops",
-        "merci-1"
+        "merci-1",
+        "trending"
       ],
       "rating": [
-        4.9,
-        47
+        4.5,
+        81
       ],
-      "sold": 105
+      "sold": 23,
+      "compare": 135,
+      "badge": "bestseller"
     },
     {
       "handle": "chunky-leather-trainers",
@@ -897,6 +1182,10 @@
         {
           "name": "Stone",
           "image": "cat-sneaker-beige"
+        },
+        {
+          "name": "Grey",
+          "image": "cat-d-sneaker-beige--grey"
         }
       ],
       "sizes": [
@@ -914,10 +1203,10 @@
         "trending"
       ],
       "rating": [
-        4.2,
-        64
+        4.8,
+        8
       ],
-      "sold": 134,
+      "sold": 52,
       "badge": "bestseller"
     },
     {
@@ -928,6 +1217,10 @@
       "price": 99,
       "body": "<p>The suede platform trainers — cushioned insole and a flexible sole made for long days on your feet.</p><ul><li>True to size</li><li>Leather lining</li><li>Non-slip rubber outsole</li></ul>",
       "colors": [
+        {
+          "name": "Sand",
+          "image": "cat-d-sneaker-beige-2--sand"
+        },
         {
           "name": "Stone",
           "image": "cat-sneaker-beige-2"
@@ -940,17 +1233,57 @@
         "39",
         "40"
       ],
-      "extraImages": [
-        "cat-sneaker-beige"
-      ],
+      "extraImages": [],
       "collections": [
         "merci-1"
       ],
       "rating": [
-        4.5,
-        81
+        4.1,
+        25
       ],
-      "sold": 23
+      "sold": 81
+    },
+    {
+      "handle": "knit-runner-sneakers",
+      "title": "Knit Runner Sneakers",
+      "vendor": "Merci Demo",
+      "type": "Shoes",
+      "price": 79,
+      "body": "<p>The knit runner sneakers — cushioned insole and a flexible sole made for long days on your feet.</p><ul><li>True to size</li><li>Leather lining</li><li>Non-slip rubber outsole</li></ul>",
+      "colors": [
+        {
+          "name": "Blush",
+          "image": "cat-d-sneaker-knit-blush"
+        },
+        {
+          "name": "Grey",
+          "image": "cat-d-sneaker-knit-blush--grey"
+        },
+        {
+          "name": "Sky",
+          "image": "cat-d-sneaker-knit-blush--sky"
+        }
+      ],
+      "sizes": [
+        "36",
+        "37",
+        "38",
+        "39",
+        "40"
+      ],
+      "extraImages": [],
+      "collections": [
+        "merci-1",
+        "new-arrival",
+        "trending"
+      ],
+      "rating": [
+        4.4,
+        42
+      ],
+      "sold": 110,
+      "compare": 95,
+      "badge": "sale"
     },
     {
       "handle": "leather-chelsea-boots",
@@ -980,44 +1313,12 @@
         "cornershops"
       ],
       "rating": [
-        4.8,
-        8
+        4.7,
+        59
       ],
-      "sold": 52,
+      "sold": 139,
       "compare": 179,
       "badge": "sale"
-    },
-    {
-      "handle": "pull-on-ankle-boots",
-      "title": "Pull-On Ankle Boots",
-      "vendor": "Merci Demo",
-      "type": "Shoes",
-      "price": 135,
-      "body": "<p>The pull-on ankle boots — cushioned insole and a flexible sole made for long days on your feet.</p><ul><li>True to size</li><li>Leather lining</li><li>Non-slip rubber outsole</li></ul>",
-      "colors": [
-        {
-          "name": "Black",
-          "image": "cat-boot-chelsea-2"
-        }
-      ],
-      "sizes": [
-        "36",
-        "37",
-        "38",
-        "39",
-        "40"
-      ],
-      "extraImages": [],
-      "collections": [
-        "merci-1",
-        "new-arrival"
-      ],
-      "rating": [
-        4.1,
-        25
-      ],
-      "sold": 81,
-      "badge": "new"
     },
     {
       "handle": "braided-slide-sandals",
@@ -1030,6 +1331,14 @@
         {
           "name": "Taupe",
           "image": "cat-slide-woven"
+        },
+        {
+          "name": "Black",
+          "image": "cat-d-slide-woven--black"
+        },
+        {
+          "name": "Ivory",
+          "image": "cat-d-slide-woven--ivory"
         }
       ],
       "sizes": [
@@ -1047,43 +1356,10 @@
         "lorem-ipsum-dolor-1"
       ],
       "rating": [
-        4.4,
-        42
+        4,
+        76
       ],
-      "sold": 110
-    },
-    {
-      "handle": "padded-strap-slides",
-      "title": "Padded Strap Slides",
-      "vendor": "Merci Demo",
-      "type": "Shoes",
-      "price": 49,
-      "body": "<p>The padded strap slides — cushioned insole and a flexible sole made for long days on your feet.</p><ul><li>True to size</li><li>Leather lining</li><li>Non-slip rubber outsole</li></ul>",
-      "colors": [
-        {
-          "name": "Taupe",
-          "image": "cat-slide-woven-2"
-        }
-      ],
-      "sizes": [
-        "36",
-        "37",
-        "38",
-        "39",
-        "40"
-      ],
-      "extraImages": [],
-      "collections": [
-        "merci-1",
-        "lorem-ipsum-dolor-1"
-      ],
-      "rating": [
-        4.7,
-        59
-      ],
-      "sold": 139,
-      "compare": 59,
-      "badge": "sale"
+      "sold": 28
     },
     {
       "handle": "square-toe-leather-mules",
@@ -1096,6 +1372,14 @@
         {
           "name": "Camel",
           "image": "cat-mule-camel"
+        },
+        {
+          "name": "Black",
+          "image": "cat-d-mule-camel--black"
+        },
+        {
+          "name": "Cream",
+          "image": "cat-d-mule-camel--cream"
         }
       ],
       "sizes": [
@@ -1112,10 +1396,10 @@
         "merci-1"
       ],
       "rating": [
-        4,
-        76
+        4.3,
+        93
       ],
-      "sold": 28
+      "sold": 57
     },
     {
       "handle": "low-block-slide",
@@ -1125,6 +1409,10 @@
       "price": 45,
       "body": "<p>The low block slide — cushioned insole and a flexible sole made for long days on your feet.</p><ul><li>True to size</li><li>Leather lining</li><li>Non-slip rubber outsole</li></ul>",
       "colors": [
+        {
+          "name": "Rose",
+          "image": "cat-d-mule-camel-2--rose"
+        },
         {
           "name": "Camel",
           "image": "cat-mule-camel-2"
@@ -1143,10 +1431,10 @@
         "lorem-ipsum-dolor-1"
       ],
       "rating": [
-        4.3,
-        93
+        4.6,
+        20
       ],
-      "sold": 57
+      "sold": 86
     },
     {
       "handle": "high-rise-denim-shorts",
@@ -1159,6 +1447,14 @@
         {
           "name": "Mid Blue",
           "image": "cat-shorts-denim"
+        },
+        {
+          "name": "Light Wash",
+          "image": "cat-d-shorts-denim--light-wash"
+        },
+        {
+          "name": "Washed Black",
+          "image": "cat-d-shorts-denim--washed-black"
         }
       ],
       "sizes": [
@@ -1174,10 +1470,10 @@
         "lorem-ipsum-dolor-1"
       ],
       "rating": [
-        4.6,
-        20
+        4.9,
+        37
       ],
-      "sold": 86,
+      "sold": 115,
       "badge": "bestseller"
     },
     {
@@ -1188,6 +1484,10 @@
       "price": 42,
       "body": "<p>The distressed cut-off shorts — rigid cotton denim that softens and moulds to you with every wear.</p><ul><li>High rise</li><li>100% organic cotton</li><li>Machine wash cold, inside out</li></ul>",
       "colors": [
+        {
+          "name": "Ecru",
+          "image": "cat-d-shorts-denim-2--ecru"
+        },
         {
           "name": "Mid Blue",
           "image": "cat-shorts-denim-2"
@@ -1205,10 +1505,10 @@
         "jewelry"
       ],
       "rating": [
-        4.9,
-        37
+        4.2,
+        54
       ],
-      "sold": 115,
+      "sold": 144,
       "compare": 52,
       "badge": "sale"
     },
@@ -1221,8 +1521,12 @@
       "body": "<p>The relaxed mom shorts — rigid cotton denim that softens and moulds to you with every wear.</p><ul><li>High rise</li><li>100% organic cotton</li><li>Machine wash cold, inside out</li></ul>",
       "colors": [
         {
-          "name": "Mid Blue",
+          "name": "Light Wash",
           "image": "cat-shorts-denim-3"
+        },
+        {
+          "name": "Indigo",
+          "image": "cat-d-shorts-denim-3--indigo"
         }
       ],
       "sizes": [
@@ -1238,10 +1542,10 @@
         "new-arrival"
       ],
       "rating": [
-        4.2,
-        54
+        4.5,
+        71
       ],
-      "sold": 144,
+      "sold": 33,
       "badge": "new"
     },
     {
@@ -1253,12 +1557,16 @@
       "body": "<p>The oversized denim jacket — a layering piece that works over a tee in spring and a knit in autumn.</p><ul><li>Relaxed fit — size down for a closer fit</li><li>Fully lined</li><li>Dry clean recommended</li></ul>",
       "colors": [
         {
-          "name": "Mid Blue",
-          "image": "cat-jacket-denim-mid"
-        },
-        {
           "name": "Light Wash",
           "image": "cat-jacket-denim-light"
+        },
+        {
+          "name": "Mid Blue",
+          "image": "cat-d-jacket-denim-light--mid-blue"
+        },
+        {
+          "name": "Washed Black",
+          "image": "cat-d-jacket-denim-light--washed-black"
         }
       ],
       "sizes": [
@@ -1274,10 +1582,10 @@
         "new-in"
       ],
       "rating": [
-        4.5,
-        71
+        4.8,
+        88
       ],
-      "sold": 33
+      "sold": 62
     },
     {
       "handle": "vintage-wash-trucker-jacket",
@@ -1288,12 +1596,12 @@
       "body": "<p>The vintage wash trucker jacket — a layering piece that works over a tee in spring and a knit in autumn.</p><ul><li>Relaxed fit — size down for a closer fit</li><li>Fully lined</li><li>Dry clean recommended</li></ul>",
       "colors": [
         {
-          "name": "Light Wash",
-          "image": "cat-jacket-denim-light"
-        },
-        {
           "name": "Mid Blue",
           "image": "cat-jacket-denim-mid"
+        },
+        {
+          "name": "Light Wash",
+          "image": "cat-d-jacket-denim-mid--light-wash"
         }
       ],
       "sizes": [
@@ -1309,10 +1617,10 @@
         "jewelry"
       ],
       "rating": [
-        4.8,
-        88
+        4.1,
+        15
       ],
-      "sold": 62
+      "sold": 91
     },
     {
       "handle": "cropped-denim-jacket",
@@ -1322,6 +1630,10 @@
       "price": 89,
       "body": "<p>The cropped denim jacket — a layering piece that works over a tee in spring and a knit in autumn.</p><ul><li>Relaxed fit — size down for a closer fit</li><li>Fully lined</li><li>Dry clean recommended</li></ul>",
       "colors": [
+        {
+          "name": "Ecru",
+          "image": "cat-d-jacket-denim-crop--ecru"
+        },
         {
           "name": "Mid Blue",
           "image": "cat-jacket-denim-crop"
@@ -1341,10 +1653,10 @@
         "new-arrival"
       ],
       "rating": [
-        4.1,
-        15
+        4.4,
+        32
       ],
-      "sold": 91,
+      "sold": 120,
       "compare": 110,
       "badge": "sale"
     },
@@ -1359,6 +1671,10 @@
         {
           "name": "Blue",
           "image": "cat-top-denim-halter"
+        },
+        {
+          "name": "Rose",
+          "image": "cat-d-top-denim-halter--rose"
         }
       ],
       "sizes": [
@@ -1372,13 +1688,14 @@
       "collections": [
         "jewelry",
         "clearance",
-        "lorem-ipsum-dolor-1"
+        "lorem-ipsum-dolor-1",
+        "clothings"
       ],
       "rating": [
-        4.4,
-        32
+        4.7,
+        49
       ],
-      "sold": 120
+      "sold": 9
     },
     {
       "handle": "short-sleeve-poplin-shirt",
@@ -1391,6 +1708,14 @@
         {
           "name": "Green",
           "image": "cat-shirt-green"
+        },
+        {
+          "name": "Navy",
+          "image": "cat-d-shirt-green--navy"
+        },
+        {
+          "name": "Terracotta",
+          "image": "cat-d-shirt-green--terracotta"
         }
       ],
       "sizes": [
@@ -1406,10 +1731,10 @@
         "clothings"
       ],
       "rating": [
-        4.7,
-        49
+        4,
+        66
       ],
-      "sold": 9,
+      "sold": 38,
       "compare": 55,
       "badge": "sale"
     },
@@ -1422,40 +1747,16 @@
       "body": "<p>The camp collar shirt — an easy shirt in breathable fabric — tuck it in or wear it loose.</p><ul><li>Relaxed fit</li><li>Mother-of-pearl buttons</li><li>Machine wash 30°C</li></ul>",
       "colors": [
         {
+          "name": "Sky",
+          "image": "cat-d-shirt-green-2--sky"
+        },
+        {
+          "name": "Ecru",
+          "image": "cat-d-shirt-green-2--ecru"
+        },
+        {
           "name": "Green",
           "image": "cat-shirt-green-2"
-        }
-      ],
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "extraImages": [
-        "cat-tee-blue"
-      ],
-      "collections": [
-        "clearance"
-      ],
-      "rating": [
-        4,
-        66
-      ],
-      "sold": 38
-    },
-    {
-      "handle": "cotton-poplin-shirt-dress",
-      "title": "Cotton Poplin Shirt Dress",
-      "vendor": "Merci Demo",
-      "type": "Dresses",
-      "price": 65,
-      "body": "<p>The cotton poplin shirt dress — easy to throw on, hard to take off — our favourite piece of the season.</p><ul><li>Relaxed fit</li><li>Midi length</li><li>Machine wash 30°C</li></ul>",
-      "colors": [
-        {
-          "name": "Sky Blue",
-          "image": "cat-dress-shirt-blue"
         }
       ],
       "sizes": [
@@ -1468,13 +1769,54 @@
       "extraImages": [],
       "collections": [
         "clearance",
-        "lorem-ipsum-dolor-4"
+        "lorem-ipsum-dolor-4",
+        "clothings"
       ],
       "rating": [
         4.3,
         83
       ],
       "sold": 67
+    },
+    {
+      "handle": "cotton-poplin-shirt-dress",
+      "title": "Cotton Poplin Shirt Dress",
+      "vendor": "Merci Demo",
+      "type": "Dresses",
+      "price": 65,
+      "body": "<p>The cotton poplin shirt dress — easy to throw on, hard to take off — our favourite piece of the season.</p><ul><li>Relaxed fit</li><li>Midi length</li><li>Machine wash 30°C</li></ul>",
+      "colors": [
+        {
+          "name": "Sky Blue",
+          "image": "cat-dress-shirt-blue"
+        },
+        {
+          "name": "Blush",
+          "image": "cat-d-dress-shirt-blue--blush"
+        },
+        {
+          "name": "Sage",
+          "image": "cat-d-dress-shirt-blue--sage"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "extraImages": [],
+      "collections": [
+        "clearance",
+        "lorem-ipsum-dolor-4",
+        "clothings"
+      ],
+      "rating": [
+        4.6,
+        10
+      ],
+      "sold": 96
     },
     {
       "handle": "slub-v-neck-tee",
@@ -1491,6 +1833,10 @@
         {
           "name": "Peach",
           "image": "cat-tee-peach"
+        },
+        {
+          "name": "Off White",
+          "image": "cat-d-tee-blue--off-white"
         }
       ],
       "sizes": [
@@ -1507,10 +1853,10 @@
         "lorem-ipsum-dolor-4"
       ],
       "rating": [
-        4.6,
-        10
+        4.9,
+        27
       ],
-      "sold": 96,
+      "sold": 125,
       "badge": "bestseller"
     },
     {
@@ -1522,49 +1868,16 @@
       "body": "<p>The relaxed cotton tee — soft, slightly slubbed cotton that keeps its shape wash after wash.</p><ul><li>Regular fit</li><li>100% cotton jersey</li><li>Machine wash 30°C</li></ul>",
       "colors": [
         {
+          "name": "Sage",
+          "image": "cat-d-tee-peach-2--sage"
+        },
+        {
+          "name": "Charcoal",
+          "image": "cat-d-tee-peach-2--charcoal"
+        },
+        {
           "name": "Peach",
           "image": "cat-tee-peach-2"
-        },
-        {
-          "name": "Sky Blue",
-          "image": "cat-tee-blue-2"
-        }
-      ],
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "extraImages": [],
-      "collections": [
-        "clothings",
-        "lorem-ipsum-dolor-4"
-      ],
-      "rating": [
-        4.9,
-        27
-      ],
-      "sold": 125,
-      "compare": 30,
-      "badge": "sale"
-    },
-    {
-      "handle": "everyday-crew-tee",
-      "title": "Everyday Crew Tee",
-      "vendor": "Merci Demo",
-      "type": "Tees",
-      "price": 19,
-      "body": "<p>The everyday crew tee — soft, slightly slubbed cotton that keeps its shape wash after wash.</p><ul><li>Regular fit</li><li>100% cotton jersey</li><li>Machine wash 30°C</li></ul>",
-      "colors": [
-        {
-          "name": "Sky Blue",
-          "image": "cat-tee-blue-2"
-        },
-        {
-          "name": "Peach",
-          "image": "cat-tee-peach"
         }
       ],
       "sizes": [
@@ -1583,19 +1896,29 @@
         4.2,
         44
       ],
-      "sold": 14
+      "sold": 14,
+      "compare": 30,
+      "badge": "sale"
     },
     {
-      "handle": "ribbed-crop-tank",
-      "title": "Ribbed Crop Tank",
+      "handle": "everyday-crew-tee",
+      "title": "Everyday Crew Tee",
       "vendor": "Merci Demo",
-      "type": "Knitwear",
+      "type": "Tees",
       "price": 19,
-      "body": "<p>The ribbed crop tank — fine rib knit with a close, flattering fit and a soft hand feel.</p><ul><li>Fitted</li><li>Cotton blend</li><li>Hand wash cold, dry flat</li></ul>",
+      "body": "<p>The everyday crew tee — soft, slightly slubbed cotton that keeps its shape wash after wash.</p><ul><li>Regular fit</li><li>100% cotton jersey</li><li>Machine wash 30°C</li></ul>",
       "colors": [
         {
-          "name": "Black",
-          "image": "cat-tank-black-rib"
+          "name": "Lilac",
+          "image": "cat-d-tee-blue-2--lilac"
+        },
+        {
+          "name": "Butter",
+          "image": "cat-d-tee-blue-2--butter"
+        },
+        {
+          "name": "Sky Blue",
+          "image": "cat-tee-blue-2"
         }
       ],
       "sizes": [
@@ -1608,7 +1931,6 @@
       "extraImages": [],
       "collections": [
         "clothings",
-        "clearance",
         "lorem-ipsum-dolor-4"
       ],
       "rating": [
@@ -1648,7 +1970,8 @@
       "extraImages": [],
       "collections": [
         "lorem-ipsum-dolor",
-        "clearance"
+        "clearance",
+        "clothings"
       ],
       "rating": [
         4.8,
@@ -1656,6 +1979,38 @@
       ],
       "sold": 72,
       "badge": "bestseller"
+    },
+    {
+      "handle": "ribbed-crop-tank",
+      "title": "Ribbed Crop Tank",
+      "vendor": "Merci Demo",
+      "type": "Knitwear",
+      "price": 19,
+      "body": "<p>The ribbed crop tank — fine rib knit with a close, flattering fit and a soft hand feel.</p><ul><li>Fitted</li><li>Cotton blend</li><li>Hand wash cold, dry flat</li></ul>",
+      "colors": [
+        {
+          "name": "Black",
+          "image": "cat-tank-black-rib"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "extraImages": [],
+      "collections": [
+        "clothings",
+        "clearance",
+        "lorem-ipsum-dolor-4"
+      ],
+      "rating": [
+        4.1,
+        95
+      ],
+      "sold": 101
     },
     {
       "handle": "cropped-knit-vest",
@@ -1666,12 +2021,163 @@
       "body": "<p>The cropped knit vest — fine rib knit with a close, flattering fit and a soft hand feel.</p><ul><li>Fitted</li><li>Cotton blend</li><li>Hand wash cold, dry flat</li></ul>",
       "colors": [
         {
+          "name": "Sage",
+          "image": "cat-d-knit-oat-2--sage"
+        },
+        {
+          "name": "Rose",
+          "image": "cat-d-knit-oat-2--rose"
+        },
+        {
           "name": "Oat",
           "image": "cat-knit-oat-2"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "extraImages": [],
+      "collections": [
+        "lorem-ipsum-dolor",
+        "clothings"
+      ],
+      "rating": [
+        4.4,
+        22
+      ],
+      "sold": 130
+    },
+    {
+      "handle": "fine-knit-shell-top",
+      "title": "Fine Knit Shell Top",
+      "vendor": "Merci Demo",
+      "type": "Knitwear",
+      "price": 32,
+      "body": "<p>The fine knit shell top — fine rib knit with a close, flattering fit and a soft hand feel.</p><ul><li>Fitted</li><li>Cotton blend</li><li>Hand wash cold, dry flat</li></ul>",
+      "colors": [
+        {
+          "name": "Navy",
+          "image": "cat-d-knit-mustard-2--navy"
+        },
+        {
+          "name": "Brick",
+          "image": "cat-d-knit-mustard-2--brick"
         },
         {
           "name": "Mustard",
           "image": "cat-knit-mustard-2"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "extraImages": [],
+      "collections": [
+        "lorem-ipsum-dolor",
+        "clothings",
+        "trending"
+      ],
+      "rating": [
+        4.7,
+        39
+      ],
+      "sold": 19,
+      "compare": 42,
+      "badge": "sale"
+    },
+    {
+      "handle": "sleeveless-rib-sweater",
+      "title": "Sleeveless Rib Sweater",
+      "vendor": "Merci Demo",
+      "type": "Knitwear",
+      "price": 45,
+      "body": "<p>The sleeveless rib sweater — fine rib knit with a close, flattering fit and a soft hand feel.</p><ul><li>Fitted</li><li>Cotton blend</li><li>Hand wash cold, dry flat</li></ul>",
+      "colors": [
+        {
+          "name": "Olive",
+          "image": "cat-d-knit-mustard--olive"
+        },
+        {
+          "name": "Mustard",
+          "image": "cat-knit-mustard"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "extraImages": [],
+      "collections": [
+        "lorem-ipsum-dolor",
+        "new-arrival",
+        "clothings"
+      ],
+      "rating": [
+        4,
+        56
+      ],
+      "sold": 48,
+      "badge": "new"
+    },
+    {
+      "handle": "cotton-knit-crop-top",
+      "title": "Cotton Knit Crop Top",
+      "vendor": "Merci Demo",
+      "type": "Knitwear",
+      "price": 29,
+      "body": "<p>The cotton knit crop top — fine rib knit with a close, flattering fit and a soft hand feel.</p><ul><li>Fitted</li><li>Cotton blend</li><li>Hand wash cold, dry flat</li></ul>",
+      "colors": [
+        {
+          "name": "Lavender",
+          "image": "cat-d-knit-oat--lavender"
+        },
+        {
+          "name": "Oat",
+          "image": "cat-knit-oat"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "extraImages": [],
+      "collections": [
+        "lorem-ipsum-dolor",
+        "clearance",
+        "lorem-ipsum-dolor-4",
+        "clothings"
+      ],
+      "rating": [
+        4.3,
+        73
+      ],
+      "sold": 77
+    },
+    {
+      "handle": "merino-blend-knit-tank",
+      "title": "Merino Blend Knit Tank",
+      "vendor": "Merci Demo",
+      "type": "Knitwear",
+      "price": 55,
+      "body": "<p>The merino blend knit tank — fine rib knit with a close, flattering fit and a soft hand feel.</p><ul><li>Fitted</li><li>Cotton blend</li><li>Hand wash cold, dry flat</li></ul>",
+      "colors": [
+        {
+          "name": "Teal",
+          "image": "cat-d-knit-mustard-2--teal"
         },
         {
           "name": "Black",
@@ -1691,160 +2197,54 @@
         "clothings"
       ],
       "rating": [
-        4.1,
-        95
+        4.6,
+        90
       ],
-      "sold": 101
-    },
-    {
-      "handle": "fine-knit-shell-top",
-      "title": "Fine Knit Shell Top",
-      "vendor": "Merci Demo",
-      "type": "Knitwear",
-      "price": 32,
-      "body": "<p>The fine knit shell top — fine rib knit with a close, flattering fit and a soft hand feel.</p><ul><li>Fitted</li><li>Cotton blend</li><li>Hand wash cold, dry flat</li></ul>",
-      "colors": [
-        {
-          "name": "Black",
-          "image": "cat-knit-black"
-        },
-        {
-          "name": "Oat",
-          "image": "cat-knit-oat"
-        },
-        {
-          "name": "Mustard",
-          "image": "cat-knit-mustard"
-        }
-      ],
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "extraImages": [],
-      "collections": [
-        "lorem-ipsum-dolor",
-        "clothings",
-        "trending"
-      ],
-      "rating": [
-        4.4,
-        22
-      ],
-      "sold": 130,
-      "compare": 42,
-      "badge": "sale"
-    },
-    {
-      "handle": "sleeveless-rib-sweater",
-      "title": "Sleeveless Rib Sweater",
-      "vendor": "Merci Demo",
-      "type": "Knitwear",
-      "price": 45,
-      "body": "<p>The sleeveless rib sweater — fine rib knit with a close, flattering fit and a soft hand feel.</p><ul><li>Fitted</li><li>Cotton blend</li><li>Hand wash cold, dry flat</li></ul>",
-      "colors": [
-        {
-          "name": "Mustard",
-          "image": "cat-knit-mustard-2"
-        },
-        {
-          "name": "Black",
-          "image": "cat-knit-black-2"
-        }
-      ],
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "extraImages": [],
-      "collections": [
-        "lorem-ipsum-dolor",
-        "new-arrival"
-      ],
-      "rating": [
-        4.7,
-        39
-      ],
-      "sold": 19,
-      "badge": "new"
-    },
-    {
-      "handle": "cotton-knit-crop-top",
-      "title": "Cotton Knit Crop Top",
-      "vendor": "Merci Demo",
-      "type": "Knitwear",
-      "price": 29,
-      "body": "<p>The cotton knit crop top — fine rib knit with a close, flattering fit and a soft hand feel.</p><ul><li>Fitted</li><li>Cotton blend</li><li>Hand wash cold, dry flat</li></ul>",
-      "colors": [
-        {
-          "name": "Oat",
-          "image": "cat-knit-oat"
-        },
-        {
-          "name": "Black",
-          "image": "cat-knit-black-2"
-        }
-      ],
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "extraImages": [],
-      "collections": [
-        "lorem-ipsum-dolor",
-        "clearance",
-        "lorem-ipsum-dolor-4"
-      ],
-      "rating": [
-        4,
-        56
-      ],
-      "sold": 48
-    },
-    {
-      "handle": "merino-blend-knit-tank",
-      "title": "Merino Blend Knit Tank",
-      "vendor": "Merci Demo",
-      "type": "Knitwear",
-      "price": 55,
-      "body": "<p>The merino blend knit tank — fine rib knit with a close, flattering fit and a soft hand feel.</p><ul><li>Fitted</li><li>Cotton blend</li><li>Hand wash cold, dry flat</li></ul>",
-      "colors": [
-        {
-          "name": "Black",
-          "image": "cat-knit-black-2"
-        },
-        {
-          "name": "Mustard",
-          "image": "cat-knit-mustard"
-        }
-      ],
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "extraImages": [],
-      "collections": [
-        "lorem-ipsum-dolor"
-      ],
-      "rating": [
-        4.3,
-        73
-      ],
-      "sold": 77,
+      "sold": 106,
       "compare": 69,
       "badge": "sale"
+    },
+    {
+      "handle": "cable-knit-cardigan",
+      "title": "Cable Knit Cardigan",
+      "vendor": "Merci Demo",
+      "type": "Knitwear",
+      "price": 69,
+      "body": "<p>The cable knit cardigan — fine rib knit with a close, flattering fit and a soft hand feel.</p><ul><li>Fitted</li><li>Cotton blend</li><li>Hand wash cold, dry flat</li></ul>",
+      "colors": [
+        {
+          "name": "Blush",
+          "image": "cat-d-cardigan-blush"
+        },
+        {
+          "name": "Cream",
+          "image": "cat-d-cardigan-blush--cream"
+        },
+        {
+          "name": "Sage",
+          "image": "cat-d-cardigan-blush--sage"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "extraImages": [],
+      "collections": [
+        "lorem-ipsum-dolor",
+        "new-in",
+        "new-arrival",
+        "clothings"
+      ],
+      "rating": [
+        4.9,
+        17
+      ],
+      "sold": 135,
+      "badge": "new"
     },
     {
       "handle": "crochet-mini-dress",
@@ -1857,6 +2257,14 @@
         {
           "name": "Tangerine",
           "image": "cat-dress-crochet"
+        },
+        {
+          "name": "Ivory",
+          "image": "cat-d-dress-crochet--ivory"
+        },
+        {
+          "name": "Sky",
+          "image": "cat-d-dress-crochet--sky"
         }
       ],
       "sizes": [
@@ -1870,13 +2278,14 @@
       "collections": [
         "lorem-ipsum-dolor",
         "lorem-ipsum-dolor-1",
-        "new-arrival"
+        "new-arrival",
+        "clothings"
       ],
       "rating": [
-        4.6,
-        90
+        4.2,
+        34
       ],
-      "sold": 106,
+      "sold": 24,
       "badge": "new"
     },
     {
@@ -1892,8 +2301,12 @@
           "image": "cat-skirt-black"
         },
         {
-          "name": "Mustard",
-          "image": "cat-skirt-mustard"
+          "name": "Navy",
+          "image": "cat-d-skirt-black--navy"
+        },
+        {
+          "name": "Bottle Green",
+          "image": "cat-d-skirt-black--bottle-green"
         }
       ],
       "sizes": [
@@ -1909,10 +2322,10 @@
         "new-arrival"
       ],
       "rating": [
-        4.9,
-        17
+        4.5,
+        51
       ],
-      "sold": 135
+      "sold": 53
     },
     {
       "handle": "crinkle-maxi-skirt",
@@ -1927,8 +2340,12 @@
           "image": "cat-skirt-mustard-2"
         },
         {
-          "name": "Black",
-          "image": "cat-skirt-black-2"
+          "name": "Rust",
+          "image": "cat-d-skirt-mustard-2--rust"
+        },
+        {
+          "name": "Sage",
+          "image": "cat-d-skirt-mustard-2--sage"
         }
       ],
       "sizes": [
@@ -1941,69 +2358,6 @@
       "extraImages": [],
       "collections": [
         "clothings",
-        "lorem-ipsum-dolor-4"
-      ],
-      "rating": [
-        4.2,
-        34
-      ],
-      "sold": 24,
-      "compare": 69,
-      "badge": "sale"
-    },
-    {
-      "handle": "satin-slip-midi-skirt",
-      "title": "Satin Slip Midi Skirt",
-      "vendor": "Merci Demo",
-      "type": "Skirts",
-      "price": 49,
-      "body": "<p>The satin slip midi skirt — fluid fabric that moves beautifully, with a comfortable elastic waist.</p><ul><li>Elastic waistband</li><li>Midi length</li><li>Machine wash 30°C</li></ul>",
-      "colors": [
-        {
-          "name": "Black",
-          "image": "cat-skirt-black-2"
-        }
-      ],
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "extraImages": [],
-      "collections": [
-        "clothings",
-        "lorem-ipsum-dolor-4"
-      ],
-      "rating": [
-        4.5,
-        51
-      ],
-      "sold": 53
-    },
-    {
-      "handle": "lounge-shirt-dress",
-      "title": "Lounge Shirt Dress",
-      "vendor": "Merci Demo",
-      "type": "Dresses",
-      "price": 59,
-      "body": "<p>The lounge shirt dress — easy to throw on, hard to take off — our favourite piece of the season.</p><ul><li>Relaxed fit</li><li>Midi length</li><li>Machine wash 30°C</li></ul>",
-      "colors": [
-        {
-          "name": "Sky Blue",
-          "image": "cat-dress-shirt-blue"
-        }
-      ],
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "extraImages": [],
-      "collections": [
         "lorem-ipsum-dolor-4"
       ],
       "rating": [
@@ -2011,218 +2365,8 @@
         68
       ],
       "sold": 82,
-      "compare": 75,
+      "compare": 69,
       "badge": "sale"
-    },
-    {
-      "handle": "knotted-velvet-headband",
-      "title": "Knotted Velvet Headband",
-      "vendor": "Merci Demo",
-      "type": "Hats",
-      "price": 19,
-      "body": "<p>The knotted velvet headband — made to finish an outfit and keep its shape season after season.</p><ul><li>One size, adjustable inner band</li><li>Packs flat for travel</li><li>Spot clean only</li></ul>",
-      "colors": [
-        {
-          "name": "Black",
-          "image": "cat-p-headband"
-        }
-      ],
-      "sizes": [],
-      "extraImages": [],
-      "collections": [
-        "cornershops",
-        "new-arrival"
-      ],
-      "rating": [
-        4.1,
-        85
-      ],
-      "sold": 111,
-      "badge": "new"
-    },
-    {
-      "handle": "patchwork-fleece-bucket-hat",
-      "title": "Patchwork Fleece Bucket Hat",
-      "vendor": "Merci Demo",
-      "type": "Hats",
-      "price": 42,
-      "body": "<p>The patchwork fleece bucket hat — made to finish an outfit and keep its shape season after season.</p><ul><li>One size, adjustable inner band</li><li>Packs flat for travel</li><li>Spot clean only</li></ul>",
-      "colors": [
-        {
-          "name": "Multi Check",
-          "image": "cat-p-bucket-patch"
-        }
-      ],
-      "sizes": [],
-      "extraImages": [
-        "cat-bucket-denim"
-      ],
-      "collections": [
-        "cornershops",
-        "trending"
-      ],
-      "rating": [
-        4.4,
-        12
-      ],
-      "sold": 140,
-      "badge": "hot"
-    },
-    {
-      "handle": "terry-bucket-hat",
-      "title": "Terry Bucket Hat",
-      "vendor": "Merci Demo",
-      "type": "Hats",
-      "price": 35,
-      "body": "<p>The terry bucket hat — made to finish an outfit and keep its shape season after season.</p><ul><li>One size, adjustable inner band</li><li>Packs flat for travel</li><li>Spot clean only</li></ul>",
-      "colors": [
-        {
-          "name": "Cobalt",
-          "image": "cat-p-bucket-cobalt"
-        },
-        {
-          "name": "Green",
-          "image": "cat-bucket-green"
-        }
-      ],
-      "sizes": [],
-      "extraImages": [],
-      "collections": [
-        "cornershops",
-        "lorem-ipsum-dolor-1"
-      ],
-      "rating": [
-        4.7,
-        29
-      ],
-      "sold": 29,
-      "compare": 42,
-      "badge": "sale"
-    },
-    {
-      "handle": "leopard-hair-scarf",
-      "title": "Leopard Hair Scarf",
-      "vendor": "Merci Demo",
-      "type": "Scarves",
-      "price": 15,
-      "body": "<p>The leopard hair scarf — a lightweight square you can wear four ways — neck, hair, bag or wrist.</p><ul><li>90 × 90 cm</li><li>Hand-rolled edges</li><li>Dry clean</li></ul>",
-      "colors": [
-        {
-          "name": "Leopard",
-          "image": "cat-p-scrunchie"
-        }
-      ],
-      "sizes": [],
-      "extraImages": [],
-      "collections": [
-        "cornershops",
-        "new-arrival"
-      ],
-      "rating": [
-        4,
-        46
-      ],
-      "sold": 58,
-      "badge": "new"
-    },
-    {
-      "handle": "knit-runner-sneakers",
-      "title": "Knit Runner Sneakers",
-      "vendor": "Merci Demo",
-      "type": "Shoes",
-      "price": 79,
-      "body": "<p>The knit runner sneakers — cushioned insole and a flexible sole made for long days on your feet.</p><ul><li>True to size</li><li>Leather lining</li><li>Non-slip rubber outsole</li></ul>",
-      "colors": [
-        {
-          "name": "Blush",
-          "image": "cat-p-sneaker-pink"
-        }
-      ],
-      "sizes": [
-        "36",
-        "37",
-        "38",
-        "39",
-        "40"
-      ],
-      "extraImages": [
-        "cat-sneaker-beige"
-      ],
-      "collections": [
-        "merci-1",
-        "new-arrival",
-        "trending"
-      ],
-      "rating": [
-        4.3,
-        63
-      ],
-      "sold": 87,
-      "compare": 95,
-      "badge": "sale"
-    },
-    {
-      "handle": "cable-knit-cardigan",
-      "title": "Cable Knit Cardigan",
-      "vendor": "Merci Demo",
-      "type": "Knitwear",
-      "price": 69,
-      "body": "<p>The cable knit cardigan — fine rib knit with a close, flattering fit and a soft hand feel.</p><ul><li>Fitted</li><li>Cotton blend</li><li>Hand wash cold, dry flat</li></ul>",
-      "colors": [
-        {
-          "name": "Blush",
-          "image": "cat-p-cardigan-pink"
-        }
-      ],
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "extraImages": [],
-      "collections": [
-        "lorem-ipsum-dolor",
-        "new-in",
-        "new-arrival"
-      ],
-      "rating": [
-        4.6,
-        80
-      ],
-      "sold": 116,
-      "badge": "new"
-    },
-    {
-      "handle": "leather-mini-backpack",
-      "title": "Leather Mini Backpack",
-      "vendor": "Merci Demo",
-      "type": "Bags",
-      "price": 110,
-      "body": "<p>The leather mini backpack — roomy enough for a laptop, a book and everything in between.</p><ul><li>Inner zip pocket</li><li>Reinforced handles</li><li>Wipe clean</li></ul>",
-      "colors": [
-        {
-          "name": "Black",
-          "image": "cat-p-backpack"
-        }
-      ],
-      "sizes": [],
-      "extraImages": [
-        "cat-bag-hobo"
-      ],
-      "collections": [
-        "cornershops",
-        "merci-1",
-        "trending"
-      ],
-      "rating": [
-        4.9,
-        7
-      ],
-      "sold": 145,
-      "compare": 135,
-      "badge": "bestseller"
     },
     {
       "handle": "velvet-matte-lipstick",
@@ -2260,10 +2404,10 @@
         "trending"
       ],
       "rating": [
-        4.2,
-        24
+        4.1,
+        85
       ],
-      "sold": 34,
+      "sold": 111,
       "badge": "bestseller"
     },
     {
@@ -2293,10 +2437,10 @@
         "lorem-ipsum-dolor-2"
       ],
       "rating": [
-        4.5,
-        41
+        4.4,
+        12
       ],
-      "sold": 63
+      "sold": 140
     },
     {
       "handle": "longwear-lip-colour",
@@ -2322,10 +2466,10 @@
         "new-arrival"
       ],
       "rating": [
-        4.8,
-        58
+        4.7,
+        29
       ],
-      "sold": 92,
+      "sold": 29,
       "badge": "new"
     },
     {
@@ -2347,10 +2491,10 @@
         "lorem-ipsum-dolor-2"
       ],
       "rating": [
-        4.1,
-        75
+        4,
+        46
       ],
-      "sold": 121
+      "sold": 58
     },
     {
       "handle": "bold-cherry-lipstick",
@@ -2371,10 +2515,10 @@
         "lorem-ipsum-dolor-2"
       ],
       "rating": [
-        4.4,
-        92
+        4.3,
+        63
       ],
-      "sold": 10,
+      "sold": 87,
       "compare": 28,
       "badge": "sale"
     },
@@ -2401,10 +2545,10 @@
         "lorem-ipsum-dolor-2"
       ],
       "rating": [
-        4.7,
-        19
+        4.6,
+        80
       ],
-      "sold": 39
+      "sold": 116
     },
     {
       "handle": "berry-stain-lipstick",
@@ -2430,10 +2574,10 @@
         "trending"
       ],
       "rating": [
-        4,
-        36
+        4.9,
+        7
       ],
-      "sold": 68
+      "sold": 145
     },
     {
       "handle": "signature-red-lipstick",
@@ -2458,10 +2602,10 @@
         "lorem-ipsum-dolor-2"
       ],
       "rating": [
-        4.3,
-        53
+        4.2,
+        24
       ],
-      "sold": 97,
+      "sold": 34,
       "compare": 32,
       "badge": "hot"
     },
@@ -2488,10 +2632,10 @@
         "lorem-ipsum-dolor-2"
       ],
       "rating": [
-        4.6,
-        70
+        4.5,
+        41
       ],
-      "sold": 126
+      "sold": 63
     },
     {
       "handle": "lipstick-discovery-trio",
@@ -2502,12 +2646,12 @@
       "body": "<p>The lipstick discovery trio — rich colour in a single swipe with a comfortable, non-drying finish.</p><ul><li>3.5 g</li><li>Vegan & cruelty free</li><li>Enriched with shea butter</li></ul>",
       "colors": [
         {
-          "name": "Classic Red",
-          "image": "cat-lip-red"
+          "name": "Espresso",
+          "image": "cat-lip-espresso"
         },
         {
-          "name": "Espresso",
-          "image": "cat-lip-espresso-2"
+          "name": "Classic Red",
+          "image": "cat-lip-red"
         },
         {
           "name": "Fuchsia",
@@ -2521,13 +2665,42 @@
         "new-arrival"
       ],
       "rating": [
-        4.9,
-        87
+        4.8,
+        58
       ],
-      "sold": 15,
+      "sold": 92,
       "compare": 66,
       "badge": "sale"
     }
+  ],
+  "draftProducts": [
+    "knotted-hem-striped-top",
+    "button-front-denim-skirt",
+    "scallop-edge-laser-cut",
+    "knot-hem-top",
+    "front-denim-skirts",
+    "copy-of-front-denim-skirts",
+    "finibus-bonorum-et-malorum",
+    "duis-aute-pariatur",
+    "randomised-words",
+    "scallop-edge-laser-cut-1",
+    "dummy-text-used-in-laying-out-print",
+    "the-passage-experienced-a-surge",
+    "the-placeholder-text",
+    "neque-porro-quisquam-est",
+    "qui-dolorem-ipsum-quia-dolor-sit-amet",
+    "nor-is-there-anyone-who-loves",
+    "qui-dolorem-ipsum-quia-dolor-sit-amet-1",
+    "a-sample-of-lorem-ipsum",
+    "the-placeholder-text-1",
+    "consectetur-adipiscing-elit",
+    "lorem-ipsum-dolor-sit-amet",
+    "neque-porro-quisquam-est-1",
+    "qui-dolorem-ipsum-quia-dolor-sit-amet-2",
+    "lorem-ipsum-began-as-scrambled",
+    "the-placeholder-text-2",
+    "consectetur-adipiscing-elit-1",
+    "pretium-de-condimentus-white"
   ],
   "collections": [
     {

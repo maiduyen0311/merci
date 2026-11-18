@@ -1,9 +1,11 @@
 {%- comment -%}
-  Merci — Video banner (SPEC §2 #3, render design/merci/sections/05-*-desktop.png)
+  Merci — Video banner + layered panel (homepage, above "Trending"). Redesign 2026-11-18.
   Two tiles (8/4 on desktop, stacked on mobile):
-    • video tile: poster image + play button with a pulsing ring → YouTube / Vimeo in a popup (mc-video-popup.js)
-    • image tile: picture + large letter-spaced word ("WOMAN") + link
-  Hover: slow zoom + editorial inner frame.
+    • video tile: cover image, soft bottom shade, eyebrow + heading + text, and a "Watch the film"
+      button with a pulsing ring → YouTube / Vimeo in a popup (mc-video-popup.js)
+    • panel tile: tinted panel with fine grid + line art, huge outlined word behind a product
+      cut-out (+ optional accent cut-out), white caption plate with eyebrow, title and link
+  Hover: video image zooms slowly; panel products lift and the word opens up.
 {%- endcomment -%}
 {%- liquid
   assign video = section.settings.video_url
@@ -15,56 +17,109 @@
       assign video_src = 'https://player.vimeo.com/video/' | append: video.id | append: '?autoplay=1'
     endif
   endif
+  assign fit = section.settings.banner_image_fit | default: 'contain'
+  assign decor = section.settings.decor | default: 'botanical'
 -%}
 {%- style -%}
   #McVideoBanner-{{ section.id }} {
     --mc-pt: {{ section.settings.padding_top }}px;
     --mc-pb: {{ section.settings.padding_bottom }}px;
     --mc-word-color: {{ section.settings.word_color }};
+    --mc-panel-bg: {{ section.settings.banner_background }};
+    --mc-video-text: {{ section.settings.video_text_color }};
+    --mc-video-shade: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
   }
 {%- endstyle -%}
 
 <section id="McVideoBanner-{{ section.id }}" class="mc-section mc-video-banner">
   <div class="container">
     <div class="mc-video-banner__grid{% if section.settings.reverse %} mc-video-banner__grid--reverse{% endif %}">
+      {%- comment -%} Video tile {%- endcomment -%}
       <div class="mc-video-banner__tile mc-video-banner__tile--video mc-hover">
         <div class="mc-media mc-frame mc-video-banner__media">
           {%- if section.settings.poster != blank -%}
-            {%- assign mc_alt = section.settings.poster.alt | default: shop.name | escape -%}
+            {%- assign mc_alt = section.settings.poster.alt | default: section.settings.video_heading | default: shop.name | escape -%}
             {{ section.settings.poster | image_url: width: 1600 | image_tag: widths: '600, 900, 1200, 1600', sizes: '(min-width: 992px) 780px, 100vw', loading: 'lazy', alt: mc_alt }}
           {%- else -%}
             {{ 'lifestyle-2' | placeholder_svg_tag }}
           {%- endif -%}
         </div>
-        {%- if video_src != blank -%}
-          <button
-            type="button"
-            class="mc-video-banner__play"
-            data-mc-video-open
-            data-video-src="{{ video_src }}"
-            data-video-title="{{ section.settings.video_title | escape }}"
-            data-close-label="{{ 'accessibility.close' | t }}"
-            aria-label="{{ 'sections.video.load_video' | t: description: section.settings.video_title | escape }}"
-          >
-            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
-          </button>
-        {%- endif -%}
+        <div class="mc-video-banner__content">
+          {%- if section.settings.video_eyebrow != blank -%}
+            <span class="mc-video-banner__eyebrow">{{ section.settings.video_eyebrow | escape }}</span>
+          {%- endif -%}
+          {%- if section.settings.video_heading != blank -%}
+            <h2 class="mc-video-banner__heading">{{ section.settings.video_heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.video_text != blank -%}
+            <p class="mc-video-banner__text">{{ section.settings.video_text | escape }}</p>
+          {%- endif -%}
+          {%- if video_src != blank -%}
+            <button
+              type="button"
+              class="mc-video-banner__watch"
+              data-mc-video-open
+              data-video-src="{{ video_src }}"
+              data-video-title="{{ section.settings.video_title | escape }}"
+              data-close-label="{{ 'accessibility.close' | t }}"
+              aria-label="{{ 'sections.video.load_video' | t: description: section.settings.video_title | escape }}"
+            >
+              <span class="mc-video-banner__play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+              </span>
+              {%- if section.settings.video_button_label != blank -%}
+                <span class="mc-video-banner__watch-label">{{ section.settings.video_button_label | escape }}</span>
+              {%- endif -%}
+            </button>
+          {%- endif -%}
+        </div>
       </div>
 
-      <div class="mc-video-banner__tile mc-video-banner__tile--image mc-hover">
-        {%- if section.settings.banner_link != blank -%}<a href="{{ section.settings.banner_link }}" class="mc-video-banner__link">{%- endif -%}
-          <div class="mc-media mc-frame mc-video-banner__media">
+      {%- comment -%} Layered panel tile {%- endcomment -%}
+      <div class="mc-video-banner__tile mc-video-banner__tile--panel mc-video-banner__tile--fit-{{ fit }}">
+        {%- if section.settings.banner_link != blank -%}<a href="{{ section.settings.banner_link }}" class="mc-video-banner__panel-link">{%- else -%}<div class="mc-video-banner__panel-link">{%- endif -%}
+          <span class="mc-video-banner__panel" aria-hidden="true">
+            <span class="mc-video-banner__arches">{% render 'mc-decor', name: 'arches' %}</span>
+            {%- if section.settings.banner_word != blank -%}
+              <span class="mc-video-banner__word" style="--len: {{ section.settings.banner_word.size | at_least: 4 }}">{{ section.settings.banner_word | escape }}</span>
+            {%- endif -%}
+            {%- unless decor == 'minimal' -%}
+              <span class="mc-video-banner__spark">{% render 'mc-decor', name: 'sparkles' %}</span>
+              {%- if decor == 'playful' -%}
+                <span class="mc-video-banner__wave">{% render 'mc-decor', name: 'squiggle' %}</span>
+              {%- else -%}
+                <span class="mc-video-banner__branch">{% render 'mc-decor', name: 'leaves' %}</span>
+              {%- endif -%}
+            {%- endunless -%}
+          </span>
+
+          <div class="mc-video-banner__product">
             {%- if section.settings.banner_image != blank -%}
-              {%- assign mc_alt = section.settings.banner_image.alt | default: section.settings.banner_word | default: shop.name | escape -%}
-              {{ section.settings.banner_image | image_url: width: 900 | image_tag: widths: '400, 600, 900', sizes: '(min-width: 992px) 380px, 100vw', loading: 'lazy', alt: mc_alt }}
+              {%- assign mc_alt = section.settings.banner_image.alt | default: section.settings.banner_title | default: section.settings.banner_word | escape -%}
+              {{ section.settings.banner_image | image_url: width: 900 | image_tag: widths: '400, 600, 900', sizes: '(min-width: 992px) 380px, 90vw', loading: 'lazy', alt: mc_alt, class: 'mc-video-banner__product-img' }}
             {%- else -%}
-              {{ 'product-apparel-1' | placeholder_svg_tag }}
+              {{ 'product-apparel-1' | placeholder_svg_tag: 'mc-video-banner__product-img' }}
             {%- endif -%}
           </div>
-          {%- if section.settings.banner_word != blank -%}
-            <span class="mc-video-banner__word">{{ section.settings.banner_word | escape }}</span>
+          {%- if section.settings.banner_image_2 != blank and fit == 'contain' -%}
+            <div class="mc-video-banner__accent">
+              {{ section.settings.banner_image_2 | image_url: width: 500 | image_tag: widths: '240, 360, 500', sizes: '(min-width: 992px) 160px, 40vw', loading: 'lazy', alt: '', class: 'mc-video-banner__accent-img' }}
+            </div>
           {%- endif -%}
-        {%- if section.settings.banner_link != blank -%}</a>{%- endif -%}
+
+          {%- if section.settings.banner_eyebrow != blank or section.settings.banner_title != blank or section.settings.banner_button_label != blank -%}
+            <div class="mc-video-banner__plate">
+              {%- if section.settings.banner_eyebrow != blank -%}<span class="mc-video-banner__plate-eyebrow">{{ section.settings.banner_eyebrow | escape }}</span>{%- endif -%}
+              {%- if section.settings.banner_title != blank -%}<h3 class="mc-video-banner__plate-title">{{ section.settings.banner_title }}</h3>{%- endif -%}
+              {%- if section.settings.banner_button_label != blank -%}
+                <span class="mc-video-banner__plate-link">
+                  {{- section.settings.banner_button_label | escape -}}
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M14 6l6 6-6 6"/></svg>
+                </span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- if section.settings.banner_link != blank -%}</a>{%- else -%}</div>{%- endif -%}
       </div>
     </div>
   </div>
@@ -77,16 +132,48 @@
   "class": "section-mc-video-banner",
   "settings": [
     { "type": "header", "content": "Video" },
-    { "type": "image_picker", "id": "poster", "label": "Cover image", "info": "780 × 400 px recommended" },
+    { "type": "image_picker", "id": "poster", "label": "Cover image", "info": "1560 × 920 px recommended" },
     { "type": "video_url", "id": "video_url", "label": "YouTube or Vimeo URL", "accept": ["youtube", "vimeo"], "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc" },
     { "type": "text", "id": "video_title", "label": "Video title (screen readers)", "default": "Merci summer lookbook" },
-    { "type": "header", "content": "Image" },
-    { "type": "image_picker", "id": "banner_image", "label": "Image", "info": "380 × 400 px recommended" },
-    { "type": "text", "id": "banner_word", "label": "Word over the image", "default": "Woman" },
-    { "type": "color", "id": "word_color", "label": "Word color", "default": "#a6606d" },
+    { "type": "text", "id": "video_eyebrow", "label": "Eyebrow", "default": "Summer lookbook" },
+    { "type": "inline_richtext", "id": "video_heading", "label": "Heading", "default": "The new season, <em>in motion</em>" },
+    { "type": "text", "id": "video_text", "label": "Text", "default": "Easy layers, sun-washed colour and pieces made to move with you." },
+    { "type": "text", "id": "video_button_label", "label": "Play button label", "default": "Watch the film" },
+    { "type": "color", "id": "video_text_color", "label": "Text color", "default": "#ffffff" },
+    { "type": "range", "id": "overlay_opacity", "label": "Shade behind the text", "min": 0, "max": 80, "step": 5, "unit": "%", "default": 45 },
+    { "type": "header", "content": "Panel" },
+    { "type": "color", "id": "banner_background", "label": "Panel color", "default": "#f9f1ef" },
+    { "type": "image_picker", "id": "banner_image", "label": "Product image", "info": "Transparent PNG cut-out, about 800 px tall" },
+    { "type": "image_picker", "id": "banner_image_2", "label": "Accent product image", "info": "Optional smaller cut-out at the side (cut-out mode only)" },
+    {
+      "type": "select",
+      "id": "banner_image_fit",
+      "label": "Image mode",
+      "options": [
+        { "value": "contain", "label": "Cut-out product — stands on the panel" },
+        { "value": "cover", "label": "Photo — fills the panel" }
+      ],
+      "default": "contain"
+    },
+    { "type": "text", "id": "banner_word", "label": "Outlined word", "default": "Woman" },
+    { "type": "color", "id": "word_color", "label": "Outlined word color", "default": "#a6606d" },
+    {
+      "type": "select",
+      "id": "decor",
+      "label": "Line art",
+      "options": [
+        { "value": "botanical", "label": "Botanical — leaves and sparkles" },
+        { "value": "playful", "label": "Playful — squiggle and sparkles" },
+        { "value": "minimal", "label": "Minimal — arches only" }
+      ],
+      "default": "botanical"
+    },
+    { "type": "text", "id": "banner_eyebrow", "label": "Eyebrow", "default": "New in" },
+    { "type": "inline_richtext", "id": "banner_title", "label": "Title", "default": "Summer <em>dresses</em>" },
+    { "type": "text", "id": "banner_button_label", "label": "Link label", "default": "Shop now" },
     { "type": "url", "id": "banner_link", "label": "Link" },
     { "type": "header", "content": "Layout" },
-    { "type": "checkbox", "id": "reverse", "label": "Image first, video second", "default": false },
+    { "type": "checkbox", "id": "reverse", "label": "Panel first, video second", "default": false },
     { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 },
     { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 }
   ],

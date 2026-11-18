@@ -71,6 +71,11 @@ const addFile = (key) => {
 };
 ['instagram-1', 'instagram-2', 'instagram-3', 'instagram-4', 'instagram-5', 'instagram-6', 'lookbook-1', 'lookbook-2', 'lookbook-3', 'art-knit', 'art-pink', 'art-shirt', 'art-green', 'art-scarf', 'art-cardigan', 'stage-jacket', 'stage-straw', 'stage-hat', 'stage-shirt', 'stage-tote', 'stage-tee'].forEach(addFile);
 // homepage layered tiles: transparent cut-outs (PNG)
+// homepage video banner panel: cut-outs from scripts/demo/merci-image-tool.js
+for (const k of ['banner-dress', 'banner-hat']) {
+  images[k] = { file: `images/derived/${k}.png` };
+  files.push({ key: k, filename: `${PREFIX}-${k}.png` });
+}
 for (const k of ['tile-dress', 'tile-beach', 'tile-shirt']) {
   images[k] = { file: `images/${k}.png` };
   files.push({ key: k, filename: `${PREFIX}-${k}.png` });
@@ -87,6 +92,37 @@ const content = {
   images: { ...images, ...catalogue.images },
   files,
   products: catalogue.products,
+  // user 2026-11-18: the 27 v1 products (lorem titles, galleries mixing unrelated items, no variant
+  // images) are set to Draft by demo-import --prune — kept for restore, replaced by the catalogue above
+  draftProducts: [
+    'knotted-hem-striped-top',
+    'button-front-denim-skirt',
+    'scallop-edge-laser-cut',
+    'knot-hem-top',
+    'front-denim-skirts',
+    'copy-of-front-denim-skirts',
+    'finibus-bonorum-et-malorum',
+    'duis-aute-pariatur',
+    'randomised-words',
+    'scallop-edge-laser-cut-1',
+    'dummy-text-used-in-laying-out-print',
+    'the-passage-experienced-a-surge',
+    'the-placeholder-text',
+    'neque-porro-quisquam-est',
+    'qui-dolorem-ipsum-quia-dolor-sit-amet',
+    'nor-is-there-anyone-who-loves',
+    'qui-dolorem-ipsum-quia-dolor-sit-amet-1',
+    'a-sample-of-lorem-ipsum',
+    'the-placeholder-text-1',
+    'consectetur-adipiscing-elit',
+    'lorem-ipsum-dolor-sit-amet',
+    'neque-porro-quisquam-est-1',
+    'qui-dolorem-ipsum-quia-dolor-sit-amet-2',
+    'lorem-ipsum-began-as-scrambled',
+    'the-placeholder-text-2',
+    'consectetur-adipiscing-elit-1',
+    'pretium-de-condimentus-white',
+  ],
   // existing v1 collections: membership only (demo-import leaves title/description/image alone)
   collections: [...new Set(catalogue.products.flatMap((p) => p.collections))].map((handle) => ({ handle })),
   // existing v1 pages: only their template is switched (demo-import updates templateSuffix)
@@ -197,13 +233,14 @@ for (const tpl of ['index.json', 'page.about.json']) {
   writeJson(path.join(OUT, 'templates', tpl), data, head);
 }
 
-// lookbook: photos + hotspot products (v1 catalogue handles)
+// lookbook: photos + hotspot products
 {
   const { head, data } = readJson(path.join(ROOT, 'templates', 'page.lookbook.json'));
   const looks = {
-    look1: ['lookbook-1', ['scallop-edge-laser-cut', 'button-front-denim-skirt', 'lorem-ipsum-began-as-scrambled']],
-    look2: ['lookbook-2', ['the-placeholder-text', 'scallop-edge-laser-cut-1', 'duis-aute-pariatur']],
-    look3: ['lookbook-3', ['neque-porro-quisquam-est', 'knot-hem-top', 'finibus-bonorum-et-malorum']],
+    // demo-merci products closest to what each photo shows (v1 products are drafted, 2026-11-18)
+    look1: ['lookbook-1', ['cotton-poplin-shirt-dress', 'slub-v-neck-tee', 'high-rise-denim-shorts']],
+    look2: ['lookbook-2', ['vintage-wash-trucker-jacket', 'distressed-cut-off-shorts', 'square-toe-leather-mules']],
+    look3: ['lookbook-3', ['cotton-twill-bucket-hat', 'camp-collar-shirt', 'canvas-shopper-tote']],
   };
   for (const [id, [img, handles]] of Object.entries(looks)) {
     const s = data.sections[id];

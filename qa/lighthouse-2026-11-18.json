@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-18T02:23:55.100Z",
+  "date": "2026-11-18T15:01:22.932Z",
   "base": "https://merci-demo.myshopify.com",
   "themeId": null,
   "results": [
@@ -8,9 +8,9 @@
       "name": "home",
       "url": "https://merci-demo.myshopify.com/",
       "scores": {
-        "performance": 74,
+        "performance": 92,
         "accessibility": 97,
-        "best-practices": 77,
+        "best-practices": 73,
         "seo": 92,
         "agentic-browsing": 75
       },
@@ -23,7 +23,7 @@
       "name": "collection",
       "url": "https://merci-demo.myshopify.com/collections/all",
       "scores": {
-        "performance": 72,
+        "performance": 70,
         "accessibility": 97,
         "best-practices": 100,
         "seo": 92,
@@ -36,7 +36,7 @@
       "name": "product",
       "url": "https://merci-demo.myshopify.com/products/scallop-edge-laser-cut",
       "scores": {
-        "performance": 86,
+        "performance": 85,
         "accessibility": 96,
         "best-practices": 96,
         "seo": 100,
@@ -49,22 +49,20 @@
       "name": "home",
       "url": "https://merci-demo.myshopify.com/",
       "scores": {
-        "performance": 55,
+        "performance": 65,
         "accessibility": 97,
         "best-practices": 96,
         "seo": 92,
         "agentic-browsing": 75
       },
-      "below": [
-        "performance"
-      ]
+      "below": []
     },
     {
       "formFactor": "desktop",
       "name": "collection",
       "url": "https://merci-demo.myshopify.com/collections/all",
       "scores": {
-        "performance": 58,
+        "performance": 42,
         "accessibility": 96,
         "best-practices": 96,
         "seo": 92,
@@ -79,13 +77,15 @@
       "name": "product",
       "url": "https://merci-demo.myshopify.com/products/scallop-edge-laser-cut",
       "scores": {
-        "performance": 65,
+        "performance": 50,
         "accessibility": 96,
         "best-practices": 96,
         "seo": 100,
         "agentic-browsing": 75
       },
-      "below": []
+      "below": [
+        "performance"
+      ]
     }
   ]
 }

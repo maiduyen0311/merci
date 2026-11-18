@@ -98,10 +98,10 @@ const PHOTOS = {
   'tee-peach-2': '5a.png',
 };
 const images = Object.fromEntries(Object.entries(PHOTOS).map(([k, f]) => [`cat-${k}`, { url: CDN + f }]));
-// packshots uploaded from demos/merci/images (products only, no model)
-for (const k of ['p-headband', 'p-bucket-patch', 'p-bucket-cobalt', 'p-scrunchie', 'p-sneaker-pink', 'p-cardigan-pink', 'p-backpack']) {
-  images[`cat-${k}`] = { file: `images/${k}.jpg` };
-}
+// cut-outs built by scripts/demo/merci-image-tool.js from the studio packshots (merci-derived.js)
+const { entries: CUTOUTS } = require('./merci-derived');
+for (const { key } of CUTOUTS) images[`cat-d-${key}`] = { file: `images/derived/${key}.png` };
+// (the old p-* packshots had a grey/white backdrop and three of them were mislabelled — not used any more)
 
 // v1 collection handles (titles are what shoppers see — see C in merci.js)
 const ACC = 'cornershops';
@@ -121,14 +121,32 @@ const CLOTHING = ['XS', 'S', 'M', 'L', 'XL'];
 const DENIM = ['24', '26', '28', '30', '32'];
 const SHOE = ['36', '37', '38', '39', '40'];
 
-// [colour name, photo key]
-const c = (...pairs) => pairs.map(([name, key]) => ({ name, image: `cat-${key}` }));
+// Colours: [name, photo key] = real photo; [name, photo key, '#hex'] = recoloured cut-out of that photo
+// (built by merci-image-tool.js as images/derived/<photo>--<colour>.png). User 2026-11-18: every
+// colour has its own image, so choosing a variant always changes the gallery.
+// Photo keys starting with `d-` are cut-outs from merci-derived.js.
+const slugPart = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const derived = [];
+const tintKey = (key, name) => `${key.replace(/^d-/, '')}--${slugPart(name)}`;
+const c = (...list) => list.map(([name, key, hex, opts]) => {
+  if (!hex) return { name, image: `cat-${key}` };
+  const k = tintKey(key, name);
+  if (!derived.some((d) => d.key === k)) {
+    const src = key.startsWith('d-') ? `demos/merci/images/derived/${key.slice(2)}.png` : CDN + PHOTOS[key];
+    if (!key.startsWith('d-') && !PHOTOS[key]) throw new Error(`unknown photo ${key}`);
+    derived.push({ key: k, src, ops: [{ type: 'recolor', to: hex, fromHue: 'auto', range: 40, ...(opts || {}) }] });
+    images[`cat-d-${k}`] = { file: `images/derived/${k}.png` };
+  }
+  return { name, image: `cat-d-${k}` };
+});
+// extra gallery images — only other shots of the SAME item
 const x = (...keys) => keys.map((k) => `cat-${k}`);
+const NEUTRAL = { fromHue: null, minL: 0.02, maxL: 0.9 }; // recolour a black / white garment (no dominant hue)
 
 const BODY = {
   Hats: ['Made to finish an outfit and keep its shape season after season.', ['One size, adjustable inner band', 'Packs flat for travel', 'Spot clean only']],
   Bags: ['Roomy enough for a laptop, a book and everything in between.', ['Inner zip pocket', 'Reinforced handles', 'Wipe clean']],
-  Scarves: ['A lightweight square you can wear four ways — neck, hair, bag or wrist.', ['90 × 90 cm', 'Hand-rolled edges', 'Dry clean']],
+  Scarves: ['A soft scarf scrunchie you can wear in your hair, round your wrist or tied to a bag.', ['Satin-feel woven fabric', 'Covered elastic', 'Hand wash']],
   Shoes: ['Cushioned insole and a flexible sole made for long days on your feet.', ['True to size', 'Leather lining', 'Non-slip rubber outsole']],
   Jeans: ['Rigid cotton denim that softens and moulds to you with every wear.', ['High rise', '100% organic cotton', 'Machine wash cold, inside out']],
   Jackets: ['A layering piece that works over a tee in spring and a knit in autumn.', ['Relaxed fit — size down for a closer fit', 'Fully lined', 'Dry clean recommended']],
@@ -137,7 +155,6 @@ const BODY = {
   Knitwear: ['Fine rib knit with a close, flattering fit and a soft hand feel.', ['Fitted', 'Cotton blend', 'Hand wash cold, dry flat']],
   Dresses: ['Easy to throw on, hard to take off — our favourite piece of the season.', ['Relaxed fit', 'Midi length', 'Machine wash 30°C']],
   Skirts: ['Fluid fabric that moves beautifully, with a comfortable elastic waist.', ['Elastic waistband', 'Midi length', 'Machine wash 30°C']],
-  Trousers: ['Pull-on trousers with a relaxed leg that work from desk to weekend.', ['Drawstring waist', 'Side pockets', 'Machine wash 30°C']],
   Lipstick: ['Rich colour in a single swipe with a comfortable, non-drying finish.', ['3.5 g', 'Vegan & cruelty free', 'Enriched with shea butter']],
 };
 const body = (type, title) => {
@@ -146,71 +163,64 @@ const body = (type, title) => {
 };
 
 // title, type, price, compare|null, colours, sizes, extra images, collections, badge
+// 2026-11-18: one item per product (no other items in the gallery), no two products leading with
+// the same photo, cut-outs only. v1 products are drafted, so these fill every collection.
 const P = (title, type, price, compare, colors, sizes, extraImages, collections, badge) => ({ title, type, price, compare, colors, sizes, extraImages, collections, badge });
 const rows = [
-  // Hats & scarves
-  P('Wool Rib Beanie', 'Hats', 29, null, c(['Brown', 'beanie-brown'], ['Black', 'beanie-black']), [], [], [ACC, TREND]),
-  P('Chunky Knit Beanie', 'Hats', 32, 39, c(['Black', 'beanie-black'], ['Brown', 'beanie-brown']), [], [], [ACC]),
-  P('Cotton Twill Bucket Hat', 'Hats', 35, null, c(['Green', 'bucket-green'], ['Denim', 'bucket-denim']), [], [], [ACC, SWIM]),
-  P('Washed Denim Bucket Hat', 'Hats', 38, null, c(['Denim', 'bucket-denim'], ['Green', 'bucket-green']), [], [], [ACC, NEW], 'new'),
-  P('Pom-Pom Straw Circle Bag', 'Bags', 45, null, c(['Natural', 'bag-pompom']), [], [], [ACC, SWIM, TREND], 'hot'),
-  P('Wide Brim Straw Boater', 'Hats', 49, null, c(['Natural', 'hat-boater-2']), [], x('hat-fedora'), [ACC, SWIM]),
-  P('Straw Fedora with Ribbon', 'Hats', 52, 65, c(['Natural', 'hat-fedora-2']), [], x('hat-boater-2'), [ACC, SWIM]),
-  P('Classic Panama Hat', 'Hats', 58, null, c(['Natural', 'hat-fedora']), [], x('hat-boater'), [ACC, SWIM, NEW], 'new'),
+  // Hats & hair
+  P('Wool Rib Beanie', 'Hats', 29, null, c(['Brown', 'beanie-brown'], ['Black', 'beanie-black'], ['Cream', 'beanie-brown', '#e7ddcc']), [], [], [ACC, TREND]),
+  P('Chunky Knit Beanie', 'Hats', 32, 39, c(['Forest', 'beanie-brown', '#3f5b47'], ['Burgundy', 'beanie-brown', '#6f2a36'], ['Brown', 'beanie-brown']), [], [], [ACC]),
+  P('Cotton Twill Bucket Hat', 'Hats', 35, null, c(['Green', 'bucket-green'], ['Butter', 'bucket-green', '#ecd88f'], ['Denim', 'bucket-denim']), [], [], [ACC, SWIM]),
+  P('Washed Denim Bucket Hat', 'Hats', 38, null, c(['Denim', 'bucket-denim'], ['Light Wash', 'bucket-denim', '#aac3dd'], ['Washed Black', 'bucket-denim', '#3b3e46']), [], [], [ACC, NEW], 'new'),
+  P('Terry Bucket Hat', 'Hats', 35, 42, c(['Cobalt', 'bucket-green', '#2f4fa8'], ['Pink', 'bucket-green', '#e8a7b6'], ['Green', 'bucket-green']), [], [], [ACC, SWIM]),
+  P('Wide Brim Straw Boater', 'Hats', 49, null, c(['Natural', 'hat-boater-2'], ['Black', 'hat-boater-2', '#2b2a28']), [], [], [ACC, SWIM]),
+  P('Straw Fedora with Ribbon', 'Hats', 52, 65, c(['Natural', 'hat-fedora-2'], ['Ivory', 'hat-fedora-2', '#eee4cf']), [], [], [ACC, SWIM]),
+  P('Classic Panama Hat', 'Hats', 58, null, c(['Sand', 'hat-boater', '#d6bf98'], ['Natural', 'hat-boater']), [], [], [ACC, SWIM, NEW], 'new'),
+  P('Leopard Scarf Scrunchie', 'Scarves', 15, null, c(['Leopard', 'd-scarf-leopard']), [], [], [ACC, NEW], 'new'),
   // Bags
-  P('Striped Straw Tote', 'Bags', 59, null, c(['Multi Stripe', 'tote-stripe'], ['Natural', 'tote-canvas']), [], [], [ACC, SWIM], 'bestseller'),
-  P('Canvas Shopper Tote', 'Bags', 39, null, c(['Natural', 'tote-canvas-2'], ['Multi Stripe', 'tote-stripe-2']), [], [], [ACC, SHOES]),
+  P('Pom-Pom Straw Circle Bag', 'Bags', 45, null, c(['Natural', 'bag-pompom']), [], [], [ACC, SWIM, TREND], 'hot'),
+  P('Straw Crossbody Bag', 'Bags', 55, null, c(['Natural', 'd-crossbody-straw'], ['Black', 'd-crossbody-straw', '#2c2b29']), [], [], [ACC, SWIM, NEW], 'new'),
+  P('Striped Straw Tote', 'Bags', 59, null, c(['Pink Stripe', 'tote-stripe'], ['Blue Stripe', 'tote-stripe', '#5b86c4']), [], x('tote-stripe-2'), [ACC, SWIM], 'bestseller'),
+  P('Canvas Shopper Tote', 'Bags', 39, null, c(['Natural', 'tote-canvas'], ['Olive', 'tote-canvas', '#6d6b45'], ['Black', 'tote-canvas', '#2f2e2c']), [], x('tote-canvas-2'), [ACC, SHOES]),
   P('Quilted Puffer Tote', 'Bags', 89, 110, c(['Black', 'bag-quilted']), [], x('bag-quilted-2'), [ACC, SHOES]),
   P('Leather Hobo Shoulder Bag', 'Bags', 120, null, c(['Black', 'bag-hobo']), [], x('bag-hobo-2'), [ACC, SHOES, TREND], 'bestseller'),
-  P('Woven Beach Bag', 'Bags', 49, 59, c(['Multi Stripe', 'tote-stripe-2']), [], x('tote-canvas'), [SWIM, ACC]),
-  P('Structured Mini Hobo', 'Bags', 95, null, c(['Black', 'bag-hobo-2']), [], x('bag-quilted'), [ACC, SHOES]),
+  P('Leather Mini Backpack', 'Bags', 110, 135, c(['Black', 'd-backpack-black']), [], [], [ACC, SHOES, TREND], 'bestseller'),
   // Shoes
-  P('Chunky Leather Trainers', 'Shoes', 95, null, c(['Stone', 'sneaker-beige']), SHOE, x('sneaker-beige-2'), [SHOES, TREND], 'bestseller'),
-  P('Suede Platform Trainers', 'Shoes', 99, null, c(['Stone', 'sneaker-beige-2']), SHOE, x('sneaker-beige'), [SHOES]),
+  P('Chunky Leather Trainers', 'Shoes', 95, null, c(['Stone', 'sneaker-beige'], ['Grey', 'sneaker-beige', '#9b9b9b']), SHOE, x('sneaker-beige-2'), [SHOES, TREND], 'bestseller'),
+  P('Suede Platform Trainers', 'Shoes', 99, null, c(['Sand', 'sneaker-beige-2', '#cdb38c'], ['Stone', 'sneaker-beige-2']), SHOE, [], [SHOES]),
+  P('Knit Runner Sneakers', 'Shoes', 79, 95, c(['Blush', 'd-sneaker-knit-blush'], ['Grey', 'd-sneaker-knit-blush', '#a9a9ab'], ['Sky', 'd-sneaker-knit-blush', '#9cbcdc']), SHOE, [], [SHOES, NEW, TREND]),
   P('Leather Chelsea Boots', 'Shoes', 149, 179, c(['Black', 'boot-chelsea']), SHOE, x('boot-chelsea-2'), [SHOES, ACC]),
-  P('Pull-On Ankle Boots', 'Shoes', 135, null, c(['Black', 'boot-chelsea-2']), SHOE, [], [SHOES, NEW], 'new'),
-  P('Braided Slide Sandals', 'Shoes', 55, null, c(['Taupe', 'slide-woven']), SHOE, x('slide-woven-2'), [SHOES, SWIM]),
-  P('Padded Strap Slides', 'Shoes', 49, 59, c(['Taupe', 'slide-woven-2']), SHOE, [], [SHOES, SWIM]),
-  P('Square Toe Leather Mules', 'Shoes', 65, null, c(['Camel', 'mule-camel']), SHOE, x('mule-camel-2'), [SHOES]),
-  P('Low Block Slide', 'Shoes', 45, null, c(['Camel', 'mule-camel-2']), SHOE, [], [SHOES, SWIM]),
+  P('Braided Slide Sandals', 'Shoes', 55, null, c(['Taupe', 'slide-woven'], ['Black', 'slide-woven', '#2b2a29'], ['Ivory', 'slide-woven', '#ece3d3']), SHOE, x('slide-woven-2'), [SHOES, SWIM]),
+  P('Square Toe Leather Mules', 'Shoes', 65, null, c(['Camel', 'mule-camel'], ['Black', 'mule-camel', '#2b2a29'], ['Cream', 'mule-camel', '#ebdfcb']), SHOE, x('mule-camel-2'), [SHOES]),
+  P('Low Block Slide', 'Shoes', 45, null, c(['Rose', 'mule-camel-2', '#d9a3a0'], ['Camel', 'mule-camel-2']), SHOE, [], [SHOES, SWIM]),
   // Denim
-  P('High Rise Denim Shorts', 'Jeans', 45, null, c(['Mid Blue', 'shorts-denim']), DENIM, [], [JEANS, SWIM], 'bestseller'),
-  P('Distressed Cut-Off Shorts', 'Jeans', 42, 52, c(['Mid Blue', 'shorts-denim-2']), DENIM, [], [JEANS]),
-  P('Relaxed Mom Shorts', 'Jeans', 39, null, c(['Mid Blue', 'shorts-denim-3']), DENIM, [], [JEANS, NEW], 'new'),
-  P('Oversized Denim Jacket', 'Jackets', 98, null, c(['Mid Blue', 'jacket-denim-mid'], ['Light Wash', 'jacket-denim-light']), CLOTHING, [], [JEANS, JACKETS]),
-  P('Vintage Wash Trucker Jacket', 'Jackets', 105, null, c(['Light Wash', 'jacket-denim-light'], ['Mid Blue', 'jacket-denim-mid']), CLOTHING, [], [JACKETS, JEANS]),
-  P('Cropped Denim Jacket', 'Jackets', 89, 110, c(['Mid Blue', 'jacket-denim-crop']), CLOTHING, [], [JACKETS, JEANS, NEW]),
-  P('Floral Jacquard Denim Top', 'Tees', 39, null, c(['Blue', 'top-denim-halter']), CLOTHING, [], [JEANS, SHIRTS, SWIM]),
-  // Jackets & coats
-  // Shirts, tees, knitwear
-  P('Short Sleeve Poplin Shirt', 'Shirts', 45, 55, c(['Green', 'shirt-green']), CLOTHING, [], [SHIRTS, TOPS]),
-  P('Camp Collar Shirt', 'Shirts', 49, null, c(['Green', 'shirt-green-2']), CLOTHING, x('tee-blue'), [SHIRTS]),
-  P('Cotton Poplin Shirt Dress', 'Dresses', 65, null, c(['Sky Blue', 'dress-shirt-blue']), CLOTHING, [], [SHIRTS, LOUNGE]),
-  P('Slub V-Neck Tee', 'Tees', 22, null, c(['Sky Blue', 'tee-blue'], ['Peach', 'tee-peach']), CLOTHING, [], [TOPS, SHIRTS, LOUNGE], 'bestseller'),
-  P('Relaxed Cotton Tee', 'Tees', 24, 30, c(['Peach', 'tee-peach-2'], ['Sky Blue', 'tee-blue-2']), CLOTHING, [], [TOPS, LOUNGE]),
-  P('Everyday Crew Tee', 'Tees', 19, null, c(['Sky Blue', 'tee-blue-2'], ['Peach', 'tee-peach']), CLOTHING, [], [TOPS, LOUNGE]),
-  P('Ribbed Crop Tank', 'Knitwear', 19, null, c(['Black', 'tank-black-rib']), CLOTHING, [], [TOPS, SHIRTS, LOUNGE]),
+  P('High Rise Denim Shorts', 'Jeans', 45, null, c(['Mid Blue', 'shorts-denim'], ['Light Wash', 'shorts-denim', '#a9c1dc'], ['Washed Black', 'shorts-denim', '#3c3e45']), DENIM, [], [JEANS, SWIM], 'bestseller'),
+  P('Distressed Cut-Off Shorts', 'Jeans', 42, 52, c(['Ecru', 'shorts-denim-2', '#ece5d6'], ['Mid Blue', 'shorts-denim-2']), DENIM, [], [JEANS]),
+  P('Relaxed Mom Shorts', 'Jeans', 39, null, c(['Light Wash', 'shorts-denim-3'], ['Indigo', 'shorts-denim-3', '#34466e']), DENIM, [], [JEANS, NEW], 'new'),
+  P('Oversized Denim Jacket', 'Jackets', 98, null, c(['Light Wash', 'jacket-denim-light'], ['Mid Blue', 'jacket-denim-light', '#4f6f9a'], ['Washed Black', 'jacket-denim-light', '#383a40']), CLOTHING, [], [JEANS, JACKETS]),
+  P('Vintage Wash Trucker Jacket', 'Jackets', 105, null, c(['Mid Blue', 'jacket-denim-mid'], ['Light Wash', 'jacket-denim-mid', '#a8c0db']), CLOTHING, [], [JACKETS, JEANS]),
+  P('Cropped Denim Jacket', 'Jackets', 89, 110, c(['Ecru', 'jacket-denim-crop', '#ebe4d5'], ['Mid Blue', 'jacket-denim-crop']), CLOTHING, [], [JACKETS, JEANS, NEW]),
+  P('Floral Jacquard Denim Top', 'Tees', 39, null, c(['Blue', 'top-denim-halter'], ['Rose', 'top-denim-halter', '#d79aa8']), CLOTHING, [], [JEANS, SHIRTS, SWIM]),
+  // Shirts & tees
+  P('Short Sleeve Poplin Shirt', 'Shirts', 45, 55, c(['Green', 'shirt-green'], ['Navy', 'shirt-green', '#2c3a57'], ['Terracotta', 'shirt-green', '#b5653f']), CLOTHING, [], [SHIRTS, TOPS]),
+  P('Camp Collar Shirt', 'Shirts', 49, null, c(['Sky', 'shirt-green-2', '#9cc0e0'], ['Ecru', 'shirt-green-2', '#ebe2d1'], ['Green', 'shirt-green-2']), CLOTHING, [], [SHIRTS, LOUNGE]),
+  P('Cotton Poplin Shirt Dress', 'Dresses', 65, null, c(['Sky Blue', 'dress-shirt-blue'], ['Blush', 'dress-shirt-blue', '#e6b7b3'], ['Sage', 'dress-shirt-blue', '#b4c09f']), CLOTHING, [], [SHIRTS, LOUNGE]),
+  P('Slub V-Neck Tee', 'Tees', 22, null, c(['Sky Blue', 'tee-blue'], ['Peach', 'tee-peach'], ['Off White', 'tee-blue', '#f1eee8']), CLOTHING, [], [TOPS, SHIRTS, LOUNGE], 'bestseller'),
+  P('Relaxed Cotton Tee', 'Tees', 24, 30, c(['Sage', 'tee-peach-2', '#a9b799'], ['Charcoal', 'tee-peach-2', '#4a4a4e'], ['Peach', 'tee-peach-2']), CLOTHING, [], [TOPS, LOUNGE]),
+  P('Everyday Crew Tee', 'Tees', 19, null, c(['Lilac', 'tee-blue-2', '#b9a8d0'], ['Butter', 'tee-blue-2', '#efdc9b'], ['Sky Blue', 'tee-blue-2']), CLOTHING, [], [TOPS, LOUNGE]),
+  // Knitwear
   P('Ribbed Knit Tank', 'Knitwear', 35, null, c(['Mustard', 'knit-mustard'], ['Oat', 'knit-oat'], ['Black', 'knit-black']), CLOTHING, [], [KNIT, SHIRTS], 'bestseller'),
-  P('Cropped Knit Vest', 'Knitwear', 39, null, c(['Oat', 'knit-oat-2'], ['Mustard', 'knit-mustard-2'], ['Black', 'knit-black-2']), CLOTHING, [], [KNIT, TOPS]),
-  P('Fine Knit Shell Top', 'Knitwear', 32, 42, c(['Black', 'knit-black'], ['Oat', 'knit-oat'], ['Mustard', 'knit-mustard']), CLOTHING, [], [KNIT, TOPS, TREND]),
-  P('Sleeveless Rib Sweater', 'Knitwear', 45, null, c(['Mustard', 'knit-mustard-2'], ['Black', 'knit-black-2']), CLOTHING, [], [KNIT, NEW], 'new'),
-  P('Cotton Knit Crop Top', 'Knitwear', 29, null, c(['Oat', 'knit-oat'], ['Black', 'knit-black-2']), CLOTHING, [], [KNIT, SHIRTS, LOUNGE]),
-  P('Merino Blend Knit Tank', 'Knitwear', 55, 69, c(['Black', 'knit-black-2'], ['Mustard', 'knit-mustard']), CLOTHING, [], [KNIT]),
-  P('Crochet Mini Dress', 'Dresses', 79, null, c(['Tangerine', 'dress-crochet']), CLOTHING, [], [KNIT, SWIM, NEW], 'new'),
+  P('Ribbed Crop Tank', 'Knitwear', 19, null, c(['Black', 'tank-black-rib']), CLOTHING, [], [TOPS, SHIRTS, LOUNGE]),
+  P('Cropped Knit Vest', 'Knitwear', 39, null, c(['Sage', 'knit-oat-2', '#a9b58f'], ['Rose', 'knit-oat-2', '#d8a1a6'], ['Oat', 'knit-oat-2']), CLOTHING, [], [KNIT, TOPS]),
+  P('Fine Knit Shell Top', 'Knitwear', 32, 42, c(['Navy', 'knit-mustard-2', '#2d3b5a'], ['Brick', 'knit-mustard-2', '#a33f30'], ['Mustard', 'knit-mustard-2']), CLOTHING, [], [KNIT, TOPS, TREND]),
+  P('Sleeveless Rib Sweater', 'Knitwear', 45, null, c(['Olive', 'knit-mustard', '#6f6b3d'], ['Mustard', 'knit-mustard']), CLOTHING, [], [KNIT, NEW], 'new'),
+  P('Cotton Knit Crop Top', 'Knitwear', 29, null, c(['Lavender', 'knit-oat', '#b8aacd'], ['Oat', 'knit-oat']), CLOTHING, [], [KNIT, SHIRTS, LOUNGE]),
+  P('Merino Blend Knit Tank', 'Knitwear', 55, 69, c(['Teal', 'knit-mustard-2', '#2f6b6a'], ['Black', 'knit-black-2']), CLOTHING, [], [KNIT]),
+  P('Cable Knit Cardigan', 'Knitwear', 69, null, c(['Blush', 'd-cardigan-blush'], ['Cream', 'd-cardigan-blush', '#eee6d8'], ['Sage', 'd-cardigan-blush', '#b6c2a2']), CLOTHING, [], [KNIT, JACKETS, NEW], 'new'),
   // Dresses & skirts
-  P('Pleated Midi Skirt', 'Skirts', 55, null, c(['Black', 'skirt-black'], ['Mustard', 'skirt-mustard']), CLOTHING, [], [TOPS, NEW]),
-  P('Crinkle Maxi Skirt', 'Skirts', 59, 69, c(['Mustard', 'skirt-mustard-2'], ['Black', 'skirt-black-2']), CLOTHING, [], [TOPS, LOUNGE]),
-  P('Satin Slip Midi Skirt', 'Skirts', 49, null, c(['Black', 'skirt-black-2']), CLOTHING, [], [TOPS, LOUNGE]),
-  // Loungewear
-  P('Lounge Shirt Dress', 'Dresses', 59, 75, c(['Sky Blue', 'dress-shirt-blue']), CLOTHING, [], [LOUNGE]),
-  // Packshot-only additions (2026-11-17)
-  P('Knotted Velvet Headband', 'Hats', 19, null, c(['Black', 'p-headband']), [], [], [ACC, NEW], 'new'),
-  P('Patchwork Fleece Bucket Hat', 'Hats', 42, null, c(['Multi Check', 'p-bucket-patch']), [], x('bucket-denim'), [ACC, TREND], 'hot'),
-  P('Terry Bucket Hat', 'Hats', 35, 42, c(['Cobalt', 'p-bucket-cobalt'], ['Green', 'bucket-green']), [], [], [ACC, SWIM]),
-  P('Leopard Hair Scarf', 'Scarves', 15, null, c(['Leopard', 'p-scrunchie']), [], [], [ACC, NEW], 'new'),
-  P('Knit Runner Sneakers', 'Shoes', 79, 95, c(['Blush', 'p-sneaker-pink']), SHOE, x('sneaker-beige'), [SHOES, NEW, TREND]),
-  P('Cable Knit Cardigan', 'Knitwear', 69, null, c(['Blush', 'p-cardigan-pink']), CLOTHING, [], [KNIT, JACKETS, NEW], 'new'),
-  P('Leather Mini Backpack', 'Bags', 110, 135, c(['Black', 'p-backpack']), [], x('bag-hobo'), [ACC, SHOES, TREND], 'bestseller'),
+  P('Crochet Mini Dress', 'Dresses', 79, null, c(['Tangerine', 'dress-crochet'], ['Ivory', 'dress-crochet', '#efe6d4'], ['Sky', 'dress-crochet', '#9fc3df']), CLOTHING, [], [KNIT, SWIM, NEW], 'new'),
+  P('Pleated Midi Skirt', 'Skirts', 55, null, c(['Black', 'skirt-black'], ['Navy', 'skirt-black', '#26324b', NEUTRAL], ['Bottle Green', 'skirt-black', '#23412f', NEUTRAL]), CLOTHING, [], [TOPS, NEW]),
+  P('Crinkle Maxi Skirt', 'Skirts', 59, 69, c(['Mustard', 'skirt-mustard-2'], ['Rust', 'skirt-mustard-2', '#9c4a2c'], ['Sage', 'skirt-mustard-2', '#97a27f']), CLOTHING, [], [TOPS, LOUNGE]),
   // Beauty
   P('Velvet Matte Lipstick', 'Lipstick', 24, null, c(['Classic Red', 'lip-red'], ['Fuchsia', 'lip-fuchsia'], ['Plum', 'lip-plum'], ['Espresso', 'lip-espresso'], ['Nude', 'lip-nude']), [], [], [BEAUTY, TREND], 'bestseller'),
   P('Satin Cream Lipstick', 'Lipstick', 22, null, c(['Fuchsia', 'lip-fuchsia-2'], ['Cherry', 'lip-cherry'], ['Plum', 'lip-plum-2']), [], [], [BEAUTY]),
@@ -221,7 +231,7 @@ const rows = [
   P('Berry Stain Lipstick', 'Lipstick', 24, null, c(['Plum', 'lip-plum'], ['Fuchsia', 'lip-fuchsia']), [], [], [BEAUTY, TREND]),
   P('Signature Red Lipstick', 'Lipstick', 26, 32, c(['Classic Red', 'lip-red-2'], ['Cherry', 'lip-cherry']), [], [], [BEAUTY], 'hot'),
   P('Hydra Shine Lipstick', 'Lipstick', 20, null, c(['Fuchsia', 'lip-fuchsia'], ['Nude', 'lip-nude']), [], [], [BEAUTY]),
-  P('Lipstick Discovery Trio', 'Lipstick', 49, 66, c(['Classic Red', 'lip-red'], ['Espresso', 'lip-espresso-2'], ['Fuchsia', 'lip-fuchsia-2']), [], [], [BEAUTY, NEW]),
+  P('Lipstick Discovery Trio', 'Lipstick', 49, 66, c(['Espresso', 'lip-espresso'], ['Classic Red', 'lip-red'], ['Fuchsia', 'lip-fuchsia-2']), [], [], [BEAUTY, NEW]),
 ];
 
 const slug = (s) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -236,7 +246,8 @@ const products = rows.map((r, i) => {
     colors: r.colors,
     sizes: r.sizes,
     extraImages: r.extraImages,
-    collections: r.collections,
+    // "Hoodies & Sweatshirts" (clothings) is the v1 general clothing list: every top, knit and dress
+    collections: [...new Set([...r.collections, ...(['Shirts', 'Tees', 'Knitwear', 'Dresses'].includes(r.type) ? [TOPS] : [])])],
     // deterministic "social proof" so re-running the generator gives the same data
     rating: [4 + ((i * 3) % 10) / 10, 6 + ((i * 17) % 90)],
     sold: 8 + ((i * 29) % 140),
@@ -247,4 +258,4 @@ const products = rows.map((r, i) => {
   return p;
 });
 
-module.exports = { images, products };
+module.exports = { images, products, derived };

@@ -58,7 +58,7 @@
     max-width: 72rem;
     margin-inline: auto;
     color: var(--color-text-muted, #666);
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     line-height: 1.8;
   }
 }
@@ -73,18 +73,22 @@
   border-bottom: 1px solid var(--color-border, #e8e9eb);
   color: var(--color-heading, #000);
   font-family: var(--font-body);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
   text-transform: uppercase;
 
   &::after { display: none; }
 }
 
 .sidebar-categories {
+  &__list { gap: 1rem; }
+
   a {
     position: relative;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    line-height: 1.5;
     transition: color 0.2s ease, padding 0.25s ease;
 
     &:hover { padding-inline-start: 1.4rem; color: var(--color-accent-ink, var(--color-primary)); }
@@ -104,6 +108,13 @@
     &:hover::before { width: 0.8rem; }
   }
 }
+
+// filter option rows read at the same size as the category list
+.facet-checkbox,
+.button-show-more { font-size: 1.6rem; line-height: 1.5; }
+
+.facets__list--vertical:not(.facets-layout-dots),
+.facets-layout:not(.facets-layout-dots) { gap: 1rem; }
 
 // colour dots: ring on hover / checked instead of a border swap
 .facet-dot {
@@ -127,10 +138,10 @@
     background: var(--color-bg-alt, #f9f9f9);
   }
 
-  &__name { font-size: 1.4rem; }
+  &__name { font-size: 1.5rem; line-height: 1.45; }
 
   &__price,
-  &__price-sale { color: var(--color-text, #332c2c); font-size: 1.4rem; }
+  &__price-sale { color: var(--color-text, #332c2c); font-size: 1.5rem; }
 
   &__price-compare { color: var(--color-compare-price, #9f9f9f); }
 }
@@ -208,7 +219,7 @@
   border: 0;
   background: transparent;
   color: var(--color-text-muted, #666);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 
   &::after {
     content: '';
@@ -265,7 +276,7 @@
     padding: 1.6rem 2.8rem;
     border-top: 2px solid transparent;
     color: var(--color-text, #332c2c);
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 600;
     letter-spacing: 0.14em;
     transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
@@ -283,7 +294,7 @@
     @media screen and (max-width: 749px) { padding: 1.2rem 1.6rem; font-size: 1.2rem; }
   }
 
-  &__body { font-size: 1.4rem; line-height: 1.85; }
+  &__body { font-size: 1.6rem; line-height: 1.8; }
 }
 
 // --- Related / recently viewed headings: left, uppercase (v1 "YOU MAY ALSO LIKE")
@@ -368,11 +379,11 @@
   .main-product__short-desc {
     margin-bottom: 2rem;
     color: var(--color-text, #332c2c);
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     line-height: 1.8;
   }
 
-  .main-product__low-stock { font-size: 1.3rem; }
+  .main-product__low-stock { font-size: 1.4rem; }
 
   .main-product__low-stock-text--low {
     padding: 0;
@@ -399,7 +410,7 @@
     padding: 0 1rem;
     border-color: var(--color-border, #e8e9eb);
     border-radius: 999px;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 
     &:hover { border-color: var(--color-heading, #000); }
 
@@ -458,7 +469,7 @@
     flex: 1 1 18rem;
     min-height: 4.4rem;
     overflow: hidden;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     letter-spacing: 0.1em;
     isolation: isolate;
   }
@@ -519,8 +530,8 @@
     border-top: 1px solid var(--color-border, #e8e9eb);
   }
 
-  .main-product__action { font-size: 1.3rem; }
-  .main-product__delivery { font-size: 1.3rem; }
+  .main-product__action { font-size: 1.4rem; }
+  .main-product__delivery { font-size: 1.4rem; }
 
   @media screen and (max-width: 749px) {
     .main-product__wishlist { flex: 1 1 100%; }
@@ -562,7 +573,7 @@
   margin: 0 0 1.6rem;
   padding: 1.6rem 0;
   border-block: 1px solid var(--color-border, #e8e9eb);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 }
 
 .mc-pdp__fact {
@@ -672,7 +683,7 @@
   min-height: 4.4rem;
   border: 1px solid var(--color-border, #e8e9eb);
   border-radius: 0;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   box-shadow: none;
   transition: border-color 0.2s ease;
 
@@ -690,7 +701,7 @@
     border-bottom: 1px solid var(--color-border, #e8e9eb);
     color: var(--color-heading, #000);
     font-family: var(--font-body);
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -720,7 +731,7 @@
       border-radius: 0;
       background: transparent;
       color: var(--color-text, #332c2c);
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       transition: border-color 0.2s ease, color 0.2s ease;
 
       &:hover,
@@ -737,7 +748,7 @@
     img { border-radius: 0; }
   }
 
-  &__post-title { font-size: 1.4rem; }
+  &__post-title { font-size: 1.5rem; line-height: 1.45; }
   a:hover &__post-title { color: var(--color-accent-ink, var(--color-primary)); }
   &__date { font-size: 1.2rem; letter-spacing: 0.08em; text-transform: uppercase; }
 }
@@ -787,7 +798,7 @@
   .news-card__excerpt {
     margin: 0 0 2rem;
     color: var(--color-text, #332c2c);
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     line-height: 1.8;
   }
 }
@@ -864,7 +875,7 @@
     text-transform: uppercase;
   }
 
-  &__text { color: var(--color-text, #332c2c); font-size: 1.4rem; }
+  &__text { color: var(--color-text, #332c2c); font-size: 1.6rem; line-height: 1.7; }
 
   &__form.tm-card {
     padding: 0;
@@ -1120,7 +1131,7 @@
 
   &__question {
     padding: 2rem 0;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
 
@@ -1154,7 +1165,7 @@
     [open] > summary > &::after { transform: rotate(0deg); }
   }
 
-  &__answer { padding: 0 0 2.4rem; font-size: 1.4rem; line-height: 1.85; }
+  &__answer { padding: 0 0 2.4rem; font-size: 1.6rem; line-height: 1.8; }
 }
 
 .tm-contact__map,
@@ -1216,3 +1227,12 @@
 
 // open accordion title (product tabs on phones) — accent text on white uses the ink shade
 body { --tm-acc-accent: var(--color-accent-ink, var(--color-primary)); }
+
+// PDP: main image cross-fades when a colour / thumbnail changes (sections/main-product.liquid)
+[id^='MainProductImage-'] {
+  transition: opacity 0.25s ease;
+
+  &.is-swapping { opacity: 0.15; }
+
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+}

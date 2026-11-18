@@ -916,9 +916,20 @@
       mainThumbs.forEach(function (t) { t.classList.remove('is-active'); });
       thumb.classList.add('is-active');
       if (mainImage) {
-        mainImage.src = thumb.getAttribute('data-image');
-        mainImage.srcset = '';
-        mainImage.alt = thumb.getAttribute('aria-label') || mainImage.alt;
+        var nextSrc = thumb.getAttribute('data-image');
+        var nextAlt = thumb.getAttribute('aria-label') || mainImage.alt;
+        if (mainImage.getAttribute('src') !== nextSrc) {
+          // cross-fade so a colour change is clearly visible (preload, then swap)
+          mainImage.classList.add('is-swapping');
+          var pre = new Image();
+          pre.onload = pre.onerror = function () {
+            mainImage.src = nextSrc;
+            mainImage.srcset = '';
+            mainImage.alt = nextAlt;
+            requestAnimationFrame(function () { mainImage.classList.remove('is-swapping'); });
+          };
+          pre.src = nextSrc;
+        }
       }
       if (thumbsScroller && thumbsScroller.scrollToItem) thumbsScroller.scrollToItem(thumb.parentElement);
     }

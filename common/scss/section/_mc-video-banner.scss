@@ -1,10 +1,11 @@
-// Merci video banner — sections/mc-video-banner.liquid (SPEC §2 #3)
+// Merci video banner + layered panel — sections/mc-video-banner.liquid (redesign 2026-11-18)
 .mc-video-banner__grid {
   display: grid;
   gap: 3rem;
 
   @media screen and (min-width: 992px) {
     grid-template-columns: 2fr 1fr;
+    min-height: 46rem;
 
     &--reverse { grid-template-columns: 1fr 2fr; }
     &--reverse .mc-video-banner__tile--video { order: 2; }
@@ -13,59 +14,159 @@
 
 .mc-video-banner__tile {
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
 }
 
-.mc-video-banner__media {
-  aspect-ratio: 780 / 400;
+// =============================================================================
+// Video tile
+// =============================================================================
+.mc-video-banner__tile--video {
+  display: flex;
+  min-height: 42rem;
 
-  .mc-video-banner__tile--image & { aspect-ratio: 380 / 400; }
+  @media screen and (min-width: 992px) { min-height: 46rem; }
+}
 
-  @media screen and (min-width: 992px) {
-    height: 40rem;
-    aspect-ratio: auto;
+.mc-video-banner__tile .mc-video-banner__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  aspect-ratio: auto;
 
-    .mc-video-banner__tile--image & { aspect-ratio: auto; }
+  img { width: 100%; height: 100%; object-fit: cover; }
+
+  // soft shade under the text (Theme Editor: "Shade behind the text")
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(to top, rgba(28, 20, 18, var(--mc-video-shade, 0.45)) 0%, rgba(28, 20, 18, calc(var(--mc-video-shade, 0.45) * 0.55)) 45%, transparent 82%),
+      linear-gradient(to right, rgba(28, 20, 18, calc(var(--mc-video-shade, 0.45) * 0.5)) 0%, transparent 60%);
+    pointer-events: none;
   }
 }
 
-.mc-video-banner__link {
-  display: block;
-  color: inherit;
+.mc-video-banner__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 1.2rem;
+  width: 100%;
+  padding: 3.2rem 2.4rem;
+  color: var(--mc-video-text, #fff);
+  text-shadow: 0 1px 12px rgba(28, 20, 18, 0.28);
+
+  @media screen and (min-width: 750px) { padding: 4.8rem 5.2rem; }
 }
 
-// play button with a pulsing ring (Merci)
-.mc-video-banner__play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 3;
-  display: grid;
-  place-items: center;
-  width: 7.2rem;
-  height: 7.2rem;
-  padding: 0 0 0 0.3rem;
-  border: 1px solid #fff;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.18);
-  color: #fff;
+.mc-video-banner__eyebrow {
+  display: inline-flex;
+  color: var(--mc-video-text, #fff);
+  align-items: center;
+  gap: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+
+  &::before { content: ''; width: 3.2rem; height: 1px; background: currentColor; }
+}
+
+.mc-video-banner__heading {
+  max-width: 16ch;
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 3.4vw, 4.8rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+
+  em { font-style: italic; }
+}
+
+.mc-video-banner__text {
+  max-width: 44ch;
+  margin: 0;
+  color: inherit;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+.mc-video-banner__watch {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.6rem;
+  margin-top: 1.2rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
   cursor: pointer;
-  transform: translate(-50%, -50%);
-  backdrop-filter: blur(2px);
-  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.mc-video-banner__watch-label {
+  position: relative;
+  padding-bottom: 0.3rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0.35);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+}
+
+.mc-video-banner__watch:hover .mc-video-banner__watch-label::after,
+.mc-video-banner__watch:focus-visible .mc-video-banner__watch-label::after { transform: scaleX(1); }
+
+// play button with a pulsing ring
+.mc-video-banner__play {
+  position: relative;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 6.4rem;
+  height: 6.4rem;
+  padding-left: 0.3rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(3px);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 
   &::before,
   &::after {
     content: '';
     position: absolute;
     inset: -1px;
-    border: 1px solid #fff;
+    border: 1px solid currentColor;
     border-radius: 50%;
     animation: mc-pulse 2.4s ease-out infinite;
   }
 
   &::after { animation-delay: 1.2s; }
 
-  &:hover { background: #fff; color: var(--color-accent-ink, var(--color-primary)); }
+  .mc-video-banner__watch:hover & {
+    background: #fff;
+    color: var(--color-accent-ink, var(--color-primary));
+    transform: scale(1.06);
+  }
 }
 
 @keyframes mc-pulse {
@@ -73,32 +174,199 @@
   to { opacity: 0; transform: scale(1.7); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .mc-video-banner__play::before,
-  .mc-video-banner__play::after { animation: none; }
+// =============================================================================
+// Layered panel tile
+// =============================================================================
+.mc-video-banner__tile--panel {
+  min-height: 46rem;
+  background: var(--mc-panel-bg, #f9f1ef);
 }
 
+.mc-video-banner__panel-link {
+  position: absolute;
+  inset: 0;
+  display: block;
+  color: var(--color-heading, #000);
+  text-decoration: none;
+}
+
+.mc-video-banner__panel {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  color: var(--color-primary);
+  pointer-events: none;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-primary) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 8%, transparent) 1px, transparent 1px);
+  background-size: 2.8rem 2.8rem;
+}
+
+.mc-video-banner__arches {
+  position: absolute;
+  left: 50%;
+  bottom: 24%;
+  width: 82%;
+  opacity: 0.4;
+  transform: translateX(-50%);
+}
+
+// huge outlined word behind the product; shrinks with its length so it never overflows
 .mc-video-banner__word {
   position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  z-index: 3;
-  color: var(--mc-word-color, #a6606d);
+  top: 7%;
+  left: 50%;
+  color: transparent;
   font-family: var(--font-heading);
-  font-size: 3.1rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: clamp(4.4rem, calc(36rem / var(--len, 5)), 9.6rem);
   line-height: 1;
-  text-align: center;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  transform: translateY(-50%);
-  transition: letter-spacing 0.6s ease;
-  pointer-events: none;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  transition: letter-spacing 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  -webkit-text-stroke: 1px var(--mc-word-color, #a6606d);
 
-  @media screen and (min-width: 750px) { font-size: var(--fs-h1, 4.1rem); }
+  .mc-video-banner__tile--panel:hover & { letter-spacing: 0.12em; }
+}
 
-  .mc-hover:hover & { letter-spacing: 0.22em; }
+.mc-video-banner__spark {
+  position: absolute;
+  top: 6%;
+  left: 7%;
+  z-index: 3;
+  width: 16%;
+  animation: mc-art-twinkle 3.6s ease-in-out infinite;
+}
+
+.mc-video-banner__branch {
+  position: absolute;
+  right: 3%;
+  bottom: 26%;
+  width: 24%;
+  opacity: 0.85;
+  transform: rotate(10deg);
+  animation: mc-art-sway 7s ease-in-out infinite;
+}
+
+.mc-video-banner__wave {
+  position: absolute;
+  right: 6%;
+  bottom: 28%;
+  width: 34%;
+}
+
+// product cut-out standing on the panel
+.mc-video-banner__product {
+  position: absolute;
+  inset: 16% 14% 30%;
+  z-index: 2;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  .mc-video-banner__product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    filter: drop-shadow(0 1.8rem 2.2rem rgba(35, 30, 23, 0.18));
+  }
+
+  .mc-video-banner__tile--panel:hover & { transform: translateY(-0.8rem); }
+}
+
+.mc-video-banner__accent {
+  position: absolute;
+  left: 5%;
+  bottom: 34%;
+  z-index: 3;
+  width: 30%;
+  transform: rotate(-9deg);
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  .mc-video-banner__accent-img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 1.2rem 1.4rem rgba(35, 30, 23, 0.18));
+  }
+
+  .mc-video-banner__tile--panel:hover & { transform: rotate(-4deg) translateY(-1rem); }
+}
+
+// photo mode: the image fills the panel, line art and word step back
+.mc-video-banner__tile--fit-cover {
+  .mc-video-banner__product { inset: 0; }
+  .mc-video-banner__product .mc-video-banner__product-img { object-fit: cover; filter: none; }
+  &:hover .mc-video-banner__product { transform: none; }
+
+  .mc-video-banner__arches,
+  .mc-video-banner__word,
+  .mc-video-banner__branch,
+  .mc-video-banner__wave { display: none; }
+}
+
+// caption plate
+.mc-video-banner__plate {
+  position: absolute;
+  inset: auto 1.6rem 1.6rem;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 1.8rem 2rem;
+  background: rgba(255, 255, 255, 0.96);
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  .mc-video-banner__tile--panel:hover & { transform: translateY(-0.6rem); }
+}
+
+.mc-video-banner__plate-eyebrow {
+  color: var(--color-accent-ink, var(--color-primary));
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.mc-video-banner__plate-title {
+  margin: 0;
+  color: var(--color-heading, #000);
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  text-transform: uppercase;
+
+  em { color: var(--color-accent-ink, var(--color-primary)); font-style: italic; text-transform: none; }
+}
+
+.mc-video-banner__plate-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.4rem;
+  color: var(--color-heading, #000);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  svg { transition: transform 0.3s ease; }
+
+  .mc-video-banner__tile--panel:hover & svg { transform: translateX(0.4rem); }
+}
+
+.mc-video-banner__panel-link:focus-visible {
+  outline: 2px solid var(--color-heading, #000);
+  outline-offset: -4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-video-banner__play::before,
+  .mc-video-banner__play::after,
+  .mc-video-banner__spark,
+  .mc-video-banner__branch { animation: none; }
 }
 
 // --- popup ------------------------------------------------------------------

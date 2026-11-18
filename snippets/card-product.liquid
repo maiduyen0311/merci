@@ -179,8 +179,42 @@
               Wishlist → wishlist.js ([data-wishlist-toggle]); compare → card-actions.js.
             {%- endcomment -%}
             {%- if card_merci -%}
-              {%- comment -%} Merci strip: slides up from the image bottom on hover / focus {%- endcomment -%}
+              {%- comment -%}
+                Merci hover box (v1 storefront): bordered white box over the image bottom —
+                ADD TO CART (single variant) / SELECT OPTIONS (opens quick view) | ♡ | ⇄ | quick view.
+              {%- endcomment -%}
+              {%- assign strip_variant = card_product.selected_or_first_available_variant -%}
               <div class="mc-card__strip">
+                {%- if card_product.available == false -%}
+                  <span class="mc-card__strip-label mc-card__strip-label--disabled">{{ 'products.product.sold_out' | t }}</span>
+                {%- elsif card_product.variants.size == 1 -%}
+                  <button
+                    type="button"
+                    class="mc-card__strip-label"
+                    data-card-add="{{ strip_variant.id }}"
+                    aria-label="{{ 'products.product.add_to_cart' | t }}: {{ card_product.title | escape }}"
+                  >
+                    {{- 'products.product.add_to_cart' | t -}}
+                  </button>
+                {%- elsif settings.quick_view_enable != false -%}
+                  <button
+                    type="button"
+                    class="mc-card__strip-label"
+                    data-quick-view-trigger
+                    data-product-url="{{ card_product.url }}"
+                    aria-label="{{ 'products.product.select_options' | t }}: {{ card_product.title | escape }}"
+                  >
+                    {{- 'products.product.select_options' | t -}}
+                  </button>
+                {%- else -%}
+                  <a
+                    class="mc-card__strip-label"
+                    href="{{ card_product.url }}"
+                    aria-label="{{ 'products.product.select_options' | t }}: {{ card_product.title | escape }}"
+                  >
+                    {{- 'products.product.select_options' | t -}}
+                  </a>
+                {%- endif -%}
                 {%- if show_wishlist -%}
                   <button
                     type="button"
@@ -193,17 +227,6 @@
                     {%- render 'icon-heart' -%}
                   </button>
                 {%- endif -%}
-                {%- if settings.quick_view_enable != false -%}
-                  <button
-                    type="button"
-                    class="mc-card__strip-label"
-                    data-quick-view-trigger
-                    data-product-url="{{ card_product.url }}"
-                    aria-label="{{ settings.quick_view_button_label | default: 'Quick view' | escape }}: {{ card_product.title | escape }}"
-                  >
-                    {{- settings.quick_view_button_label | default: 'Quick view' | escape -}}
-                  </button>
-                {%- endif -%}
                 {%- if settings.card_show_compare -%}
                   <button
                     type="button"
@@ -213,7 +236,19 @@
                     title="{{ settings.card_compare_label | escape }}"
                     aria-pressed="false"
                   >
-                    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h15M15 4l4 4-4 4M20 16H5M9 12l-4 4 4 4"/></svg>
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+                  </button>
+                {%- endif -%}
+                {%- if settings.quick_view_enable != false -%}
+                  <button
+                    type="button"
+                    class="mc-card__strip-icon mc-card__strip-quick"
+                    data-quick-view-trigger
+                    data-product-url="{{ card_product.url }}"
+                    aria-label="{{ settings.quick_view_button_label | default: 'Quick view' | escape }}: {{ card_product.title | escape }}"
+                    title="{{ settings.quick_view_button_label | default: 'Quick view' | escape }}"
+                  >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
                   </button>
                 {%- endif -%}
               </div>
@@ -466,13 +501,13 @@
                 {%- assign mc_variant = card_product.selected_or_first_available_variant -%}
                 {%- if card_product.available == false -%}
                   <span class="mc-card__atc mc-card__atc--disabled">{{ 'products.product.sold_out' | t }}</span>
-                {%- elsif card_product.has_only_default_variant -%}
+                {%- elsif card_product.variants.size == 1 -%}
                   <button type="button" class="mc-card__atc" data-card-add="{{ mc_variant.id }}" aria-label="{{ 'products.product.add_to_cart' | t }}: {{ card_product.title | escape }}">
                     {{- 'products.product.add_to_cart' | t -}}<span aria-hidden="true"> +</span>
                   </button>
                 {%- else -%}
-                  <button type="button" class="mc-card__atc" data-quick-view-trigger data-product-url="{{ card_product.url }}" aria-label="{{ 'products.product.choose_options' | t | default: 'Choose options' }}: {{ card_product.title | escape }}">
-                    {{- 'products.product.choose_options' | t | default: 'Choose options' -}}<span aria-hidden="true"> +</span>
+                  <button type="button" class="mc-card__atc" data-quick-view-trigger data-product-url="{{ card_product.url }}" aria-label="{{ 'products.product.select_options' | t }}: {{ card_product.title | escape }}">
+                    {{- 'products.product.select_options' | t -}}<span aria-hidden="true"> +</span>
                   </button>
                 {%- endif -%}
               </div>

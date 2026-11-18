@@ -175,6 +175,7 @@
       "view_full_details": "Tüm ayrıntıları görüntüle",
       "shipping_policy_html": "<a href=\"{{ link }}\">Kargo</a>, ödeme sayfasında hesaplanır.",
       "choose_options": "Seçenekleri belirle",
+      "select_options": "Seçenekleri belirle",
       "choose_product_options": "{{ product_name }} için seçenekleri belirle",
       "value_unavailable": "{{ option_value }} - Kullanılamıyor",
       "variant_sold_out_or_unavailable": "Varyasyon tükendi veya kullanılamıyor",

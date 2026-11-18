@@ -107,7 +107,7 @@
         "sale_1": {
           "type": "sale",
           "settings": {
-            "product": "phasellus-bibendum-turpis-ut-ipsum-egestas",
+            "product": "striped-straw-tote",
             "customer_name": "Miles",
             "city": "Miami",
             "time_ago": "1 minute ago"
@@ -116,7 +116,7 @@
         "sale_2": {
           "type": "sale",
           "settings": {
-            "product": "consectetur-adipiscing-elit",
+            "product": "knit-runner-sneakers",
             "customer_name": "Emma",
             "city": "London",
             "time_ago": "4 minutes ago"
@@ -125,7 +125,7 @@
         "sale_3": {
           "type": "sale",
           "settings": {
-            "product": "lorem-ipsum-dolor-sit-amet",
+            "product": "short-sleeve-poplin-shirt",
             "customer_name": "Lucas",
             "city": "Paris",
             "time_ago": "12 minutes ago"
@@ -134,7 +134,7 @@
         "sale_4": {
           "type": "sale",
           "settings": {
-            "product": "duis-aute-irure-dolor-in",
+            "product": "velvet-matte-lipstick",
             "customer_name": "Sofia",
             "city": "Berlin",
             "time_ago": "25 minutes ago"

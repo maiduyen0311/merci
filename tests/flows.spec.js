@@ -10,7 +10,7 @@ test('product: add to cart opens the drawer and fills the cart', async ({ page }
   await expect.poll(() => cartCount(page)).toBeGreaterThan(before);
 });
 
-test('product: choosing another colour updates the selected label and the URL', async ({ page }) => {
+test('product: choosing another colour updates the label, the URL and the main image', async ({ page }) => {
   await visit(page, PAGES.product);
   const option = page.locator(`${S.variantPicker} .main-product__option`).filter({ has: page.locator('.is-color') }).first();
   test.skip(!(await option.count()), 'no colour option');
@@ -18,9 +18,13 @@ test('product: choosing another colour updates the selected label and the URL', 
   test.skip(!(await next.count()), 'no other available colour');
   const value = await next.locator('input').getAttribute('value');
   const urlBefore = page.url();
+  const mainImage = page.locator('[id^="MainProductImage-"]').first();
+  const srcBefore = await mainImage.getAttribute('src');
   await next.click();
   await expect(option.locator('[data-selected-value]')).toHaveText(value);
   await expect.poll(() => page.url()).not.toBe(urlBefore);
+  // user 2026-11-18: every colour has its own photo, so the gallery must change
+  await expect.poll(() => mainImage.getAttribute('src')).not.toBe(srcBefore);
 });
 
 test('collection: Merci card hover shows the action strip', async ({ page, isMobile }) => {
@@ -31,9 +35,35 @@ test('collection: Merci card hover shows the action strip', async ({ page, isMob
   await expect(card.locator('.mc-card__strip')).toBeVisible();
 });
 
+test('collection: hover box reads "Add to cart" for single-variant products, "Select options" otherwise', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'touch devices only show the wishlist heart on the image');
+  await visit(page, PAGES.collection);
+  const labels = page.locator('main .card-wrapper--merci .mc-card__strip-label');
+  await expect(labels.first()).toBeAttached();
+
+  // markup contract: add button ↔ "Add to cart", quick view ↔ "Select options"
+  for (const el of await labels.all()) {
+    const text = ((await el.textContent()) || '').trim().toLowerCase();
+    if (await el.getAttribute('data-card-add')) expect(text).toBe('add to cart');
+    else if ((await el.getAttribute('data-quick-view-trigger')) !== null) expect(text).toBe('select options');
+  }
+
+  // data contract on two real products: variant count decides the label
+  const cards = page.locator('main .card-wrapper--merci');
+  for (let i = 0; i < Math.min(2, await cards.count()); i++) {
+    const card = cards.nth(i);
+    const href = await card.locator('a[href*="/products/"]').first().getAttribute('href');
+    const product = await page.evaluate(async (u) => (await fetch(u.split('?')[0] + '.js')).json(), href);
+    const label = ((await card.locator('.mc-card__strip-label').textContent()) || '').trim().toLowerCase();
+    const single = product.variants.length === 1;
+    if (!product.available) expect(label).toBe('sold out');
+    else expect(label).toBe(single ? 'add to cart' : 'select options');
+  }
+});
+
 test('collection: quick view opens and closes with Escape', async ({ page }) => {
   await visit(page, PAGES.collection);
-  // visible one: the strip button on desktop, the "Choose options +" link on touch screens
+  // visible one: the hover box on desktop, the "Select options +" link on touch screens
   const trigger = page.locator(S.quickViewTrigger + ':visible').first();
   test.skip(!(await trigger.count()), 'no quick view');
   await page.locator(S.card).first().hover().catch(() => {});

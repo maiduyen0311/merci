@@ -1,16 +1,19 @@
 // =============================================================================
 // Merci product card hover (Theme settings → Product cards → Card layout "Merci").
-// SPEC §3.1 + memory design-direction: must NOT reuse the Top Market motifs
-// (card border + side icon stack + coloured bar under the card).
+// Hover box from the Merci v1 storefront (user 2026-11-18, ref screenshot):
 //   • image: cross-fade to the 2nd image + slow zoom
-//   • white strip slides up from the image bottom: ♡ | QUICK VIEW | ⇄ (thin rules)
-//   • price line swaps to an "Add to cart +" text link with a growing underline
-// Touch devices (no hover): strip hidden, price + link both visible.
+//   • white box with a thin grey border, centred over the image bottom:
+//     ADD TO CART / SELECT OPTIONS  ♡  ⇄  🔍
+//   • price stays in place under the title
+// Touch devices (no hover): box hidden except a round ♡; "Add to cart +" /
+// "Select options +" link under the price.
 // =============================================================================
 
 .card-wrapper--merci {
   // no Top Market hover frame
   &::after { display: none; }
+
+  .card__media { container-type: inline-size; }
 
   .card__media .media img {
     transition: opacity 0.45s ease, transform 1.4s cubic-bezier(0.2, 0.6, 0.2, 1);
@@ -21,27 +24,33 @@
 
 .mc-card__strip {
   position: absolute;
-  inset: auto 1rem 1rem;
+  inset: auto auto 1.6rem 50%;
   z-index: 6;
   display: flex;
-  align-items: stretch;
-  height: 4rem;
+  align-items: center;
+  gap: 0.4rem;
+  max-width: calc(100% - 2rem);
+  height: 4.6rem;
+  padding: 0 1rem 0 1.8rem;
+  border: 1px solid #a5a5a5;
+  border-radius: 4px;
   background: #fff;
   color: var(--color-heading, #000);
+  white-space: nowrap;
   opacity: 0;
-  transform: translateY(1.2rem);
+  transform: translate(-50%, 1.2rem);
   transition: opacity 0.3s ease, transform 0.35s ease;
 
-  > button + button { border-inline-start: 1px solid var(--color-border, #e8e9eb); }
-
-  button {
-    display: grid;
+  button,
+  a {
+    display: inline-grid;
     place-items: center;
     margin: 0;
     padding: 0;
     border: 0;
     background: transparent;
     color: inherit;
+    text-decoration: none;
     cursor: pointer;
     transition: color 0.2s ease;
 
@@ -50,43 +59,62 @@
   }
 }
 
-.mc-card__strip-icon {
-  flex: 0 0 4rem;
+.mc-card__strip-label {
+  margin-inline-end: 0.8rem !important;
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
 
-  svg { width: 1.7rem; height: 1.7rem; }
+  &--disabled { color: var(--color-text-muted, #666); }
+  &.is-loading { opacity: 0.45; pointer-events: none; }
 }
 
-.mc-card__strip-label {
-  flex: 1 1 auto;
-  font-family: var(--font-body);
-  font-size: 1.2rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+.mc-card__strip-icon {
+  flex: 0 0 3rem;
+  width: 3rem;
+  height: 3rem;
+  color: #555 !important;
+
+  &:hover,
+  &[aria-pressed='true'] { color: var(--color-accent-ink, var(--color-primary)) !important; }
+
+  svg { width: 2rem; height: 2rem; }
+}
+
+.card-product__wishlist.mc-card__strip-icon[aria-pressed='true'] .icon-heart { fill: currentColor; }
+
+// narrow cards (4–5 columns, sidebar grids): tighter box, then drop the compare icon
+@container (max-width: 300px) {
+  .mc-card__strip { height: 4.2rem; padding: 0 0.6rem 0 1.2rem; gap: 0; }
+  .mc-card__strip-label { margin-inline-end: 0.4rem !important; font-size: 1.3rem; letter-spacing: 0.02em; }
+  .mc-card__strip-icon { flex-basis: 2.8rem; width: 2.8rem; }
+  .mc-card__strip-icon svg { width: 1.8rem; height: 1.8rem; }
+}
+
+@container (max-width: 235px) {
+  .mc-card__strip .card-product__compare { display: none; }
 }
 
 .card-wrapper--merci:hover .mc-card__strip,
 .card-wrapper--merci:focus-within .mc-card__strip {
   opacity: 1;
-  transform: none;
+  transform: translate(-50%, 0);
 }
 
-// --- price ⇄ add to cart ----------------------------------------------------
+// --- price + touch "Add to cart +" link ----------------------------------------
 .mc-card__price-swap {
-  position: relative;
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   order: 2; // same slot as .price in the flattened card info
-
-  > .price,
-  > .mc-card__atc {
-    grid-area: 1 / 1;
-    transition: opacity 0.25s ease, transform 0.3s ease;
-  }
 }
 
 .mc-card__atc {
   position: relative;
+  margin-top: 0.4rem;
   padding: 0 0 0.2rem;
   border: 0;
   background: transparent;
@@ -97,41 +125,23 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
-  opacity: 0;
-  transform: translateY(0.8rem);
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: auto 0 0;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-
-  &:hover { color: var(--color-accent-ink, var(--color-primary)); }
-  &:hover::after { transform: scaleX(1); }
 
   &--disabled { color: var(--color-text-muted, #666); cursor: default; }
 }
 
+// hover devices: the box above carries the action, the price line stays still
 @media (hover: hover) {
-  .card-wrapper--merci:hover .mc-card__price-swap {
-    > .price { opacity: 0; transform: translateY(-0.8rem); }
-    > .mc-card__atc { opacity: 1; transform: none; }
-  }
-
-  .card-wrapper--merci .mc-card__atc:focus-visible { opacity: 1; transform: none; }
+  .mc-card__atc { display: none; }
 }
 
-// Touch: no hover — the link sits under the price; the strip shrinks to a round ♡ in the image corner
+// Touch: no hover — the strip shrinks to a round ♡ in the image corner
 @media (hover: none) {
   .mc-card__strip {
     inset: 0.8rem 0.8rem auto auto;
     width: 3.4rem;
     height: 3.4rem;
+    padding: 0;
+    border: 0;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.92);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -141,12 +151,8 @@
     > :not(.card-product__wishlist) { display: none; }
   }
 
+  .card-wrapper--merci:hover .mc-card__strip,
+  .card-wrapper--merci:focus-within .mc-card__strip { transform: none; }
+
   .mc-card__strip .card-product__wishlist { flex: 1 1 auto; }
-
-  .mc-card__price-swap {
-    > .price,
-    > .mc-card__atc { grid-area: auto; }
-  }
-
-  .mc-card__atc { opacity: 1; transform: none; margin-top: 0.4rem; }
 }
