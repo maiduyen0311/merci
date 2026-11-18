@@ -24,5 +24,7 @@ module.exports = defineConfig({
     { name: 'desktop', use: { ...devices['Desktop Chrome'], channel: 'chrome', viewport: { width: 1440, height: 900 } } },
     { name: 'tablet', use: { ...devices['Desktop Chrome'], channel: 'chrome', viewport: { width: 768, height: 1024 } } },
     { name: 'mobile', use: { ...devices['Pixel 7'], channel: 'chrome', viewport: { width: 390, height: 844 } } },
+    // browser matrix: system Edge (no download); visual baselines stay Chrome-only
+    { name: 'edge', testIgnore: /visual\.spec/, use: { ...devices['Desktop Edge'], channel: 'msedge', viewport: { width: 1440, height: 900 } } },
   ],
 });

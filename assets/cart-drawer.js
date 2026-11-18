@@ -2,7 +2,10 @@ class CartDrawer extends HTMLElement {
   constructor() {
     super();
 
-    this.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
+    // Escape closes the drawer wherever focus is (opened by mouse, focus is still on the header icon)
+    document.addEventListener('keyup', (evt) => {
+      if (evt.code === 'Escape' && this.classList.contains('active')) this.close();
+    });
     this.querySelector('#CartDrawer-Overlay').addEventListener('click', this.close.bind(this));
     this.setHeaderCartIconAccessibility();
   }

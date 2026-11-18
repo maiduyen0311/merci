@@ -13,7 +13,13 @@
   <div class="container faq-section__container">
     <header class="faq-section__header">
       {%- if section.settings.eyebrow != blank -%}<p class="faq-section__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
-      {%- if section.settings.heading != blank -%}<h2 class="faq-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      {%- liquid
+        assign faq_tag = 'h2'
+        if section.settings.heading_as_h1
+          assign faq_tag = 'h1'
+        endif
+      -%}
+      {%- if section.settings.heading != blank -%}<{{ faq_tag }} class="faq-section__heading">{{ section.settings.heading }}</{{ faq_tag }}>{%- endif -%}
       {%- if section.settings.subheading != blank -%}<p class="faq-section__subheading">{{ section.settings.subheading }}</p>{%- endif -%}
     </header>
 
@@ -95,6 +101,7 @@
     { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "background-1" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FAQ" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Questions? We've got answers." },
+    { "type": "checkbox", "id": "heading_as_h1", "label": "Use the heading as the page title (H1)", "info": "Turn on when the page title above is hidden.", "default": false },
     { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Everything you need to know about ordering, shipping, returns and more." },
     { "type": "checkbox", "id": "single_open", "label": "Only one item open at a time", "default": true },
     { "type": "checkbox", "id": "enable_seo", "label": "Output FAQPage structured data", "default": true, "info": "Adds JSON-LD so search engines can show your FAQ as a rich result." },

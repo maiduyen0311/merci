@@ -1052,7 +1052,9 @@ html body .tm-article {
       background: var(--color-primary-soft, #f2d0d0);
     }
 
-    @media screen and (max-width: 749px) { &::before { inset: -0.8rem 0.8rem 0.8rem -0.8rem; } &::after { display: none; } }
+    @media screen and (max-width: 749px) { &::before { inset: -0.8rem 0.8rem 0.8rem -0.8rem; } }
+    // the disc pokes 3.2rem past the column — only the desktop gutter is wide enough for it
+    @media screen and (max-width: 991px) { &::after { display: none; } }
   }
 
   &__content { max-width: 76rem; margin-inline: auto; }

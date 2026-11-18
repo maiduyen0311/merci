@@ -75,7 +75,8 @@
         "enable_seo": true,
         "footer_text": "Still have questions?",
         "cta_label": "Contact support →",
-        "cta_url": "/pages/contact"
+        "cta_url": "/pages/contact",
+        "heading_as_h1": true
       }
     },
     "compare": {

@@ -20,6 +20,6 @@ User 2026-11-11 (phase 06 QA): keep the design pink #bf7069 behind white text on
 **Why:** brand look over strict AA; sales popup is a selling feature.
 **How to apply:** do not darken buttons/badges or disable the sales popup unless the user asks; text in the accent colour on white still uses color_accent_ink #a95b55.
 
-User 2026-11-17: product images must show the PRODUCT ONLY — no model photos (cards, hover image, PDP gallery). Banners may use model photos.
+User 2026-11-17: product images must show the PRODUCT ONLY — no model photos (cards, hover image, PDP gallery). Layered banners (mc-art), homepage tiles, collection hero and collections list also use products only (staged cut-outs / first product packshot). User 2026-11-18: KEEP model photos in lifestyle areas — homepage slideshow, homepage big banners + parallax, Instagram strip, Lookbook page + mega-menu Lookbook banner.
 **Why:** cleaner, catalogue-like look for the demo.
-**How to apply:** demo catalogue (scripts/demo/merci-catalogue.js) uses packshots only; archiving the 21 model-photo demo products and removing model images from v1 products needs the user's go-ahead (store data change, was blocked as destructive).
+**How to apply:** demo catalogue (scripts/demo/merci-catalogue.js) uses packshots only. Done 2026-11-17 with user OK: 21 model-photo demo products archived, 28 model images removed from 7 v1 products (restore list qa/removed-model-media.json). New banner art → `stage-*` images (merci-images.ps1 Save-Stage), never model photos.
