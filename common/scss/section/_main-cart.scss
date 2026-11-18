@@ -14,7 +14,7 @@
   padding: 0 36px;
   border: 1px solid transparent;
   border-radius: 999px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -55,7 +55,7 @@
     margin: 0 0 28px;
     color: #111;
     font-family: var(--font-heading);
-    font-size: 26px;
+    font-size: 27px;
     font-weight: 500;
   }
 
@@ -67,7 +67,7 @@
 
     .cart__empty-text {
       margin: 0 0 24px;
-      font-size: 18px;
+      font-size: 19px;
       color: #111;
     }
 
@@ -121,7 +121,7 @@
 
   &__progress-text {
     margin: 0;
-    font-size: 16px;
+    font-size: 17px;
     color: #707070;
     strong { color: #111; font-weight: 400; }
   }
@@ -131,7 +131,7 @@
     padding: 14px 0;
     border-bottom: 1px solid var(--color-border, #e5e5e5);
     color: #111;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 400;
     text-transform: uppercase;
   }
@@ -173,7 +173,7 @@
     display: block;
     margin-bottom: 6px;
     color: var(--color-product-title, #111);
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.4;
     text-decoration: none;
     &:hover { color: var(--color-accent-ink, var(--color-accent)); }
@@ -183,7 +183,7 @@
   &__discount {
     margin: 0 0 4px;
     color: #707070;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   &__discount { color: var(--color-accent-ink, var(--color-accent)); }
@@ -198,7 +198,7 @@
     align-items: center;
     gap: 6px;
     color: #555;
-    font-size: 13px;
+    font-size: 14px;
     text-decoration: none;
     &:hover { color: var(--color-accent-ink, var(--color-accent)); }
   }
@@ -207,19 +207,19 @@
     display: block;
     margin-bottom: 6px;
     color: #767676;
-    font-size: 12px;
+    font-size: 13px;
     text-transform: uppercase;
   }
 
   &__price {
     color: #111;
-    font-size: 16px;
+    font-size: 17px;
   }
 
   &__compare {
     margin-left: 8px;
     color: #767676;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   // Quantity pill 120×40
@@ -263,7 +263,7 @@
       border: 0;
       background: none;
       color: #111;
-      font-size: 15px;
+      font-size: 16px;
       text-align: center;
       -moz-appearance: textfield;
 
@@ -276,14 +276,14 @@
   &__error {
     margin-top: 6px;
     color: #d9322c;
-    font-size: 12px;
+    font-size: 13px;
     &:empty, .cart-item__error-text:empty { display: none; }
   }
 
   &__total {
     position: relative;
     color: #111;
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .loading__spinner {
@@ -312,7 +312,7 @@
 
   // Mobile: product full width, then price / qty / total on one row
   @media (max-width: 991.98px) {
-    &__title { font-size: 24px; }
+    &__title { font-size: 25px; }
     &__item { padding: 20px 0; }
     &__thumb { flex-basis: 90px; width: 90px; height: 112px; }
     &__compare { display: block; margin-left: 0; }
@@ -343,7 +343,7 @@
   &__subtotal-label {
     margin: 0;
     color: #111;
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 400;
     text-transform: uppercase;
   }
@@ -351,20 +351,20 @@
   &__discount {
     margin: 0 0 4px;
     color: #707070;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   &__total {
     margin: 0 0 6px;
     color: var(--color-accent-ink, var(--color-accent));
-    font-size: 24px;
+    font-size: 25px;
     font-weight: 600;
   }
 
   &__tax {
     margin: 0 0 10px;
     color: #707070;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   &__terms {
@@ -372,7 +372,7 @@
     align-items: center;
     gap: 8px;
     color: #555;
-    font-size: 14px;
+    font-size: 15px;
     cursor: pointer;
 
     input { width: 16px; height: 16px; accent-color: var(--color-accent); }
@@ -392,7 +392,7 @@
     gap: 10px;
     margin: 24px 0 0;
     color: #555;
-    font-size: 14px;
+    font-size: 15px;
     text-transform: uppercase;
 
     svg { color: #111; }
@@ -406,7 +406,7 @@
     margin-left: 10px;
     background: none;
     color: var(--color-accent-ink, var(--color-accent));
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 400;
     text-transform: uppercase;
     cursor: pointer;
@@ -435,14 +435,14 @@
     display: block;
     margin: 0 0 10px;
     color: #111;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 400;
   }
 
   &__heading {
     margin-bottom: 14px;
     font-family: var(--font-heading);
-    font-size: 24px;
+    font-size: 25px;
     font-weight: 500;
   }
 
@@ -457,7 +457,7 @@
     border-radius: 4px;
     background: #fff;
     color: #111;
-    font-size: 14px;
+    font-size: 15px;
 
     &:focus { outline: none; border-color: #111; }
   }
@@ -491,12 +491,12 @@
     display: block;
     margin-top: 8px;
     color: #767676;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   &__rates {
     margin-top: 16px;
-    font-size: 14px;
+    font-size: 15px;
 
     &:empty { display: none; }
 

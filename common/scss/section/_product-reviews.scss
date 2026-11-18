@@ -13,7 +13,7 @@
 
   &__heading {
     margin: 0 0 24px;
-    font-size: clamp(22px, 2.4vw, 28px);
+    font-size: clamp(23px, 2.4vw, 29px);
     font-weight: 700;
     letter-spacing: -0.01em;
   }
@@ -47,7 +47,7 @@
 
   &__summary-text {
     margin: 0 0 16px;
-    font-size: 14px;
+    font-size: 15px;
     color: #444;
 
     strong { color: #2a1e15; }
@@ -59,7 +59,7 @@
     background: var(--color-primary, #dc5414);
     color: #fff;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -107,7 +107,7 @@
 
   &__item-author {
     margin: 0;
-    font-size: 14px;
+    font-size: 15px;
     color: #444;
 
     strong { color: #2a1e15; }
@@ -120,7 +120,7 @@
     padding: 2px 8px;
     background: #d4edda;
     color: #155724;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     border-radius: 999px;
 
@@ -132,20 +132,20 @@
 
   &__item-date {
     margin-left: auto;
-    font-size: 12px;
+    font-size: 13px;
     color: #767676;
   }
 
   &__item-title {
     margin: 0 0 6px;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
     color: #2a1e15;
   }
 
   &__item-body {
     margin: 0;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.55;
     color: #444;
   }

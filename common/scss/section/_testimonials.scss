@@ -20,7 +20,7 @@
   }
   &__heading {
     margin: 0 0 8px;
-    font-size: clamp(22px, 3vw, 32px);
+    font-size: clamp(23px, 3vw, 33px);
     font-weight: 700;
     color: $color-text;
   }
@@ -47,7 +47,7 @@
     border-radius: 50%;
     background: #fff;
     color: $color-text;
-    font-size: 24px;
+    font-size: 25px;
     line-height: 1;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
@@ -100,7 +100,7 @@
 
   &__star {
     color: #e6e6e6;
-    font-size: 18px;
+    font-size: 19px;
     line-height: 1;
     &.is-filled { color: #f5a623; }
   }
@@ -108,11 +108,11 @@
   &__quote {
     margin: 0;
     color: $color-text;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.55;
     quotes: "“" "”";
 
-    &::before { content: open-quote; color: $color-accent-ink; font-size: 24px; line-height: 0; vertical-align: -4px; margin-right: 2px; }
+    &::before { content: open-quote; color: $color-accent-ink; font-size: 25px; line-height: 0; vertical-align: -4px; margin-right: 2px; }
     &::after  { content: close-quote; }
   }
 
@@ -136,7 +136,7 @@
       align-items: center;
       justify-content: center;
       color: $color-accent-ink;
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
       background: rgba(168, 64, 15, 0.12);
     }
@@ -148,8 +148,8 @@
     line-height: 1.3;
     min-width: 0;
 
-    strong { font-size: 13px; color: $color-text; }
-    span   { font-size: 11px; color: $color-text-muted; }
+    strong { font-size: 14px; color: $color-text; }
+    span   { font-size: 12px; color: $color-text-muted; }
   }
 
   &__verified {
@@ -160,7 +160,7 @@
     padding: 3px 8px;
     background: rgba(46, 133, 64, 0.12);
     color: #2e8540;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     border-radius: 999px;
 
@@ -235,7 +235,7 @@
   .testimonials__quote {
     border: 0;
     padding: 0;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     line-height: 1.8;
   }
 

@@ -90,7 +90,7 @@
   &__script {
     margin: 0;
     font-family: var(--font-script);
-    font-size: clamp(28px, 4vw, 42px);
+    font-size: clamp(29px, 4vw, 43px);
     font-weight: 400;
     line-height: 1.1;
     // Heavy dark shadow so white text reads on pastel tile bg (WCAG AA).
@@ -99,7 +99,7 @@
 
   &__bold {
     margin: 0;
-    font-size: clamp(40px, 6vw, 72px);
+    font-size: clamp(41px, 6vw, 73px);
     font-weight: 800;
     line-height: 0.95;
     letter-spacing: 0.02em;

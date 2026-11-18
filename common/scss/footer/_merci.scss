@@ -15,7 +15,7 @@
   .footer-main__heading {
     margin-bottom: 2.4rem;
     color: var(--color-heading, #000);
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     font-weight: 400;
     letter-spacing: 0.02em;
     text-transform: uppercase;
@@ -25,21 +25,21 @@
 
   .footer-main__link {
     color: var(--color-text);
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 
     &:hover { color: var(--color-accent-ink, var(--color-primary)); }
   }
 
   .footer-main__text {
     margin-bottom: 2.4rem;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     line-height: 2;
   }
 
   .footer-main__copyright {
     margin: 0;
     color: var(--color-text);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     letter-spacing: normal;
     text-align: left;
     text-transform: none;
@@ -86,7 +86,7 @@
 
     .footer-main__heading {
       margin-bottom: 0.8rem;
-      font-size: 2.4rem;
+      font-size: 2.5rem;
     }
   }
 
@@ -96,7 +96,7 @@
   .footer-main__newsletter-intro {
     margin-bottom: 2.4rem;
     color: var(--color-text);
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
 
   .footer-newsletter__field {
@@ -110,7 +110,7 @@
   .footer-newsletter__input {
     padding-left: 0;
     color: var(--color-text);
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     text-transform: uppercase;
 
     &::placeholder { color: var(--color-accent-ink, var(--color-primary)); opacity: 1; }

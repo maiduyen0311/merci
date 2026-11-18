@@ -46,7 +46,7 @@
   &__eyebrow {
     font-family: var(--font-script, 'Great Vibes', cursive);
     font-weight: 400;
-    font-size: clamp(28px, 4vw, 44px);
+    font-size: clamp(29px, 4vw, 45px);
     line-height: 1;
     color: var(--color-text, #222);
     // Pull the bold title up slightly so it overlaps script tail
@@ -57,7 +57,7 @@
     margin: 0;
     font-family: var(--font-heading, 'Jost', sans-serif);
     font-weight: 800;
-    font-size: clamp(36px, 6vw, 56px);
+    font-size: clamp(37px, 6vw, 57px);
     line-height: 1.05;
     letter-spacing: 0.02em;
     text-transform: uppercase;
@@ -106,11 +106,11 @@
     }
 
     &__eyebrow {
-      font-size: 28px;
+      font-size: 29px;
     }
 
     &__title {
-      font-size: 32px;
+      font-size: 33px;
     }
   }
 }

@@ -14,7 +14,7 @@
   .home-trending-row__eyebrow {
     margin: 0 0 4px;
     color: var(--accent, #dc5414);
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -22,7 +22,7 @@
 
   .home-trending-row__title {
     margin: 0;
-    font-size: clamp(22px, 2.5vw, 32px);
+    font-size: clamp(23px, 2.5vw, 33px);
     font-weight: 700;
     line-height: 1.2;
     color: var(--color-text, #222);
@@ -58,7 +58,7 @@
 
   .home-trending-row__feature-eyebrow {
     margin: 0;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -74,7 +74,7 @@
     border-radius: var(--radius-pill, 999px);
     background-color: var(--accent, #dc5414);
     color: #fff;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-decoration: none;

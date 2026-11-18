@@ -13,7 +13,7 @@
   border-radius: $radius-card-sm;
   overflow: hidden;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-  font-size: 14px;
+  font-size: 15px;
 
   &-section {
     .comparison-table__header {
@@ -30,7 +30,7 @@
     }
     .comparison-table__heading {
       margin: 0 0 8px;
-      font-size: clamp(22px, 3vw, 32px);
+      font-size: clamp(23px, 3vw, 33px);
       font-weight: 700;
     }
     .comparison-table__subheading {
@@ -76,7 +76,7 @@
     padding: 3px 10px;
     background: #fff;
     color: $color-accent-ink;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -85,7 +85,7 @@
 
   &__col-name {
     display: block;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 700;
     line-height: 1.2;
   }
@@ -93,7 +93,7 @@
   &__col-tagline {
     display: block;
     margin-top: 4px;
-    font-size: 12px;
+    font-size: 13px;
     color: inherit;
     opacity: 0.8;
   }
@@ -123,7 +123,7 @@
   &__feature-help {
     margin-left: 4px;
     color: $color-text-muted;
-    font-size: 12px;
+    font-size: 13px;
     cursor: help;
   }
 
@@ -184,7 +184,7 @@
     border-radius: $radius-card-sm;
     background: #fff;
     color: $color-text;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -210,11 +210,11 @@
   }
 
   @media (max-width: 767px) {
-    font-size: 13px;
+    font-size: 14px;
     thead th { padding: 12px 10px; }
     &__feature, &__cell { padding: 12px 10px; }
     &__feature-col { min-width: 140px; }
     &__col-head { min-width: 110px; }
-    &__col-name { font-size: 14px; }
+    &__col-name { font-size: 15px; }
   }
 }

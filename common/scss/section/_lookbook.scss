@@ -19,7 +19,7 @@
   }
   &__heading {
     margin: 0 0 8px;
-    font-size: clamp(22px, 3vw, 32px);
+    font-size: clamp(23px, 3vw, 33px);
     font-weight: 700;
     color: $color-text;
   }
@@ -118,7 +118,7 @@
     }
 
     &-card-title {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
       color: $color-text;
       line-height: 1.3;
@@ -129,7 +129,7 @@
     }
 
     &-card-price {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--color-price, var(--color-accent));
       font-weight: 700;
     }
@@ -148,7 +148,7 @@
     background: var(--color-primary, $color-accent);
     color: #fff; // dark primary background
     border-radius: $radius-card-sm;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -190,7 +190,7 @@
     height: 26px;
     border-width: 2px;
     color: var(--color-heading, #222);
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     line-height: 1;
   }
@@ -230,7 +230,7 @@
   border: 1px solid currentColor;
   border-radius: 50%;
   color: var(--color-accent-ink, var(--color-accent, #a8400f));
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -256,7 +256,7 @@
 
 .lookbook__item-title {
   color: var(--color-product-title, #222);
-  font-size: 15px;
+  font-size: 16px;
   text-decoration: none;
 
   &:hover {
@@ -280,7 +280,7 @@
   border: 1px solid var(--color-heading, #222);
   background: transparent;
   color: var(--color-heading, #222);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;

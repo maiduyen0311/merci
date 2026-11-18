@@ -219,7 +219,7 @@ $mobile-break: 991.98px;
     border: 1px solid rgba(0, 0, 0, 0.18);
     border-radius: 6px;
     font-family: inherit;
-    font-size: max(1em, 16px); // ≥16px on focus prevents iOS zoom; otherwise matches body
+    font-size: max(1em, 17px); // ≥16px on focus prevents iOS zoom; otherwise matches body
     color: #222;
     background: #fff;
 
@@ -352,7 +352,7 @@ $mobile-break: 991.98px;
     border-bottom: 2px solid transparent;
     background: #ececec;
     color: #222;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -395,7 +395,7 @@ $mobile-break: 991.98px;
     min-width: 0;
     padding: 12px 0 12px 20px;
     color: #222;
-    font-size: 15px;
+    font-size: 16px;
     text-decoration: none;
 
     &.is-active {
@@ -458,7 +458,7 @@ $mobile-break: 991.98px;
     }
 
     .mobile-drawer__row-link {
-      font-size: 14px;
+      font-size: 15px;
     }
   }
 
@@ -488,7 +488,7 @@ $mobile-break: 991.98px;
     background: none;
     color: #222;
     font: inherit;
-    font-size: 15px;
+    font-size: 16px;
     text-align: left;
     text-decoration: none;
     cursor: pointer;
@@ -512,7 +512,7 @@ $mobile-break: 991.98px;
     padding: 22px 20px;
     border-bottom: 1px solid #ebebeb;
     color: #222;
-    font-size: 14px;
+    font-size: 15px;
 
     p {
       margin: 0;
@@ -527,7 +527,7 @@ $mobile-break: 991.98px;
 
   .mobile-drawer__help-title {
     margin-bottom: 14px !important;
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .mobile-drawer__help-line {
@@ -538,7 +538,7 @@ $mobile-break: 991.98px;
 
   .mobile-drawer__locale {
     border-bottom: 1px solid #ebebeb;
-    font-size: 14px;
+    font-size: 15px;
 
     header-top-dropdown,
     .header-top__picker,
@@ -559,7 +559,7 @@ $mobile-break: 991.98px;
       background: none;
       color: #222;
       font: inherit;
-      font-size: 15px;
+      font-size: 16px;
       cursor: pointer;
     }
 

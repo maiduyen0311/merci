@@ -26,7 +26,7 @@
     background: transparent;
     border: 0;
     padding: 0 0 12px;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 400;
     letter-spacing: 0;
     text-transform: uppercase;
@@ -89,7 +89,7 @@
       h6 { margin-top: 0; font-size: $fs-body; }
     }
 
-    h5 { margin-top: 26px; font-size: 16px; }
+    h5 { margin-top: 26px; font-size: 17px; }
 
     // Specification table inside product descriptions
     .tm-spec-table {
@@ -97,7 +97,7 @@
       max-width: 640px;
       margin: 0 0 $space-md;
       border-collapse: collapse;
-      font-size: 14px;
+      font-size: 15px;
 
       th,
       td {
@@ -120,7 +120,7 @@
     width: 100%;
     min-width: 520px;
     border-collapse: collapse;
-    font-size: 14px;
+    font-size: 15px;
     text-align: center;
 
     th,
@@ -137,7 +137,7 @@
     border-radius: 8px;
     background: #f7f7f7;
 
-    h3 { margin: 0 0 14px; color: #111; font-size: 18px; font-weight: 500; }
+    h3 { margin: 0 0 14px; color: #111; font-size: 19px; font-weight: 500; }
     p { margin: 0 0 10px; }
     strong { color: #111; font-weight: 500; }
   }
@@ -165,11 +165,11 @@
     margin: 0;
     color: #111;
     font-family: var(--font-heading);
-    font-size: 48px;
+    font-size: 49px;
     font-weight: 500;
     line-height: 1;
 
-    span { margin-left: 4px; color: #767676; font-size: 18px; }
+    span { margin-left: 4px; color: #767676; font-size: 19px; }
   }
 
   // CSS-only stars: --pct fills the gold layer
@@ -178,7 +178,7 @@
     display: inline-block;
     margin: 10px 0 6px;
     color: #ddd;
-    font-size: 20px;
+    font-size: 21px;
     letter-spacing: 3px;
     line-height: 1;
 
@@ -195,10 +195,10 @@
       white-space: nowrap;
     }
 
-    &--sm { margin: 0; font-size: 14px; letter-spacing: 2px; }
+    &--sm { margin: 0; font-size: 15px; letter-spacing: 2px; }
   }
 
-  &__count { margin: 0 0 18px; color: #707070; font-size: 14px; }
+  &__count { margin: 0 0 18px; color: #707070; font-size: 15px; }
 
   &__bars {
     margin: 0 0 22px;
@@ -208,7 +208,7 @@
       grid-template-columns: 34px 1fr 38px;
       align-items: center;
       gap: 10px;
-      font-size: 13px;
+      font-size: 14px;
 
       + li { margin-top: 8px; }
       span:last-child { color: #767676; text-align: right; }
@@ -246,9 +246,9 @@
     text-transform: uppercase;
   }
 
-  &__author { margin: 0; color: #111; font-size: 15px; font-weight: 500; }
-  &__meta { margin: 0; color: #767676; font-size: 13px; }
-  &__title { margin: 14px 0 6px; color: #111; font-size: 15px; font-weight: 500; }
+  &__author { margin: 0; color: #111; font-size: 16px; font-weight: 500; }
+  &__meta { margin: 0; color: #767676; font-size: 14px; }
+  &__title { margin: 14px 0 6px; color: #111; font-size: 16px; font-weight: 500; }
   &__text { margin: 0; }
 }
 
@@ -260,7 +260,7 @@
     margin: 0 0 40px;
     color: #000;
     font-family: var(--font-heading);
-    font-size: 30px;
+    font-size: 31px;
     font-weight: 500;
     text-align: center;
   }

@@ -47,28 +47,28 @@
 
 .mc-parallax__eyebrow {
   margin: 0 0 1rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
 
-  @media screen and (min-width: 750px) { font-size: 1.4rem; }
+  @media screen and (min-width: 750px) { font-size: 1.5rem; }
 }
 
 .mc-parallax__heading {
   margin: 0 0 2.4rem;
   color: inherit;
   font-family: var(--font-heading);
-  font-size: 2.6rem;
+  font-size: 2.7rem;
   font-weight: 500;
   letter-spacing: 0.06em;
   line-height: 1.1;
   text-transform: uppercase;
 
-  @media screen and (min-width: 750px) { font-size: var(--fs-h1, 4rem); }
+  @media screen and (min-width: 750px) { font-size: var(--fs-h1, 4.1rem); }
 }
 
 // phones: keep the copy in the left half so it does not run over the photo's subject
 @media screen and (max-width: 749px) {
   .mc-parallax__text { max-width: 55%; }
-  .mc-parallax__heading { font-size: 2rem; line-height: 1.25; }
+  .mc-parallax__heading { font-size: 2.1rem; line-height: 1.25; }
 }

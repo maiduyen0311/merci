@@ -12,7 +12,7 @@
     margin: 0;
     color: var(--color-text, #1a1a1a);
     font-family: var(--font-heading, inherit);
-    font-size: clamp(20px, 2.4vw, 32px);
+    font-size: clamp(21px, 2.4vw, 33px);
     font-weight: 700;
     line-height: 1.2;
     text-transform: uppercase;
@@ -23,7 +23,7 @@
     margin: 8px 0 0;
     color: var(--color-accent-ink, var(--color-accent, #dc5414));
     font-family: var(--font-body, inherit);
-    font-size: var(--fs-small, 13px);
+    font-size: var(--fs-small, 14px);
     font-weight: 600;
     letter-spacing: 0.04em;
     text-decoration: none;
@@ -125,7 +125,7 @@
     }
 
     &__title {
-      font-size: clamp(18px, 5.4vw, 24px);
+      font-size: clamp(19px, 5.4vw, 25px);
     }
 
     &__overlay {

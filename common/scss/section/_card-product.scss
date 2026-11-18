@@ -90,7 +90,7 @@
     margin: 0;
     max-width: 100%;
     font-family: var(--font-body);
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.35;
     white-space: nowrap;
@@ -140,7 +140,7 @@
   --percent: calc(((var(--rating, 0) + var(--rating-decimal, 0)) / var(--rating-max, 5)) * 100%);
   position: relative;
   display: inline-block;
-  font-size: 18px;
+  font-size: 19px;
   line-height: 1;
   letter-spacing: 2px;
   color: var(--star-color);
@@ -160,7 +160,7 @@
 
 // Price: regular block OR sale block (sale price first, compare struck after)
 .price {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 500;
   line-height: 1.2;
 
@@ -181,9 +181,9 @@
 
   // Phones: 2-up cards are ~170px wide; long VND prices must not overflow
   @media screen and (max-width: 749px) {
-    font-size: 15px;
+    font-size: 16px;
 
-    s.price-item--regular { font-size: 13px; }
+    s.price-item--regular { font-size: 14px; }
   }
 
   .price-item--regular,
@@ -191,7 +191,7 @@
 
   s.price-item--regular {
     color: #767676;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 400;
   }
 }
@@ -242,7 +242,7 @@
 .card-product__sold-progress-label {
   margin: 8px 0 0;
   color: var(--color-text-muted, #777);
-  font-size: 15px;
+  font-size: 16px;
 }
 
 // Sold-out card: dim the image and stamp a centred "SOLD OUT" label over it.
@@ -277,7 +277,7 @@
   padding: 8px 18px;
   background: #1a1a1a;
   color: #fff;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -310,7 +310,7 @@
   border-radius: var(--radius-badge);
   background: var(--color-accent);
   color: var(--color-on-accent, #fff);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1;
   letter-spacing: 0;
@@ -549,7 +549,7 @@ $card-bar-gap: 14px; // space between the swatches and the bar
   .price { order: 3; }
 
   .card__heading {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
     letter-spacing: 0;
     color: var(--color-product-title, #1b1b1b);
@@ -573,7 +573,7 @@ $card-bar-gap: 14px; // space between the swatches and the bar
 
   .price {
     justify-content: flex-start;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
   }
 
@@ -586,7 +586,7 @@ $card-bar-gap: 14px; // space between the swatches and the bar
     border-radius: 0;
     background: var(--card-badge-bg, #fff);
     color: var(--card-badge-text, var(--color-sale-label, #e02b27));
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.04em;
     line-height: 1.2;
@@ -600,11 +600,11 @@ $card-bar-gap: 14px; // space between the swatches and the bar
   gap: 6px;
   margin: 0;
   color: var(--color-text, #555);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.4;
 }
 
-.card-product__review-star { color: #f5b301; font-size: 15px; }
+.card-product__review-star { color: #f5b301; font-size: 16px; }
 
 .card-product__review-sep {
   width: 1px;
@@ -675,12 +675,12 @@ $card-bar-gap: 14px; // space between the swatches and the bar
 // =============================================================================
 .card-wrapper {
   .card__heading {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     color: var(--color-product-title, #000);
   }
 
   .price {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 400;
 
     .price-item--regular,
@@ -688,15 +688,15 @@ $card-bar-gap: 14px; // space between the swatches and the bar
 
     s.price-item--regular {
       color: var(--color-compare-price, #9f9f9f);
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
 
     @media screen and (max-width: 749px) {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
     }
   }
 
-  .rating-star { font-size: 1.2rem; letter-spacing: 1px; }
+  .rating-star { font-size: 1.3rem; letter-spacing: 1px; }
 }
 
 .card-product__badge {
@@ -705,6 +705,6 @@ $card-bar-gap: 14px; // space between the swatches and the bar
   height: 2.2rem;
   padding: 0 0.8rem;
   transform: translateX(-50%);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 400;
 }

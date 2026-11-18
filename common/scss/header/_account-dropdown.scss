@@ -15,7 +15,7 @@
     background: #fff;
     box-shadow: 0 14px 40px rgba(0, 0, 0, 0.16);
     color: #333;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
     opacity: 0;
     visibility: hidden;
@@ -55,7 +55,7 @@
     margin: 0 0 14px;
     color: #222;
     font-family: var(--font-heading);
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 500;
   }
 
@@ -65,7 +65,7 @@
     border-bottom: 1px solid #eee;
     color: #707070;
 
-    strong { display: block; color: #222; font-size: 16px; font-weight: 500; }
+    strong { display: block; color: #222; font-size: 17px; font-weight: 500; }
   }
 
   &__input {
@@ -78,7 +78,7 @@
     border-radius: 2px;
     color: #111;
     font: inherit;
-    font-size: 14px;
+    font-size: 15px;
 
     &:focus { outline: none; border-color: #333; }
   }
@@ -87,7 +87,7 @@
     display: inline-block;
     margin-bottom: 14px;
     color: #555;
-    font-size: 13px;
+    font-size: 14px;
     text-decoration: underline;
     text-underline-offset: 3px;
 
@@ -104,7 +104,7 @@
     border-radius: 999px;
     background: #333;
     color: #fff;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     text-decoration: none;
     text-transform: uppercase;

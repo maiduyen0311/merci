@@ -27,7 +27,7 @@
   border: 1px solid var(--color-border, #e5e5e5);
   border-radius: 999px;
   color: #111;
-  font-size: 14px;
+  font-size: 15px;
 
   svg { width: 18px; height: 18px; }
 }
@@ -86,11 +86,11 @@
   margin: 0;
   color: #111;
   font-family: var(--font-heading);
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 500;
 }
 
-.mobile-facets__count { margin: 2px 0 0; color: #767676; font-size: 13px; }
+.mobile-facets__count { margin: 2px 0 0; color: #767676; font-size: 14px; }
 
 .mobile-facets__main {
   position: relative;
@@ -107,7 +107,7 @@
   padding: 14px 20px;
   border-bottom: 1px solid var(--color-border, #e5e5e5);
   color: #111;
-  font-size: 15px;
+  font-size: 16px;
   cursor: pointer;
 
   &::-webkit-details-marker { display: none; }
@@ -149,13 +149,13 @@
   border-bottom: 1px solid var(--color-border, #e5e5e5);
   background: none;
   color: #111;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
   text-align: left;
   cursor: pointer;
 
   svg { width: 12px; height: 12px; transform: rotate(180deg); }
-  .facets__and-helptext { flex-basis: 100%; color: #767676; font-size: 12px; font-weight: 400; }
+  .facets__and-helptext { flex-basis: 100%; color: #767676; font-size: 13px; font-weight: 400; }
 }
 
 .mobile-facets__list {
@@ -171,7 +171,7 @@
   gap: 10px;
   padding: 8px 0;
   color: #333;
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
 
   &.disabled { opacity: 0.45; cursor: default; }
@@ -188,7 +188,7 @@
   accent-color: var(--color-accent);
 }
 
-.mobile-facets__info { padding: 14px 20px 0; color: #707070; font-size: 13px; }
+.mobile-facets__info { padding: 14px 20px 0; color: #707070; font-size: 14px; }
 
 .mobile-facets__submenu .facets__price { padding: 14px 20px; }
 
@@ -198,7 +198,7 @@
   justify-content: space-between;
   gap: 12px;
 
-  label { font-size: 15px; white-space: nowrap; }
+  label { font-size: 16px; white-space: nowrap; }
 
   .select { position: relative; }
 
@@ -207,7 +207,7 @@
     border: 1px solid var(--color-border, #e5e5e5);
     border-radius: 4px;
     background: #fff;
-    font-size: 14px;
+    font-size: 15px;
     appearance: none;
   }
 
@@ -233,7 +233,7 @@
     border-radius: 999px;
     background: var(--color-primary, var(--color-accent));
     color: #fff;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
     box-shadow: none;
@@ -244,7 +244,7 @@
   }
 }
 
-.mobile-facets__clear { color: #111; font-size: 14px; text-decoration: underline; }
+.mobile-facets__clear { color: #111; font-size: 15px; text-decoration: underline; }
 
 // Chips of active filters under the button
 .active-facets-mobile {
@@ -263,13 +263,13 @@
     border: 1px solid var(--color-border, #e5e5e5);
     border-radius: 999px;
     color: #333;
-    font-size: 13px;
+    font-size: 14px;
 
     svg { width: 10px; height: 10px; }
   }
 
   a { text-decoration: none; }
-  .active-facets__button-remove { align-self: center; color: #111; font-size: 13px; text-decoration: underline; }
+  .active-facets__button-remove { align-self: center; color: #111; font-size: 14px; text-decoration: underline; }
 }
 
 body.overflow-hidden-mobile { overflow: hidden; }

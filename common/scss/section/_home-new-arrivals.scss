@@ -59,7 +59,7 @@
   &__script {
     font-family: var(--font-script-bouncy, 'Caveat', cursive);
     font-weight: 400;
-    font-size: clamp(48px, 7vw, 80px);
+    font-size: clamp(49px, 7vw, 81px);
     line-height: 1;
     color: var(--color-text, #222);
     // Pull the bold word up slightly to overlap script tail
@@ -69,7 +69,7 @@
   &__bold {
     font-family: var(--font-heading, 'Jost', sans-serif);
     font-weight: 800;
-    font-size: clamp(32px, 5vw, 48px);
+    font-size: clamp(33px, 5vw, 49px);
     line-height: 1.05;
     letter-spacing: 0.01em;
     text-transform: none;
@@ -88,7 +88,7 @@
     background: transparent;
     color: var(--color-text, #222);
     font-family: var(--font-heading, 'Jost', sans-serif);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -149,11 +149,11 @@
     }
 
     &__script {
-      font-size: 56px;
+      font-size: 57px;
     }
 
     &__bold {
-      font-size: 32px;
+      font-size: 33px;
     }
 
     &__media {

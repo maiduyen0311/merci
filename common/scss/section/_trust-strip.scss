@@ -40,13 +40,13 @@
 
     strong {
       display: block;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
       color: $color-text;
       letter-spacing: 0;
     }
     span {
-      font-size: 12px;
+      font-size: 13px;
       color: $color-text-muted;
     }
   }
@@ -58,8 +58,8 @@
     gap: 10px 14px;
 
     .trust-strip__icon { width: 32px; height: 32px; }
-    .trust-strip__copy strong { font-size: 12px; }
-    .trust-strip__copy span { font-size: 11px; }
+    .trust-strip__copy strong { font-size: 13px; }
+    .trust-strip__copy span { font-size: 12px; }
   }
 }
 
@@ -73,7 +73,7 @@
 
   &__msg {
     margin: 0 0 8px;
-    font-size: 13px;
+    font-size: 14px;
     color: $color-text;
     line-height: 1.4;
 
@@ -107,7 +107,7 @@
 
   &.is-compact {
     padding: 10px 12px;
-    .free-shipping-bar__msg { font-size: 12px; }
+    .free-shipping-bar__msg { font-size: 13px; }
     .free-shipping-bar__track { height: 6px; }
   }
 }

@@ -29,7 +29,7 @@
     display: block;
     margin-bottom: 0.6rem;
     color: var(--color-accent-ink, var(--color-primary));
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     letter-spacing: 0.24em;
     text-transform: uppercase;
   }
@@ -38,13 +38,13 @@
     margin: 0;
     color: var(--color-heading, #000);
     font-family: var(--font-heading);
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     font-weight: 400;
     letter-spacing: 0.06em;
     line-height: 1.2;
     text-transform: uppercase;
 
-    @media screen and (min-width: 750px) { font-size: var(--fs-h2, 2.4rem); }
+    @media screen and (min-width: 750px) { font-size: var(--fs-h2, 2.5rem); }
   }
 
   &__text {
@@ -71,7 +71,7 @@
   background: transparent;
   color: var(--color-heading, #000);
   font-family: var(--font-body);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -117,13 +117,13 @@
     min-width: 13rem;
     min-height: 3.6rem;
     padding: 0 2.4rem;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   @media screen and (max-width: 749px) {
     min-width: 14rem;
     min-height: 4.2rem;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
 }
 
