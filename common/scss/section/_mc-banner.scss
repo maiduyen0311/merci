@@ -690,6 +690,9 @@
 // =============================================================================
 // Editorial story (sections/mc-story.liquid) + generic page reading styles
 // =============================================================================
+// the art decor (leaf branch, sparkles) hangs past the photo; WebKit counts it in the page width
+.mc-story { overflow-x: clip; }
+
 .mc-story__grid {
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);

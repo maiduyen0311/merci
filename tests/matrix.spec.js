@@ -17,7 +17,7 @@ const PAGES = {
   article: '/blogs/news/winter-2019-2020-trends',
   login: '/account/login',
   register: '/account/register',
-  'search: no results': '/search?q=zzqqxxnothing',
+  'search: no results': '/search?q=xyzzyplugh7741', // search is typo-tolerant: real-looking words can match a product
 };
 
 for (const [name, path] of Object.entries(PAGES)) {

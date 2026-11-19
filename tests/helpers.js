@@ -92,6 +92,7 @@ function watchErrors(page) {
     // HTTP failures are reported once, with their URL, by the response listener below
     if (/Failed to load resource/.test(m.text())) return;
     if (/shop.app/.test(m.text())) return; // Shop Pay iframe CSP — Shopify, not theme code
+    if (/_shopify_test/.test(m.text())) return; // Firefox: Shopify's cookie probe on the myshopify domain — not theme code
     if (/Provider's accounts list is empty/.test(m.text())) return; // FedCM sign-in probe on /account/login — Shopify, not theme code
     errors.push('console: ' + m.text());
   });
