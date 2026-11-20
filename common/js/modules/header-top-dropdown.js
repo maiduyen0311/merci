@@ -27,6 +27,11 @@ class HeaderTopDropdown extends HTMLElement {
       else this.close();
     });
 
+    // e.g. the dimmed backdrop under the header search panel
+    this.addEventListener('click', (event) => {
+      if (event.target.closest('[data-dropdown-close]')) this.close();
+    });
+
     this.onDocumentClick = (event) => {
       if (!this.contains(event.target)) this.close();
     };

@@ -2,13 +2,15 @@
 // Merci — Header layout "centered" (SPEC §2 Header, render design/merci/sections/01-header-desktop.png)
 //   row 1 (99px): currency, language, search | logo (centre) | compare, wishlist, cart, account
 //                 (Header → "Left of the logo" = Social icons: social | logo | pickers, search + icons)
-//   search: panel below the whole header, full window width, form inside .container
+//   search: full-window-width panel right under the search button, form inside .container,
+//           page dimmed behind it (click the dim area to close)
 //   row 2 (40px): centred menu — dark bar (--mc-nav-bg) on inner pages,
 //                 transparent over the homepage hero (.mc-header--overlay) until the page scrolls.
 // Desktop only; below 992px header-mobile.liquid is used.
 // =============================================================================
 
 .header-middle--centered {
+  position: relative; // containing block of the full-width search panel
   display: flex;
   align-items: center;
   min-height: 9.9rem;
@@ -25,9 +27,6 @@
   align-items: center;
   gap: 2.4rem;
 }
-
-// containing block of the full-width search panel (overlay mode is absolute / fixed already)
-.mc-header { position: relative; }
 
 .mc-header__side {
   display: flex;
@@ -164,12 +163,13 @@
     --header-middle-text: var(--color-heading, #1b1b1b);
 
     position: absolute;
-    top: 100%;
+    top: calc(50% + 2.4rem); // just under the search button (the row centres it)
     right: 0;
     left: 0;
     z-index: 1200;
     width: auto;
     padding: 2.4rem 0;
+    animation: mc-search-panel-in 0.25s ease;
     border-top: 1px solid var(--color-border, #e8e9eb);
     background: #fff;
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
@@ -177,6 +177,19 @@
     white-space: normal;
 
     .header-middle__search { width: 100%; }
+  }
+
+  // dims the page under the panel; a click on it closes the search (data-dropdown-close)
+  .mc-header__search-backdrop {
+    display: block; // an empty div: beats the base `div:empty { display: none }`
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    height: 100vh;
+    background: rgba(35, 30, 23, 0.45);
+    cursor: pointer;
+    animation: mc-search-backdrop-in 0.25s ease;
   }
 
   .header-middle__actions-list { align-items: center; gap: 0.4rem; }
@@ -367,4 +380,19 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
+}
+
+@keyframes mc-search-panel-in {
+  from { opacity: 0; transform: translateY(-0.8rem); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes mc-search-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-middle--centered .header-search-toggle__panel,
+  .header-middle--centered .mc-header__search-backdrop { animation: none; }
 }
