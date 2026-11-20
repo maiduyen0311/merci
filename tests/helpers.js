@@ -94,6 +94,7 @@ function watchErrors(page) {
     if (/shop.app/.test(m.text())) return; // Shop Pay iframe CSP — Shopify, not theme code
     if (/_shopify_test/.test(m.text())) return; // Firefox: Shopify's cookie probe on the myshopify domain — not theme code
     if (/Provider's accounts list is empty/.test(m.text())) return; // FedCM sign-in probe on /account/login — Shopify, not theme code
+    if (/Cookie “?_shopify_[a-z_]+”? has been rejected/i.test(m.text())) return; // Firefox: Shopify's cookie-domain probe (trekkie), not theme code
     errors.push('console: ' + m.text());
   });
   page.on('response', (r) => {

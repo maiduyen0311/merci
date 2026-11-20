@@ -268,6 +268,17 @@
           </p>
         {%- endif -%}
 
+        {%- comment -%} Stock line + back-in-stock form: re-rendered for the selected variant (updateVariantBlocks) {%- endcomment -%}
+        <div class="main-product__stock" data-stock-block>
+        {%- liquid
+          assign show_restock = false
+          if section.settings.show_restock_form and in_stock == false
+            assign show_restock = true
+          endif
+        -%}
+        {%- if show_restock -%}
+          {%- render 'restock-form', product: product, variant: current_variant, section: section -%}
+        {%- endif -%}
         {%- if section.settings.show_low_stock -%}
           {%- liquid
             assign low_threshold = section.settings.low_stock_threshold | default: 10
@@ -284,6 +295,10 @@
             if inventory_qty <= 0 and in_stock
               assign urgency_state = 'untracked'
             endif
+            # sold out + back-in-stock form: the form box above already says so
+            if urgency_state == 'sold_out' and show_restock
+              assign urgency_state = 'untracked'
+            endif
           -%}
           {%- unless urgency_state == 'untracked' -%}
           <div class="main-product__low-stock main-product__low-stock--{{ urgency_state }}" data-stock-state="{{ urgency_state }}">
@@ -292,31 +307,9 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
                 </svg>
-                <span><strong>{{ section.settings.sold_out_label | default: 'Currently out of stock.' }}</strong> {{ section.settings.notify_me_sub | default: "We'll email you when it's back." }}</span>
+                {%- comment -%} back-in-stock form off: no "we'll email you" promise {%- endcomment -%}
+                <span><strong>{{ section.settings.sold_out_label | default: 'Currently out of stock.' }}</strong></span>
               </p>
-              {%- liquid
-                assign contact_url = routes.root_url | append: '/contact' | replace: '//', '/'
-              -%}
-              <form class="main-product__notify-form" data-notify-form action="{{ contact_url }}" method="post">
-                <input type="hidden" name="form_type" value="contact">
-                <input type="hidden" name="utf8" value="✓">
-                <input type="hidden" name="contact[body]" value="Back-in-stock request for {{ product.title | escape }} (handle: {{ product.handle }})">
-                <input type="hidden" name="contact[product_handle]" value="{{ product.handle }}">
-                <label class="visually-hidden" for="NotifyEmail-{{ section.id }}">{{ section.settings.notify_me_placeholder | default: 'Enter your email' }}</label>
-                <input
-                  type="email"
-                  id="NotifyEmail-{{ section.id }}"
-                  name="contact[email]"
-                  class="main-product__notify-input"
-                  placeholder="{{ section.settings.notify_me_placeholder | default: 'Enter your email' }}"
-                  required
-                  autocomplete="email"
-                >
-                <button type="submit" class="main-product__notify-btn">
-                  {{ section.settings.notify_me_label | default: 'Notify me' }}
-                </button>
-                <p class="main-product__notify-success" hidden>{{ section.settings.notify_me_success | default: "Thanks! We'll email you when it's back." }}</p>
-              </form>
             {%- elsif urgency_state == 'critical' -%}
               <p class="main-product__low-stock-text main-product__low-stock-text--critical">
                 <span aria-hidden="true" class="main-product__flame">🔥</span>
@@ -341,6 +334,7 @@
           </div>
           {%- endunless -%}
         {%- endif -%}
+        </div>
 
         {%- form 'product', product, id: product_form_id, class: 'main-product__form', novalidate: 'novalidate' -%}
           <input type="hidden" name="id" value="{{ current_variant.id }}">
@@ -387,7 +381,8 @@
                         name="option-{{ option.position }}"
                         value="{{ value | escape }}"
                         {% if value == option.selected_value %}checked{% endif %}
-                        {% unless value_available %}disabled{% endunless %}
+                        {%- comment -%} back-in-stock form on: sold-out values stay selectable (crossed out) so shoppers reach the form {%- endcomment -%}
+                        {% unless value_available or section.settings.show_restock_form %}disabled{% endunless %}
                       >
                       {%- if is_color -%}{% render 'swatch', swatch: value.swatch, name: value %}{%- endif -%}
                       <span>{{ value }}</span>
@@ -570,6 +565,13 @@
             >{{ section.settings.buy_now_label | default: 'BUY IT NOW' }}</button>
           {%- endif -%}
         {%- endform -%}
+
+        {%- comment -%} App blocks (reviews, restock alerts, size finders…) right under the buy buttons {%- endcomment -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == '@app' -%}
+            <div class="main-product__app-block" {{ block.shopify_attributes }}>{% render block %}</div>
+          {%- endif -%}
+        {%- endfor -%}
 
         {%- if section.settings.show_pickup_availability -%}
           <tm-pickup-availability
@@ -809,6 +811,8 @@
         if (label) label.textContent = e.target.value;
         var variant = findVariant();
         updateAvailability(variant);
+        var stockBlock = root.querySelector('[data-stock-block]');
+        if (stockBlock) stockBlock.hidden = !variant; // no such combination: no stale stock line / form
         if (!variant) return;
         updateVariantBlocks(variant);
         var priceEl = root.querySelector('.main-product__price-current');
@@ -878,7 +882,7 @@
       request.then(function (html) {
         if (request !== variantRequest) return; // a newer selection won
         var doc = new DOMParser().parseFromString(html, 'text/html');
-        ['[data-unit-price]', 'tm-pickup-availability'].forEach(function (sel) {
+        ['[data-unit-price]', 'tm-pickup-availability', '[data-stock-block]'].forEach(function (sel) {
           var current = root.querySelector(sel);
           var fresh = doc.querySelector(sel);
           if (current && fresh) current.replaceWith(fresh);
@@ -1249,19 +1253,34 @@
       });
     }
 
-    // Notify-me back-in-stock form: AJAX-submit to /contact and show inline success
-    var notifyForm = root.querySelector('[data-notify-form]');
-    if (notifyForm) {
-      notifyForm.addEventListener('submit', function (e) {
+    // Back-in-stock form (snippets/restock-form): AJAX contact message to the store, then — if the merchant
+    // turned it on — a customer sign-up tagged restock-<variant id>. Delegated: the form is re-rendered on
+    // variant change. Shopify's bot check (/challenge) needs the real page → fall back to a normal submit.
+    if (!root.dataset.restockBound) {
+      root.dataset.restockBound = '1';
+      root.addEventListener('submit', function (e) {
+        var form = e.target.closest('[data-notify-form]');
+        if (!form) return;
         e.preventDefault();
-        var submitBtn = notifyForm.querySelector('button[type="submit"]');
-        var successEl = notifyForm.querySelector('.main-product__notify-success');
+        var submitBtn = form.querySelector('button[type="submit"]');
+        var successEl = form.querySelector('.main-product__notify-success');
+        var input = form.querySelector('input[type="email"]');
         if (submitBtn) submitBtn.disabled = true;
-        var fd = new FormData(notifyForm);
-        fetch(notifyForm.action, { method: 'POST', body: fd, credentials: 'same-origin' })
-          .then(function () {
+        fetch(form.action, { method: 'POST', body: new FormData(form), credentials: 'same-origin' })
+          .then(function (r) {
+            if (/\/challenge/.test(r.url)) { form.submit(); return; }
+            if (!r.ok) throw new Error('contact ' + r.status);
+            var tags = form.dataset.customerTags;
+            if (tags && input) {
+              var fd = new FormData();
+              fd.append('form_type', 'customer');
+              fd.append('utf8', '✓');
+              fd.append('contact[email]', input.value);
+              fd.append('contact[tags]', tags);
+              // best effort: the contact message above already reached the store
+              fetch(form.action, { method: 'POST', body: fd, credentials: 'same-origin' }).catch(function () {});
+            }
             if (successEl) successEl.hidden = false;
-            var input = notifyForm.querySelector('input[type="email"]');
             if (input) input.value = '';
           })
           .catch(function () {
@@ -1343,6 +1362,11 @@
     { "type": "text", "id": "critical_stock_label", "label": "Critical-stock label", "default": "Last" },
     { "type": "text", "id": "critical_stock_sub", "label": "Critical-stock subline", "default": "Order now before it sells out." },
     { "type": "text", "id": "sold_out_label", "label": "Sold-out heading", "default": "Currently out of stock." },
+
+    { "type": "header", "content": "Back-in-stock form", "info": "Shown on sold-out variants. Each sign-up reaches you as a contact-form email with the product, variant, SKU and link. The theme does not email shoppers when stock returns: filter Customers by tag and send with Shopify Email or your email app." },
+    { "type": "checkbox", "id": "show_restock_form", "label": "Show back-in-stock form", "default": true },
+    { "type": "checkbox", "id": "restock_save_customer", "label": "Also add the shopper to Customers", "info": "Tagged restock, restock-[variant ID] and restock-[product handle]. Shopify subscribes these customers to email marketing.", "default": true },
+    { "type": "text", "id": "restock_consent", "label": "Consent note", "info": "Shown under the form when shoppers are added to Customers.", "default": "You'll also get our newsletter. Unsubscribe any time." },
     { "type": "text", "id": "notify_me_sub", "label": "Sold-out subline", "default": "We'll email you when it's back." },
     { "type": "text", "id": "notify_me_placeholder", "label": "Notify-me input placeholder", "default": "Enter your email" },
     { "type": "text", "id": "notify_me_label", "label": "Notify-me button label", "default": "Notify me" },
@@ -1402,6 +1426,7 @@
     { "type": "text", "id": "delivery_shipping_label", "label": "Free shipping label", "default": "Free Shipping & Returns:" },
     { "type": "text", "id": "delivery_shipping_text", "label": "Free shipping text", "default": "On all orders over $75" }
   ],
+  "blocks": [{ "type": "@app" }],
   "presets": [{ "name": "Product information", "category": "Product" }]
 }
 {% endschema %}

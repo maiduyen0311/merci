@@ -574,7 +574,12 @@
       },
       "availability": "Tình trạng",
       "in_stock_count": "Còn {{ count }} sản phẩm",
-      "sold_hint_html": "Đã bán <strong>{{ count }}</strong> trong {{ hours }} giờ qua"
+      "sold_hint_html": "Đã bán <strong>{{ count }}</strong> trong {{ hours }} giờ qua",
+      "restock_message": "Đăng ký báo có hàng",
+      "restock_field_product": "Sản phẩm",
+      "restock_field_variant": "Biến thể",
+      "restock_field_sku": "SKU",
+      "restock_field_link": "Liên kết"
     },
     "free_shipping": {
       "reached": "🎉 Bạn đã được miễn phí vận chuyển!",

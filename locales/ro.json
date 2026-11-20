@@ -586,7 +586,12 @@
       },
       "availability": "Availability",
       "in_stock_count": "{{ count }} in stock",
-      "sold_hint_html": "<strong>{{ count }}</strong> sold in last {{ hours }} hours"
+      "sold_hint_html": "<strong>{{ count }}</strong> sold in last {{ hours }} hours",
+      "restock_message": "Back-in-stock request",
+      "restock_field_product": "Product",
+      "restock_field_variant": "Variant",
+      "restock_field_sku": "SKU",
+      "restock_field_link": "Link"
     },
     "free_shipping": {
       "reached": "🎉 You've unlocked free shipping!",
