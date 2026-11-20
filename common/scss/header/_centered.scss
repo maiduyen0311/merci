@@ -2,7 +2,7 @@
 // Merci — Header layout "centered" (SPEC §2 Header, render design/merci/sections/01-header-desktop.png)
 //   row 1 (99px): currency, language, search | logo (centre) | compare, wishlist, cart, account
 //                 (Header → "Left of the logo" = Social icons: social | logo | pickers, search + icons)
-//   search: full-window-width panel right under the search button, form inside .container,
+//   search: full-window-width panel right under the search button, form in a 1000px container,
 //           page dimmed behind it (click the dim area to close)
 //   row 2 (40px): centred menu — dark bar (--mc-nav-bg) on inner pages,
 //                 transparent over the homepage hero (.mc-header--overlay) until the page scrolls.
@@ -176,6 +176,7 @@
     color: var(--color-heading, #1b1b1b);
     white-space: normal;
 
+    > .container { max-width: 100rem; } // search form: 1000px wide, centred
     .header-middle__search { width: 100%; }
   }
 
