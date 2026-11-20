@@ -141,11 +141,15 @@
       "content": "Centered layout (Merci)"
     },
     {
-      "type": "checkbox",
-      "id": "show_social_icons",
-      "label": "Show social icons on the left",
-      "default": true,
-      "info": "Links from Theme settings → Social media.",
+      "type": "select",
+      "id": "centered_left_content",
+      "label": "Left of the logo",
+      "options": [
+        { "value": "utilities", "label": "Currency, language and search" },
+        { "value": "social", "label": "Social icons" }
+      ],
+      "default": "utilities",
+      "info": "Social icons: links from Theme settings → Social media; currency, language and search move to the right.",
       "visible_if": "{{ section.settings.header_layout == 'centered' }}"
     },
     {

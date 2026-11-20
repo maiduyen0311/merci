@@ -72,31 +72,45 @@
       </div>
     </div>
     {%- elsif centered_layout -%}
-    {%- comment -%} Merci (SPEC §2 Header): social | centered logo | pickers + icons {%- endcomment -%}
+    {%- comment -%}
+      Merci (SPEC §2 Header): [currency, language, search] | centered logo | icons.
+      Header → "Left of the logo" = Social icons moves currency, language and search back to the right.
+      The search panel drops below the whole header at full window width; its form sits in a .container.
+    {%- endcomment -%}
+    {%- capture mc_utilities -%}
+      {%- if section.settings.enable_country_selector and section.settings.currency_options != blank -%}
+        <div class="mc-header__picker">{% render 'header-top-currency', section: section %}</div>
+      {%- endif -%}
+      {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+        <div class="mc-header__picker">{% render 'header-top-language' %}</div>
+      {%- endif -%}
+      <header-top-dropdown class="header-search-toggle">
+        <button type="button" class="header-search-toggle__btn" data-dropdown-toggle aria-expanded="false" aria-label="{{ 'general.search.search' | t }}">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+        </button>
+        <div class="header-search-toggle__panel mc-header__search-panel" data-dropdown-panel hidden>
+          <div class="container">
+            {% render 'header-middle-search', section: section %}
+          </div>
+        </div>
+      </header-top-dropdown>
+    {%- endcapture -%}
+    {%- assign mc_left = section.settings.centered_left_content | default: 'utilities' -%}
     <div class="header-middle__inner mc-header__row">
       <div class="mc-header__side mc-header__side--start">
-        {%- if section.settings.show_social_icons -%}
+        {%- if mc_left == 'social' -%}
           {% render 'mc-header-social' %}
+        {%- else -%}
+          {{ mc_utilities }}
         {%- endif -%}
       </div>
       <div class="mc-header__logo">
         {% render 'header-middle-logo', section: section %}
       </div>
       <div class="mc-header__side mc-header__side--end">
-        {%- if section.settings.enable_country_selector and section.settings.currency_options != blank -%}
-          <div class="mc-header__picker">{% render 'header-top-currency', section: section %}</div>
+        {%- if mc_left == 'social' -%}
+          {{ mc_utilities }}
         {%- endif -%}
-        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-          <div class="mc-header__picker">{% render 'header-top-language' %}</div>
-        {%- endif -%}
-        <header-top-dropdown class="header-search-toggle">
-          <button type="button" class="header-search-toggle__btn" data-dropdown-toggle aria-expanded="false" aria-label="{{ 'general.search.search' | t }}">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
-          </button>
-          <div class="header-search-toggle__panel" data-dropdown-panel hidden>
-            {% render 'header-middle-search', section: section %}
-          </div>
-        </header-top-dropdown>
         {% render 'header-middle-actions', section: section %}
       </div>
     </div>

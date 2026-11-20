@@ -61,7 +61,7 @@ Font duy nhất trên v1: **Mandali** (Google Fonts, OFL — dùng web hợp l�
 
 ### Header (EDIT `header.liquid` + header-group)
 - Ảnh: `sections/01-header-*.png`, `02-navigation-*.png`, render trang con.
-- **Desktop** 3 cột cao 99px: trái social (Twitter, Facebook, Instagram, YouTube); giữa logo (ảnh, ~120px); phải currency (USD), language (cờ), search, compare (badge đếm), wishlist (badge), cart (badge), nút settings (dropdown account: login form + My account, Order tracking, Privacy, Shipping).
+- **Desktop** 3 cột cao 99px: trái currency (USD), language (cờ), search (user 2026-11-20: bỏ social; setting "Left of the logo" vẫn cho chọn social, khi đó currency/language/search về bên phải); giữa logo (ảnh, ~120px); phải compare (badge đếm), wishlist (badge), cart (badge), nút settings (dropdown account: login form + My account, Order tracking, Privacy, Shipping). Search mở panel full chiều rộng màn hình dưới cả header, form nằm trong container.
 - **Menu ngang** dưới header, căn giữa, cao 40px. Trang chủ: nền trong suốt chồng lên hero, chữ đen, active `#bf7069`. Trang con: nền `#231e17`, chữ trắng. → setting `nav_style: transparent | dark` cho template index và mặc định.
 - Badge đếm: tròn 16px nền `#bf7069` chữ trắng.
 - Mega menu 3 kiểu (giữ cả 3 làm block):

@@ -21,7 +21,7 @@
         "currency_options": "USD:US, CAD:CA, EUR:DE, GBP:GB",
         "header_layout": "centered",
         "overlay_home": true,
-        "show_social_icons": true,
+        "centered_left_content": "utilities",
         "inline_menu": "main-menu",
         "nav_row_text": "#ffffff",
         "overlay_text": "#2d2d2d",
