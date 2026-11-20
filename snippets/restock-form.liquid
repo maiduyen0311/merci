@@ -1,20 +1,43 @@
 {%- comment -%}
-  Back-in-stock sign-up for a sold-out variant (theme only, no app).
-  - Posts a contact message to the store (Settings → Notifications → Contact form) with product, variant, SKU and link.
-  - Optionally also adds the shopper to Customers, tagged `restock`, `restock-<variant id>`, `restock-<product handle>`
-    (Shopify customer form = email marketing sign-up), so the merchant can filter who waits for what.
+  Back-in-stock sign-up for sold-out variants (theme only, no app).
+  Rendered once per product page (when any variant is sold out); main-product's JS shows it for sold-out
+  variants and rewrites the hidden variant fields — the form element is never replaced, so Shopify's bot
+  protection (hCaptcha, attached to contact/customer forms) keeps working. Normal POST, no AJAX:
+  Shopify blocks contact/customer posts without the captcha token (403).
+  - mode "contact":  contact message to the store email with product, variant, SKU, link
+  - mode "customer": adds the shopper to Customers, tagged restock, restock-<variant id>, restock-<handle>
+                     (Shopify's customer form = email marketing sign-up → consent note)
   The theme cannot email shoppers when stock returns: the merchant sends it (Shopify Email / any email app).
-  Re-rendered by main-product's variant refresh ([data-stock-block]); submit is handled there (delegated).
 
-  Params: product, variant, section (uses its notify/restock settings)
+  Params: product, variant (current), section (uses its notify/restock settings)
 {%- endcomment -%}
 {%- liquid
   assign s = section.settings
-  assign contact_url = routes.root_url | append: '/contact' | replace: '//', '/'
+  assign mode = s.restock_mode | default: 'contact'
+  assign form_id = 'RestockForm-' | append: section.id
   assign variant_link = request.origin | append: variant.url
   assign tags = 'restock, restock-' | append: variant.id | append: ', restock-' | append: product.handle
+  assign placeholder = s.notify_me_placeholder | default: 'Enter your email'
 -%}
-<div class="main-product__restock" data-restock>
+{%- capture email_and_button -%}
+  <label class="visually-hidden" for="NotifyEmail-{{ section.id }}">{{ placeholder }}</label>
+  <input
+    type="email"
+    id="NotifyEmail-{{ section.id }}"
+    name="contact[email]"
+    class="main-product__notify-input"
+    placeholder="{{ placeholder }}"
+    required
+    autocomplete="email"
+    {% if customer %}value="{{ customer.email | escape }}"{% endif %}
+  >
+  <button type="submit" class="main-product__notify-btn">
+    {{ s.notify_me_label | default: 'Notify me' }}
+  </button>
+{%- endcapture -%}
+{%- capture success_text -%}{{ s.notify_me_success | default: "Thanks! We'll email you when it's back." }}{%- endcapture -%}
+
+<div class="main-product__restock" data-restock {% if variant.available %}hidden{% endif %}>
   <p class="main-product__restock-text">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
       <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
@@ -24,42 +47,36 @@
       {{ s.notify_me_sub | default: "We'll email you when it's back." }}
     </span>
   </p>
-  <form
-    class="main-product__notify-form"
-    data-notify-form
-    action="{{ contact_url }}"
-    method="post"
-    {% if s.restock_save_customer %}data-customer-tags="{{ tags | escape }}"{% endif %}
-  >
-    <input type="hidden" name="form_type" value="contact">
-    <input type="hidden" name="utf8" value="✓">
-    <input type="hidden" name="contact[body]" value="{{ 'sections.main_product.restock_message' | t | escape }}">
-    <input type="hidden" name="contact[{{ 'sections.main_product.restock_field_product' | t | escape }}]" value="{{ product.title | escape }}">
-    {%- unless product.has_only_default_variant -%}
-      <input type="hidden" name="contact[{{ 'sections.main_product.restock_field_variant' | t | escape }}]" value="{{ variant.title | escape }}">
-    {%- endunless -%}
-    {%- if variant.sku != blank -%}
-      <input type="hidden" name="contact[{{ 'sections.main_product.restock_field_sku' | t | escape }}]" value="{{ variant.sku | escape }}">
-    {%- endif -%}
-    <input type="hidden" name="contact[{{ 'sections.main_product.restock_field_link' | t | escape }}]" value="{{ variant_link | escape }}">
-    <input type="hidden" name="contact[variant_id]" value="{{ variant.id }}">
-    <label class="visually-hidden" for="NotifyEmail-{{ section.id }}">{{ s.notify_me_placeholder | default: 'Enter your email' }}</label>
-    <input
-      type="email"
-      id="NotifyEmail-{{ section.id }}"
-      name="contact[email]"
-      class="main-product__notify-input"
-      placeholder="{{ s.notify_me_placeholder | default: 'Enter your email' }}"
-      required
-      autocomplete="email"
-      {% if customer %}value="{{ customer.email | escape }}"{% endif %}
-    >
-    <button type="submit" class="main-product__notify-btn">
-      {{ s.notify_me_label | default: 'Notify me' }}
-    </button>
-    {%- if s.restock_save_customer and s.restock_consent != blank -%}
-      <p class="main-product__notify-consent">{{ s.restock_consent }}</p>
-    {%- endif -%}
-    <p class="main-product__notify-success" role="status" hidden>{{ s.notify_me_success | default: "Thanks! We'll email you when it's back." }}</p>
-  </form>
+
+  {%- if mode == 'customer' -%}
+    {%- form 'customer', id: form_id, class: 'main-product__notify-form', data-notify-form: 'customer', data-handle: product.handle -%}
+      <input type="hidden" name="contact[tags]" value="{{ tags | escape }}" data-restock-field="tags">
+      {{ email_and_button }}
+      {%- if s.restock_consent != blank -%}
+        <p class="main-product__notify-consent">{{ s.restock_consent }}</p>
+      {%- endif -%}
+      {%- if form.posted_successfully? -%}
+        <p class="main-product__notify-success" role="status" tabindex="-1" data-restock-posted>{{ success_text }}</p>
+      {%- elsif form.errors -%}
+        <div class="main-product__notify-error" role="alert" tabindex="-1" data-restock-posted>{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+    {%- endform -%}
+  {%- else -%}
+    {%- form 'contact', id: form_id, class: 'main-product__notify-form', data-notify-form: 'contact' -%}
+      <input type="hidden" name="contact[body]" value="{{ 'sections.main_product.restock_message' | t | escape }}">
+      <input type="hidden" name="contact[{{ 'sections.main_product.restock_field_product' | t | escape }}]" value="{{ product.title | escape }}">
+      {%- unless product.has_only_default_variant -%}
+        <input type="hidden" name="contact[{{ 'sections.main_product.restock_field_variant' | t | escape }}]" value="{{ variant.title | escape }}" data-restock-field="title">
+      {%- endunless -%}
+      <input type="hidden" name="contact[{{ 'sections.main_product.restock_field_sku' | t | escape }}]" value="{{ variant.sku | escape }}" data-restock-field="sku">
+      <input type="hidden" name="contact[{{ 'sections.main_product.restock_field_link' | t | escape }}]" value="{{ variant_link | escape }}" data-restock-field="link">
+      <input type="hidden" name="contact[variant_id]" value="{{ variant.id }}" data-restock-field="id">
+      {{ email_and_button }}
+      {%- if form.posted_successfully? -%}
+        <p class="main-product__notify-success" role="status" tabindex="-1" data-restock-posted>{{ success_text }}</p>
+      {%- elsif form.errors -%}
+        <div class="main-product__notify-error" role="alert" tabindex="-1" data-restock-posted>{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+    {%- endform -%}
+  {%- endif -%}
 </div>

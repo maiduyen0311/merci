@@ -14,11 +14,16 @@ buttons for apps later.
 A test store `merci-demo-kkhveayo.myshopify.com` was created by mistake in that flow — not used.
 
 **How to apply:**
-- Theme form cannot email shoppers on restock: it sends a contact message + (setting) a customer tagged
-  `restock`, `restock-<variant id>`, `restock-<handle>`; the merchant sends the email. Say so in docs/listing — never
-  claim automatic restock emails for the theme alone.
-- Tests: `tests/restock.spec.js` uses Ribbed Knit Tank (all XL sold out, variant 50059877711943) and intercepts
-  `/contact` — never submit the real form on the demo.
+- Theme form cannot email shoppers on restock: setting "Save sign-ups as" = contact message to the store email
+  (default) OR a customer tagged `restock`, `restock-<variant id>`, `restock-<handle>`; the merchant sends the email.
+  Say so in docs/listing — never claim automatic restock emails for the theme alone. The shopper gets no confirmation
+  email; the contact message goes to the store's email, not to the address typed in.
+- Shopify hCaptcha guards contact/customer forms: AJAX/fetch posts get **403** (first version failed for the user
+  2026-11-20). Use a normal `{% form 'contact' %}` / `{% form 'customer' %}` POST, render the form once and update its
+  hidden fields in JS (never re-render it). hCaptcha also stalls Playwright (hsw.js EvalError, no POST) — even on the
+  stock contact page — so a real send can only be checked by hand in a normal browser.
+- Tests: `tests/restock.spec.js` uses Ribbed Knit Tank (all XL sold out, variant 50059877711943), calls
+  `form.submit()` and intercepts `/contact` — never submit the real form on the demo from tests.
 - Resuming the app (`D:\Duyen_Project\shopify\apps\iphoenix-restock`, own git repo, no remote): run
   `npx shopify app dev --reset --store merci-demo.myshopify.com` in a separate terminal (CLI prompts need a TTY; the
   `!` prefix and PowerShell `npm run x -- --flag` both fail), pick org PhoenixCorp → create app, then fix

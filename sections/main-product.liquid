@@ -268,17 +268,29 @@
           </p>
         {%- endif -%}
 
-        {%- comment -%} Stock line + back-in-stock form: re-rendered for the selected variant (updateVariantBlocks) {%- endcomment -%}
-        <div class="main-product__stock" data-stock-block>
+        {%- comment -%}
+          Back-in-stock form: rendered once if any variant is sold out, shown/updated by JS per variant (never
+          re-rendered — keeps Shopify's captcha attached). Stock line below: re-rendered per variant.
+        {%- endcomment -%}
         {%- liquid
+          assign has_sold_out = false
+          if section.settings.show_restock_form
+            for v in product.variants
+              unless v.available
+                assign has_sold_out = true
+                break
+              endunless
+            endfor
+          endif
           assign show_restock = false
-          if section.settings.show_restock_form and in_stock == false
+          if has_sold_out and in_stock == false
             assign show_restock = true
           endif
         -%}
-        {%- if show_restock -%}
+        {%- if has_sold_out -%}
           {%- render 'restock-form', product: product, variant: current_variant, section: section -%}
         {%- endif -%}
+        <div class="main-product__stock" data-stock-block>
         {%- if section.settings.show_low_stock -%}
           {%- liquid
             assign low_threshold = section.settings.low_stock_threshold | default: 10
@@ -765,8 +777,7 @@
       compareRemoved: dec({{ 'sections.mini_cart.compare_removed' | t | json }}),
       compareAddedLabel: dec({{ 'sections.main_product.compare_added_label' | t | json }}),
       agreeTerms: dec({{ 'sections.main_product.agree_terms' | t | json }}),
-      linkCopied: dec({{ 'general.share.success_message' | t | json }}),
-      submitError: dec({{ 'sections.main_product.submit_error' | t | json }})
+      linkCopied: dec({{ 'general.share.success_message' | t | json }})
     };
 
     function getSelectedOptions() {
@@ -812,7 +823,8 @@
         var variant = findVariant();
         updateAvailability(variant);
         var stockBlock = root.querySelector('[data-stock-block]');
-        if (stockBlock) stockBlock.hidden = !variant; // no such combination: no stale stock line / form
+        if (stockBlock) stockBlock.hidden = !variant; // no such combination: no stale stock line
+        updateRestock(variant);
         if (!variant) return;
         updateVariantBlocks(variant);
         var priceEl = root.querySelector('.main-product__price-current');
@@ -873,6 +885,31 @@
       if (stickyAdd) stickyAdd.disabled = !available;
     }
 
+    // Back-in-stock form: shown for sold-out variants only; hidden fields follow the selection.
+    // Updated in place (not re-rendered) so Shopify's captcha stays bound to the form.
+    function updateRestock(variant) {
+      var box = root.querySelector('[data-restock]');
+      if (!box) return;
+      var soldOut = !!(variant && !variant.available);
+      box.hidden = !soldOut;
+      if (!soldOut) return;
+      var form = box.querySelector('[data-notify-form]');
+      var set = function (name, value) {
+        var input = box.querySelector('[data-restock-field="' + name + '"]');
+        if (input) input.value = value;
+      };
+      set('title', variant.title);
+      set('sku', variant.sku || '');
+      set('id', variant.id);
+      set('link', window.location.origin + window.location.pathname + '?variant=' + variant.id);
+      if (form && form.dataset.handle) {
+        set('tags', 'restock, restock-' + variant.id + ', restock-' + form.dataset.handle);
+      }
+      // a message from an earlier post belongs to the variant it was sent for
+      var posted = box.querySelector('[data-restock-posted]');
+      if (posted) posted.remove();
+    }
+
     // Unit price + pickup availability: re-render this section for the variant (Section
     // Rendering API) and copy both blocks, the same way Dawn refreshes variant data.
     var variantRequest = null;
@@ -882,7 +919,7 @@
       request.then(function (html) {
         if (request !== variantRequest) return; // a newer selection won
         var doc = new DOMParser().parseFromString(html, 'text/html');
-        ['[data-unit-price]', 'tm-pickup-availability', '[data-stock-block]'].forEach(function (sel) {
+        ['[data-unit-price]', 'tm-pickup-availability', '[data-stock-block]', '.mc-pdp__stock', '.main-product__info-pill'].forEach(function (sel) {
           var current = root.querySelector(sel);
           var fresh = doc.querySelector(sel);
           if (current && fresh) current.replaceWith(fresh);
@@ -1253,43 +1290,12 @@
       });
     }
 
-    // Back-in-stock form (snippets/restock-form): AJAX contact message to the store, then — if the merchant
-    // turned it on — a customer sign-up tagged restock-<variant id>. Delegated: the form is re-rendered on
-    // variant change. Shopify's bot check (/challenge) needs the real page → fall back to a normal submit.
-    if (!root.dataset.restockBound) {
-      root.dataset.restockBound = '1';
-      root.addEventListener('submit', function (e) {
-        var form = e.target.closest('[data-notify-form]');
-        if (!form) return;
-        e.preventDefault();
-        var submitBtn = form.querySelector('button[type="submit"]');
-        var successEl = form.querySelector('.main-product__notify-success');
-        var input = form.querySelector('input[type="email"]');
-        if (submitBtn) submitBtn.disabled = true;
-        fetch(form.action, { method: 'POST', body: new FormData(form), credentials: 'same-origin' })
-          .then(function (r) {
-            if (/\/challenge/.test(r.url)) { form.submit(); return; }
-            if (!r.ok) throw new Error('contact ' + r.status);
-            var tags = form.dataset.customerTags;
-            if (tags && input) {
-              var fd = new FormData();
-              fd.append('form_type', 'customer');
-              fd.append('utf8', '✓');
-              fd.append('contact[email]', input.value);
-              fd.append('contact[tags]', tags);
-              // best effort: the contact message above already reached the store
-              fetch(form.action, { method: 'POST', body: fd, credentials: 'same-origin' }).catch(function () {});
-            }
-            if (successEl) successEl.hidden = false;
-            if (input) input.value = '';
-          })
-          .catch(function () {
-            showToast(i18n.submitError);
-          })
-          .finally(function () {
-            if (submitBtn) submitBtn.disabled = false;
-          });
-      });
+    // Back-in-stock form (snippets/restock-form) posts normally (Shopify's captcha + redirect back here):
+    // after a post, bring the success / error message into view.
+    var restockPosted = root.querySelector('[data-restock-posted]');
+    if (restockPosted) {
+      restockPosted.scrollIntoView({ block: 'center' });
+      restockPosted.focus({ preventScroll: true });
     }
   })();
 </script>
@@ -1365,8 +1371,18 @@
 
     { "type": "header", "content": "Back-in-stock form", "info": "Shown on sold-out variants. Each sign-up reaches you as a contact-form email with the product, variant, SKU and link. The theme does not email shoppers when stock returns: filter Customers by tag and send with Shopify Email or your email app." },
     { "type": "checkbox", "id": "show_restock_form", "label": "Show back-in-stock form", "default": true },
-    { "type": "checkbox", "id": "restock_save_customer", "label": "Also add the shopper to Customers", "info": "Tagged restock, restock-[variant ID] and restock-[product handle]. Shopify subscribes these customers to email marketing.", "default": true },
-    { "type": "text", "id": "restock_consent", "label": "Consent note", "info": "Shown under the form when shoppers are added to Customers.", "default": "You'll also get our newsletter. Unsubscribe any time." },
+    {
+      "type": "select",
+      "id": "restock_mode",
+      "label": "Save sign-ups as",
+      "options": [
+        { "value": "contact", "label": "Email to the store (product, variant, SKU, link)" },
+        { "value": "customer", "label": "Customer tagged restock-[variant ID]" }
+      ],
+      "default": "contact",
+      "info": "Email: sent to your store email, like the contact form. Customer: tagged restock, restock-[variant ID] and restock-[product handle]; Shopify subscribes them to email marketing."
+    },
+    { "type": "text", "id": "restock_consent", "label": "Consent note", "info": "Shown under the form when sign-ups are saved as customers.", "default": "You'll also get our newsletter. Unsubscribe any time." },
     { "type": "text", "id": "notify_me_sub", "label": "Sold-out subline", "default": "We'll email you when it's back." },
     { "type": "text", "id": "notify_me_placeholder", "label": "Notify-me input placeholder", "default": "Enter your email" },
     { "type": "text", "id": "notify_me_label", "label": "Notify-me button label", "default": "Notify me" },
