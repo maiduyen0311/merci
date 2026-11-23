@@ -870,7 +870,10 @@
         4.5,
         91
       ],
-      "sold": 13
+      "sold": 13,
+      "soldOut": [
+        "Black"
+      ]
     },
     {
       "handle": "straw-fedora-with-ribbon",
@@ -1111,6 +1114,7 @@
         47
       ],
       "sold": 105,
+      "soldOut": true,
       "compare": 110,
       "badge": "sale"
     },
@@ -1317,6 +1321,7 @@
         59
       ],
       "sold": 139,
+      "soldOut": true,
       "compare": 179,
       "badge": "sale"
     },
@@ -2365,6 +2370,9 @@
         68
       ],
       "sold": 82,
+      "soldOut": [
+        "Rust"
+      ],
       "compare": 69,
       "badge": "sale"
     },

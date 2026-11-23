@@ -234,6 +234,15 @@ const rows = [
   P('Lipstick Discovery Trio', 'Lipstick', 49, 66, c(['Espresso', 'lip-espresso'], ['Classic Red', 'lip-red'], ['Fuchsia', 'lip-fuchsia-2']), [], [], [BEAUTY, NEW]),
 ];
 
+// Out of stock on purpose (user 2026-11-23) — shows the sold-out badge, crossed-out options and the
+// back-in-stock form (snippets/restock-form). true = every variant, [colours] = just those colours.
+const SOLD_OUT = {
+  'Leather Chelsea Boots': true,
+  'Quilted Puffer Tote': true,
+  'Wide Brim Straw Boater': ['Black'],
+  'Crinkle Maxi Skirt': ['Rust'],
+};
+
 const slug = (s) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const products = rows.map((r, i) => {
   const p = {
@@ -252,6 +261,7 @@ const products = rows.map((r, i) => {
     rating: [4 + ((i * 3) % 10) / 10, 6 + ((i * 17) % 90)],
     sold: 8 + ((i * 29) % 140),
   };
+  if (SOLD_OUT[r.title]) p.soldOut = SOLD_OUT[r.title];
   if (r.compare) p.compare = r.compare;
   if (r.badge) p.badge = r.badge;
   else if (r.compare) p.badge = 'sale';

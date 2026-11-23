@@ -7,6 +7,7 @@
  *
  *   node scripts/demo-import.js <demo> --store <shop>.myshopify.com [--only languages,metafields,files,products,collections,pages,blog,menus,discounts] [--prune]
  *   --prune archives this demo's products that are no longer in content.json
+ *   --handles a,b  with --only products: upsert just these products (e.g. after a stock change)
  *   npm run demo:import -- fashion --store haley-demo.myshopify.com
  *
  * Uses `shopify store execute` (Shopify CLI, Admin GraphQL API). Images are
@@ -23,10 +24,12 @@ const flag = (name) => {
   const i = argv.indexOf(name);
   return i >= 0 ? argv[i + 1] : undefined;
 };
-const demo = argv.find((a, i) => !a.startsWith('-') && !['--store', '--only'].includes(argv[i - 1]));
+const demo = argv.find((a, i) => !a.startsWith('-') && !['--store', '--only', '--handles'].includes(argv[i - 1]));
 const store = flag('--store');
 const only = flag('--only') ? flag('--only').split(',') : null;
 const step = (name) => !only || only.includes(name);
+const onlyHandles = flag('--handles') ? new Set(flag('--handles').split(',')) : null;
+if (onlyHandles && (!only || only.join() !== 'products')) { console.error('--handles needs --only products (collections need every product)'); process.exit(1); }
 
 if (!demo || !store) {
   console.error('Usage: node scripts/demo-import.js <demo> --store <shop>.myshopify.com [--only files,products,collections,pages,blog,menus]');
@@ -189,6 +192,7 @@ if (step('files')) {
 const productIds = {};
 if (step('products') || step('collections')) {
   for (const p of content.products) {
+    if (onlyHandles && !onlyHandles.has(p.handle)) continue;
     const existing = gql('query($h: String!) { productByIdentifier(identifier: { handle: $h }) { id } }', { h: p.handle }).productByIdentifier;
     if (existing && !step('products')) { productIds[p.handle] = existing.id; continue; }
 
@@ -216,8 +220,9 @@ if (step('products') || step('collections')) {
         sku: `${prefix.slice(0, 2).toUpperCase()}-${p.handle.split('-').map((w) => w[0]).join('').toUpperCase()}-${String(i + 1).padStart(2, '0')}`,
         inventoryPolicy: 'DENY',
         inventoryItem: { tracked: true },
-        // A few sold-out sizes so the "crossed out" option state shows up
-        inventoryQuantities: [{ locationId: location.id, name: 'available', quantity: s === 'XL' || s === '40' ? 0 : 12 + ((i * 7) % 30) }],
+        // Sold out: every XL / 40, plus the catalogue's soldOut (true = whole product, [colours] = those colours)
+        // so the crossed-out option state and the back-in-stock form show up
+        inventoryQuantities: [{ locationId: location.id, name: 'available', quantity: s === 'XL' || s === '40' || p.soldOut === true || (Array.isArray(p.soldOut) && c && p.soldOut.includes(c.name)) ? 0 : 12 + ((i * 7) % 30) }],
       };
       if (p.compare) v.compareAtPrice = String(p.compare);
       if (c) v.file = { originalSource: imageUrl(c.image), contentType: 'IMAGE' };
