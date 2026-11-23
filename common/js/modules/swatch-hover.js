@@ -73,6 +73,8 @@ function setPermanent(swatch, img, url) {
   // Update cached default so future hover reverts land here, not the original.
   img.dataset.swatchOrigSrc = url;
   delete img.dataset.swatchOrigSrcset;
+  // Keep the picked colour visible: the card's hover (second) image must not cover it.
+  if (img.parentElement) img.parentElement.classList.add('is-swatch-picked');
   setActive(swatch);
   applyVariantInfo(swatch);
 }

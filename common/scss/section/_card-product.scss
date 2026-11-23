@@ -65,6 +65,10 @@
   &:hover .card__media .media img:first-child:not(:only-child) { opacity: 0; }
   &:hover .card__media .media img + img { opacity: 1; }
   &:hover .card__media .media img:only-child { transform: scale(1.04); }
+  // A colour dot was clicked (swatch-hover.js): the picked colour stays on screen,
+  // the second image must not cover it on hover.
+  &:hover .card__media .media.is-swatch-picked img:first-child { opacity: 1; }
+  &:hover .card__media .media.is-swatch-picked img + img { opacity: 0; }
 
   // Info
   > .card > .card__content { padding-block-start: 16px; }
