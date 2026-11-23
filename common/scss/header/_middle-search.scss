@@ -53,9 +53,10 @@
     font-family: inherit;
     font-size: inherit;
     line-height: 1.4;
-    padding: 1rem 2rem;
-    min-width: 14.8rem;
-    max-width: 19rem;
+    padding: 1rem 3.2rem 1rem 2rem;
+    width: 25rem; // category column ~250px (user 2026-11-23)
+    max-width: 25rem;
+    text-overflow: ellipsis;
     cursor: pointer;
     outline: none;
   }

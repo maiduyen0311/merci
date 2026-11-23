@@ -70,11 +70,11 @@
               {%- endif -%}
             {%- endfor -%}
           {%- else -%}
-            {%- assign demo_titles = 'sections.navigation.categories_demo_list' | t | split: ',' -%}
-            {%- for title in demo_titles -%}
-              <option value="" disabled>
-                {{- title | strip -}}
-              </option>
+            {%- comment -%} no menu picked: every collection with products (setting info: "If empty, all collections are listed") {%- endcomment -%}
+            {%- for c in collections limit: 30 -%}
+              {%- if c.all_products_count > 0 -%}
+                <option value="{{ c.handle }}" data-url="{{ c.url }}">{{ c.title | escape }}</option>
+              {%- endif -%}
             {%- endfor -%}
           {%- endif -%}
         </select>

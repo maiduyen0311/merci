@@ -72,7 +72,7 @@ const addFile = (key) => {
 ['instagram-1', 'instagram-2', 'instagram-3', 'instagram-4', 'instagram-5', 'instagram-6', 'lookbook-1', 'lookbook-2', 'lookbook-3', 'art-knit', 'art-pink', 'art-shirt', 'art-green', 'art-scarf', 'art-cardigan', 'stage-jacket', 'stage-straw', 'stage-hat', 'stage-shirt', 'stage-tote', 'stage-tee'].forEach(addFile);
 // homepage layered tiles: transparent cut-outs (PNG)
 // homepage video banner panel: cut-outs from scripts/demo/merci-image-tool.js
-for (const k of ['banner-dress', 'banner-hat']) {
+for (const k of ['banner-dress', 'banner-hat', 'banner-tote']) {
   images[k] = { file: `images/derived/${k}.png` };
   files.push({ key: k, filename: `${PREFIX}-${k}.png` });
 }

@@ -104,6 +104,9 @@
     "banner-hat": {
       "file": "images/derived/banner-hat.png"
     },
+    "banner-tote": {
+      "file": "images/derived/banner-tote.png"
+    },
     "brand-nordhaven": {
       "file": "images/brand-nordhaven.png"
     },
@@ -1019,6 +1022,10 @@
     {
       "key": "banner-hat",
       "filename": "merci-demo-banner-hat.png"
+    },
+    {
+      "key": "banner-tote",
+      "filename": "merci-demo-banner-tote.png"
     },
     {
       "key": "brand-nordhaven",
