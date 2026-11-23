@@ -345,3 +345,22 @@
 }
 .header-top-currency__symbol { margin-left: auto; padding-left: 1.2rem; opacity: 0.55; }
 .header-top-currency--single .header-top__selector { cursor: default; }
+
+// Display-only currency converter (common/js/modules/currency-converter.js)
+.header-top-currency__note {
+  margin: 0.6rem 0 0;
+  padding: 0.8rem 1.6rem 0.4rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 1.2rem;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.6);
+  white-space: normal;
+  min-width: 18rem;
+}
+.mc-currency-note {
+  margin: 0 0 0.8rem;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+}

@@ -17,6 +17,7 @@ import SocialProof from './modules/social-proof.js';
 import HeaderFixed from './modules/header-fixed.js';
 import NewsletterPopup from './modules/newsletter-popup.js';
 import HeaderTopDropdown from './modules/header-top-dropdown.js';
+import CurrencyConverter from './modules/currency-converter.js';
 import CollectionView from './modules/collection-view.js';
 import CartPage from './modules/cart-page.js';
 import HeaderAccount from './modules/header-account.js';
@@ -52,6 +53,7 @@ const initThemeScripts = () => {
   HeaderFixed.init();
   NewsletterPopup.init();
   HeaderTopDropdown.init();
+  CurrencyConverter.init();
   CollectionView.init();
   CartPage.init();
   HeaderAccount.init();

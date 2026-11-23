@@ -551,6 +551,27 @@
     },
     {
       "type": "checkbox",
+      "id": "currency_converter",
+      "label": "Currency converter when the store has one currency",
+      "default": true,
+      "info": "Shows prices converted with Shopify's daily rates. Display only: checkout stays in your store currency. Not used once markets have their own currencies."
+    },
+    {
+      "type": "text",
+      "id": "converter_currencies",
+      "label": "Converter currencies",
+      "default": "USD, EUR, GBP, CAD, AUD, JPY",
+      "info": "Comma-separated ISO codes. The flag comes from \"Preferred flag per currency\"."
+    },
+    {
+      "type": "text",
+      "id": "converter_note",
+      "label": "Converter note",
+      "default": "Prices in [currency] are estimates. You pay in [shop_currency] at checkout.",
+      "info": "Shown under the list and above checkout buttons while a converted currency is selected."
+    },
+    {
+      "type": "checkbox",
       "id": "enable_language_selector",
       "label": "Show language selector",
       "default": true

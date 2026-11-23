@@ -52,9 +52,16 @@
   if localization.country.currency.iso_code == current_currency
     assign current_country = localization.country
   endif
+
+  # Display-only converter: the store has a single currency (no Shopify Payments / markets) →
+  # prices are shown converted with Shopify's public rates, checkout stays in the store currency.
+  assign converter_codes = ''
+  if picked_codes.size < 2 and section.settings.currency_converter
+    assign converter_codes = section.settings.converter_currencies | default: '' | upcase | remove: ' ' | split: ','
+  endif
 -%}
 
-<header-top-dropdown class="header-top-currency{% if picked_codes.size < 2 %} header-top-currency--single{% endif %}">
+<header-top-dropdown class="header-top-currency{% if picked_codes.size < 2 and converter_codes.size < 2 %} header-top-currency--single{% endif %}">
   <div class="header-top__disclosure header-top-currency__disclosure">
     {%- capture current_label -%}
       {{- current_country | image_url: width: 36 | image_tag: class: 'header-top__flag', alt: '', width: 18, height: 12, loading: 'lazy' -}}
@@ -62,7 +69,72 @@
       <span class="header-top__selector-label">{{ current_currency }}</span>
     {%- endcapture -%}
 
-    {%- if picked_codes.size < 2 -%}
+    {%- if picked_codes.size < 2 and converter_codes.size > 1 -%}
+      {%- liquid
+        assign shop_currency = cart.currency.iso_code
+        assign note = section.settings.converter_note | default: 'Prices in [currency] are estimates. You pay in [shop_currency] at checkout.' | replace: '[shop_currency]', shop_currency
+      -%}
+      <button
+        type="button"
+        class="header-top__selector header-top-currency__selector"
+        data-dropdown-toggle
+        aria-expanded="false"
+        aria-controls="{{ list_id }}"
+      >
+        {{- current_country | image_url: width: 36 | image_tag: class: 'header-top__flag', alt: '', width: 18, height: 12, loading: 'lazy' -}}
+        <span class="visually-hidden">{{ 'localization.currency_label' | t }}: </span>
+        <span class="header-top__selector-label" data-converter-label>{{ shop_currency }}</span>
+        <span class="header-top__chevron" aria-hidden="true">
+          {% render 'icon-caret' %}
+        </span>
+      </button>
+
+      <div
+        class="disclosure__list-wrapper header-top__dropdown header-top-currency__dropdown"
+        data-dropdown-panel
+        data-currency-converter
+        data-shop-currency="{{ shop_currency }}"
+        data-money-format="{{ shop.money_format | strip_html | escape }}"
+        data-note="{{ note | escape }}"
+        hidden
+      >
+        <ul id="{{ list_id }}" role="list" class="disclosure__list list-unstyled">
+          {%- for code in converter_codes -%}
+            {%- liquid
+              assign flag_country = ''
+              for pair in pairs
+                assign parts = pair | strip | split: ':'
+                assign pair_code = parts[0] | strip | upcase
+                if pair_code == code
+                  assign flag_country = parts[1] | strip | downcase
+                endif
+              endfor
+              if flag_country == blank
+                assign flag_country = code | slice: 0, 2 | downcase
+              endif
+              if code == shop_currency
+                assign flag_country = current_country.iso_code | downcase
+              endif
+            -%}
+            <li class="disclosure__item">
+              <button
+                type="button"
+                class="link disclosure__link focus-inset header-top-currency__option"
+                data-convert-to="{{ code }}"
+                {% if flag_country != blank %}data-flag="https://cdn.shopify.com/static/images/flags/{{ flag_country }}.svg?width=36"{% endif %}
+                {% if code == shop_currency %}aria-current="true"{% endif %}
+              >
+                {%- if flag_country != blank -%}
+                  <img class="header-top__flag" src="https://cdn.shopify.com/static/images/flags/{{ flag_country }}.svg?width=36" alt="" width="18" height="12" loading="lazy">
+                {%- endif -%}
+                <span class="header-top-currency__code">{{ code }}</span>
+              </button>
+            </li>
+          {%- endfor -%}
+        </ul>
+        <p class="header-top-currency__note" data-converter-note hidden></p>
+      </div>
+    {%- elsif picked_codes.size < 2 -%}
       <span class="header-top__selector header-top-currency__selector">{{ current_label }}</span>
     {%- else -%}
       <button

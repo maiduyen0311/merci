@@ -18,7 +18,7 @@
         "show_account": true,
         "show_wishlist": true,
         "show_cart": true,
-        "currency_options": "USD:US, CAD:CA, EUR:DE, GBP:GB",
+        "currency_options": "USD:US, EUR:DE, GBP:GB, CAD:CA, AUD:AU, JPY:JP",
         "header_layout": "centered",
         "overlay_home": true,
         "centered_left_content": "utilities",
