@@ -77,7 +77,8 @@
         "sidebar_banner_badge": "",
         "grid_promo_position": 5,
         "grid_promo_image": "shopify://shop_images/merci-demo-stage-straw.jpg",
-        "grid_promo_link": "shopify://collections/lorem-ipsum-dolor"
+        "grid_promo_link": "shopify://collections/lorem-ipsum-dolor",
+        "sidebar_position": "right"
       }
     },
     "hero": {

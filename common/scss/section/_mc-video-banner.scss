@@ -403,3 +403,208 @@
 
   &:hover { color: var(--color-accent-ink, var(--color-primary)); }
 }
+
+// =============================================================================
+// Editorial side banner (setting "Side banner style: Editorial", user 2026-11-23: must not look
+// like the layered tiles) — dark colour block over cream, cut-out on the seam inside a thin ring,
+// "N°" index + vertical side line, hanging price tag, big serif title + round arrow.
+// =============================================================================
+.mc-video-banner__tile--editorial {
+  min-height: 46rem;
+  background: var(--mc-panel-bg, #f9f1ef);
+}
+
+.mc-ved {
+  --ved-block: var(--mc-ved-block, #231e17);
+  --ved-seam: 56%;
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  color: var(--color-heading, #231e17);
+  text-decoration: none;
+}
+
+.mc-ved__block {
+  position: absolute;
+  inset: 0 0 calc(100% - var(--ved-seam));
+  background: var(--ved-block);
+  color: #f6eee9;
+}
+
+.mc-ved__index {
+  position: absolute;
+  top: 2.4rem;
+  left: 2.8rem;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  letter-spacing: 0.2em;
+}
+
+.mc-ved__side {
+  position: absolute;
+  top: 2.4rem;
+  right: 2.4rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  opacity: 0.7;
+}
+
+.mc-ved__dots {
+  position: absolute;
+  bottom: 2rem;
+  left: 2.8rem;
+  width: 8rem;
+  height: 4rem;
+  background-image: radial-gradient(circle, rgba(246, 238, 233, 0.45) 1.2px, transparent 1.6px);
+  background-size: 1.2rem 1.2rem;
+}
+
+.mc-ved__ring {
+  position: absolute;
+  top: var(--ved-seam);
+  left: 50%;
+  width: 26rem;
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--color-primary, #bf7069) 70%, transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -66%); // clear of the title below
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 1.4rem;
+    border: 1px dashed rgba(246, 238, 233, 0.35);
+    border-radius: 50%;
+  }
+}
+
+.mc-ved__product {
+  position: absolute;
+  top: calc(var(--ved-seam) - 34%);
+  left: 50%;
+  width: min(62%, 25rem);
+  height: 44%;
+  transform: translateX(-50%);
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.mc-ved__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 1.6rem 1.8rem rgba(0, 0, 0, 0.28));
+}
+
+.mc-ved__tag {
+  position: absolute;
+  top: calc(var(--ved-seam) - 6%);
+  right: 9%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  min-width: 8.4rem;
+  padding: 1.6rem 1.2rem 0.9rem;
+  border-radius: 0.6rem 0.6rem 0.4rem 0.4rem;
+  background: var(--color-primary, #bf7069);
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  clip-path: polygon(50% 0, 100% 22%, 100% 100%, 0 100%, 0 22%);
+  transform: rotate(9deg);
+  transform-origin: 50% 0;
+  animation: mc-ved-swing 4.5s ease-in-out infinite;
+
+  // the string the tag hangs from
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    width: 1px;
+    height: 3.2rem;
+    background: rgba(246, 238, 233, 0.7);
+  }
+}
+
+.mc-ved__tag-hole {
+  position: absolute;
+  top: 0.7rem;
+  left: 50%;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--ved-block);
+  transform: translateX(-50%);
+}
+
+@keyframes mc-ved-swing { 50% { transform: rotate(3deg); } }
+
+.mc-ved__copy {
+  position: absolute;
+  right: 2.8rem;
+  bottom: 2.6rem;
+  left: 2.8rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.mc-ved__eyebrow {
+  color: #9c524c; // accent ink for the tinted base (AA 4.5:1 on #f9f1ef)
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.mc-ved__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 2.6vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.05;
+
+  em { color: #9c524c; font-style: italic; }
+}
+
+.mc-ved__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-heading, #000) 18%, transparent);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.mc-ved__arrow {
+  display: grid;
+  place-items: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 50%;
+  background: var(--ved-block);
+  color: #fff;
+  transition: background-color 0.3s ease, transform 0.4s ease;
+}
+
+.mc-ved:hover {
+  .mc-ved__product { transform: translateX(-50%) translateY(-1rem) scale(1.03); }
+  .mc-ved__ring { transform: translate(-50%, -66%) rotate(25deg) scale(1.05); }
+  .mc-ved__arrow { background: var(--color-primary, #bf7069); transform: rotate(45deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-ved__tag { animation: none; }
+}
+
+@media screen and (max-width: 991px) {
+  .mc-video-banner__tile--editorial { min-height: 52rem; }
+}

@@ -102,6 +102,16 @@
           {%- else -%}
             {{ 'product-1' | placeholder_svg_tag: 'main-product__placeholder' }}
           {%- endif -%}
+          {%- if product.media.size > 1 -%}
+            {%- comment -%} Gallery carousel: previous / next image (also swipe on touch screens) {%- endcomment -%}
+            <button type="button" class="main-product__media-arrow main-product__media-arrow--prev" data-media-step="-1" aria-label="{{ 'general.slider.previous_slide' | t }}">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <button type="button" class="main-product__media-arrow main-product__media-arrow--next" data-media-step="1" aria-label="{{ 'general.slider.next_slide' | t }}">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <span class="main-product__media-count" aria-hidden="true"><span data-media-index>1</span> / {{ product.media.size }}</span>
+          {%- endif -%}
         </div>
 
         {%- if section.settings.show_thumbnails and product.media.size > 1 -%}
@@ -461,7 +471,7 @@
               <span data-add-text>{% if in_stock %}{{ section.settings.add_to_cart_label | default: 'ADD TO CART' }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
             </button>
 
-            {%- if section.settings.show_wishlist_button -%}
+            {%- if section.settings.show_wishlist_button and section.settings.wishlist_position == 'buttons' -%}
               <button
                 type="button"
                 class="main-product__wishlist"
@@ -530,6 +540,17 @@
                     {{ section.settings.action_ask_label }}
                   </button></li>
                 {%- endif -%}
+              {%- endif -%}
+              {%- if section.settings.show_wishlist_button and section.settings.wishlist_position != 'buttons' -%}
+                <li><button
+                  type="button"
+                  class="main-product__action main-product__action--wishlist"
+                  data-wishlist-toggle="{{ product.handle }}"
+                  aria-pressed="false"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 20.3l-1.3-1.2C6 14.9 3 12.2 3 8.8 3 6.1 5.1 4 7.8 4c1.5 0 3 .7 4.2 1.9C13.2 4.7 14.7 4 16.2 4 18.9 4 21 6.1 21 8.8c0 3.4-3 6.1-7.7 10.3L12 20.3z"/></svg>
+                  <span>{{ section.settings.wishlist_label }}</span>
+                </button></li>
               {%- endif -%}
               {%- if section.settings.action_compare_label != blank -%}
                 <li><button type="button" class="main-product__action" data-action="compare" data-product-handle="{{ product.handle }}">
@@ -978,6 +999,38 @@
       thumb.addEventListener('click', function () { activateThumb(thumb); });
     });
 
+    // Gallery carousel: arrows + swipe step through the thumbnails (wraps around), counter "2 / 5"
+    var mediaIndexEl = root.querySelector('[data-media-index]');
+    function stepMedia(dir) {
+      if (!mainThumbs.length) return;
+      var list = Array.prototype.slice.call(mainThumbs);
+      var cur = list.findIndex(function (t) { return t.classList.contains('is-active'); });
+      var next = list[(cur + dir + list.length) % list.length];
+      if (next) activateThumb(next);
+    }
+    root.querySelectorAll('[data-media-step]').forEach(function (btn) {
+      btn.addEventListener('click', function () { stepMedia(parseInt(btn.getAttribute('data-media-step'), 10)); });
+    });
+    var mediaMain = root.querySelector('.main-product__media-main');
+    if (mediaMain) {
+      var touchX = null;
+      mediaMain.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+      mediaMain.addEventListener('touchend', function (e) {
+        if (touchX === null) return;
+        var dx = e.changedTouches[0].clientX - touchX;
+        touchX = null;
+        if (Math.abs(dx) > 40) stepMedia(dx < 0 ? 1 : -1);
+      });
+    }
+    if (mediaIndexEl) {
+      var updateCount = function () {
+        var list = Array.prototype.slice.call(mainThumbs);
+        mediaIndexEl.textContent = String(list.findIndex(function (t) { return t.classList.contains('is-active'); }) + 1 || 1);
+      };
+      updateCount();
+      new MutationObserver(updateCount).observe(root.querySelector('.main-product__thumbs') || root, { subtree: true, attributes: true, attributeFilter: ['class'] });
+    }
+
     // Toast helper
     var toastEl = document.getElementById('MainProductToast-{{ section.id }}');
     var toastTimer = null;
@@ -1321,6 +1374,16 @@
     { "type": "header", "content": "Media" },
     { "type": "checkbox", "id": "show_thumbnails", "label": "Show thumbnails", "default": true },
     { "type": "checkbox", "id": "show_wishlist_button", "label": "Show wishlist button", "default": true },
+    {
+      "type": "select",
+      "id": "wishlist_position",
+      "label": "Wishlist button position",
+      "options": [
+        { "value": "actions", "label": "With size guide / compare" },
+        { "value": "buttons", "label": "Next to Add to cart" }
+      ],
+      "default": "actions"
+    },
     { "type": "text", "id": "wishlist_label", "label": "Wishlist button label (tooltip)", "default": "Add to wishlist" },
     { "type": "checkbox", "id": "show_share_button", "label": "Show share button", "default": true },
     { "type": "text", "id": "share_label", "label": "Share label", "default": "Share this product" },

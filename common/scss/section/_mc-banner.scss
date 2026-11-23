@@ -306,6 +306,63 @@
   .mc-collection-hero__art { width: min(78%, 32rem); }
 }
 
+// --- Compact band (setting "Layout: Compact", user 2026-11-23: about a third of the tall hero) ---
+// copy | chips | small round photo, all in one row; the panel keeps its grid + line arches.
+.mc-collection-hero--compact {
+  .mc-collection-hero__panel {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr) auto;
+    align-items: center;
+    gap: 3.2rem;
+    padding: 2.8rem 4.8rem;
+  }
+
+  .mc-collection-hero__crumbs { margin-bottom: 1.2rem; }
+
+  .mc-collection-hero__title {
+    margin: 0 0 0.8rem;
+    font-size: clamp(3.1rem, 3.4vw, 4.9rem);
+  }
+
+  .mc-collection-hero__text {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .mc-collection-hero__aside { position: relative; z-index: 1; }
+  .mc-collection-hero__chips { gap: 0.6rem; }
+
+  .mc-collection-hero__art { width: 17rem; }
+  .mc-art--sm { font-size: 4.6px; }
+
+  .mc-banner__bg--arches { right: 2%; bottom: -30%; width: 18rem; }
+  .mc-banner__bg--leaf { top: 1.2rem; right: 24rem; width: 4.4rem; }
+
+  @media screen and (max-width: 1199px) {
+    .mc-collection-hero__panel { grid-template-columns: minmax(0, 1fr) auto; padding-inline: 3.2rem; }
+    .mc-collection-hero__aside { grid-column: 1 / -1; grid-row: 2; }
+  }
+
+  // phones: copy + one scrolling row of chips, no photo (the stamp would cover it)
+  @media screen and (max-width: 749px) {
+    .mc-collection-hero__panel { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; padding: 2.4rem 1.6rem; }
+    .mc-collection-hero__art,
+    .mc-banner__bg--leaf { display: none; }
+    .mc-collection-hero__aside { grid-column: 1; grid-row: 2; margin-inline: -1.6rem; }
+    .mc-collection-hero__chips {
+      flex-wrap: nowrap;
+      padding: 0.2rem 1.6rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar { display: none; }
+      li { flex: 0 0 auto; }
+    }
+  }
+}
+
 // pill chips with a count bubble — fill sweeps in on hover
 .mc-chip {
   position: relative;

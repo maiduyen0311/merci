@@ -27,3 +27,7 @@ User 2026-11-17: product images must show the PRODUCT ONLY — no model photos (
 User 2026-11-18: all font sizes +0.1rem (+1px) — body 14px, small 13px, tiny 12px, h4 17 / h3 19 / h2 25 / h1 41 / display 61px; every px/rem `font-size` in common/scss bumped once (em/vw/% and the `.mc-art` composition scale untouched).
 **Why:** text read too small on the live demo.
 **How to apply:** new styles use the bumped scale (body copy ≥ 1.4rem). design/SPEC.md tokens still list the old sizes — update only with user approval.
+
+User 2026-11-23 (layout feedback): card labels top-left; card images show the whole product (`card_image_fit: contain`); brand strip uses only our own invented wordmarks (no third-party logos); collection hero = compact band (about 1/3 of the old height); collection sidebar on the RIGHT; side banner next to the video must look different from the layered tiles (editorial style); PDP needs several images + carousel, wishlist button sits with Size guide / Compare.
+**Why:** user review of the live demo.
+**How to apply:** keep these as the demo defaults (settings exist for the alternatives). Currency switching needs extra currencies enabled in Settings → Markets (store has USD only); the theme lists real markets and posts the localization form.

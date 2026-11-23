@@ -6,10 +6,10 @@
 //     <div data-dropdown-panel hidden> <a href="…">…</a> … </div>
 //   </header-top-dropdown>
 //
-// Options are plain links (GET): `?country=XX` switches market/currency and
-// `/<locale>/…` switches language. Unlike the POST /localization form, this
-// works through the `shopify theme dev` proxy (which answers 502 to that POST)
-// and on the live storefront alike.
+// Language options are plain links (`/<locale>/…`). Currency options are submit buttons of
+// Shopify's localization form (country_code) — `?country=XX` links did not switch the market.
+// Note: the `shopify theme dev` proxy answers 502 to that POST; test currency on the storefront.
+// With one currency the selector is a plain label (no toggle / panel).
 
 class HeaderTopDropdown extends HTMLElement {
   connectedCallback() {
@@ -62,6 +62,8 @@ class HeaderTopDropdown extends HTMLElement {
   }
 
   close() {
+    // a single-currency selector is a plain label: nothing to close (and open() closes every dropdown)
+    if (!this.panel || !this.toggle) return;
     this.panel.setAttribute('hidden', '');
     this.toggle.setAttribute('aria-expanded', 'false');
   }

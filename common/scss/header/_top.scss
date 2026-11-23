@@ -331,3 +331,17 @@
     }
   }
 }
+
+// Currency options are submit buttons of Shopify's localization form — styled like the list links
+.header-top-currency__form { margin: 0; }
+.header-top-currency__option {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+}
+.header-top-currency__symbol { margin-left: auto; padding-left: 1.2rem; opacity: 0.55; }
+.header-top-currency--single .header-top__selector { cursor: default; }

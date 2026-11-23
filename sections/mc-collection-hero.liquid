@@ -18,6 +18,25 @@
   assign count_label = 'sections.mc_collection_hero.count' | t: count: collection.products_count
   assign badge_text = 'sections.mc_collection_hero.badge' | t: title: collection.title
 -%}
+{%- liquid
+  assign compact = false
+  if s.layout == 'compact'
+    assign compact = true
+  endif
+-%}
+{%- capture chips_html -%}
+  {%- if s.quick_links.size > 0 -%}
+    <ul class="mc-collection-hero__chips list-unstyled" role="list">
+      {%- for c in s.quick_links -%}
+        <li>
+          <a href="{{ c.url }}" class="mc-chip{% if c.handle == collection.handle %} is-current{% endif %}"{% if c.handle == collection.handle %} aria-current="page"{% endif %}>
+            {{- c.title | escape -}}<span class="mc-chip__count">{{ c.products_count }}</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+{%- endcapture -%}
 {%- style -%}
   #McCollectionHero-{{ section.id }} {
     --mc-pt: {{ s.padding_top }}px;
@@ -27,7 +46,7 @@
   }
 {%- endstyle -%}
 
-<section id="McCollectionHero-{{ section.id }}" class="mc-section mc-banner mc-collection-hero mc-banner--pattern-{{ s.pattern }}">
+<section id="McCollectionHero-{{ section.id }}" class="mc-section mc-banner mc-collection-hero{% if compact %} mc-collection-hero--compact{% endif %} mc-banner--pattern-{{ s.pattern }}">
   <div class="container">
     <div class="mc-banner__panel mc-collection-hero__panel">
       {%- unless s.decor == 'minimal' -%}
@@ -52,19 +71,26 @@
           <div class="mc-banner__text mc-collection-hero__text">{{ s.fallback_text }}</div>
         {%- endif -%}
 
-        {%- if s.quick_links.size > 0 -%}
-          <ul class="mc-collection-hero__chips list-unstyled" role="list">
-            {%- for c in s.quick_links -%}
-              <li>
-                <a href="{{ c.url }}" class="mc-chip{% if c.handle == collection.handle %} is-current{% endif %}"{% if c.handle == collection.handle %} aria-current="page"{% endif %}>
-                  {{- c.title | escape -}}<span class="mc-chip__count">{{ c.products_count }}</span>
-                </a>
-              </li>
-            {%- endfor -%}
-          </ul>
-        {%- endif -%}
+        {%- unless compact -%}{{ chips_html }}{%- endunless -%}
       </div>
 
+      {%- if compact -%}
+        {%- if s.quick_links.size > 0 -%}<div class="mc-collection-hero__aside">{{ chips_html }}</div>{%- endif -%}
+        <div class="mc-banner__art mc-collection-hero__art">
+          {% render 'mc-art',
+            decor: 'minimal',
+            image: hero_image,
+            packshot: hero_packshot,
+            shape: 'circle',
+            badge: badge_text,
+            sticker: s.sticker,
+            size: 'sm',
+            loading: 'eager',
+            sizes: '200px',
+            alt: collection.title
+          %}
+        </div>
+      {%- else -%}
       <div class="mc-banner__art mc-collection-hero__art">
         {% render 'mc-art',
           decor: s.decor,
@@ -81,6 +107,7 @@
           alt: collection.title
         %}
       </div>
+      {%- endif -%}
     </div>
   </div>
 </section>
@@ -92,6 +119,16 @@
   "class": "section-mc-collection-hero",
   "settings": [
     { "type": "paragraph", "content": "Title, count, description and photo come from the collection. The settings below are fallbacks and decoration." },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "compact", "label": "Compact band — one row, small round photo" },
+        { "value": "tall", "label": "Tall — large layered photo" }
+      ],
+      "default": "compact"
+    },
     {
       "type": "select",
       "id": "image_source",

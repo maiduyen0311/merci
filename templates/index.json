@@ -302,47 +302,54 @@
     "brands": {
       "type": "mc-image-strip",
       "blocks": {
-        "i1": {
+        "b1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/1_02f20a96-69ab-4801-aa7f-15b297250a56.png"
+            "image": "shopify://shop_images/merci-demo-brand-nordhaven.png"
           }
         },
-        "i2": {
+        "b2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/2.png"
+            "image": "shopify://shop_images/merci-demo-brand-sorrel-fern.png"
           }
         },
-        "i3": {
+        "b3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/3.png"
+            "image": "shopify://shop_images/merci-demo-brand-okka.png"
           }
         },
-        "i4": {
+        "b4": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/4.png"
+            "image": "shopify://shop_images/merci-demo-brand-lune-atelier.png"
           }
         },
-        "i5": {
+        "b5": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/4_86c6a04b-5c12-4e8c-aa06-36b2e5ecae7d.png"
+            "image": "shopify://shop_images/merci-demo-brand-wren-co.png"
+          }
+        },
+        "b6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/merci-demo-brand-cielo-studio.png"
           }
         }
       },
       "block_order": [
-        "i1",
-        "i2",
-        "i3",
-        "i4",
-        "i5"
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6"
       ],
       "settings": {
         "hover_style": "fade",
-        "columns_desktop": 5,
+        "columns_desktop": 6,
         "columns_mobile": "2.5",
         "gap": 30,
         "full_width": false,

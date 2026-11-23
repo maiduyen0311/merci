@@ -261,6 +261,13 @@ const products = rows.map((r, i) => {
     rating: [4 + ((i * 3) % 10) / 10, 6 + ((i * 17) % 90)],
     sold: 8 + ((i * 29) % 140),
   };
+  // extra gallery views (scripts/demo/merci-gallery.js): studio backdrop + close-up, after the colour photos
+  for (const view of ['studio', 'detail']) {
+    const file = `images/gallery/${p.handle}-${view}.jpg`;
+    if (!require('fs').existsSync(require('path').join(__dirname, '..', '..', 'demos', 'merci', file))) continue;
+    images[`g-${p.handle}-${view}`] = { file };
+    p.extraImages = [...(p.extraImages || []), `g-${p.handle}-${view}`];
+  }
   if (SOLD_OUT[r.title]) p.soldOut = SOLD_OUT[r.title];
   if (r.compare) p.compare = r.compare;
   if (r.badge) p.badge = r.badge;

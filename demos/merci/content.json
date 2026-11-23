@@ -104,6 +104,24 @@
     "banner-hat": {
       "file": "images/derived/banner-hat.png"
     },
+    "brand-nordhaven": {
+      "file": "images/brand-nordhaven.png"
+    },
+    "brand-sorrel-fern": {
+      "file": "images/brand-sorrel-fern.png"
+    },
+    "brand-okka": {
+      "file": "images/brand-okka.png"
+    },
+    "brand-lune-atelier": {
+      "file": "images/brand-lune-atelier.png"
+    },
+    "brand-wren-co": {
+      "file": "images/brand-wren-co.png"
+    },
+    "brand-cielo-studio": {
+      "file": "images/brand-cielo-studio.png"
+    },
     "tile-dress": {
       "file": "images/tile-dress.png"
     },
@@ -565,6 +583,348 @@
     },
     "cat-d-skirt-mustard-2--sage": {
       "file": "images/derived/skirt-mustard-2--sage.png"
+    },
+    "g-wool-rib-beanie-studio": {
+      "file": "images/gallery/wool-rib-beanie-studio.jpg"
+    },
+    "g-wool-rib-beanie-detail": {
+      "file": "images/gallery/wool-rib-beanie-detail.jpg"
+    },
+    "g-chunky-knit-beanie-studio": {
+      "file": "images/gallery/chunky-knit-beanie-studio.jpg"
+    },
+    "g-chunky-knit-beanie-detail": {
+      "file": "images/gallery/chunky-knit-beanie-detail.jpg"
+    },
+    "g-cotton-twill-bucket-hat-studio": {
+      "file": "images/gallery/cotton-twill-bucket-hat-studio.jpg"
+    },
+    "g-cotton-twill-bucket-hat-detail": {
+      "file": "images/gallery/cotton-twill-bucket-hat-detail.jpg"
+    },
+    "g-washed-denim-bucket-hat-studio": {
+      "file": "images/gallery/washed-denim-bucket-hat-studio.jpg"
+    },
+    "g-washed-denim-bucket-hat-detail": {
+      "file": "images/gallery/washed-denim-bucket-hat-detail.jpg"
+    },
+    "g-terry-bucket-hat-studio": {
+      "file": "images/gallery/terry-bucket-hat-studio.jpg"
+    },
+    "g-terry-bucket-hat-detail": {
+      "file": "images/gallery/terry-bucket-hat-detail.jpg"
+    },
+    "g-wide-brim-straw-boater-studio": {
+      "file": "images/gallery/wide-brim-straw-boater-studio.jpg"
+    },
+    "g-wide-brim-straw-boater-detail": {
+      "file": "images/gallery/wide-brim-straw-boater-detail.jpg"
+    },
+    "g-straw-fedora-with-ribbon-studio": {
+      "file": "images/gallery/straw-fedora-with-ribbon-studio.jpg"
+    },
+    "g-straw-fedora-with-ribbon-detail": {
+      "file": "images/gallery/straw-fedora-with-ribbon-detail.jpg"
+    },
+    "g-classic-panama-hat-studio": {
+      "file": "images/gallery/classic-panama-hat-studio.jpg"
+    },
+    "g-classic-panama-hat-detail": {
+      "file": "images/gallery/classic-panama-hat-detail.jpg"
+    },
+    "g-leopard-scarf-scrunchie-studio": {
+      "file": "images/gallery/leopard-scarf-scrunchie-studio.jpg"
+    },
+    "g-leopard-scarf-scrunchie-detail": {
+      "file": "images/gallery/leopard-scarf-scrunchie-detail.jpg"
+    },
+    "g-pom-pom-straw-circle-bag-studio": {
+      "file": "images/gallery/pom-pom-straw-circle-bag-studio.jpg"
+    },
+    "g-pom-pom-straw-circle-bag-detail": {
+      "file": "images/gallery/pom-pom-straw-circle-bag-detail.jpg"
+    },
+    "g-straw-crossbody-bag-studio": {
+      "file": "images/gallery/straw-crossbody-bag-studio.jpg"
+    },
+    "g-straw-crossbody-bag-detail": {
+      "file": "images/gallery/straw-crossbody-bag-detail.jpg"
+    },
+    "g-striped-straw-tote-studio": {
+      "file": "images/gallery/striped-straw-tote-studio.jpg"
+    },
+    "g-striped-straw-tote-detail": {
+      "file": "images/gallery/striped-straw-tote-detail.jpg"
+    },
+    "g-canvas-shopper-tote-studio": {
+      "file": "images/gallery/canvas-shopper-tote-studio.jpg"
+    },
+    "g-canvas-shopper-tote-detail": {
+      "file": "images/gallery/canvas-shopper-tote-detail.jpg"
+    },
+    "g-quilted-puffer-tote-studio": {
+      "file": "images/gallery/quilted-puffer-tote-studio.jpg"
+    },
+    "g-quilted-puffer-tote-detail": {
+      "file": "images/gallery/quilted-puffer-tote-detail.jpg"
+    },
+    "g-leather-hobo-shoulder-bag-studio": {
+      "file": "images/gallery/leather-hobo-shoulder-bag-studio.jpg"
+    },
+    "g-leather-hobo-shoulder-bag-detail": {
+      "file": "images/gallery/leather-hobo-shoulder-bag-detail.jpg"
+    },
+    "g-leather-mini-backpack-studio": {
+      "file": "images/gallery/leather-mini-backpack-studio.jpg"
+    },
+    "g-leather-mini-backpack-detail": {
+      "file": "images/gallery/leather-mini-backpack-detail.jpg"
+    },
+    "g-chunky-leather-trainers-studio": {
+      "file": "images/gallery/chunky-leather-trainers-studio.jpg"
+    },
+    "g-chunky-leather-trainers-detail": {
+      "file": "images/gallery/chunky-leather-trainers-detail.jpg"
+    },
+    "g-suede-platform-trainers-studio": {
+      "file": "images/gallery/suede-platform-trainers-studio.jpg"
+    },
+    "g-suede-platform-trainers-detail": {
+      "file": "images/gallery/suede-platform-trainers-detail.jpg"
+    },
+    "g-knit-runner-sneakers-studio": {
+      "file": "images/gallery/knit-runner-sneakers-studio.jpg"
+    },
+    "g-knit-runner-sneakers-detail": {
+      "file": "images/gallery/knit-runner-sneakers-detail.jpg"
+    },
+    "g-leather-chelsea-boots-studio": {
+      "file": "images/gallery/leather-chelsea-boots-studio.jpg"
+    },
+    "g-leather-chelsea-boots-detail": {
+      "file": "images/gallery/leather-chelsea-boots-detail.jpg"
+    },
+    "g-braided-slide-sandals-studio": {
+      "file": "images/gallery/braided-slide-sandals-studio.jpg"
+    },
+    "g-braided-slide-sandals-detail": {
+      "file": "images/gallery/braided-slide-sandals-detail.jpg"
+    },
+    "g-square-toe-leather-mules-studio": {
+      "file": "images/gallery/square-toe-leather-mules-studio.jpg"
+    },
+    "g-square-toe-leather-mules-detail": {
+      "file": "images/gallery/square-toe-leather-mules-detail.jpg"
+    },
+    "g-low-block-slide-studio": {
+      "file": "images/gallery/low-block-slide-studio.jpg"
+    },
+    "g-low-block-slide-detail": {
+      "file": "images/gallery/low-block-slide-detail.jpg"
+    },
+    "g-high-rise-denim-shorts-studio": {
+      "file": "images/gallery/high-rise-denim-shorts-studio.jpg"
+    },
+    "g-high-rise-denim-shorts-detail": {
+      "file": "images/gallery/high-rise-denim-shorts-detail.jpg"
+    },
+    "g-distressed-cut-off-shorts-studio": {
+      "file": "images/gallery/distressed-cut-off-shorts-studio.jpg"
+    },
+    "g-distressed-cut-off-shorts-detail": {
+      "file": "images/gallery/distressed-cut-off-shorts-detail.jpg"
+    },
+    "g-relaxed-mom-shorts-studio": {
+      "file": "images/gallery/relaxed-mom-shorts-studio.jpg"
+    },
+    "g-relaxed-mom-shorts-detail": {
+      "file": "images/gallery/relaxed-mom-shorts-detail.jpg"
+    },
+    "g-oversized-denim-jacket-studio": {
+      "file": "images/gallery/oversized-denim-jacket-studio.jpg"
+    },
+    "g-oversized-denim-jacket-detail": {
+      "file": "images/gallery/oversized-denim-jacket-detail.jpg"
+    },
+    "g-vintage-wash-trucker-jacket-studio": {
+      "file": "images/gallery/vintage-wash-trucker-jacket-studio.jpg"
+    },
+    "g-vintage-wash-trucker-jacket-detail": {
+      "file": "images/gallery/vintage-wash-trucker-jacket-detail.jpg"
+    },
+    "g-cropped-denim-jacket-studio": {
+      "file": "images/gallery/cropped-denim-jacket-studio.jpg"
+    },
+    "g-cropped-denim-jacket-detail": {
+      "file": "images/gallery/cropped-denim-jacket-detail.jpg"
+    },
+    "g-floral-jacquard-denim-top-studio": {
+      "file": "images/gallery/floral-jacquard-denim-top-studio.jpg"
+    },
+    "g-floral-jacquard-denim-top-detail": {
+      "file": "images/gallery/floral-jacquard-denim-top-detail.jpg"
+    },
+    "g-short-sleeve-poplin-shirt-studio": {
+      "file": "images/gallery/short-sleeve-poplin-shirt-studio.jpg"
+    },
+    "g-short-sleeve-poplin-shirt-detail": {
+      "file": "images/gallery/short-sleeve-poplin-shirt-detail.jpg"
+    },
+    "g-camp-collar-shirt-studio": {
+      "file": "images/gallery/camp-collar-shirt-studio.jpg"
+    },
+    "g-camp-collar-shirt-detail": {
+      "file": "images/gallery/camp-collar-shirt-detail.jpg"
+    },
+    "g-cotton-poplin-shirt-dress-studio": {
+      "file": "images/gallery/cotton-poplin-shirt-dress-studio.jpg"
+    },
+    "g-cotton-poplin-shirt-dress-detail": {
+      "file": "images/gallery/cotton-poplin-shirt-dress-detail.jpg"
+    },
+    "g-slub-v-neck-tee-studio": {
+      "file": "images/gallery/slub-v-neck-tee-studio.jpg"
+    },
+    "g-slub-v-neck-tee-detail": {
+      "file": "images/gallery/slub-v-neck-tee-detail.jpg"
+    },
+    "g-relaxed-cotton-tee-studio": {
+      "file": "images/gallery/relaxed-cotton-tee-studio.jpg"
+    },
+    "g-relaxed-cotton-tee-detail": {
+      "file": "images/gallery/relaxed-cotton-tee-detail.jpg"
+    },
+    "g-everyday-crew-tee-studio": {
+      "file": "images/gallery/everyday-crew-tee-studio.jpg"
+    },
+    "g-everyday-crew-tee-detail": {
+      "file": "images/gallery/everyday-crew-tee-detail.jpg"
+    },
+    "g-ribbed-knit-tank-studio": {
+      "file": "images/gallery/ribbed-knit-tank-studio.jpg"
+    },
+    "g-ribbed-knit-tank-detail": {
+      "file": "images/gallery/ribbed-knit-tank-detail.jpg"
+    },
+    "g-ribbed-crop-tank-studio": {
+      "file": "images/gallery/ribbed-crop-tank-studio.jpg"
+    },
+    "g-ribbed-crop-tank-detail": {
+      "file": "images/gallery/ribbed-crop-tank-detail.jpg"
+    },
+    "g-cropped-knit-vest-studio": {
+      "file": "images/gallery/cropped-knit-vest-studio.jpg"
+    },
+    "g-cropped-knit-vest-detail": {
+      "file": "images/gallery/cropped-knit-vest-detail.jpg"
+    },
+    "g-fine-knit-shell-top-studio": {
+      "file": "images/gallery/fine-knit-shell-top-studio.jpg"
+    },
+    "g-fine-knit-shell-top-detail": {
+      "file": "images/gallery/fine-knit-shell-top-detail.jpg"
+    },
+    "g-sleeveless-rib-sweater-studio": {
+      "file": "images/gallery/sleeveless-rib-sweater-studio.jpg"
+    },
+    "g-sleeveless-rib-sweater-detail": {
+      "file": "images/gallery/sleeveless-rib-sweater-detail.jpg"
+    },
+    "g-cotton-knit-crop-top-studio": {
+      "file": "images/gallery/cotton-knit-crop-top-studio.jpg"
+    },
+    "g-cotton-knit-crop-top-detail": {
+      "file": "images/gallery/cotton-knit-crop-top-detail.jpg"
+    },
+    "g-merino-blend-knit-tank-studio": {
+      "file": "images/gallery/merino-blend-knit-tank-studio.jpg"
+    },
+    "g-merino-blend-knit-tank-detail": {
+      "file": "images/gallery/merino-blend-knit-tank-detail.jpg"
+    },
+    "g-cable-knit-cardigan-studio": {
+      "file": "images/gallery/cable-knit-cardigan-studio.jpg"
+    },
+    "g-cable-knit-cardigan-detail": {
+      "file": "images/gallery/cable-knit-cardigan-detail.jpg"
+    },
+    "g-crochet-mini-dress-studio": {
+      "file": "images/gallery/crochet-mini-dress-studio.jpg"
+    },
+    "g-crochet-mini-dress-detail": {
+      "file": "images/gallery/crochet-mini-dress-detail.jpg"
+    },
+    "g-pleated-midi-skirt-studio": {
+      "file": "images/gallery/pleated-midi-skirt-studio.jpg"
+    },
+    "g-pleated-midi-skirt-detail": {
+      "file": "images/gallery/pleated-midi-skirt-detail.jpg"
+    },
+    "g-crinkle-maxi-skirt-studio": {
+      "file": "images/gallery/crinkle-maxi-skirt-studio.jpg"
+    },
+    "g-crinkle-maxi-skirt-detail": {
+      "file": "images/gallery/crinkle-maxi-skirt-detail.jpg"
+    },
+    "g-velvet-matte-lipstick-studio": {
+      "file": "images/gallery/velvet-matte-lipstick-studio.jpg"
+    },
+    "g-velvet-matte-lipstick-detail": {
+      "file": "images/gallery/velvet-matte-lipstick-detail.jpg"
+    },
+    "g-satin-cream-lipstick-studio": {
+      "file": "images/gallery/satin-cream-lipstick-studio.jpg"
+    },
+    "g-satin-cream-lipstick-detail": {
+      "file": "images/gallery/satin-cream-lipstick-detail.jpg"
+    },
+    "g-longwear-lip-colour-studio": {
+      "file": "images/gallery/longwear-lip-colour-studio.jpg"
+    },
+    "g-longwear-lip-colour-detail": {
+      "file": "images/gallery/longwear-lip-colour-detail.jpg"
+    },
+    "g-tinted-lip-balm-studio": {
+      "file": "images/gallery/tinted-lip-balm-studio.jpg"
+    },
+    "g-tinted-lip-balm-detail": {
+      "file": "images/gallery/tinted-lip-balm-detail.jpg"
+    },
+    "g-bold-cherry-lipstick-studio": {
+      "file": "images/gallery/bold-cherry-lipstick-studio.jpg"
+    },
+    "g-bold-cherry-lipstick-detail": {
+      "file": "images/gallery/bold-cherry-lipstick-detail.jpg"
+    },
+    "g-espresso-matte-lipstick-studio": {
+      "file": "images/gallery/espresso-matte-lipstick-studio.jpg"
+    },
+    "g-espresso-matte-lipstick-detail": {
+      "file": "images/gallery/espresso-matte-lipstick-detail.jpg"
+    },
+    "g-berry-stain-lipstick-studio": {
+      "file": "images/gallery/berry-stain-lipstick-studio.jpg"
+    },
+    "g-berry-stain-lipstick-detail": {
+      "file": "images/gallery/berry-stain-lipstick-detail.jpg"
+    },
+    "g-signature-red-lipstick-studio": {
+      "file": "images/gallery/signature-red-lipstick-studio.jpg"
+    },
+    "g-signature-red-lipstick-detail": {
+      "file": "images/gallery/signature-red-lipstick-detail.jpg"
+    },
+    "g-hydra-shine-lipstick-studio": {
+      "file": "images/gallery/hydra-shine-lipstick-studio.jpg"
+    },
+    "g-hydra-shine-lipstick-detail": {
+      "file": "images/gallery/hydra-shine-lipstick-detail.jpg"
+    },
+    "g-lipstick-discovery-trio-studio": {
+      "file": "images/gallery/lipstick-discovery-trio-studio.jpg"
+    },
+    "g-lipstick-discovery-trio-detail": {
+      "file": "images/gallery/lipstick-discovery-trio-detail.jpg"
     }
   },
   "files": [
@@ -661,6 +1021,30 @@
       "filename": "merci-demo-banner-hat.png"
     },
     {
+      "key": "brand-nordhaven",
+      "filename": "merci-demo-brand-nordhaven.png"
+    },
+    {
+      "key": "brand-sorrel-fern",
+      "filename": "merci-demo-brand-sorrel-fern.png"
+    },
+    {
+      "key": "brand-okka",
+      "filename": "merci-demo-brand-okka.png"
+    },
+    {
+      "key": "brand-lune-atelier",
+      "filename": "merci-demo-brand-lune-atelier.png"
+    },
+    {
+      "key": "brand-wren-co",
+      "filename": "merci-demo-brand-wren-co.png"
+    },
+    {
+      "key": "brand-cielo-studio",
+      "filename": "merci-demo-brand-cielo-studio.png"
+    },
+    {
       "key": "tile-dress",
       "filename": "merci-demo-tile-dress.png"
     },
@@ -696,7 +1080,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-wool-rib-beanie-studio",
+        "g-wool-rib-beanie-detail"
+      ],
       "collections": [
         "cornershops",
         "trending"
@@ -729,7 +1116,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-chunky-knit-beanie-studio",
+        "g-chunky-knit-beanie-detail"
+      ],
       "collections": [
         "cornershops"
       ],
@@ -763,7 +1153,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-cotton-twill-bucket-hat-studio",
+        "g-cotton-twill-bucket-hat-detail"
+      ],
       "collections": [
         "cornershops",
         "lorem-ipsum-dolor-1"
@@ -796,7 +1189,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-washed-denim-bucket-hat-studio",
+        "g-washed-denim-bucket-hat-detail"
+      ],
       "collections": [
         "cornershops",
         "new-arrival"
@@ -830,7 +1226,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-terry-bucket-hat-studio",
+        "g-terry-bucket-hat-detail"
+      ],
       "collections": [
         "cornershops",
         "lorem-ipsum-dolor-1"
@@ -861,7 +1260,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-wide-brim-straw-boater-studio",
+        "g-wide-brim-straw-boater-detail"
+      ],
       "collections": [
         "cornershops",
         "lorem-ipsum-dolor-1"
@@ -893,7 +1295,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-straw-fedora-with-ribbon-studio",
+        "g-straw-fedora-with-ribbon-detail"
+      ],
       "collections": [
         "cornershops",
         "lorem-ipsum-dolor-1"
@@ -924,7 +1329,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-classic-panama-hat-studio",
+        "g-classic-panama-hat-detail"
+      ],
       "collections": [
         "cornershops",
         "lorem-ipsum-dolor-1",
@@ -951,7 +1359,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-leopard-scarf-scrunchie-studio",
+        "g-leopard-scarf-scrunchie-detail"
+      ],
       "collections": [
         "cornershops",
         "new-arrival"
@@ -977,7 +1388,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-pom-pom-straw-circle-bag-studio",
+        "g-pom-pom-straw-circle-bag-detail"
+      ],
       "collections": [
         "cornershops",
         "lorem-ipsum-dolor-1",
@@ -1008,7 +1422,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-straw-crossbody-bag-studio",
+        "g-straw-crossbody-bag-detail"
+      ],
       "collections": [
         "cornershops",
         "lorem-ipsum-dolor-1",
@@ -1040,7 +1457,9 @@
       ],
       "sizes": [],
       "extraImages": [
-        "cat-tote-stripe-2"
+        "cat-tote-stripe-2",
+        "g-striped-straw-tote-studio",
+        "g-striped-straw-tote-detail"
       ],
       "collections": [
         "cornershops",
@@ -1076,7 +1495,9 @@
       ],
       "sizes": [],
       "extraImages": [
-        "cat-tote-canvas-2"
+        "cat-tote-canvas-2",
+        "g-canvas-shopper-tote-studio",
+        "g-canvas-shopper-tote-detail"
       ],
       "collections": [
         "cornershops",
@@ -1103,7 +1524,9 @@
       ],
       "sizes": [],
       "extraImages": [
-        "cat-bag-quilted-2"
+        "cat-bag-quilted-2",
+        "g-quilted-puffer-tote-studio",
+        "g-quilted-puffer-tote-detail"
       ],
       "collections": [
         "cornershops",
@@ -1133,7 +1556,9 @@
       ],
       "sizes": [],
       "extraImages": [
-        "cat-bag-hobo-2"
+        "cat-bag-hobo-2",
+        "g-leather-hobo-shoulder-bag-studio",
+        "g-leather-hobo-shoulder-bag-detail"
       ],
       "collections": [
         "cornershops",
@@ -1161,7 +1586,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-leather-mini-backpack-studio",
+        "g-leather-mini-backpack-detail"
+      ],
       "collections": [
         "cornershops",
         "merci-1",
@@ -1200,7 +1628,9 @@
         "40"
       ],
       "extraImages": [
-        "cat-sneaker-beige-2"
+        "cat-sneaker-beige-2",
+        "g-chunky-leather-trainers-studio",
+        "g-chunky-leather-trainers-detail"
       ],
       "collections": [
         "merci-1",
@@ -1237,7 +1667,10 @@
         "39",
         "40"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-suede-platform-trainers-studio",
+        "g-suede-platform-trainers-detail"
+      ],
       "collections": [
         "merci-1"
       ],
@@ -1275,7 +1708,10 @@
         "39",
         "40"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-knit-runner-sneakers-studio",
+        "g-knit-runner-sneakers-detail"
+      ],
       "collections": [
         "merci-1",
         "new-arrival",
@@ -1310,7 +1746,9 @@
         "40"
       ],
       "extraImages": [
-        "cat-boot-chelsea-2"
+        "cat-boot-chelsea-2",
+        "g-leather-chelsea-boots-studio",
+        "g-leather-chelsea-boots-detail"
       ],
       "collections": [
         "merci-1",
@@ -1354,7 +1792,9 @@
         "40"
       ],
       "extraImages": [
-        "cat-slide-woven-2"
+        "cat-slide-woven-2",
+        "g-braided-slide-sandals-studio",
+        "g-braided-slide-sandals-detail"
       ],
       "collections": [
         "merci-1",
@@ -1395,7 +1835,9 @@
         "40"
       ],
       "extraImages": [
-        "cat-mule-camel-2"
+        "cat-mule-camel-2",
+        "g-square-toe-leather-mules-studio",
+        "g-square-toe-leather-mules-detail"
       ],
       "collections": [
         "merci-1"
@@ -1430,7 +1872,10 @@
         "39",
         "40"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-low-block-slide-studio",
+        "g-low-block-slide-detail"
+      ],
       "collections": [
         "merci-1",
         "lorem-ipsum-dolor-1"
@@ -1469,7 +1914,10 @@
         "30",
         "32"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-high-rise-denim-shorts-studio",
+        "g-high-rise-denim-shorts-detail"
+      ],
       "collections": [
         "jewelry",
         "lorem-ipsum-dolor-1"
@@ -1505,7 +1953,10 @@
         "30",
         "32"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-distressed-cut-off-shorts-studio",
+        "g-distressed-cut-off-shorts-detail"
+      ],
       "collections": [
         "jewelry"
       ],
@@ -1541,7 +1992,10 @@
         "30",
         "32"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-relaxed-mom-shorts-studio",
+        "g-relaxed-mom-shorts-detail"
+      ],
       "collections": [
         "jewelry",
         "new-arrival"
@@ -1581,7 +2035,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-oversized-denim-jacket-studio",
+        "g-oversized-denim-jacket-detail"
+      ],
       "collections": [
         "jewelry",
         "new-in"
@@ -1616,7 +2073,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-vintage-wash-trucker-jacket-studio",
+        "g-vintage-wash-trucker-jacket-detail"
+      ],
       "collections": [
         "new-in",
         "jewelry"
@@ -1651,7 +2111,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-cropped-denim-jacket-studio",
+        "g-cropped-denim-jacket-detail"
+      ],
       "collections": [
         "new-in",
         "jewelry",
@@ -1689,7 +2152,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-floral-jacquard-denim-top-studio",
+        "g-floral-jacquard-denim-top-detail"
+      ],
       "collections": [
         "jewelry",
         "clearance",
@@ -1730,7 +2196,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-short-sleeve-poplin-shirt-studio",
+        "g-short-sleeve-poplin-shirt-detail"
+      ],
       "collections": [
         "clearance",
         "clothings"
@@ -1771,7 +2240,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-camp-collar-shirt-studio",
+        "g-camp-collar-shirt-detail"
+      ],
       "collections": [
         "clearance",
         "lorem-ipsum-dolor-4",
@@ -1811,7 +2283,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-cotton-poplin-shirt-dress-studio",
+        "g-cotton-poplin-shirt-dress-detail"
+      ],
       "collections": [
         "clearance",
         "lorem-ipsum-dolor-4",
@@ -1851,7 +2326,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-slub-v-neck-tee-studio",
+        "g-slub-v-neck-tee-detail"
+      ],
       "collections": [
         "clothings",
         "clearance",
@@ -1892,7 +2370,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-relaxed-cotton-tee-studio",
+        "g-relaxed-cotton-tee-detail"
+      ],
       "collections": [
         "clothings",
         "lorem-ipsum-dolor-4"
@@ -1933,7 +2414,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-everyday-crew-tee-studio",
+        "g-everyday-crew-tee-detail"
+      ],
       "collections": [
         "clothings",
         "lorem-ipsum-dolor-4"
@@ -1972,7 +2456,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-ribbed-knit-tank-studio",
+        "g-ribbed-knit-tank-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor",
         "clearance",
@@ -2005,7 +2492,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-ribbed-crop-tank-studio",
+        "g-ribbed-crop-tank-detail"
+      ],
       "collections": [
         "clothings",
         "clearance",
@@ -2045,7 +2535,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-cropped-knit-vest-studio",
+        "g-cropped-knit-vest-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor",
         "clothings"
@@ -2084,7 +2577,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-fine-knit-shell-top-studio",
+        "g-fine-knit-shell-top-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor",
         "clothings",
@@ -2122,7 +2618,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-sleeveless-rib-sweater-studio",
+        "g-sleeveless-rib-sweater-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor",
         "new-arrival",
@@ -2159,7 +2658,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-cotton-knit-crop-top-studio",
+        "g-cotton-knit-crop-top-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor",
         "clearance",
@@ -2196,7 +2698,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-merino-blend-knit-tank-studio",
+        "g-merino-blend-knit-tank-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor",
         "clothings"
@@ -2237,7 +2742,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-cable-knit-cardigan-studio",
+        "g-cable-knit-cardigan-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor",
         "new-in",
@@ -2279,7 +2787,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-crochet-mini-dress-studio",
+        "g-crochet-mini-dress-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor",
         "lorem-ipsum-dolor-1",
@@ -2321,7 +2832,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-pleated-midi-skirt-studio",
+        "g-pleated-midi-skirt-detail"
+      ],
       "collections": [
         "clothings",
         "new-arrival"
@@ -2360,7 +2874,10 @@
         "L",
         "XL"
       ],
-      "extraImages": [],
+      "extraImages": [
+        "g-crinkle-maxi-skirt-studio",
+        "g-crinkle-maxi-skirt-detail"
+      ],
       "collections": [
         "clothings",
         "lorem-ipsum-dolor-4"
@@ -2406,7 +2923,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-velvet-matte-lipstick-studio",
+        "g-velvet-matte-lipstick-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor-2",
         "trending"
@@ -2440,7 +2960,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-satin-cream-lipstick-studio",
+        "g-satin-cream-lipstick-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor-2"
       ],
@@ -2468,7 +2991,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-longwear-lip-colour-studio",
+        "g-longwear-lip-colour-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor-2",
         "new-arrival"
@@ -2494,7 +3020,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-tinted-lip-balm-studio",
+        "g-tinted-lip-balm-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor-2"
       ],
@@ -2518,7 +3047,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-bold-cherry-lipstick-studio",
+        "g-bold-cherry-lipstick-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor-2"
       ],
@@ -2548,7 +3080,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-espresso-matte-lipstick-studio",
+        "g-espresso-matte-lipstick-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor-2"
       ],
@@ -2576,7 +3111,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-berry-stain-lipstick-studio",
+        "g-berry-stain-lipstick-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor-2",
         "trending"
@@ -2605,7 +3143,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-signature-red-lipstick-studio",
+        "g-signature-red-lipstick-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor-2"
       ],
@@ -2635,7 +3176,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-hydra-shine-lipstick-studio",
+        "g-hydra-shine-lipstick-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor-2"
       ],
@@ -2667,7 +3211,10 @@
         }
       ],
       "sizes": [],
-      "extraImages": [],
+      "extraImages": [
+        "g-lipstick-discovery-trio-studio",
+        "g-lipstick-discovery-trio-detail"
+      ],
       "collections": [
         "lorem-ipsum-dolor-2",
         "new-arrival"

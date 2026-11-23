@@ -77,6 +77,9 @@
   .row.facets-vertical > .facets-wrapper {
     width: 290px; // 260px content + 30px gutter
   }
+
+  // setting "Sidebar position: Right" — sidebar after the product column
+  .row.facets-vertical--right > .facets-wrapper { order: 2; }
 }
 
 // Reveal-on-scroll never fires for some of these; keep them visible
@@ -585,7 +588,7 @@
   .facet-filters__label {
     margin: 0;
     color: #707070;
-    font-size: 17px;
+    font-size: 16px; // user 2026-11-23: 1px smaller
     font-weight: 400;
     white-space: nowrap;
   }
@@ -618,7 +621,7 @@
     background: none;
     color: #111;
     font-family: inherit;
-    font-size: 17px;
+    font-size: 16px;
     appearance: none;
     cursor: pointer;
 

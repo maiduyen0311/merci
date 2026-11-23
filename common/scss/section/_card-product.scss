@@ -701,11 +701,13 @@ $card-bar-gap: 14px; // space between the swatches and the bar
 }
 
 .card-product__badge {
-  inset-inline-start: 50%;
+  // top-left label (user 2026-11-23: labels align left)
+  inset-block-start: 1.2rem;
+  inset-inline-start: 1.2rem;
   min-width: 3.9rem;
   height: 2.2rem;
   padding: 0 0.8rem;
-  transform: translateX(-50%);
+  transform: none;
   font-size: 1.3rem;
   font-weight: 400;
 }

@@ -44,7 +44,8 @@
         "show_sales_hint": true,
         "show_countdown": true,
         "show_wishlist_button": true,
-        "wishlist_label": "Add wish list"
+        "wishlist_label": "Add wish list",
+        "thumbs_per_view": 4
       }
     },
     "tabs": {

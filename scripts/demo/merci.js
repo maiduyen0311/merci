@@ -76,6 +76,12 @@ for (const k of ['banner-dress', 'banner-hat']) {
   images[k] = { file: `images/derived/${k}.png` };
   files.push({ key: k, filename: `${PREFIX}-${k}.png` });
 }
+// brand strip: invented wordmarks drawn for the demo (scripts/demo/brand-logos) — no third-party logos
+const BRANDS = ['brand-nordhaven', 'brand-sorrel-fern', 'brand-okka', 'brand-lune-atelier', 'brand-wren-co', 'brand-cielo-studio'];
+for (const k of BRANDS) {
+  images[k] = { file: `images/${k}.png` };
+  files.push({ key: k, filename: `${PREFIX}-${k}.png` });
+}
 for (const k of ['tile-dress', 'tile-beach', 'tile-shirt']) {
   images[k] = { file: `images/${k}.png` };
   files.push({ key: k, filename: `${PREFIX}-${k}.png` });

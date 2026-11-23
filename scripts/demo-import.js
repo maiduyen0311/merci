@@ -106,7 +106,11 @@ function uploadLocal(key) {
     }).stagedUploadsCreate.stagedTargets[0];
     // multipart POST with curl (synchronous, no extra dependency)
     const form = staged.parameters.flatMap((p) => ['-F', `${p.name}=${p.value}`]).concat(['-F', `file=@${abs};type=${mime}`]);
-    execFileSync('curl', ['-s', '-f', '-o', process.platform === 'win32' ? 'NUL' : '/dev/null', ...form, staged.url]);
+    // the storage POST fails now and then on long runs → retry a few times before giving up
+    for (let attempt = 1; ; attempt++) {
+      try { execFileSync('curl', ['-s', '-f', '-o', process.platform === 'win32' ? 'NUL' : '/dev/null', ...form, staged.url]); break; }
+      catch (e) { if (attempt >= 3) throw e; console.warn(`  ! upload ${filename} failed, retry ${attempt}`); sleepSync(3000 * attempt); }
+    }
     userErrors(gql('mutation($files: [FileCreateInput!]!) { fileCreate(files: $files) { files { id } userErrors { field message code } } }', {
       files: [{ originalSource: staged.resourceUrl, filename, contentType: 'IMAGE', alt: alt(key) }],
     }), `fileCreate ${filename}`);
