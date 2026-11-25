@@ -67,10 +67,10 @@
       "next_slide": "Nach rechts schieben",
       "previous_slide": "Nach links schieben",
       "name": "Slider",
-      "load_slide": "Load slide"
+      "load_slide": "Folie laden"
     },
     "breadcrumb": {
-      "home": "Home"
+      "home": "Startseite"
     }
   },
   "newsletter": {
@@ -120,7 +120,7 @@
   "onboarding": {
     "product_title": "Beispiel für Produkttitel",
     "collection_title": "Name deiner Kollektion",
-    "blog_title": "Your blog post's title"
+    "blog_title": "Titel deines Blogbeitrags"
   },
   "products": {
     "product": {
@@ -197,8 +197,8 @@
       "taxes_included": "Inkl. Steuern.",
       "duties_included": "Inkl. Zollgebühren.",
       "duties_and_taxes_included": "Inkl. Zollgebühren und Steuern.",
-      "wishlist": "Add to wishlist",
-      "in_stock": "In stock"
+      "wishlist": "Auf die Wunschliste",
+      "in_stock": "Auf Lager"
     },
     "modal": {
       "label": "Medien-Galerie"
@@ -209,8 +209,8 @@
       "clear_all": "Alle entfernen",
       "from": "Von",
       "filter_and_sort": "Filtern und sortieren",
-      "filter_by_label": "Filter:",
-      "filter_button": "Filter",
+      "filter_by_label": "Filtern:",
+      "filter_button": "Filtern",
       "filters_selected": {
         "one": "{{ count }} ausgewählt",
         "other": "{{ count }} ausgewählt"
@@ -293,7 +293,7 @@
         "one": "{{ count }} Artikel",
         "other": "{{ count }} Artikel"
       },
-      "utility_navigation": "Store navigation",
+      "utility_navigation": "Shop-Navigation",
       "email": "E-Mail",
       "phone": "Telefon"
     },
@@ -331,7 +331,7 @@
     },
     "footer": {
       "payment": "Zahlungsmethoden",
-      "rights": "All rights reserved."
+      "rights": "Alle Rechte vorbehalten."
     },
     "featured_blog": {
       "view_all": "Alle anzeigen",
@@ -353,8 +353,8 @@
       "highest_price": "Der höchste Preis ist {{ price }}",
       "price_from": "Von",
       "price_to": "Bis",
-      "categories": "Categories",
-      "popular_products": "Popular products"
+      "categories": "Kategorien",
+      "popular_products": "Beliebte Produkte"
     },
     "video": {
       "load_video": "Video laden: {{ description }}"
@@ -404,149 +404,149 @@
       "step_error": "Du kannst diesen Artikel nur in Abstufungen von {{ step }} hinzufügen."
     },
     "mini_cart": {
-      "save": "Save",
-      "calculate": "Calculate",
-      "view_cart": "View cart",
-      "added": "Added to cart",
-      "compare_added": "Added to compare",
-      "compare_removed": "Removed from compare"
+      "save": "Speichern",
+      "calculate": "Berechnen",
+      "view_cart": "Warenkorb ansehen",
+      "added": "Zum Warenkorb hinzugefügt",
+      "compare_added": "Zum Vergleich hinzugefügt",
+      "compare_removed": "Aus dem Vergleich entfernt"
     },
     "collection_toolbar": {
-      "view": "Product view",
-      "grid_3": "3 columns",
-      "grid_4": "4 columns",
-      "list": "List"
+      "view": "Produktansicht",
+      "grid_3": "3 Spalten",
+      "grid_4": "4 Spalten",
+      "list": "Liste"
     },
     "quick_view": {
-      "reviews": "({{ count }} reviews)",
+      "reviews": "({{ count }} Bewertungen)",
       "sku": "SKU",
-      "vendor": "Vendor",
-      "type": "Product Type",
-      "wishlist": "Add to wishlist",
-      "view_details": "View full details"
+      "vendor": "Anbieter",
+      "type": "Produkttyp",
+      "wishlist": "Auf die Wunschliste",
+      "view_details": "Alle Details ansehen"
     },
     "navigation": {
-      "categories_more": "More",
-      "categories_less": "Less",
-      "categories_demo_note": "Demo categories — assign a menu in Navigation → Categories menu.",
-      "categories_demo_list": "Women's,Men's,Clothing,Shoes,Accessories,Bags,Watches,Jewellery,Seasonal Wear,Healthy & Beauty,Electronic,Home & Kitchen,Sport & Outdoors",
-      "demo_product_title": "Studded Drawstring",
+      "categories_more": "Mehr",
+      "categories_less": "Weniger",
+      "categories_demo_note": "Demo-Kategorien – weise unter Navigation → Kategorienmenü ein Menü zu.",
+      "categories_demo_list": "Damen,Herren,Kleidung,Schuhe,Accessoires,Taschen,Uhren,Schmuck,Saisonmode,Gesundheit & Beauty,Elektronik,Haus & Küche,Sport & Outdoor",
+      "demo_product_title": "Beutel mit Nieten",
       "demo_product_price": "$50.00",
-      "demo_group_1_title": "Women's Fashion",
-      "demo_group_1_links": "Dresses,Tees,Blouses & Shirts,Hoodies & Sweatshirts,Women's Sets,Suits & Blazers,Tanks & Jackets,Sweaters",
-      "demo_group_2_title": "Swimwear",
-      "demo_group_2_links": "Bikini Sets,Cover - Up",
-      "demo_group_3_title": "Bottoms",
-      "demo_group_3_links": "Leggings,Skirts,Shorts,Jeans,Pants & Capris,Belts",
-      "demo_group_4_title": "Weddings & Events",
-      "demo_group_4_links": "Wedding Dresses,Prom Dresses,Evening Clothing,Cosplay Costumes",
-      "demo_group_5_title": "Women's Underwear",
-      "demo_group_5_links": "Pajama Sets,Bras,Panties,Women's Socks,Bra & Brief Sets,Shapewear",
-      "demo_group_6_title": "Accessories",
-      "demo_group_6_links": "Hair Accessories,Sunglasses,Blue Light Blocking Glasses,Baseball Hats",
-      "demo_group_7_title": "Shop Layout",
-      "demo_group_7_links": "Full Width - 3 Columns,Full Width - 4 Columns,Full Width - 5 Columns,Sidebar - 3 Columns,Sidebar - 4 Columns,Sidebar - List,Load More - Collection",
-      "demo_group_8_title": "Product",
-      "demo_group_8_links": "Product Default,Sale Product,Out Of Stock,Variant Product,Accordion Product,Description Full Content,Description Vertical Content",
-      "demo_group_9_title": "Product Featured",
-      "demo_group_9_links": "Magic Zoom,Countdown,Sticky Add To Cart,Left Thumbnail,Right Thumbnail,Bottom Thumbnail,Grid Thumbnail",
-      "demo_group_10_title": "Other Pages",
-      "demo_group_10_links": "Shopping Cart,Check Out,Checking Order,Login/Register,Wish List,My Account",
-      "demo_card_titles": "Summer Sale,Beach Style,Sleep & Lounge",
-      "featured_product_empty": "Choose a featured product in the Mega menu style 1 block.",
-      "color": "Color",
-      "megamenu_empty": "Add sub-links to Categories menu and assign a Mega menu style block per category.",
-      "featured_heading": "Featured products",
-      "select_options": "Select options"
+      "demo_group_1_title": "Damenmode",
+      "demo_group_1_links": "Kleider,T-Shirts,Blusen & Hemden,Hoodies & Sweatshirts,Damen-Sets,Anzüge & Blazer,Tops & Jacken,Pullover",
+      "demo_group_2_title": "Bademode",
+      "demo_group_2_links": "Bikini-Sets,Strandkleider",
+      "demo_group_3_title": "Hosen & Röcke",
+      "demo_group_3_links": "Leggings,Röcke,Shorts,Jeans,Hosen & Caprihosen,Gürtel",
+      "demo_group_4_title": "Hochzeiten & Events",
+      "demo_group_4_links": "Brautkleider,Ballkleider,Abendmode,Kostüme",
+      "demo_group_5_title": "Damenwäsche",
+      "demo_group_5_links": "Pyjama-Sets,BHs,Slips,Damensocken,BH-Sets,Shapewear",
+      "demo_group_6_title": "Accessoires",
+      "demo_group_6_links": "Haarschmuck,Sonnenbrillen,Blaulichtfilter-Brillen,Baseballkappen",
+      "demo_group_7_title": "Shop-Layouts",
+      "demo_group_7_links": "Volle Breite – 3 Spalten,Volle Breite – 4 Spalten,Volle Breite – 5 Spalten,Sidebar – 3 Spalten,Sidebar – 4 Spalten,Sidebar – Liste,Mehr laden – Kollektion",
+      "demo_group_8_title": "Produkt",
+      "demo_group_8_links": "Standardprodukt,Sale-Produkt,Ausverkauft,Produkt mit Varianten,Akkordeon-Produkt,Beschreibung volle Breite,Beschreibung vertikal",
+      "demo_group_9_title": "Produkt-Features",
+      "demo_group_9_links": "Magic Zoom,Countdown,Sticky Warenkorb-Button,Thumbnails links,Thumbnails rechts,Thumbnails unten,Thumbnail-Raster",
+      "demo_group_10_title": "Weitere Seiten",
+      "demo_group_10_links": "Warenkorb,Kasse,Bestellstatus,Anmelden/Registrieren,Wunschliste,Mein Konto",
+      "demo_card_titles": "Sommer-Sale,Strand-Look,Schlafen & Lounge",
+      "featured_product_empty": "Wähle im Block „Mega menu style 1“ ein Produkt aus.",
+      "color": "Farbe",
+      "megamenu_empty": "Füge dem Kategorienmenü Unterlinks hinzu und weise jeder Kategorie einen Mega-Menü-Block zu.",
+      "featured_heading": "Ausgewählte Produkte",
+      "select_options": "Optionen wählen"
     },
     "cart_page": {
-      "checkout": "Proceed to checkout",
-      "breadcrumb": "Shopping cart",
-      "price": "Price",
-      "remove": "Remove",
-      "edit": "Edit",
-      "free_shipping_remaining_html": "Buy <strong>{{ amount }}</strong> more to get <strong>FREE Shipping</strong>",
-      "subtotal": "Subtotal",
-      "tax_note": "Taxes and shipping calculated at checkout",
-      "terms_prefix": "I agree with the",
-      "terms_link": "Terms & Conditions",
-      "gift_wrap_html": "Do you want a gift wrap? Only <strong>{{ price }}</strong>",
-      "gift_wrap_added": "Added",
-      "gift_wrap_add": "Add",
-      "note": "Add Order Note",
-      "coupon": "Coupon code",
-      "coupon_hint": "Coupon code will be applied on the checkout page",
-      "estimate": "Estimate shipping",
-      "country": "Country",
-      "province": "Province",
-      "zip": "Zip code",
-      "calculate": "Calculate shipping"
+      "checkout": "Zur Kasse",
+      "breadcrumb": "Warenkorb",
+      "price": "Preis",
+      "remove": "Entfernen",
+      "edit": "Bearbeiten",
+      "free_shipping_remaining_html": "Noch <strong>{{ amount }}</strong> bis zum <strong>KOSTENLOSEN Versand</strong>",
+      "subtotal": "Zwischensumme",
+      "tax_note": "Steuern und Versand werden an der Kasse berechnet",
+      "terms_prefix": "Ich stimme den",
+      "terms_link": "AGB zu",
+      "gift_wrap_html": "Geschenkverpackung gewünscht? Nur <strong>{{ price }}</strong>",
+      "gift_wrap_added": "Hinzugefügt",
+      "gift_wrap_add": "Hinzufügen",
+      "note": "Bestellnotiz hinzufügen",
+      "coupon": "Gutscheincode",
+      "coupon_hint": "Der Gutscheincode wird an der Kasse angewendet",
+      "estimate": "Versand schätzen",
+      "country": "Land",
+      "province": "Bundesland",
+      "zip": "Postleitzahl",
+      "calculate": "Versand berechnen"
     },
     "home_new_products": {
-      "title": "New Products",
-      "view_all": "+ SEE ALL PRODUCTS"
+      "title": "Neue Produkte",
+      "view_all": "+ ALLE PRODUKTE"
     },
     "home_flash_deals": {
       "countdown": {
-        "days": "DAYS",
-        "hours": "HOURS",
-        "mins": "MINS",
-        "secs": "SECS"
+        "days": "TAGE",
+        "hours": "STD",
+        "mins": "MIN",
+        "secs": "SEK"
       }
     },
     "home_new_arrivals": {
-      "script_text": "New",
-      "bold_text": "Arrivals",
-      "button_label": "+ SEE WHOLE COLLECTION"
+      "script_text": "Neu",
+      "bold_text": "eingetroffen",
+      "button_label": "+ GANZE KOLLEKTION"
     },
     "home_trending_row": {
-      "title": "Top Trending",
-      "feature_eyebrow_men": "BEST OF MEN'S",
-      "feature_eyebrow_women": "BEST OF WOMEN",
-      "feature_eyebrow_shoes": "BEST OF SHOES",
-      "button_label": "SHOP NOW"
+      "title": "Top-Trends",
+      "feature_eyebrow_men": "DAS BESTE FÜR HERREN",
+      "feature_eyebrow_women": "DAS BESTE FÜR DAMEN",
+      "feature_eyebrow_shoes": "DIE BESTEN SCHUHE",
+      "button_label": "JETZT SHOPPEN"
     },
     "home_cta_banner": {
-      "eyebrow": "Fall - Winter clearance sales",
-      "title_main": "GET UP TO",
-      "title_highlight": "50% OFF"
+      "eyebrow": "Herbst-Winter-Schlussverkauf",
+      "title_main": "BIS ZU",
+      "title_highlight": "50 % RABATT"
     },
     "home_script_banner": {
-      "eyebrow_script": "Spring - Summer 2021",
-      "title_bold": "FLASH SALE"
+      "eyebrow_script": "Frühjahr - Sommer 2021",
+      "title_bold": "FLASH-SALE"
     },
     "home_dual_banner": {
-      "sale30_eyebrow": "Spring Collection Day",
-      "sale30_title": "SALE 30%",
+      "sale30_eyebrow": "Frühjahrskollektion",
+      "sale30_title": "SALE 30 %",
       "trend2021_eyebrow": "Trend 2021",
-      "trend2021_title": "Women's"
+      "trend2021_title": "Damen"
     },
     "home_brand_logos": {
-      "title": "Popular Brands",
-      "default_alt": "Brand logo"
+      "title": "Beliebte Marken",
+      "default_alt": "Markenlogo"
     },
     "home_latest_news": {
-      "title": "Latest News",
-      "read_more": "Read more",
-      "placeholder_title": "Latest article headline",
-      "placeholder_excerpt": "A short summary of your latest blog post will appear here. Add real articles to your selected blog to populate this section.",
+      "title": "Neuigkeiten",
+      "read_more": "Weiterlesen",
+      "placeholder_title": "Titel des neuesten Artikels",
+      "placeholder_excerpt": "Hier erscheint eine kurze Zusammenfassung deines neuesten Blogbeitrags. Füge dem gewählten Blog Artikel hinzu, um diesen Bereich zu füllen.",
       "placeholder_tag": "BLOG"
     },
     "home_instagram": {
-      "title": "Follow us on Instagram",
+      "title": "Folge uns auf Instagram",
       "handle": "@merci_shop",
-      "view_on_instagram": "View on Instagram",
-      "default_alt": "Instagram photo"
+      "view_on_instagram": "Auf Instagram ansehen",
+      "default_alt": "Instagram-Foto"
     },
     "home_services_bar": {
-      "shipping_title": "Free Shipping",
-      "shipping_subtitle": "On Order Over $20",
-      "return_title": "15 Days Return",
-      "return_subtitle": "Moneyback Guarantee",
-      "support_title": "Support Team",
-      "support_subtitle": "24/7 Live Support",
-      "customer_title": "Become Customer",
-      "customer_subtitle": "Join Our Community"
+      "shipping_title": "Kostenloser Versand",
+      "shipping_subtitle": "Ab $20 Bestellwert",
+      "return_title": "15 Tage Rückgabe",
+      "return_subtitle": "Geld-zurück-Garantie",
+      "support_title": "Support-Team",
+      "support_subtitle": "Live-Support rund um die Uhr",
+      "customer_title": "Kundin werden",
+      "customer_subtitle": "Werde Teil unserer Community"
     },
     "product_bundle": {
       "question": "Frage",
@@ -554,23 +554,23 @@
       "copied": "Link kopiert"
     },
     "main_product": {
-      "product_type": "Product type",
-      "live_viewers_html": "<strong>{{ count }}</strong> people are viewing this right now",
-      "left_in_stock": "{{ count }} left in stock",
-      "hurry_left_html": "<strong>Hurry!</strong> Only <strong>{{ count }} items</strong> left in stock.",
-      "stock_remaining": "Stock remaining",
-      "purchase_options": "Purchase options",
-      "one_time_purchase": "One-time purchase",
-      "compare_added_label": "Added to compare",
-      "agree_terms": "Please agree to the terms and conditions to continue.",
-      "submit_error": "Could not submit. Please try again.",
-      "accepted_payments": "Accepted payment methods",
-      "breadcrumb": "Breadcrumb",
+      "product_type": "Produkttyp",
+      "live_viewers_html": "<strong>{{ count }}</strong> Personen sehen sich das gerade an",
+      "left_in_stock": "Noch {{ count }} auf Lager",
+      "hurry_left_html": "<strong>Schnell sein!</strong> Nur noch <strong>{{ count }} Stück</strong> auf Lager.",
+      "stock_remaining": "Restbestand",
+      "purchase_options": "Kaufoptionen",
+      "one_time_purchase": "Einmalkauf",
+      "compare_added_label": "Zum Vergleich hinzugefügt",
+      "agree_terms": "Bitte stimme den AGB zu, um fortzufahren.",
+      "submit_error": "Senden fehlgeschlagen. Bitte versuche es erneut.",
+      "accepted_payments": "Akzeptierte Zahlungsarten",
+      "breadcrumb": "Brotkrümelnavigation",
       "size_chart": {
-        "size": "Size",
-        "chest": "Chest",
-        "waist": "Waist",
-        "hips": "Hips"
+        "size": "Größe",
+        "chest": "Brust",
+        "waist": "Taille",
+        "hips": "Hüfte"
       },
       "availability": "Verfügbarkeit",
       "in_stock_count": "{{ count }} auf Lager",
@@ -582,28 +582,28 @@
       "restock_field_link": "Link"
     },
     "free_shipping": {
-      "reached": "🎉 You've unlocked free shipping!",
-      "remaining_html": "Add {{ amount }} more to unlock <strong>free shipping</strong>",
-      "progress": "Free shipping progress"
+      "reached": "🎉 Du erhältst kostenlosen Versand!",
+      "remaining_html": "Noch {{ amount }} bis zum <strong>kostenlosen Versand</strong>",
+      "progress": "Fortschritt bis zum kostenlosen Versand"
     },
     "product_reviews": {
-      "summary_html": "<strong>{{ rating }}</strong> / 5 based on <strong>{{ count }}</strong> reviews",
-      "verified_buyer": "Verified buyer",
-      "verified": "Verified",
-      "anonymous": "Anonymous"
+      "summary_html": "<strong>{{ rating }}</strong> / 5 aus <strong>{{ count }}</strong> Bewertungen",
+      "verified_buyer": "Verifizierte Käuferin",
+      "verified": "Verifiziert",
+      "anonymous": "Anonym"
     },
     "card": {
-      "sale_off": "Sale, {{ percent }}% off"
+      "sale_off": "Sale, {{ percent }} % Rabatt"
     },
     "comparison": {
-      "feature": "Feature",
-      "yes": "Yes"
+      "feature": "Merkmal",
+      "yes": "Ja"
     },
     "cookie": {
-      "label": "Cookie consent"
+      "label": "Cookie-Einwilligung"
     },
     "trust_strip": {
-      "label": "Why shop with us"
+      "label": "Darum bei uns einkaufen"
     },
     "mc_collection_hero": {
       "count": "{{ count }} Styles",
@@ -625,7 +625,7 @@
     "search": "Suchen",
     "popular_countries_regions": "Beliebte Länder/Regionen",
     "country_results_count": "{{ count }} Länder/Regionen gefunden",
-    "currency_label": "Currency"
+    "currency_label": "Währung"
   },
   "customer": {
     "account": {
@@ -676,7 +676,7 @@
       "guest_continue": "Fortfahren",
       "guest_title": "Als Gast fortsetzen",
       "password": "Passwort",
-      "title": "Login",
+      "title": "Anmelden",
       "sign_in": "Anmelden",
       "submit": "Senden",
       "alternate_provider_separator": "oder"
@@ -738,13 +738,13 @@
       "total_refunded": "Zurückerstattet"
     },
     "account_nav": {
-      "dashboard": "Dashboard",
-      "details": "Account details",
-      "add_address": "Add address",
-      "hello": "Hello,",
-      "orders": "Orders",
-      "addresses": "Addresses",
-      "wishlist": "Wishlist"
+      "dashboard": "Übersicht",
+      "details": "Kontodaten",
+      "add_address": "Adresse hinzufügen",
+      "hello": "Hallo,",
+      "orders": "Bestellungen",
+      "addresses": "Adressen",
+      "wishlist": "Wunschliste"
     }
   },
   "gift_cards": {
