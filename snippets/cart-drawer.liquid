@@ -47,6 +47,7 @@
           {%- endif -%}
         </div>
       {%- else -%}
+        {%- render 'cart-rewards', container_class: 'is-compact mini-cart__rewards' -%}
         <cart-drawer-items class="mini-cart__items">
           <form action="{{ routes.cart_url }}" id="CartDrawer-Form" class="cart__contents" method="post">
             <div id="CartDrawer-CartItems" class="drawer__contents js-contents">
@@ -131,6 +132,29 @@
             </div>
             <div id="CartDrawer-CartErrors" class="mini-cart__errors" role="alert"></div>
           </form>
+          {%- if settings.mini_cart_upsell -%}
+            {%- liquid
+              # recommendations for the last item added (cart.items is newest first)
+              assign upsell_exclude = ''
+              for item in cart.items
+                assign upsell_exclude = upsell_exclude | append: item.product_id | append: ','
+              endfor
+            -%}
+            <cart-upsell
+              class="mini-cart__upsell"
+              data-product-id="{{ cart.items.first.product_id }}"
+              data-exclude="{{ upsell_exclude }}"
+              data-limit="{{ settings.mini_cart_upsell_limit }}"
+              data-url="{{ routes.product_recommendations_url }}"
+              data-add-label="{{ 'products.product.add_to_cart' | t | escape }}"
+              data-sold-out-label="{{ 'products.product.sold_out' | t | escape }}"
+              data-money-format="{{ shop.money_format | strip_html | escape }}"
+              hidden
+            >
+              <p class="mini-cart__upsell-heading">{{ settings.mini_cart_upsell_heading | escape }}</p>
+              <ul class="mini-cart__upsell-list list-unstyled" role="list" data-upsell-list></ul>
+            </cart-upsell>
+          {%- endif -%}
         </cart-drawer-items>
 
         <div class="cart-drawer__footer mini-cart__footer">

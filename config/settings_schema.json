@@ -619,6 +619,32 @@
         "id": "mini_cart_empty_text",
         "label": "Empty cart text",
         "default": "Your cart is currently empty."
+      },
+      {
+        "type": "header",
+        "content": "Recommendations in the cart"
+      },
+      {
+        "type": "checkbox",
+        "id": "mini_cart_upsell",
+        "label": "Show product recommendations",
+        "default": true,
+        "info": "Products that go with the last item added (Shopify product recommendations), with a quick add button. Complementary products set in the Search & Discovery app come first."
+      },
+      {
+        "type": "text",
+        "id": "mini_cart_upsell_heading",
+        "label": "Heading",
+        "default": "Complete the look"
+      },
+      {
+        "type": "range",
+        "id": "mini_cart_upsell_limit",
+        "label": "Products to show",
+        "min": 1,
+        "max": 6,
+        "step": 1,
+        "default": 3
       }
     ]
   },
@@ -815,6 +841,13 @@
         "id": "card_show_hover_bar",
         "label": "Show add-to-cart / quick view bar on hover",
         "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "card_quick_add",
+        "label": "Quick add on product cards",
+        "default": true,
+        "info": "Merci card style: hovering a card shows its sizes — one click adds that size in the chosen colour. Colour-only products get an Add to cart button. Products with more than one other option keep Select options."
       },
       {
         "type": "checkbox",
@@ -1185,7 +1218,7 @@
       },
       {
         "type": "header",
-        "content": "Free shipping target"
+        "content": "Cart rewards"
       },
       {
         "type": "checkbox",
@@ -1198,7 +1231,56 @@
         "id": "trust_free_shipping_threshold",
         "label": "Free shipping threshold (in cents)",
         "default": 7500,
-        "info": "Cents — e.g. 7500 = $75.00. Set to 0 to disable the threshold."
+        "info": "Cents — e.g. 7500 = $75.00. Set to 0 to disable the threshold. This is the first reward of the cart rewards bar."
+      },
+      {
+        "type": "text",
+        "id": "reward_1_label",
+        "label": "Reward 1 name",
+        "default": "Free shipping"
+      },
+      {
+        "type": "number",
+        "id": "reward_2_threshold",
+        "label": "Reward 2 threshold (in cents)",
+        "default": 0,
+        "info": "0 = no second reward. Must be higher than reward 1."
+      },
+      {
+        "type": "text",
+        "id": "reward_2_label",
+        "label": "Reward 2 name",
+        "default": "10% off"
+      },
+      {
+        "type": "number",
+        "id": "reward_3_threshold",
+        "label": "Reward 3 threshold (in cents)",
+        "default": 0,
+        "info": "0 = no third reward. Must be higher than reward 2."
+      },
+      {
+        "type": "text",
+        "id": "reward_3_label",
+        "label": "Reward 3 name",
+        "default": "15% off"
+      },
+      {
+        "type": "text",
+        "id": "reward_remaining_text",
+        "label": "Progress message",
+        "default": "Spend [amount] more to unlock [reward]",
+        "info": "[amount] = money left, [reward] = next reward name."
+      },
+      {
+        "type": "text",
+        "id": "reward_done_text",
+        "label": "All rewards unlocked message",
+        "default": "You’ve unlocked every reward!"
+      },
+      {
+        "type": "paragraph",
+        "content": "The bar only shows progress. Create the matching discounts in Shopify admin → Discounts (e.g. automatic free shipping over $75, automatic 10% off over $150) so the rewards apply at checkout."
       }
     ]
   }

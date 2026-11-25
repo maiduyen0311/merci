@@ -565,3 +565,98 @@ cart-drawer.mini-cart {
 
   &.is-visible { opacity: 1; transform: translate(-50%, 0); }
 }
+
+// Recommendations with quick add (common/js/modules/cart-upsell.js, user 2026-11-25)
+.mini-cart__rewards { margin: 0 2rem 0.4rem; }
+
+.mini-cart__upsell {
+  display: block;
+  margin: 0.8rem 0 1.6rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+
+  &[hidden] { display: none; }
+}
+
+.mini-cart__upsell-heading {
+  margin: 0 0 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mini-cart__upsell-list {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.mini-cart__upsell-item {
+  display: grid;
+  grid-template-columns: 6.4rem 1fr auto;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  background: #faf6f4;
+}
+
+.mini-cart__upsell-media img {
+  display: block;
+  width: 6.4rem;
+  height: 8rem;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 0.6rem;
+}
+
+.mini-cart__upsell-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.mini-cart__upsell-title {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &:hover { color: var(--color-accent, #bf7069); }
+}
+
+.mini-cart__upsell-price { font-size: 1.3rem; color: #9c524c; font-weight: 600; }
+
+.mini-cart__upsell-select {
+  max-width: 100%;
+  margin-top: 0.2rem;
+  padding: 0.3rem 0.6rem;
+  font: inherit;
+  font-size: 1.2rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.4rem;
+  background: #fff;
+}
+
+.mini-cart__upsell-add {
+  display: grid;
+  place-items: center;
+  width: 3.6rem;
+  height: 3.6rem;
+  border: 0;
+  border-radius: 50%;
+  background: #231e17;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+
+  &:hover { background: var(--color-accent, #bf7069); transform: scale(1.06); }
+  &:focus-visible { outline: 2px solid #231e17; outline-offset: 2px; }
+  &.is-loading { opacity: 0.5; cursor: progress; }
+}

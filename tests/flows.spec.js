@@ -35,7 +35,7 @@ test('collection: Merci card hover shows the action strip', async ({ page, isMob
   await expect(card.locator('.mc-card__strip')).toBeVisible();
 });
 
-test('collection: hover box reads "Add to cart" for single-variant products, "Select options" otherwise', async ({ page, isMobile }) => {
+test('collection: hover box reads "Add to cart" for single-variant / colour-only products, "Select options" otherwise', async ({ page, isMobile }) => {
   test.skip(isMobile, 'touch devices only show the wishlist heart on the image');
   await visit(page, PAGES.collection);
   const labels = page.locator('main .card-wrapper--merci .mc-card__strip-label');
@@ -44,7 +44,7 @@ test('collection: hover box reads "Add to cart" for single-variant products, "Se
   // markup contract: add button ↔ "Add to cart", quick view ↔ "Select options"
   for (const el of await labels.all()) {
     const text = ((await el.textContent()) || '').trim().toLowerCase();
-    if (await el.getAttribute('data-card-add')) expect(text).toBe('add to cart');
+    if ((await el.getAttribute('data-card-add')) || (await el.getAttribute('data-quick-color-add')) !== null) expect(text).toBe('add to cart');
     else if ((await el.getAttribute('data-quick-view-trigger')) !== null) expect(text).toBe('select options');
   }
 
@@ -55,7 +55,8 @@ test('collection: hover box reads "Add to cart" for single-variant products, "Se
     const href = await card.locator('a[href*="/products/"]').first().getAttribute('href');
     const product = await page.evaluate(async (u) => (await fetch(u.split('?')[0] + '.js')).json(), href);
     const label = ((await card.locator('.mc-card__strip-label').textContent()) || '').trim().toLowerCase();
-    const single = product.variants.length === 1;
+    // single variant, or colour is the only option (quick add, theme setting card_quick_add) → Add to cart
+    const single = product.variants.length === 1 || (product.options.length === 1 && /^colou?r$/i.test(product.options[0].name || product.options[0]));
     if (!product.available) expect(label).toBe('sold out');
     else expect(label).toBe(single ? 'add to cart' : 'select options');
   }

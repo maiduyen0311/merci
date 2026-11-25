@@ -66,9 +66,9 @@ async function visit(page, path) {
     await page.waitForLoadState('domcontentloaded');
     return visit(page, path);
   }
-  // Shopify's bot protection sometimes answers automated WebKit searches with a 403 "Quick security
+  // Shopify's bot protection (its own page or Cloudflare's) sometimes answers automated WebKit searches with a 403 "Quick security
   // check" page (a human checkbox). That is the platform, not the theme → skip instead of failing.
-  if (res && res.status() === 403 && (await page.getByText('Quick security check').count())) {
+  if (res && [403, 429].includes(res.status()) && (await page.getByText(/Quick security check|connection needs to be verified|Verify you are human/i).count())) {
     require('@playwright/test').test.skip(true, `Shopify security check (403) on ${path}`);
   }
   await dismissPopups(page);

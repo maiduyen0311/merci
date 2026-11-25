@@ -135,6 +135,10 @@
       "card_layout": "merci",
       "card_show_compare": true,
       "card_image_fit": "contain",
+      "reward_2_threshold": 15000,
+      "reward_2_label": "10% off",
+      "reward_3_threshold": 25000,
+      "reward_3_label": "15% off",
       "color_accent_ink": "#a95b55"
     }
   }

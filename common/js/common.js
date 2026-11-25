@@ -18,6 +18,9 @@ import HeaderFixed from './modules/header-fixed.js';
 import NewsletterPopup from './modules/newsletter-popup.js';
 import HeaderTopDropdown from './modules/header-top-dropdown.js';
 import CurrencyConverter from './modules/currency-converter.js';
+import DeliveryEstimate from './modules/delivery-estimate.js';
+import CartUpsell from './modules/cart-upsell.js';
+import CardQuickAdd from './modules/card-quick-add.js';
 import CollectionView from './modules/collection-view.js';
 import CartPage from './modules/cart-page.js';
 import HeaderAccount from './modules/header-account.js';
@@ -54,6 +57,9 @@ const initThemeScripts = () => {
   NewsletterPopup.init();
   HeaderTopDropdown.init();
   CurrencyConverter.init();
+  DeliveryEstimate.init();
+  CartUpsell.init();
+  CardQuickAdd.init();
   CollectionView.init();
   CartPage.init();
   HeaderAccount.init();
@@ -101,6 +107,7 @@ document.addEventListener('tm:content-loaded', () => {
   SwatchHover.init();
   QuickView.init();
   CardActions.init();
+  CardQuickAdd.init();
 });
 
 document.addEventListener('shopify:section:reorder', () => {

@@ -852,6 +852,16 @@
       strong { font-weight: 500; }
     }
   }
+
+  // calculated delivery: "Order within 2h 15m to ship today" (delivery-estimate.js)
+  &__delivery-cutoff {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.85em;
+    color: #a3332e; // deep red: AA on white (the sale red is too light for small text)
+
+    &[hidden] { display: none; }
+  }
 }
 
 @keyframes terms-flash {

@@ -1,0 +1,104 @@
+{%- comment -%}
+  Cart rewards — progress bar with up to 3 milestones (user 2026-11-25, "Nhóm 1 #3"):
+  e.g. $75 free shipping → $150 10% off → $250 15% off. Used in the cart drawer, cart page and
+  product page. Settings: Theme settings → Cart rewards (tier 1 = the free-shipping threshold).
+  Display only: the rewards themselves are Shopify discounts the merchant creates
+  (automatic free-shipping / amount-off discounts with the same minimum subtotals).
+  Re-rendered with the cart drawer; elsewhere common/js/modules/free-shipping-bar.js refreshes it
+  from /cart.js on `cart:update` / `tm:cart:update`.
+
+  Accepts:
+    container_class: optional extra class (e.g. 'is-compact')
+{%- endcomment -%}
+
+{%- liquid
+  assign tiers = ''
+  assign last = 0
+  if settings.trust_free_shipping_enabled and settings.trust_free_shipping_threshold > 0
+    for i in (1..3)
+      case i
+        when 1
+          assign t_amount = settings.trust_free_shipping_threshold
+          assign t_label = settings.reward_1_label | default: 'Free shipping'
+        when 2
+          assign t_amount = settings.reward_2_threshold | default: 0
+          assign t_label = settings.reward_2_label
+        when 3
+          assign t_amount = settings.reward_3_threshold | default: 0
+          assign t_label = settings.reward_3_label
+      endcase
+      if t_amount > last and t_label != blank
+        assign last = t_amount
+        assign tiers = tiers | append: t_amount | append: '|' | append: t_label | append: '~~'
+      endif
+    endfor
+  endif
+  assign tier_list = tiers | split: '~~'
+-%}
+
+{%- if tier_list.size > 0 -%}
+  {%- liquid
+    assign total = cart.total_price | default: 0
+    assign max_amount = last
+    assign fill = total | times: 100 | divided_by: max_amount
+    if fill > 100
+      assign fill = 100
+    endif
+    assign next_amount = 0
+    assign next_label = ''
+    for t in tier_list
+      assign parts = t | split: '|'
+      assign amount = parts[0] | plus: 0
+      if total < amount
+        assign next_amount = amount
+        assign next_label = parts[1]
+        break
+      endif
+    endfor
+    assign remaining_text = settings.reward_remaining_text | default: 'Spend [amount] more to unlock [reward]'
+    assign done_text = settings.reward_done_text | default: 'You’ve unlocked every reward!'
+  -%}
+  <div
+    class="cart-rewards {{ container_class }}"
+    data-cart-rewards
+    data-remaining-text="{{ remaining_text | escape }}"
+    data-done-text="{{ done_text | escape }}"
+    data-max="{{ max_amount }}"
+  >
+    <p class="cart-rewards__msg" data-cr-message aria-live="polite">
+      {%- if next_amount > 0 -%}
+        {%- assign left = next_amount | minus: total | money -%}
+        {%- capture left_html -%}<strong>{{ left }}</strong>{%- endcapture -%}
+        {%- capture reward_html -%}<strong>{{ next_label | escape }}</strong>{%- endcapture -%}
+        {{ remaining_text | escape | replace: '[amount]', left_html | replace: '[reward]', reward_html }}
+      {%- else -%}
+        {{ done_text | escape }}
+      {%- endif -%}
+    </p>
+    <div class="cart-rewards__track" role="progressbar" aria-label="{{ 'sections.free_shipping.progress' | t }}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ fill }}" data-cr-track>
+      <span class="cart-rewards__fill" style="width: {{ fill }}%" data-cr-fill></span>
+      {%- for t in tier_list -%}
+        {%- liquid
+          assign parts = t | split: '|'
+          assign amount = parts[0] | plus: 0
+          assign pos = amount | times: 100 | divided_by: max_amount
+        -%}
+        <span
+          class="cart-rewards__milestone{% if total >= amount %} is-reached{% endif %}"
+          style="--pos: {{ pos }}%"
+          data-cr-milestone
+          data-amount="{{ amount }}"
+          data-label="{{ parts[1] | escape }}"
+        >
+          <span class="cart-rewards__dot" aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3.5 8.5l3 3 6-7"/></svg>
+          </span>
+          <span class="cart-rewards__label">
+            <span class="cart-rewards__name">{{ parts[1] | escape }}</span>
+            <span class="cart-rewards__amount">{{ amount | money_without_trailing_zeros }}</span>
+          </span>
+        </span>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}

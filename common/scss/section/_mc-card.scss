@@ -156,3 +156,86 @@
 
   .mc-card__strip .card-product__wishlist { flex: 1 1 auto; }
 }
+
+// --- quick add sizes (card-quick-add.js, user 2026-11-25) -----------------------
+// a white row of size chips above the hover box; one click adds that size in the picked colour
+.mc-card__sizes {
+  position: absolute;
+  inset: auto 1rem 7rem;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1rem 1rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(1.2rem);
+  transition: opacity 0.3s ease, transform 0.35s ease, visibility 0s linear 0.35s;
+}
+
+.mc-card__sizes-label {
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.mc-card__sizes-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.mc-card__size {
+  min-width: 3.4rem;
+  height: 3rem;
+  padding: 0 0.6rem;
+  border: 1px solid #d6d0cd;
+  border-radius: 3px;
+  background: #fff;
+  color: var(--color-heading, #000);
+  font: inherit;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  &:hover:not(:disabled),
+  &:focus-visible {
+    background: #231e17;
+    border-color: #231e17;
+    color: #fff;
+  }
+
+  &.is-sold-out {
+    color: #9a9a9a;
+    text-decoration: line-through;
+    cursor: not-allowed;
+  }
+
+  &.is-loading { opacity: 0.5; cursor: progress; }
+}
+
+@container (max-width: 245px) {
+  .mc-card__sizes { inset-inline: 0.6rem; inset-block-end: 6.4rem; padding: 0.6rem; }
+  .mc-card__size { min-width: 3rem; height: 2.8rem; font-size: 1.2rem; }
+}
+
+@media (hover: hover) {
+  .card-wrapper--merci:hover .mc-card__sizes,
+  .card-wrapper--merci:focus-within .mc-card__sizes {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+}
+
+// touch: no hover → sizes stay hidden (Select options / quick view as before)
+@media (hover: none) {
+  .mc-card__sizes { display: none; }
+}

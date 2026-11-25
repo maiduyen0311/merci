@@ -31,7 +31,7 @@ const writeCoupon = (code) => {
   } catch (_) { /* storage blocked */ }
 };
 
-function toast(message) {
+export function toast(message) {
   let el = document.getElementById('TmToast');
   if (!el) {
     el = document.createElement('div');

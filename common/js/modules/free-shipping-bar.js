@@ -54,14 +54,43 @@ function updateBar(bar, totalCents) {
   }
 }
 
+// Multi-tier cart rewards (snippets/cart-rewards.liquid): fill, reached milestones and message
+const escapeHtml = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function updateRewards(el, totalCents) {
+  const max = parseInt(el.dataset.max, 10) || 0;
+  if (max <= 0) return;
+  const pct = Math.min(100, Math.max(0, Math.floor((totalCents * 100) / max)));
+  const fill = el.querySelector('[data-cr-fill]');
+  const track = el.querySelector('[data-cr-track]');
+  if (fill) fill.style.width = `${pct}%`;
+  if (track) track.setAttribute('aria-valuenow', String(pct));
+  let next = null;
+  el.querySelectorAll('[data-cr-milestone]').forEach((m) => {
+    const amount = parseInt(m.dataset.amount, 10) || 0;
+    const reached = totalCents >= amount;
+    m.classList.toggle('is-reached', reached);
+    if (!reached && !next) next = { amount, label: m.dataset.label || '' };
+  });
+  const msg = el.querySelector('[data-cr-message]');
+  if (!msg) return;
+  if (next) {
+    msg.innerHTML = escapeHtml(el.dataset.remainingText || '')
+      .replace('[amount]', `<strong>${escapeHtml(formatMoney(next.amount - totalCents))}</strong>`)
+      .replace('[reward]', `<strong>${escapeHtml(next.label)}</strong>`);
+  } else {
+    msg.textContent = el.dataset.doneText || '';
+  }
+}
+
 function refreshAll() {
-  const bars = document.querySelectorAll('[data-free-shipping]');
+  const bars = document.querySelectorAll('[data-free-shipping], [data-cart-rewards]');
   if (!bars.length) return;
   fetch('/cart.js', { credentials: 'same-origin' })
     .then((r) => (r.ok ? r.json() : null))
     .then((cart) => {
       if (!cart) return;
-      bars.forEach((bar) => updateBar(bar, cart.total_price));
+      bars.forEach((bar) => (bar.hasAttribute('data-cart-rewards') ? updateRewards(bar, cart.total_price) : updateBar(bar, cart.total_price)));
     })
     .catch(() => {});
 }
@@ -77,6 +106,17 @@ const FreeShippingBar = {
     document.addEventListener('tm:cart:update', refreshAll);
     document.addEventListener('cart:update', refreshAll);
     document.addEventListener('shopify:section:load', refreshAll);
+    // theme add-to-cart paths (mini-cart.js, quick view) and Dawn's product form / cart (pubsub.js)
+    document.addEventListener('tm:cart-updated', refreshAll);
+    document.addEventListener('tm:cart:add', refreshAll);
+    const hookPubSub = () => {
+      // constants.js declares `const PUB_SUB_EVENTS` (global lexical scope, not a window property)
+      // eslint-disable-next-line no-undef
+      const events = typeof PUB_SUB_EVENTS !== 'undefined' ? PUB_SUB_EVENTS : null;
+      if (typeof window.subscribe === 'function' && events) window.subscribe(events.cartUpdate, refreshAll);
+    };
+    if (document.readyState === 'complete') hookPubSub();
+    else window.addEventListener('load', hookPubSub, { once: true });
   },
 };
 

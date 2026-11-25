@@ -55,7 +55,10 @@
         <div class="js-contents">
           {%- if cart != empty -%}
             {%- comment -%} Free shipping progress (inside .js-contents so it refreshes with qty changes) {%- endcomment -%}
-            {%- if section.settings.free_shipping_threshold > 0 -%}
+            {%- if settings.trust_free_shipping_enabled and settings.trust_free_shipping_threshold > 0 -%}
+              {%- comment -%} theme-wide cart rewards (Theme settings → Cart rewards) {%- endcomment -%}
+              {%- render 'cart-rewards', container_class: 'cart-page__rewards' -%}
+            {%- elsif section.settings.free_shipping_threshold > 0 -%}
               {%- liquid
                 assign cents_threshold = section.settings.free_shipping_threshold | times: 100
                 if cart.total_price >= cents_threshold
@@ -226,7 +229,7 @@
       "id": "free_shipping_threshold",
       "label": "Free shipping threshold (whole units, e.g. 40 for $40)",
       "default": 40,
-      "info": "Set to 0 to hide the progress bar."
+      "info": "Only used when Theme settings → Cart rewards is off. Set to 0 to hide the progress bar."
     },
     {
       "type": "text",
