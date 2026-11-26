@@ -1,0 +1,92 @@
+{%- comment -%}
+  Mobile bottom navigation bar (user 2026-11-26, "Nhóm 2 #8") — app-style tab bar under 768px:
+  Home · Menu · Search · Wishlist · Account · Cart. Theme settings → Mobile bottom bar.
+  Menu / Search reuse the mobile header's drawer + search overlay (data-mobile-drawer-open,
+  data-mobile-search-open → common/js/modules/mobile-drawer.js); the counts are the shared
+  [data-wishlist-count] / [data-cart-count] badges; Cart opens the cart drawer when there is one
+  (common/js/modules/mobile-bottom-bar.js), else goes to /cart.
+{%- endcomment -%}
+
+{%- if settings.mobile_bar_enable -%}
+  {%- liquid
+    assign wishlist_url = settings.mobile_bar_wishlist_url | default: '/pages/wishlist'
+    assign current = ''
+    case template.name
+      when 'index'
+        assign current = 'home'
+      when 'search'
+        assign current = 'search'
+      when 'cart'
+        assign current = 'cart'
+    endcase
+    if request.path contains 'wishlist'
+      assign current = 'wishlist'
+    endif
+    if template.directory == 'customers'
+      assign current = 'account'
+    endif
+  -%}
+  <nav
+    class="mobile-bar{% if settings.mobile_bar_labels == false %} mobile-bar--icons{% endif %}"
+    aria-label="{{ 'sections.header.utility_navigation' | t }}"
+    data-mobile-bar
+    {% if settings.mobile_bar_hide_on_scroll %}data-hide-on-scroll{% endif %}
+  >
+    <ul class="mobile-bar__list" role="list">
+      {%- if settings.mobile_bar_home -%}
+        <li>
+          <a href="{{ routes.root_url }}" class="mobile-bar__item"{% if current == 'home' %} aria-current="page"{% endif %}>
+            <svg class="mobile-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 10.5 12 4l8.5 6.5V20a1 1 0 0 1-1 1h-5v-6h-5v6h-5a1 1 0 0 1-1-1z"/></svg>
+            <span class="mobile-bar__label">{{ 'general.breadcrumb.home' | t }}</span>
+          </a>
+        </li>
+      {%- endif -%}
+      {%- if settings.mobile_bar_menu -%}
+        <li>
+          <button type="button" class="mobile-bar__item" data-mobile-drawer-open aria-controls="MobileDrawer" aria-expanded="false">
+            <svg class="mobile-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>
+            <span class="mobile-bar__label">{{ 'sections.header.menu' | t }}</span>
+          </button>
+        </li>
+      {%- endif -%}
+      {%- if settings.mobile_bar_search -%}
+        <li>
+          <button type="button" class="mobile-bar__item" data-mobile-search-open aria-controls="MobileSearch" aria-expanded="false"{% if current == 'search' %} aria-current="page"{% endif %}>
+            <svg class="mobile-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
+            <span class="mobile-bar__label">{{ 'general.search.search' | t }}</span>
+          </button>
+        </li>
+      {%- endif -%}
+      {%- if settings.mobile_bar_wishlist -%}
+        <li>
+          <a href="{{ wishlist_url }}" class="mobile-bar__item"{% if current == 'wishlist' %} aria-current="page"{% endif %}>
+            <span class="mobile-bar__icon-wrap">
+              <svg class="mobile-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.6 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg>
+              <span class="mobile-bar__badge" data-wishlist-count>0</span>
+            </span>
+            <span class="mobile-bar__label">{{ 'customer.account_nav.wishlist' | t }}</span>
+          </a>
+        </li>
+      {%- endif -%}
+      {%- if settings.mobile_bar_account and shop.customer_accounts_enabled -%}
+        <li>
+          <a href="{{ routes.account_url }}" class="mobile-bar__item"{% if current == 'account' %} aria-current="page"{% endif %}>
+            <svg class="mobile-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4 4-6 8-6s7.2 2 8 6"/></svg>
+            <span class="mobile-bar__label">{{ 'customer.account.title' | t }}</span>
+          </a>
+        </li>
+      {%- endif -%}
+      {%- if settings.mobile_bar_cart -%}
+        <li>
+          <a href="{{ routes.cart_url }}" class="mobile-bar__item" data-mobile-bar-cart{% if current == 'cart' %} aria-current="page"{% endif %}>
+            <span class="mobile-bar__icon-wrap">
+              <svg class="mobile-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14l-1.2 12.1a1 1 0 0 1-1 .9H7.2a1 1 0 0 1-1-.9z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg>
+              <span class="mobile-bar__badge cart-count" data-cart-count>{{ cart.item_count }}</span>
+            </span>
+            <span class="mobile-bar__label">{{ 'templates.cart.cart' | t }}</span>
+          </a>
+        </li>
+      {%- endif -%}
+    </ul>
+  </nav>
+{%- endif -%}

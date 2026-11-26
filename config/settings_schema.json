@@ -649,6 +649,80 @@
     ]
   },
   {
+    "name": "Mobile bottom bar",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "App-style navigation fixed at the bottom of the screen on phones (under 768px)."
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile_bar_enable",
+        "label": "Show mobile bottom bar",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile_bar_labels",
+        "label": "Show labels under icons",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile_bar_hide_on_scroll",
+        "label": "Hide while scrolling down",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Items"
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile_bar_home",
+        "label": "Home",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile_bar_menu",
+        "label": "Menu (opens the mobile menu)",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile_bar_search",
+        "label": "Search",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile_bar_wishlist",
+        "label": "Wishlist",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "mobile_bar_wishlist_url",
+        "label": "Wishlist page link",
+        "default": "/pages/wishlist"
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile_bar_account",
+        "label": "Account",
+        "default": false,
+        "info": "Shown only when customer accounts are on."
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile_bar_cart",
+        "label": "Cart (opens the cart drawer)",
+        "default": true
+      }
+    ]
+  },
+  {
     "name": "Merci — Colors",
     "settings": [
       {

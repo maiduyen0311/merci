@@ -1321,13 +1321,16 @@
         var atc = entries[0];
         // Show sticky bar when the original ATC has scrolled out of the
         // viewport (i.e. user scrolled past it).
-        var shouldShow = !atc.isIntersecting;
+        // only once it is ABOVE the viewport (not while it is still below, e.g. on first load on phones)
+        var shouldShow = !atc.isIntersecting && atc.boundingClientRect.top < 0;
         if (shouldShow) {
           stickyBar.hidden = false;
           stickyBar.setAttribute('aria-hidden', 'false');
           requestAnimationFrame(function () { stickyBar.classList.add('is-visible'); });
+          document.body.classList.add('has-sticky-atc'); // mobile bottom bar steps aside
         } else {
           stickyBar.classList.remove('is-visible');
+          document.body.classList.remove('has-sticky-atc');
           setTimeout(function () {
             if (!stickyBar.classList.contains('is-visible')) {
               stickyBar.hidden = true;

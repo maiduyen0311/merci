@@ -1,6 +1,6 @@
 ---
 name: packaging-scope
-description: What ships in the ThemeForest package vs demo-only — Nhóm 1 conversion pack is free in the package; Notify me (restock form) is demo-only, sold as customization
+description: What ships in the ThemeForest package vs demo-only — Nhóm 1 + #7/#8 in the package; Notify me, #5 video reels, #6 hotspots are demo-only, sold as customization
 metadata:
   type: project
 ---
@@ -30,6 +30,12 @@ User decision 2026-11-26 — applies to phase 10 (packaging, `npm run release` /
   every `locales/*.json`; `tests/restock.spec.js` (tests are not shipped anyway). Keep the `@app` block slot.
   Best done by release.js with marker comments (e.g. `{%- comment -%}demo-only:restock{%- endcomment -%}`)
   rather than by hand. After stripping, run theme check + a PDP smoke test on the packaged copy.
+
+**3. "Nhóm 2" (user 2026-11-26), built one by one:**
+- #7 size finder ("Find my size") and #8 mobile bottom navigation bar = IN THE THEME (packaged + documented, like Nhóm 1).
+- #5 shoppable video reels and #6 shop-the-look hotspots = CUSTOMIZATION, demo-only like Notify me: live on merci-demo,
+  stripped from the package and the docs, advertised as customization. Build them as their own section files
+  (+ own JS module / SCSS partial) so packaging just drops those files and their imports.
 
 **Why:** Group 1 raises the item's value; Notify me is kept back so buyers who want it order customization work.
 
