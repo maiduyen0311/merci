@@ -528,6 +528,45 @@
         "default": false,
         "label": "t:settings_schema.search_input.settings.predictive_search_show_price.label",
         "info": "t:settings_schema.search_input.settings.predictive_search_show_price.info"
+      },
+      {
+        "type": "header",
+        "content": "Search suggestions"
+      },
+      {
+        "type": "checkbox",
+        "id": "search_discovery_enable",
+        "default": true,
+        "label": "Show suggestions",
+        "info": "When the search box is empty, and when nothing matches."
+      },
+      {
+        "type": "checkbox",
+        "id": "search_recent_enable",
+        "default": true,
+        "label": "Show recent searches",
+        "info": "Stored on the shopper's own device only."
+      },
+      {
+        "type": "text",
+        "id": "search_popular_terms",
+        "label": "Popular searches",
+        "default": "Straw hat, Tote bag, Denim jacket, Cardigan, Sandals",
+        "info": "Separate with commas."
+      },
+      {
+        "type": "collection",
+        "id": "search_popular_collection",
+        "label": "Popular products"
+      },
+      {
+        "type": "range",
+        "id": "search_popular_limit",
+        "min": 2,
+        "max": 8,
+        "step": 1,
+        "default": 4,
+        "label": "Products to show"
       }
     ]
   },

@@ -657,6 +657,13 @@
       "sold_out": "Size {{ size }} is sold out in this colour",
       "note": "A guide based on our size chart. Check the size guide for exact measurements.",
       "invalid": "Please enter your height and weight."
+    },
+    "search_discovery": {
+      "recent": "Recent searches",
+      "clear": "Clear",
+      "popular": "Popular searches",
+      "products": "Trending now",
+      "try": "Try one of these instead:"
     }
   },
   "localization": {

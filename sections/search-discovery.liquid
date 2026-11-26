@@ -1,0 +1,15 @@
+{%- comment -%}
+  Search suggestions shown when the search box is focused and empty (Nhóm 3 #9).
+  Not placed on any template: assets/predictive-search.js fetches it once with
+  `?section_id=search-discovery` (Section Rendering API). Settings: Theme settings → Search behavior.
+{%- endcomment -%}
+{%- if settings.search_discovery_enable -%}
+  {%- render 'search-discovery', mode: 'empty' -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Search suggestions",
+  "tag": "div"
+}
+{% endschema %}

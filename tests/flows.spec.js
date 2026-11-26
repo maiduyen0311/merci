@@ -109,3 +109,31 @@ test('collection: pagination reaches page 2', async ({ page }) => {
   await expect(page).toHaveURL(/page=2/);
   await expect(page.locator(S.card).first()).toBeVisible();
 });
+
+// Nhóm 3 #9 — search suggestions (Theme settings → Search behavior)
+test('search suggestions: empty box shows popular terms + products; a used term becomes a recent search', async ({ page }) => {
+  await visit(page, PAGES.home);
+  const desktop = page.viewportSize().width >= 992;
+  if (desktop) await page.locator(S.searchToggle).first().click();
+  else await page.locator('[data-mobile-search-open]').filter({ visible: true }).first().click();
+  const scope = page.locator(desktop ? '.header-middle__search' : '#MobileSearch');
+  const input = scope.locator('input[type="search"]');
+  await input.click();
+  const panel = scope.locator('[data-search-discovery]');
+  await expect(panel).toBeVisible();
+  const chip = panel.locator('.search-discovery__chip').first();
+  test.skip(!(await chip.count()), 'no popular terms set');
+  const term = (await chip.getAttribute('data-search-term')) || '';
+  await chip.click();
+  await page.waitForURL(/\/search\?/);
+  const recent = await page.evaluate(() => JSON.parse(localStorage.getItem('mc_recent_searches') || '[]'));
+  expect(recent[0]).toBe(term);
+});
+
+test('search page: no results suggests popular terms / products', async ({ page }) => {
+  await visit(page, '/search?q=xyzzyplugh7741'); // typo-tolerant search: a nonsense word + digits matches nothing
+  const panel = page.locator('main .search-discovery--no-results');
+  test.skip(!(await panel.count()), 'search suggestions are turned off');
+  await expect(panel).toContainText(/no results/i);
+  expect(await panel.locator('.search-discovery__chip, .search-discovery__product').count()).toBeGreaterThan(0);
+});

@@ -217,6 +217,9 @@
     {%- endif -%}
     {%- if first_column_results_size > 0 or predictive_search.resources.products.size > 0 -%}
       </div>
+    {%- elsif settings.search_discovery_enable -%}
+      {%- comment -%} nothing matched → popular terms + products instead of an empty box (Nhóm 3 #9) {%- endcomment -%}
+      {%- render 'search-discovery', mode: 'no-results', terms: predictive_search.terms -%}
     {%- endif -%}
 
     {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}

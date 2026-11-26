@@ -11,7 +11,7 @@
 
 <div class="header-middle__search">
   {%- if settings.predictive_search_enabled -%}
-    <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
+    <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}"{% if settings.search_discovery_enable %} data-discovery-url="{{ routes.root_url | append: '?section_id=search-discovery' | replace: '//', '/' }}"{% endif %}>
   {%- endif -%}
   <form
     action="{{ routes.search_url }}"
@@ -36,7 +36,7 @@
         placeholder="{{ search_placeholder }}"
         value="{{ search.terms | escape }}"
         autocomplete="off"
-        {%- if settings.predictive_search_enabled -%}
+        {% if settings.predictive_search_enabled %}
           role="combobox"
           aria-expanded="false"
           aria-owns="predictive-search-results"

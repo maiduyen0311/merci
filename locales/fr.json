@@ -645,6 +645,13 @@
       "sold_out": "La taille {{ size }} est épuisée dans ce coloris",
       "note": "Une indication basée sur notre guide des tailles. Consultez le guide pour les mesures exactes.",
       "invalid": "Veuillez indiquer votre taille et votre poids."
+    },
+    "search_discovery": {
+      "recent": "Recherches récentes",
+      "clear": "Effacer",
+      "popular": "Recherches populaires",
+      "products": "Tendances du moment",
+      "try": "Essayez plutôt :"
     }
   },
   "localization": {

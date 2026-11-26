@@ -1,0 +1,82 @@
+{%- comment -%}
+  Search suggestions (user 2026-11-26, "Nhóm 3 #9", included in the theme package).
+  Theme settings → Search behavior: recent searches (stored on the shopper's device by
+  assets/predictive-search.js), popular search terms and products from a collection.
+
+  mode 'empty'      — the search box is focused but empty (sections/search-discovery.liquid, fetched
+                      once by assets/predictive-search.js); the recent list is filled in by JS.
+  mode 'no-results' — nothing matched (predictive dropdown + search page): "try one of these".
+
+  Accepts:
+    mode {String} 'empty' | 'no-results'
+    terms {String} the search terms (no-results only)
+    context {String} 'dropdown' (default) | 'page'
+{%- endcomment -%}
+{%- liquid
+  assign context = context | default: 'dropdown'
+  assign popular_terms = settings.search_popular_terms | split: ','
+  assign popular_collection = settings.search_popular_collection
+  assign limit = settings.search_popular_limit | default: 4
+  assign search_base = routes.search_url | append: '?type=product&options%5Bprefix%5D=last&q='
+-%}
+
+<div class="search-discovery search-discovery--{{ mode }} search-discovery--{{ context }}" data-search-discovery>
+  {%- if mode == 'no-results' -%}
+    <p class="search-discovery__empty">
+      {{- 'templates.search.no_results' | t: terms: terms -}}
+      {%- if popular_terms.size > 0 or popular_collection != blank %} {{ 'sections.search_discovery.try' | t }}{% endif -%}
+    </p>
+  {%- endif -%}
+
+  <div class="search-discovery__terms">
+    {%- if mode == 'empty' and settings.search_recent_enable -%}
+      <div class="search-discovery__group" data-search-recent hidden>
+        <div class="search-discovery__head">
+          <p class="search-discovery__title">{{ 'sections.search_discovery.recent' | t }}</p>
+          <button type="button" class="search-discovery__clear" data-search-recent-clear>{{ 'sections.search_discovery.clear' | t }}</button>
+        </div>
+        <ul class="search-discovery__chips" role="list" data-search-recent-list data-search-base="{{ search_base }}"></ul>
+      </div>
+    {%- endif -%}
+
+    {%- if popular_terms.size > 0 -%}
+      <div class="search-discovery__group">
+        <p class="search-discovery__title">{{ 'sections.search_discovery.popular' | t }}</p>
+        <ul class="search-discovery__chips" role="list">
+          {%- for term in popular_terms -%}
+            {%- assign pt = term | strip -%}
+            {%- if pt != blank -%}
+              <li id="SearchPopular-{{ mode }}-{{ forloop.index }}" role="option" aria-selected="false">
+                <a href="{{ search_base }}{{ pt | url_encode }}" class="search-discovery__chip" tabindex="-1" data-search-term="{{ pt | escape }}">
+                  <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 11l4-4 3 3 5-5M10 5h4v4"/></svg>
+                  {{- pt | escape -}}
+                </a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if popular_collection != blank and popular_collection.products_count > 0 -%}
+    <div class="search-discovery__group search-discovery__products">
+      <p class="search-discovery__title">{{ 'sections.search_discovery.products' | t }}</p>
+      <ul class="search-discovery__grid" role="list">
+        {%- for product in popular_collection.products limit: limit -%}
+          <li id="SearchPopularProduct-{{ mode }}-{{ forloop.index }}" role="option" aria-selected="false">
+            <a href="{{ product.url }}" class="search-discovery__product" tabindex="-1">
+              <span class="search-discovery__img">
+                {%- if product.featured_image -%}
+                  {{ product.featured_image | image_url: width: 240 | image_tag: loading: 'lazy', alt: '', width: 120, height: 150 }}
+                {%- endif -%}
+              </span>
+              <span class="search-discovery__name">{{ product.title }}</span>
+              <span class="search-discovery__price">{{ product.price | money }}</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  {%- endif -%}
+</div>

@@ -633,6 +633,13 @@
       "sold_out": "Größe {{ size }} ist in dieser Farbe ausverkauft",
       "note": "Eine Orientierung anhand unserer Größentabelle. Genaue Maße findest du in der Größentabelle.",
       "invalid": "Bitte gib Körpergröße und Gewicht ein."
+    },
+    "search_discovery": {
+      "recent": "Letzte Suchen",
+      "clear": "Löschen",
+      "popular": "Beliebte Suchen",
+      "products": "Gerade angesagt",
+      "try": "Versuche stattdessen:"
     }
   },
   "localization": {
