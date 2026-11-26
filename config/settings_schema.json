@@ -649,6 +649,51 @@
     ]
   },
   {
+    "name": "Size finder",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "\"Find my size\" on product pages: shoppers enter height, weight and fit preference and get a size from the table below. Shown only on products whose size option uses these sizes."
+      },
+      {
+        "type": "checkbox",
+        "id": "size_finder_enable",
+        "label": "Show Find my size",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "size_finder_option",
+        "label": "Size option name",
+        "default": "Size",
+        "info": "The product option the finder selects (not case-sensitive)."
+      },
+      {
+        "type": "textarea",
+        "id": "size_finder_table",
+        "label": "Size table",
+        "default": "XS | 150-160 | 40-50\nS | 155-165 | 48-56\nM | 160-170 | 55-63\nL | 165-175 | 62-71\nXL | 170-180 | 70-80",
+        "info": "One size per line: SIZE | height cm min-max | weight kg min-max."
+      },
+      {
+        "type": "select",
+        "id": "size_finder_units",
+        "label": "Default units",
+        "options": [
+          {
+            "value": "metric",
+            "label": "cm / kg"
+          },
+          {
+            "value": "imperial",
+            "label": "ft / lb"
+          }
+        ],
+        "default": "metric"
+      }
+    ]
+  },
+  {
     "name": "Mobile bottom bar",
     "settings": [
       {

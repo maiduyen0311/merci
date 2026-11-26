@@ -639,6 +639,24 @@
     },
     "mc_cart_summary": {
       "title": "Order summary"
+    },
+    "size_finder": {
+      "button": "Find my size",
+      "title": "Find your size",
+      "intro": "Tell us your height and weight and we’ll suggest the size that fits you best.",
+      "height": "Height",
+      "weight": "Weight",
+      "fit": "Fit preference",
+      "fit_snug": "Snug",
+      "fit_regular": "Regular",
+      "fit_relaxed": "Relaxed",
+      "units": "Units",
+      "submit": "Show my size",
+      "result_html": "We recommend size <strong>{{ size }}</strong>",
+      "select": "Select size {{ size }}",
+      "sold_out": "Size {{ size }} is sold out in this colour",
+      "note": "A guide based on our size chart. Check the size guide for exact measurements.",
+      "invalid": "Please enter your height and weight."
     }
   },
   "localization": {

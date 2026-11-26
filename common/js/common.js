@@ -22,6 +22,7 @@ import DeliveryEstimate from './modules/delivery-estimate.js';
 import CartUpsell from './modules/cart-upsell.js';
 import CardQuickAdd from './modules/card-quick-add.js';
 import MobileBottomBar from './modules/mobile-bottom-bar.js';
+import SizeFinder from './modules/size-finder.js';
 import CollectionView from './modules/collection-view.js';
 import CartPage from './modules/cart-page.js';
 import HeaderAccount from './modules/header-account.js';
@@ -62,6 +63,7 @@ const initThemeScripts = () => {
   CartUpsell.init();
   CardQuickAdd.init();
   MobileBottomBar.init();
+  SizeFinder.init();
   CollectionView.init();
   CartPage.init();
   HeaderAccount.init();

@@ -615,6 +615,24 @@
     },
     "mc_cart_summary": {
       "title": "Bestellübersicht"
+    },
+    "size_finder": {
+      "button": "Meine Größe finden",
+      "title": "Finde deine Größe",
+      "intro": "Gib deine Größe und dein Gewicht ein – wir schlagen dir die passende Größe vor.",
+      "height": "Körpergröße",
+      "weight": "Gewicht",
+      "fit": "Passform",
+      "fit_snug": "Eng",
+      "fit_regular": "Normal",
+      "fit_relaxed": "Locker",
+      "units": "Einheiten",
+      "submit": "Größe anzeigen",
+      "result_html": "Wir empfehlen Größe <strong>{{ size }}</strong>",
+      "select": "Größe {{ size }} wählen",
+      "sold_out": "Größe {{ size }} ist in dieser Farbe ausverkauft",
+      "note": "Eine Orientierung anhand unserer Größentabelle. Genaue Maße findest du in der Größentabelle.",
+      "invalid": "Bitte gib Körpergröße und Gewicht ein."
     }
   },
   "localization": {

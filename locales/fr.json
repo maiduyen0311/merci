@@ -627,6 +627,24 @@
     },
     "mc_cart_summary": {
       "title": "Récapitulatif"
+    },
+    "size_finder": {
+      "button": "Trouver ma taille",
+      "title": "Trouvez votre taille",
+      "intro": "Indiquez votre taille et votre poids, nous vous suggérons la taille qui vous va le mieux.",
+      "height": "Taille",
+      "weight": "Poids",
+      "fit": "Coupe préférée",
+      "fit_snug": "Ajustée",
+      "fit_regular": "Normale",
+      "fit_relaxed": "Ample",
+      "units": "Unités",
+      "submit": "Voir ma taille",
+      "result_html": "Nous vous conseillons la taille <strong>{{ size }}</strong>",
+      "select": "Choisir la taille {{ size }}",
+      "sold_out": "La taille {{ size }} est épuisée dans ce coloris",
+      "note": "Une indication basée sur notre guide des tailles. Consultez le guide pour les mesures exactes.",
+      "invalid": "Veuillez indiquer votre taille et votre poids."
     }
   },
   "localization": {

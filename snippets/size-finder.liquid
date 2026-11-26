@@ -1,0 +1,117 @@
+{%- comment -%}
+  Size finder — "Find my size" (user 2026-11-26, "Nhóm 2 #7", included in the theme package).
+  Height + weight + fit preference → a size from Theme settings → Size finder → Size table.
+  Rendered by sections/main-product.liquid in the action row; logic in common/js/modules/size-finder.js,
+  which also picks that size in the product form ("Select size M").
+  Shown only when the product has the size option and at least two of its values are in the table.
+
+  Accepts:
+    product {Object}
+    section_id {String}
+    part {String} 'button' | 'dialog'
+{%- endcomment -%}
+
+{%- liquid
+  assign sf_show = false
+  assign sf_option = nil
+  if settings.size_finder_enable
+    assign sf_name = settings.size_finder_option | default: 'Size' | downcase | strip
+    for option in product.options_with_values
+      assign opt_down = option.name | downcase | strip
+      if opt_down == sf_name
+        assign sf_option = option
+      endif
+    endfor
+    if sf_option
+      assign sf_rows = settings.size_finder_table | newline_to_br | split: '<br />'
+      assign sf_hits = 0
+      for row in sf_rows
+        assign row_size = row | split: '|' | first | strip
+        for value in sf_option.values
+          if value == row_size
+            assign sf_hits = sf_hits | plus: 1
+          endif
+        endfor
+      endfor
+      if sf_hits > 1
+        assign sf_show = true
+      endif
+    endif
+  endif
+-%}
+
+{%- if sf_show -%}
+  {%- if part == 'button' -%}
+    <li><button type="button" class="main-product__action" data-size-finder-open aria-haspopup="dialog" aria-controls="SizeFinder-{{ section_id }}">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="5" r="2.5"/><path d="M12 9v6M8 21l4-6 4 6M7 11h10"/></svg>
+      {{ 'sections.size_finder.button' | t }}
+    </button></li>
+  {%- else -%}
+    <dialog
+      id="SizeFinder-{{ section_id }}"
+      class="main-product-modal size-finder"
+      aria-labelledby="SizeFinderTitle-{{ section_id }}"
+      data-size-finder
+      data-table="{{ settings.size_finder_table | escape }}"
+      data-option-position="{{ sf_option.position }}"
+      data-result="{{ 'sections.size_finder.result_html' | t | escape }}"
+      data-select-label="{{ 'sections.size_finder.select' | t | escape }}"
+      data-sold-out-label="{{ 'sections.size_finder.sold_out' | t | escape }}"
+      data-invalid="{{ 'sections.size_finder.invalid' | t | escape }}"
+    >
+      <div class="main-product-modal__inner">
+        <button type="button" class="main-product-modal__close" aria-label="{{ 'accessibility.close' | t }}" data-size-finder-close>×</button>
+        <h2 class="main-product-modal__title" id="SizeFinderTitle-{{ section_id }}">{{ 'sections.size_finder.title' | t }}</h2>
+        <p class="size-finder__intro">{{ 'sections.size_finder.intro' | t }}</p>
+
+        <form class="size-finder__form" data-size-finder-form novalidate>
+          <fieldset class="size-finder__units">
+            <legend class="visually-hidden">{{ 'sections.size_finder.units' | t }}</legend>
+            <label><input type="radio" name="units" value="metric"{% if settings.size_finder_units != 'imperial' %} checked{% endif %}> <span>cm / kg</span></label>
+            <label><input type="radio" name="units" value="imperial"{% if settings.size_finder_units == 'imperial' %} checked{% endif %}> <span>ft / lb</span></label>
+          </fieldset>
+
+          <div class="size-finder__row" data-units-metric>
+            <label class="size-finder__field">
+              <span>{{ 'sections.size_finder.height' | t }}</span>
+              <span class="size-finder__input"><input type="number" name="cm" inputmode="numeric" min="120" max="220" placeholder="165"><em>cm</em></span>
+            </label>
+            <label class="size-finder__field">
+              <span>{{ 'sections.size_finder.weight' | t }}</span>
+              <span class="size-finder__input"><input type="number" name="kg" inputmode="numeric" min="30" max="200" placeholder="58"><em>kg</em></span>
+            </label>
+          </div>
+
+          <div class="size-finder__row" data-units-imperial hidden>
+            <div class="size-finder__field">
+              <span id="SizeFinderFt-{{ section_id }}">{{ 'sections.size_finder.height' | t }}</span>
+              <span class="size-finder__pair">
+                <span class="size-finder__input"><input type="number" name="ft" inputmode="numeric" min="4" max="7" placeholder="5" aria-labelledby="SizeFinderFt-{{ section_id }}"><em>ft</em></span>
+                <span class="size-finder__input"><input type="number" name="in" inputmode="numeric" min="0" max="11" placeholder="5" aria-label="in"><em>in</em></span>
+              </span>
+            </div>
+            <label class="size-finder__field">
+              <span>{{ 'sections.size_finder.weight' | t }}</span>
+              <span class="size-finder__input"><input type="number" name="lb" inputmode="numeric" min="66" max="440" placeholder="128"><em>lb</em></span>
+            </label>
+          </div>
+
+          <fieldset class="size-finder__fit">
+            <legend>{{ 'sections.size_finder.fit' | t }}</legend>
+            <label><input type="radio" name="fit" value="-1"> <span>{{ 'sections.size_finder.fit_snug' | t }}</span></label>
+            <label><input type="radio" name="fit" value="0" checked> <span>{{ 'sections.size_finder.fit_regular' | t }}</span></label>
+            <label><input type="radio" name="fit" value="1"> <span>{{ 'sections.size_finder.fit_relaxed' | t }}</span></label>
+          </fieldset>
+
+          <button type="submit" class="size-finder__submit">{{ 'sections.size_finder.submit' | t }}</button>
+        </form>
+
+        <div class="size-finder__result" data-size-finder-result role="status" aria-live="polite" hidden>
+          <p class="size-finder__answer" data-size-finder-answer></p>
+          <button type="button" class="size-finder__select" data-size-finder-select hidden></button>
+          <p class="size-finder__note">{{ 'sections.size_finder.note' | t }}</p>
+        </div>
+      </div>
+    </dialog>
+  {%- endif -%}
+{%- endif -%}

@@ -523,6 +523,7 @@
                   {{ section.settings.action_size_guide_label }}
                 </button></li>
               {%- endif -%}
+              {%- render 'size-finder', product: product, section_id: section.id, part: 'button' -%}
               {%- if section.settings.action_ask_label != blank -%}
                 {%- if section.settings.action_ask_url != blank -%}
                   <li><a href="{{ section.settings.action_ask_url }}" class="main-product__action">
@@ -766,6 +767,10 @@
       {%- endif -%}
     </div>
   </dialog>
+{%- endif -%}
+
+{%- if section.settings.show_action_row -%}
+  {%- render 'size-finder', product: product, section_id: section.id, part: 'dialog' -%}
 {%- endif -%}
 
 {%- if section.settings.show_action_row and section.settings.action_size_guide_label != blank -%}
