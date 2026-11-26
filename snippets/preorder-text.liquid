@@ -1,0 +1,26 @@
+{%- comment -%}
+  Pre-order message (Nhóm 3 #10): Theme settings → Pre-order → Message, "[date]" replaced by
+    - "from Dec 15" when the product has a ship date (metafield custom.preorder_date, type Date), or
+    - the "When there is no ship date" text (default "in 3–4 weeks").
+  The same text is added to the order line as the "Pre-order" property.
+
+  Accepts:
+    product {Object}
+    part {String} 'message' (default, "Pre-order — ships in 3–4 weeks") | 'property' ("Ships in 3–4 weeks",
+         the value of the order line note, whose name already says "Pre-order")
+{%- endcomment -%}
+{%- liquid
+  assign po_date = product.metafields.custom.preorder_date.value | default: product.metafields.custom.preorder_date
+  if po_date != blank
+    assign po_formatted = po_date | date: '%b %-d'
+    assign po_when = 'sections.preorder.from_date' | t: date: po_formatted
+  else
+    assign po_when = settings.preorder_fallback | default: 'in 3–4 weeks'
+  endif
+  if part == 'property'
+    echo 'sections.preorder.ships' | t: when: po_when | strip | escape
+  else
+    assign po_message = settings.preorder_message | default: 'Pre-order — ships [date]'
+    echo po_message | replace: '[date]', po_when | strip | escape
+  endif
+-%}

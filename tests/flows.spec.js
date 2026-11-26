@@ -44,7 +44,9 @@ test('collection: hover box reads "Add to cart" for single-variant / colour-only
   // markup contract: add button ↔ "Add to cart", quick view ↔ "Select options"
   for (const el of await labels.all()) {
     const text = ((await el.textContent()) || '').trim().toLowerCase();
-    if ((await el.getAttribute('data-card-add')) || (await el.getAttribute('data-quick-color-add')) !== null) expect(text).toBe('add to cart');
+    // pre-order products (Nhóm 3 #10) read "Pre-order" instead of "Add to cart"
+    const preorder = (await el.locator('xpath=ancestor::*[contains(@class,"card-wrapper")]//*[contains(@class,"badge--preorder")]').count()) > 0;
+    if ((await el.getAttribute('data-card-add')) || (await el.getAttribute('data-quick-color-add')) !== null) expect(text).toBe(preorder ? 'pre-order' : 'add to cart');
     else if ((await el.getAttribute('data-quick-view-trigger')) !== null) expect(text).toBe('select options');
   }
 
@@ -55,10 +57,11 @@ test('collection: hover box reads "Add to cart" for single-variant / colour-only
     const href = await card.locator('a[href*="/products/"]').first().getAttribute('href');
     const product = await page.evaluate(async (u) => (await fetch(u.split('?')[0] + '.js')).json(), href);
     const label = ((await card.locator('.mc-card__strip-label').textContent()) || '').trim().toLowerCase();
+    const preorder = (await card.locator('.badge--preorder').count()) > 0;
     // single variant, or colour is the only option (quick add, theme setting card_quick_add) → Add to cart
     const single = product.variants.length === 1 || (product.options.length === 1 && /^colou?r$/i.test(product.options[0].name || product.options[0]));
     if (!product.available) expect(label).toBe('sold out');
-    else expect(label).toBe(single ? 'add to cart' : 'select options');
+    else expect(label).toBe(single ? (preorder ? 'pre-order' : 'add to cart') : 'select options');
   }
 });
 
@@ -159,4 +162,28 @@ test('announcement bar: messages rotate and the countdown ticks', async ({ page 
     const t1 = await timer.innerText();
     await expect.poll(() => timer.innerText(), { timeout: 3000 }).not.toBe(t1);
   }
+});
+
+// Nhóm 3 #10 — pre-order (demo: Cable Knit Cardigan in Sage = stock 0 + continue selling)
+test('pre-order: the variant switches the button, the note and the order line property', async ({ page }) => {
+  await visit(page, '/products/cable-knit-cardigan');
+  const note = page.locator('[data-preorder-note]');
+  test.skip(!(await note.count()), 'no pre-order variants on this product');
+  const sage = page.locator('.main-product__option-pill', { has: page.locator('input[value="Sage"]') }).first();
+  test.skip(!(await sage.count()), 'no Sage colour');
+  const label = page.locator('.main-product__add-to-cart [data-add-text]');
+  await sage.click();
+  await expect(note).toBeVisible();
+  await expect(label).toHaveText(/pre-?order/i);
+  await expect(page.locator('[data-preorder-prop]')).toBeEnabled();
+  await expect(page.locator('[data-preorder-hide]')).toBeHidden();
+  // back to an in-stock colour → normal add to cart again
+  const other = page.locator('.main-product__option').filter({ has: page.locator('.is-color') })
+    .locator('.main-product__option-pill:not(.is-disabled)').filter({ hasNot: page.locator('input[value="Sage"]') }).first();
+  await expect(other).toHaveCount(1);
+  await other.click();
+  await expect(note).toBeHidden();
+  await expect(label).not.toHaveText(/pre-?order/i);
+  await expect(page.locator('[data-preorder-prop]')).toBeDisabled();
+  await expect(page.locator('[data-preorder-hide]')).toBeVisible();
 });

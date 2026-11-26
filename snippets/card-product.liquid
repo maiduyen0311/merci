@@ -118,6 +118,20 @@
       endif
     endif
 
+    # Pre-order (Nhóm 3 #10): badge when the variant the card shows sells as a pre-order
+    assign po_card_ids = ''
+    if settings.preorder_enable
+      capture po_card_ids
+        render 'preorder-ids', product: card_product
+      endcapture
+      assign po_card_key = ',' | append: card_product.selected_or_first_available_variant.id | append: ','
+      if settings.preorder_badge and po_card_ids contains po_card_key
+        assign badge_type = 'preorder'
+        assign badge_text = settings.preorder_badge_label | default: 'Pre-order' | upcase
+        assign badge_aria = settings.preorder_badge_label | default: 'Pre-order'
+      endif
+    endif
+
     assign show_inventory_progress = show_inventory_progress | default: false
     assign inventory_progress_max = inventory_progress_max | default: 100
     assign sold_progress_label = sold_progress_label | default: 'Sold'
@@ -213,9 +227,14 @@
                 endif
               -%}
               {%- if qa_mode != '' -%}
+                {%- comment -%} "p": pre-order variant → quick add sends the "Pre-order" line property (data-preorder-*) {%- endcomment -%}
                 <script type="application/json" data-card-variants>
-                  [{%- for v in card_product.variants -%}{"id":{{ v.id }},"o":{{ v.options | json }},"a":{{ v.available }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]
+                  [{%- for v in card_product.variants -%}{%- assign po_v_key = ',' | append: v.id | append: ',' -%}{"id":{{ v.id }},"o":{{ v.options | json }},"a":{{ v.available }}{% if po_card_ids contains po_v_key %},"p":1{% endif %}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]
                 </script>
+                {%- if po_card_ids != blank -%}
+                  {%- capture po_card_text -%}{%- render 'preorder-text', product: card_product, part: 'property' -%}{%- endcapture -%}
+                  <span hidden data-preorder-prop-name="{{ settings.preorder_property | default: 'Pre-order' | escape }}" data-preorder-prop-value="{{ po_card_text }}"></span>
+                {%- endif -%}
               {%- endif -%}
               {%- if qa_mode == 'size' -%}
                 <div
@@ -245,9 +264,9 @@
                     data-quick-color-add
                     data-color-index="{{ qa_color_idx }}"
                     data-default-color="{{ qa_default_color | escape }}"
-                    aria-label="{{ 'products.product.add_to_cart' | t }}: {{ card_product.title | escape }}"
+                    aria-label="{% if badge_type == 'preorder' %}{{ settings.preorder_button | default: 'Pre-order' | escape }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endif %}: {{ card_product.title | escape }}"
                   >
-                    {{- 'products.product.add_to_cart' | t -}}
+                    {%- if badge_type == 'preorder' -%}{{ settings.preorder_button | default: 'Pre-order' }}{%- else -%}{{ 'products.product.add_to_cart' | t }}{%- endif -%}
                   </button>
                 {%- elsif card_product.variants.size == 1 -%}
                   <button

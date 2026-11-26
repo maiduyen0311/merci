@@ -1,0 +1,40 @@
+{%- comment -%}
+  Pre-order (user 2026-11-26, "Nhóm 3 #10", included in the theme package).
+  Outputs ",<variant id>,<variant id>," — the product's variants that sell as pre-order — or nothing.
+  Capture it: {%- capture ids -%}{% render 'preorder-ids', product: product %}{%- endcapture -%}
+
+  A variant is a pre-order when Theme settings → Pre-order is on and it can be bought, and either
+    - the product has the pre-order tag (every available variant), or
+    - "Out of stock but still selling" is on and the variant is tracked, at 0 or less, and set to
+      "Continue selling when out of stock" in Shopify.
+
+  Accepts: product {Object}
+{%- endcomment -%}
+{%- if settings.preorder_enable and product != blank -%}
+  {%- liquid
+    assign po_tag = settings.preorder_tag | default: 'pre-order' | downcase | strip
+    assign po_tagged = false
+    for tag in product.tags
+      assign tag_down = tag | downcase
+      if tag_down == po_tag
+        assign po_tagged = true
+        break
+      endif
+    endfor
+    assign po_ids = ''
+    for v in product.variants
+      if v.available
+        assign po_this = po_tagged
+        if settings.preorder_auto and v.inventory_management != blank and v.inventory_quantity <= 0 and v.inventory_policy == 'continue'
+          assign po_this = true
+        endif
+        if po_this
+          assign po_ids = po_ids | append: ',' | append: v.id
+        endif
+      endif
+    endfor
+    if po_ids != blank
+      echo po_ids | append: ','
+    endif
+  -%}
+{%- endif -%}

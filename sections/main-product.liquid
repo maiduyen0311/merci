@@ -449,6 +449,25 @@
             {% render 'gift-card-recipient-form', product: product, form: form, section: section %}
           {%- endif -%}
 
+          {%- comment -%} Pre-order (Nhóm 3 #10): note + order line property, switched per variant by the script below {%- endcomment -%}
+          {%- capture po_ids -%}{%- render 'preorder-ids', product: product -%}{%- endcapture -%}
+          {%- if po_ids != blank -%}
+            {%- capture po_text -%}{%- render 'preorder-text', product: product -%}{%- endcapture -%}
+            {%- capture po_prop -%}{%- render 'preorder-text', product: product, part: 'property' -%}{%- endcapture -%}
+            {%- liquid
+              assign po_key = ',' | append: current_variant.id | append: ','
+              assign po_now = false
+              if po_ids contains po_key
+                assign po_now = true
+              endif
+            -%}
+            <p class="main-product__preorder" data-preorder-note data-preorder-ids="{{ po_ids }}"{% unless po_now %} hidden{% endunless %}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              <span>{{ po_text }}</span>
+            </p>
+            <input type="hidden" name="properties[{{ settings.preorder_property | default: 'Pre-order' | escape }}]" value="{{ po_prop }}" data-preorder-prop{% unless po_now %} disabled{% endunless %}>
+          {%- endif -%}
+
           <span class="main-product__qty-label">{{ 'products.product.quantity.label' | t }}:</span>
           <div class="main-product__qty-row">
             <div class="main-product__qty">
@@ -464,11 +483,12 @@
               name="add"
               class="main-product__add-to-cart"
               data-add-label="{{ section.settings.add_to_cart_label | default: 'ADD TO CART' | escape }}"
+              data-preorder-label="{{ settings.preorder_button | default: 'Pre-order' | escape }}"
               data-sold-out-label="{{ 'products.product.sold_out' | t }}"
               data-unavailable-label="{{ 'products.product.unavailable' | t }}"
               {% unless in_stock %}disabled aria-disabled="true"{% endunless %}
             >
-              <span data-add-text>{% if in_stock %}{{ section.settings.add_to_cart_label | default: 'ADD TO CART' }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
+              <span data-add-text>{% if in_stock and po_now %}{{ settings.preorder_button | default: 'Pre-order' }}{% elsif in_stock %}{{ section.settings.add_to_cart_label | default: 'ADD TO CART' }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
             </button>
 
             {%- if section.settings.show_wishlist_button and section.settings.wishlist_position == 'buttons' -%}
@@ -649,7 +669,9 @@
               endif
             -%}
             {%- if section.settings.delivery_estimate_text != blank or delivery_dynamic -%}
+              {%- comment -%} pre-order variants ship later → no "delivered by …" promise (Nhóm 3 #10) {%- endcomment -%}
               <li
+                {% if po_ids != blank %}data-preorder-hide{% if po_now %} hidden{% endif %}{% endif %}
                 {% if delivery_dynamic %}
                   data-delivery-estimate
                   data-min="{{ section.settings.delivery_min_days }}"
@@ -713,8 +735,18 @@
           {%- endif -%}
         </p>
       </div>
-      <button type="button" class="main-product__sticky-atc-btn" data-sticky-add {% unless in_stock %}disabled{% endunless %}>
-        {%- if in_stock -%}
+      <button
+        type="button"
+        class="main-product__sticky-atc-btn"
+        data-sticky-add
+        data-add-label="{{ section.settings.sticky_atc_label | default: 'ADD' | escape }}"
+        data-preorder-label="{{ settings.preorder_button | default: 'Pre-order' | escape }}"
+        data-sold-out-label="{{ section.settings.sticky_atc_sold_out | default: 'SOLD OUT' | escape }}"
+        {% unless in_stock %}disabled{% endunless %}
+      >
+        {%- if in_stock and po_now -%}
+          {{ settings.preorder_button | default: 'Pre-order' }}
+        {%- elsif in_stock -%}
           {{ section.settings.sticky_atc_label | default: 'ADD' }}
         {%- else -%}
           {{ section.settings.sticky_atc_sold_out | default: 'SOLD OUT' }}
@@ -919,6 +951,8 @@
     // Add to cart / Buy it now / sticky bar follow the selected variant (sold out, or no such combination)
     function updateAvailability(variant) {
       var available = !!(variant && variant.available);
+      var poIds = (root.querySelector('[data-preorder-note]') || { dataset: {} }).dataset.preorderIds || '';
+      var preorder = available && poIds.indexOf(',' + variant.id + ',') !== -1;
       var addBtn = root.querySelector('.main-product__add-to-cart');
       if (addBtn) {
         addBtn.disabled = !available;
@@ -926,14 +960,23 @@
         else addBtn.setAttribute('aria-disabled', 'true');
         var text = addBtn.querySelector('[data-add-text]');
         if (text) {
-          text.textContent = available ? addBtn.dataset.addLabel
+          text.textContent = available ? (preorder ? addBtn.dataset.preorderLabel : addBtn.dataset.addLabel)
             : (variant ? addBtn.dataset.soldOutLabel : addBtn.dataset.unavailableLabel);
         }
       }
+      // Pre-order (Nhóm 3 #10): note + "Pre-order" order line property for those variants only
+      var poNote = root.querySelector('[data-preorder-note]');
+      if (poNote) poNote.hidden = !preorder;
+      var poProp = root.querySelector('[data-preorder-prop]');
+      if (poProp) poProp.disabled = !preorder;
+      root.querySelectorAll('[data-preorder-hide]').forEach(function (el) { el.hidden = preorder; });
       var buyNow = root.querySelector('.main-product__buy-now');
       if (buyNow) buyNow.disabled = !available;
       var stickyAdd = document.querySelector('#StickyATC-{{ section.id }} [data-sticky-add]');
-      if (stickyAdd) stickyAdd.disabled = !available;
+      if (stickyAdd) {
+        stickyAdd.disabled = !available;
+        stickyAdd.textContent = available ? (preorder ? stickyAdd.dataset.preorderLabel : stickyAdd.dataset.addLabel) : stickyAdd.dataset.soldOutLabel;
+      }
     }
 
     // Back-in-stock form: shown for sold-out variants only; hidden fields follow the selection.

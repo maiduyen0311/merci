@@ -668,6 +668,10 @@
     "announcement": {
       "label": "Announcements",
       "days_short": "d"
+    },
+    "preorder": {
+      "from_date": "from {{ date }}",
+      "ships": "Ships {{ when }}"
     }
   },
   "localization": {

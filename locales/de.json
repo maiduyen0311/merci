@@ -644,6 +644,10 @@
     "announcement": {
       "label": "Ankündigungen",
       "days_short": "T"
+    },
+    "preorder": {
+      "from_date": "ab {{ date }}",
+      "ships": "Versand {{ when }}"
     }
   },
   "localization": {

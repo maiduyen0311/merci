@@ -1142,6 +1142,7 @@
         23
       ],
       "sold": 37,
+      "preorder": true,
       "compare": 39,
       "badge": "sale"
     },
@@ -2771,6 +2772,9 @@
         17
       ],
       "sold": 135,
+      "preorder": [
+        "Sage"
+      ],
       "badge": "new"
     },
     {

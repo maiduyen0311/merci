@@ -243,6 +243,13 @@ const SOLD_OUT = {
   'Crinkle Maxi Skirt': ['Rust'],
 };
 
+// Pre-order (user 2026-11-26, Nhóm 3 #10): stock 0 but "continue selling when out of stock", so the
+// theme shows PRE-ORDER + "ships in …" (Theme settings → Pre-order). true = every variant, [colours] = those.
+const PREORDER = {
+  'Chunky Knit Beanie': true,
+  'Cable Knit Cardigan': ['Sage'],
+};
+
 const slug = (s) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const products = rows.map((r, i) => {
   const p = {
@@ -269,6 +276,7 @@ const products = rows.map((r, i) => {
     p.extraImages = [...(p.extraImages || []), `g-${p.handle}-${view}`];
   }
   if (SOLD_OUT[r.title]) p.soldOut = SOLD_OUT[r.title];
+  if (PREORDER[r.title]) p.preorder = PREORDER[r.title];
   if (r.compare) p.compare = r.compare;
   if (r.badge) p.badge = r.badge;
   else if (r.compare) p.badge = 'sale';

@@ -571,6 +571,73 @@
     ]
   },
   {
+    "name": "Pre-order",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Shows PRE-ORDER instead of Add to cart, a \"ships …\" line and a Pre-order note on the order line. Payment is taken at checkout as usual."
+      },
+      {
+        "type": "checkbox",
+        "id": "preorder_enable",
+        "label": "Enable pre-order",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "preorder_auto",
+        "label": "Out of stock but still selling",
+        "info": "Variants at 0 stock with \"Continue selling when out of stock\" ticked in Shopify.",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "preorder_tag",
+        "label": "Product tag",
+        "info": "Products with this tag are always pre-order.",
+        "default": "pre-order"
+      },
+      {
+        "type": "text",
+        "id": "preorder_button",
+        "label": "Button label",
+        "default": "Pre-order"
+      },
+      {
+        "type": "text",
+        "id": "preorder_message",
+        "label": "Message",
+        "info": "[date] = \"from Dec 15\" when the product has a ship date (metafield custom.preorder_date, type Date), otherwise the text below.",
+        "default": "Pre-order — ships [date]"
+      },
+      {
+        "type": "text",
+        "id": "preorder_fallback",
+        "label": "When there is no ship date",
+        "default": "in 3–4 weeks"
+      },
+      {
+        "type": "text",
+        "id": "preorder_property",
+        "label": "Order line note name",
+        "info": "Shown in the cart, the order and the notification emails.",
+        "default": "Pre-order"
+      },
+      {
+        "type": "checkbox",
+        "id": "preorder_badge",
+        "label": "Show a badge on product cards",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "preorder_badge_label",
+        "label": "Badge label",
+        "default": "Pre-order"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.currency_format.name",
     "settings": [
       {

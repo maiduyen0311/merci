@@ -656,6 +656,10 @@
     "announcement": {
       "label": "Annonces",
       "days_short": "j"
+    },
+    "preorder": {
+      "from_date": "à partir du {{ date }}",
+      "ships": "Expédition {{ when }}"
     }
   },
   "localization": {

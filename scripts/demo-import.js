@@ -218,15 +218,17 @@ if (step('products') || step('collections')) {
       if (c) optionValues.push({ optionName: 'Color', name: c.name });
       if (s) optionValues.push({ optionName: 'Size', name: s });
       if (!c && !s) optionValues.push({ optionName: 'Title', name: 'Default Title' });
+      // Pre-order (catalogue `preorder`): stock 0 + keep selling → the theme's pre-order mode
+      const preorder = p.preorder === true || (Array.isArray(p.preorder) && c && p.preorder.includes(c.name));
       const v = {
         optionValues,
         price: String(p.price),
         sku: `${prefix.slice(0, 2).toUpperCase()}-${p.handle.split('-').map((w) => w[0]).join('').toUpperCase()}-${String(i + 1).padStart(2, '0')}`,
-        inventoryPolicy: 'DENY',
+        inventoryPolicy: preorder ? 'CONTINUE' : 'DENY',
         inventoryItem: { tracked: true },
         // Sold out: every XL / 40, plus the catalogue's soldOut (true = whole product, [colours] = those colours)
         // so the crossed-out option state and the back-in-stock form show up
-        inventoryQuantities: [{ locationId: location.id, name: 'available', quantity: s === 'XL' || s === '40' || p.soldOut === true || (Array.isArray(p.soldOut) && c && p.soldOut.includes(c.name)) ? 0 : 12 + ((i * 7) % 30) }],
+        inventoryQuantities: [{ locationId: location.id, name: 'available', quantity: preorder || s === 'XL' || s === '40' || p.soldOut === true || (Array.isArray(p.soldOut) && c && p.soldOut.includes(c.name)) ? 0 : 12 + ((i * 7) % 30) }],
       };
       if (p.compare) v.compareAtPrice = String(p.compare);
       if (c) v.file = { originalSource: imageUrl(c.image), contentType: 'IMAGE' };

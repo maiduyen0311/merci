@@ -43,12 +43,16 @@ function refresh(card) {
   });
 }
 
-async function add(btn, variant) {
+async function add(btn, variant, card) {
   if (!variant || !variant.a) return;
   btn.classList.add('is-loading');
   btn.setAttribute('aria-busy', 'true');
+  const item = { id: variant.id, quantity: 1 };
+  // pre-order variant (Nhóm 3 #10): same "Pre-order" line property as the product page
+  const po = variant.p && card && card.querySelector('[data-preorder-prop-name]');
+  if (po) item.properties = { [po.dataset.preorderPropName]: po.dataset.preorderPropValue };
   try {
-    await addToCart([{ id: variant.id, quantity: 1 }]);
+    await addToCart([item]);
   } catch (err) {
     toast(err.message);
   } finally {
@@ -67,7 +71,7 @@ function onClick(e) {
     const card = btn.closest(CARD);
     if (!card) return;
     const holder = sizeBtn ? btn.closest('[data-quick-sizes]') : btn;
-    add(btn, find(card, holder, sizeBtn ? btn.dataset.quickSize : null));
+    add(btn, find(card, holder, sizeBtn ? btn.dataset.quickSize : null), card);
     return;
   }
   // a colour dot was picked → update which sizes are available
