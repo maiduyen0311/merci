@@ -3,3 +3,4 @@
 - [Business decisions](business-decisions.md) - new item, $59, 1 demo, revenue from bundled app-like features
 - [Restock feature](restock-feature.md) - back-in-stock = theme form (no auto email), app paused; merci-demo is in Partner org PhoenixCorp
 - [Design direction](design-direction.md) - differ from Top Market/Occasion; ThemeForest refs for hover + undesigned pages, Merci style
+- [Packaging scope](packaging-scope.md) - Nhóm 1 (quick add, cart upsell, rewards bar, delivery dates) free in package + docs; Notify me demo-only, not packaged/documented, advertised as customization
