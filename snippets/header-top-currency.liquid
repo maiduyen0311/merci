@@ -42,16 +42,15 @@
   endfor
   assign picked_codes = picked | split: ','
 
-  # the flag next to the current currency: the current country, or the preferred one for that currency
+  # the flag next to the current currency = the country chosen for that currency ("USD:US"), not the
+  # visitor's country: a visitor from Vietnam in a USD market must still see the US flag next to USD.
+  # The visitor's country is only the fallback when no listed country uses the currency.
   assign current_country = localization.country
   for c in localization.available_countries
     if picked_codes contains c.iso_code and c.currency.iso_code == current_currency
       assign current_country = c
     endif
   endfor
-  if localization.country.currency.iso_code == current_currency
-    assign current_country = localization.country
-  endif
 
   # Display-only converter: the store has a single currency (no Shopify Payments / markets) →
   # prices are shown converted with Shopify's public rates, checkout stays in the store currency.
@@ -73,6 +72,18 @@
       {%- liquid
         assign shop_currency = cart.currency.iso_code
         assign note = section.settings.converter_note | default: 'Prices in [currency] are estimates. You pay in [shop_currency] at checkout.' | replace: '[shop_currency]', shop_currency
+        # flag for the store currency: its pair in "Currency options" (USD:US), else the first two letters
+        assign shop_flag = ''
+        for pair in pairs
+          assign parts = pair | strip | split: ':'
+          assign pair_code = parts[0] | strip | upcase
+          if pair_code == shop_currency and parts[1] != blank
+            assign shop_flag = parts[1] | strip | downcase
+          endif
+        endfor
+        if shop_flag == blank
+          assign shop_flag = shop_currency | slice: 0, 2 | downcase
+        endif
       -%}
       <button
         type="button"
@@ -81,7 +92,7 @@
         aria-expanded="false"
         aria-controls="{{ list_id }}"
       >
-        {{- current_country | image_url: width: 36 | image_tag: class: 'header-top__flag', alt: '', width: 18, height: 12, loading: 'lazy' -}}
+        <img class="header-top__flag" src="https://cdn.shopify.com/static/images/flags/{{ shop_flag }}.svg?width=36" alt="" width="18" height="12" loading="lazy">
         <span class="visually-hidden">{{ 'localization.currency_label' | t }}: </span>
         <span class="header-top__selector-label" data-converter-label>{{ shop_currency }}</span>
         <span class="header-top__chevron" aria-hidden="true">
@@ -113,7 +124,7 @@
                 assign flag_country = code | slice: 0, 2 | downcase
               endif
               if code == shop_currency
-                assign flag_country = current_country.iso_code | downcase
+                assign flag_country = shop_flag
               endif
             -%}
             <li class="disclosure__item">
