@@ -652,6 +652,10 @@
       "popular": "Recherches populaires",
       "products": "Tendances du moment",
       "try": "Essayez plutôt :"
+    },
+    "announcement": {
+      "label": "Annonces",
+      "days_short": "j"
     }
   },
   "localization": {

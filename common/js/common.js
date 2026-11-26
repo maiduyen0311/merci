@@ -23,6 +23,7 @@ import CartUpsell from './modules/cart-upsell.js';
 import CardQuickAdd from './modules/card-quick-add.js';
 import MobileBottomBar from './modules/mobile-bottom-bar.js';
 import SizeFinder from './modules/size-finder.js';
+import AnnouncementBar from './modules/announcement-bar.js';
 // DEMO-ONLY (not packaged): shop the look hotspots
 import McShopTheLook from './modules/mc-shop-the-look.js';
 import McVideoReels from './modules/mc-video-reels.js'; // demo-only
@@ -67,6 +68,7 @@ const initThemeScripts = () => {
   CardQuickAdd.init();
   MobileBottomBar.init();
   SizeFinder.init();
+  AnnouncementBar.init();
   McShopTheLook.init(); // demo-only
   McVideoReels.init(); // demo-only
   CollectionView.init();

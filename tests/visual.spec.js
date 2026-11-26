@@ -4,7 +4,7 @@
 const { test, expect } = require('@playwright/test');
 const { PAGES, visit } = require('./helpers');
 
-const MASK = ['[data-countdown]', '.sales-popup', '.flash-deals__timer', 'iframe', 'video', '.mc-slideshow', '.mc-pdp__timer', 'cart-drawer', '[data-delivery-estimate]'];
+const MASK = ['[data-countdown]', '.sales-popup', '.flash-deals__timer', 'iframe', 'video', '.mc-slideshow', '.mc-pdp__timer', 'cart-drawer', '[data-delivery-estimate]', '[data-announcement-bar]'];
 
 for (const name of ['home', 'collection', 'product', 'cart']) {
   test(`visual: ${name}`, async ({ page }) => {

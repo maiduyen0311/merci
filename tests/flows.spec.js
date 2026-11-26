@@ -67,6 +67,9 @@ test('collection: quick view opens and closes with Escape', async ({ page }) => 
   // visible one: the hover box on desktop, the "Select options +" link on touch screens
   const trigger = page.locator(S.quickViewTrigger + ':visible').first();
   test.skip(!(await trigger.count()), 'no quick view');
+  // centre it first (a forced click at the bottom of a phone screen would hit the fixed bottom bar),
+  // then hover the card so the desktop hover box is open
+  await trigger.evaluate((el) => el.scrollIntoView({ block: 'center' }));
   await page.locator(S.card).first().hover().catch(() => {});
   await trigger.click({ force: true });
   await expect(page.locator(S.quickViewModal)).toBeVisible();
@@ -136,4 +139,24 @@ test('search page: no results suggests popular terms / products', async ({ page 
   test.skip(!(await panel.count()), 'search suggestions are turned off');
   await expect(panel).toContainText(/no results/i);
   expect(await panel.locator('.search-discovery__chip, .search-discovery__product').count()).toBeGreaterThan(0);
+});
+
+// Nhóm 3 #12 — announcement bar (rotating messages + countdown)
+test('announcement bar: messages rotate and the countdown ticks', async ({ page }) => {
+  await visit(page, PAGES.home);
+  const bar = page.locator('[data-announcement-bar]').first();
+  test.skip(!(await bar.count()), 'no announcement bar');
+  await expect(bar).toBeVisible();
+  const active = bar.locator('.mc-announce__item.is-active');
+  await expect(active).toHaveCount(1);
+  const next = bar.locator('[data-announce-next]');
+  test.skip(!(await next.count()), 'single message');
+  const first = await active.innerText();
+  await next.click();
+  await expect.poll(() => active.innerText()).not.toBe(first);
+  const timer = bar.locator('[data-announce-timer]').filter({ hasText: /\d{2}:\d{2}:\d{2}/ }).first();
+  if (await timer.count()) {
+    const t1 = await timer.innerText();
+    await expect.poll(() => timer.innerText(), { timeout: 3000 }).not.toBe(t1);
+  }
 });

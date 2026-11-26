@@ -2,6 +2,63 @@
   "name": "Header",
   "type": "header",
   "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "blocks": {
+        "ship": {
+          "type": "message",
+          "settings": {
+            "text": "Free shipping on orders over $75",
+            "link_label": "Shop now",
+            "link": "shopify://collections/all",
+            "countdown": "none",
+            "countdown_end": "",
+            "countdown_expired": "hide",
+            "countdown_hour": 14
+          }
+        },
+        "dispatch": {
+          "type": "message",
+          "settings": {
+            "text": "Order within [timer] for same-day dispatch",
+            "link_label": "",
+            "link": "",
+            "countdown": "daily",
+            "countdown_end": "",
+            "countdown_expired": "hide",
+            "countdown_hour": 14
+          }
+        },
+        "straw": {
+          "type": "message",
+          "settings": {
+            "text": "New in: the <em>summer straw</em> edit",
+            "link_label": "Discover",
+            "link": "shopify://collections/new-arrival",
+            "countdown": "none",
+            "countdown_end": "",
+            "countdown_expired": "hide",
+            "countdown_hour": 14
+          }
+        }
+      },
+      "block_order": [
+        "ship",
+        "dispatch",
+        "straw"
+      ],
+      "settings": {
+        "mode": "rotate",
+        "interval": 5,
+        "marquee_speed": 35,
+        "dismissible": false,
+        "full_width": true,
+        "mobile_hide": false,
+        "background": "#231e17",
+        "text_color": "#ffffff",
+        "accent_color": "#f2c6bf"
+      }
+    },
     "header": {
       "type": "header",
       "settings": {
@@ -195,6 +252,7 @@
     }
   },
   "order": [
+    "announcement",
     "header",
     "navigation"
   ]

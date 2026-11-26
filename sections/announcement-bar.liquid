@@ -1,0 +1,194 @@
+{%- comment -%}
+  Announcement bar (user 2026-11-26, "Nhóm 3 #12", included in the theme package).
+  Sits above the header (header group). Several messages (blocks) that rotate — or scroll as a
+  marquee — each with an optional link and an optional countdown:
+    - "date":  to a fixed date/time (store time zone); when it has passed the message is hidden
+               (or keeps showing without the timer)
+    - "daily": to a cut-off hour every day (store time) — e.g. "order within 03:12:45 for same-day
+               dispatch"; it never runs out.
+  Logic: common/js/modules/announcement-bar.js. Styles: common/scss/section/_announcement-bar.scss.
+{%- endcomment -%}
+{%- liquid
+  assign visible_blocks = section.blocks | where: 'type', 'message'
+  assign is_marquee = false
+  if section.settings.mode == 'marquee'
+    assign is_marquee = true
+  endif
+-%}
+{%- if visible_blocks.size > 0 -%}
+  {%- style -%}
+    #McAnnounce-{{ section.id }} {
+      --ann-bg: {{ section.settings.background }};
+      --ann-fg: {{ section.settings.text_color }};
+      --ann-accent: {{ section.settings.accent_color }};
+      --ann-speed: {{ section.settings.marquee_speed }}s;
+    }
+  {%- endstyle -%}
+
+  {%- capture messages -%}
+    {%- for block in visible_blocks -%}
+      {%- liquid
+        assign cd = block.settings.countdown
+        assign end_value = ''
+        if cd == 'date'
+          assign end_value = block.settings.countdown_end | strip
+        elsif cd == 'daily'
+          assign end_value = block.settings.countdown_hour
+        endif
+      -%}
+      <div
+        class="mc-announce__item"
+        data-announce-item
+        {% if cd != 'none' and end_value != blank %}
+          data-countdown-type="{{ cd }}"
+          data-countdown-end="{{ end_value | escape }}"
+          data-countdown-expired="{{ block.settings.countdown_expired }}"
+        {% endif %}
+        {{ block.shopify_attributes }}
+      >
+        {%- liquid
+          assign has_timer = false
+          if cd != 'none' and end_value != blank
+            assign has_timer = true
+          endif
+          # "[timer]" in the text = where the countdown goes; otherwise after the text
+          assign text_parts = block.settings.text | split: '[timer]'
+        -%}
+        {%- capture timer -%}<span class="mc-announce__timer" data-announce-timer></span>{%- endcapture -%}
+        <span class="mc-announce__text">
+          {%- if has_timer and block.settings.text contains '[timer]' -%}
+            {{- text_parts[0] -}}{{- timer -}}{{- text_parts[1] -}}
+          {%- else -%}
+            {{- block.settings.text | remove: '[timer]' -}}
+            {%- if has_timer %} {{ timer }}{% endif -%}
+          {%- endif -%}
+        </span>
+        {%- if block.settings.link != blank and block.settings.link_label != blank -%}
+          <a href="{{ block.settings.link }}" class="mc-announce__link">{{ block.settings.link_label | escape }}</a>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  <div
+    id="McAnnounce-{{ section.id }}"
+    class="mc-announce mc-announce--{{ section.settings.mode }}{% if section.settings.mobile_hide %} mc-announce--mobile-hide{% endif %}"
+    role="region"
+    aria-label="{{ 'sections.announcement.label' | t }}"
+    data-announcement-bar
+    data-mode="{{ section.settings.mode }}"
+    data-interval="{{ section.settings.interval }}"
+    data-tz="{{ 'now' | date: '%z' }}"
+    data-dismiss-key="mc-announce-{{ section.id }}"
+    data-days="{{ 'sections.announcement.days_short' | t }}"
+    {% if section.settings.dismissible %}data-dismissible{% endif %}
+  >
+    <div class="mc-announce__inner{% if section.settings.full_width == false %} container{% endif %}">
+      {%- if is_marquee -%}
+        <div class="mc-announce__marquee">
+          <div class="mc-announce__track" data-announce-track>
+            {{ messages }}
+          </div>
+          {%- comment -%} a copy for the seamless loop (hidden from assistive tech) {%- endcomment -%}
+          <div class="mc-announce__track" aria-hidden="true" data-announce-clone>
+            {{ messages }}
+          </div>
+        </div>
+      {%- else -%}
+        {%- if visible_blocks.size > 1 -%}
+          <button type="button" class="mc-announce__nav mc-announce__nav--prev" data-announce-prev aria-label="{{ 'general.slider.previous_slide' | t }}">
+            <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg>
+          </button>
+        {%- endif -%}
+        <div class="mc-announce__slides" data-announce-slides>
+          {{ messages }}
+        </div>
+        {%- if visible_blocks.size > 1 -%}
+          <button type="button" class="mc-announce__nav mc-announce__nav--next" data-announce-next aria-label="{{ 'general.slider.next_slide' | t }}">
+            <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg>
+          </button>
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- if section.settings.dismissible -%}
+        <button type="button" class="mc-announce__close" data-announce-close aria-label="{{ 'accessibility.close' | t }}">
+          <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13"/></svg>
+        </button>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "tag": "section",
+  "class": "section-mc-announce",
+  "enabled_on": { "groups": ["header"] },
+  "settings": [
+    {
+      "type": "select",
+      "id": "mode",
+      "label": "Style",
+      "options": [
+        { "value": "rotate", "label": "One message at a time" },
+        { "value": "marquee", "label": "Scrolling ticker" }
+      ],
+      "default": "rotate"
+    },
+    { "type": "range", "id": "interval", "label": "Change message every", "min": 3, "max": 12, "step": 1, "unit": "s", "default": 5, "visible_if": "{{ section.settings.mode == 'rotate' }}" },
+    { "type": "range", "id": "marquee_speed", "label": "Ticker loop duration", "min": 10, "max": 80, "step": 5, "unit": "s", "default": 35, "visible_if": "{{ section.settings.mode == 'marquee' }}", "info": "Higher = slower." },
+    { "type": "checkbox", "id": "dismissible", "label": "Show a close button", "default": false, "info": "Hidden again for the rest of the visit once closed." },
+    { "type": "checkbox", "id": "full_width", "label": "Full width", "default": true },
+    { "type": "checkbox", "id": "mobile_hide", "label": "Hide on mobile", "default": false },
+    { "type": "color", "id": "background", "label": "Background", "default": "#231e17" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#ffffff" },
+    { "type": "color", "id": "accent_color", "label": "Timer and link", "default": "#f2c6bf" }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "limit": 6,
+      "settings": [
+        { "type": "inline_richtext", "id": "text", "label": "Text", "default": "Free shipping on orders over $75", "info": "With a countdown, write [timer] where it should appear, e.g. \"Order within [timer] for same-day dispatch\"." },
+        { "type": "text", "id": "link_label", "label": "Link label" },
+        { "type": "url", "id": "link", "label": "Link" },
+        {
+          "type": "select",
+          "id": "countdown",
+          "label": "Countdown",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "date", "label": "To a date" },
+            { "value": "daily", "label": "Every day to a cut-off hour" }
+          ],
+          "default": "none"
+        },
+        { "type": "text", "id": "countdown_end", "label": "End date and time", "placeholder": "2026-12-31 23:59", "info": "YYYY-MM-DD HH:MM in the store's time zone.", "visible_if": "{{ block.settings.countdown == 'date' }}" },
+        {
+          "type": "select",
+          "id": "countdown_expired",
+          "label": "When the date has passed",
+          "options": [
+            { "value": "hide", "label": "Hide this message" },
+            { "value": "keep", "label": "Keep the message, hide the timer" }
+          ],
+          "default": "hide",
+          "visible_if": "{{ block.settings.countdown == 'date' }}"
+        },
+        { "type": "range", "id": "countdown_hour", "label": "Cut-off hour (store time)", "min": 1, "max": 23, "step": 1, "unit": "h", "default": 14, "visible_if": "{{ block.settings.countdown == 'daily' }}" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement bar",
+      "blocks": [
+        { "type": "message", "settings": { "text": "Free shipping on orders over $75" } },
+        { "type": "message", "settings": { "text": "Order within [timer] for same-day dispatch", "countdown": "daily", "countdown_hour": 14 } }
+      ]
+    }
+  ]
+}
+{% endschema %}
