@@ -1,6 +1,6 @@
 ---
 name: packaging-scope
-description: What ships in the ThemeForest package vs demo-only — Nhóm 1 + #7/#8 in the package; Notify me, #5 video reels, #6 hotspots are demo-only, sold as customization
+description: What ships in the ThemeForest package vs demo-only — Nhóm 1 + #7/#8 in the package; Notify me, #5 video reels, #6 hotspots are demo-only (all built), sold as customization
 metadata:
   type: project
 ---
@@ -41,6 +41,12 @@ User decision 2026-11-26 — applies to phase 10 (packaging, `npm run release` /
   `common/js/modules/mc-shop-the-look.js` (+ its import/init lines in common/js/common.js, marked "demo-only"),
   `common/scss/section/_mc-shop-the-look.scss` (+ its `@use` in styles.scss, marked "demo-only"), the `look`
   section in templates/index.json (+ `order`), image `look-sunny` (scripts/demo/merci-flatlay.js).
+
+- #5 built 2026-11-26 — files to drop when packaging: `sections/mc-video-reels.liquid`,
+  `common/js/modules/mc-video-reels.js` (+ import/init lines in common.js, marked "demo-only"),
+  `common/scss/section/_mc-video-reels.scss` (+ `@use`, marked "demo-only"), the `reels` section in
+  templates/index.json (+ `order`), `scripts/demo/merci-reels.js`, `tests/reels.spec.js`. Clips = Pexels videos (Files merci-reel-*.mp4),
+  demo store only — never put them in the package or ThemeForest screenshots without checking the Pexels licence.
 
 **Why:** Group 1 raises the item's value; Notify me is kept back so buyers who want it order customization work.
 

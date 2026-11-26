@@ -48,3 +48,6 @@ qa/playwright-report/
 test-results/
 design/**/*.psd
 test-results/
+
+# Demo video clips (re-downloaded by scripts/demo/merci-reels.js)
+demos/merci/videos/

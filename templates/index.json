@@ -478,6 +478,109 @@
         "padding_top": 60,
         "padding_bottom": 0
       }
+    },
+    "reels": {
+      "type": "mc-video-reels",
+      "blocks": {
+        "reel_tote": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/merci-reel-tote.mp4",
+            "video_url": "",
+            "caption": "Everyday carry",
+            "products": [
+              "canvas-shopper-tote",
+              "relaxed-cotton-tee",
+              "knit-runner-sneakers"
+            ]
+          }
+        },
+        "reel_bucket": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/merci-reel-bucket.mp4",
+            "video_url": "",
+            "caption": "Bucket hat days",
+            "products": [
+              "cotton-twill-bucket-hat",
+              "ribbed-crop-tank",
+              "oversized-denim-jacket"
+            ]
+          }
+        },
+        "reel_sea": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/merci-reel-sea.mp4",
+            "video_url": "",
+            "caption": "Sea breeze",
+            "products": [
+              "cotton-poplin-shirt-dress",
+              "braided-slide-sandals",
+              "striped-straw-tote"
+            ]
+          }
+        },
+        "reel_coat": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/merci-reel-coat.mp4",
+            "video_url": "",
+            "caption": "Layer up",
+            "products": [
+              "cable-knit-cardigan",
+              "pleated-midi-skirt",
+              "leather-hobo-shoulder-bag"
+            ]
+          }
+        },
+        "reel_pleats": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/merci-reel-pleats.mp4",
+            "video_url": "",
+            "caption": "Twirl ready",
+            "products": [
+              "pleated-midi-skirt",
+              "low-block-slide"
+            ]
+          }
+        },
+        "reel_straw": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/merci-reel-straw.mp4",
+            "video_url": "",
+            "caption": "Sun hours",
+            "products": [
+              "wide-brim-straw-boater",
+              "pom-pom-straw-circle-bag",
+              "striped-straw-tote"
+            ]
+          }
+        }
+      },
+      "block_order": [
+        "reel_tote",
+        "reel_bucket",
+        "reel_sea",
+        "reel_coat",
+        "reel_pleats",
+        "reel_straw"
+      ],
+      "settings": {
+        "eyebrow": "Watch & shop",
+        "heading": "Seen <em>on you</em>",
+        "text": "",
+        "columns_desktop": 5,
+        "columns_mobile": "2",
+        "autoplay": true,
+        "shop_label": "Shop",
+        "viewer_heading": "Shop this video",
+        "sound_label": "Sound",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
@@ -488,6 +591,7 @@
     "look",
     "tiles",
     "new_arrival",
+    "reels",
     "parallax",
     "banners",
     "blog",

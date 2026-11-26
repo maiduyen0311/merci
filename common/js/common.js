@@ -25,6 +25,7 @@ import MobileBottomBar from './modules/mobile-bottom-bar.js';
 import SizeFinder from './modules/size-finder.js';
 // DEMO-ONLY (not packaged): shop the look hotspots
 import McShopTheLook from './modules/mc-shop-the-look.js';
+import McVideoReels from './modules/mc-video-reels.js'; // demo-only
 import CollectionView from './modules/collection-view.js';
 import CartPage from './modules/cart-page.js';
 import HeaderAccount from './modules/header-account.js';
@@ -67,6 +68,7 @@ const initThemeScripts = () => {
   MobileBottomBar.init();
   SizeFinder.init();
   McShopTheLook.init(); // demo-only
+  McVideoReels.init(); // demo-only
   CollectionView.init();
   CartPage.init();
   HeaderAccount.init();
