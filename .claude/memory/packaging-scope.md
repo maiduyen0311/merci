@@ -37,6 +37,11 @@ User decision 2026-11-26 — applies to phase 10 (packaging, `npm run release` /
   stripped from the package and the docs, advertised as customization. Build them as their own section files
   (+ own JS module / SCSS partial) so packaging just drops those files and their imports.
 
+- #6 built 2026-11-26 — files to drop when packaging: `sections/mc-shop-the-look.liquid`,
+  `common/js/modules/mc-shop-the-look.js` (+ its import/init lines in common/js/common.js, marked "demo-only"),
+  `common/scss/section/_mc-shop-the-look.scss` (+ its `@use` in styles.scss, marked "demo-only"), the `look`
+  section in templates/index.json (+ `order`), image `look-sunny` (scripts/demo/merci-flatlay.js).
+
 **Why:** Group 1 raises the item's value; Notify me is kept back so buyers who want it order customization work.
 
 **How to apply:** In the listing/intro, label Notify me clearly as "available as a customization service / not

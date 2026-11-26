@@ -82,6 +82,7 @@ for (const k of BRANDS) {
   images[k] = { file: `images/${k}.png` };
   files.push({ key: k, filename: `${PREFIX}-${k}.png` });
 }
+addFile('look-sunny'); // shop the look flat-lay (scripts/demo/merci-flatlay.js) — demo-only section
 for (const k of ['tile-dress', 'tile-beach', 'tile-shirt']) {
   images[k] = { file: `images/${k}.png` };
   files.push({ key: k, filename: `${PREFIX}-${k}.png` });

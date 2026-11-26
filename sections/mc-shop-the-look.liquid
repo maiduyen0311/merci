@@ -1,0 +1,178 @@
+{%- comment -%}
+  Merci — Shop the look with hotspots (user 2026-11-26, "Nhóm 2 #6").
+  DEMO-ONLY: shown on merci-demo, NOT shipped in the ThemeForest package (sold as customization) —
+  see .claude/memory/packaging-scope.md. Own files only: this section,
+  common/js/modules/mc-shop-the-look.js, common/scss/section/_mc-shop-the-look.scss.
+
+  Image with numbered dots (blocks: product + x/y %) and the list of those products beside it:
+  hovering / focusing a dot highlights its product, clicking a dot opens a small card on the image;
+  each product has a quick add (variant select when needed) and "Add the whole look".
+{%- endcomment -%}
+{%- style -%}
+  #McLook-{{ section.id }} {
+    --mc-pt: {{ section.settings.padding_top }}px;
+    --mc-pb: {{ section.settings.padding_bottom }}px;
+    --look-bg: {{ section.settings.panel_background }};
+    --look-media-bg: {{ section.settings.media_background }};
+  }
+{%- endstyle -%}
+
+<section
+  id="McLook-{{ section.id }}"
+  class="mc-section mc-look{% if section.settings.image_position == 'right' %} mc-look--image-right{% endif %}"
+  data-shop-the-look
+  data-money-format="{{ shop.money_format | strip_html | escape }}"
+>
+  <div class="container">
+    <div class="mc-look__grid">
+      <div class="mc-look__media">
+        <div class="mc-look__frame">
+        {%- if section.settings.image != blank -%}
+          {%- liquid
+            # filters cannot go inside image_tag arguments (they would apply to the <img> tag itself)
+            assign look_alt = section.settings.image.alt | default: section.settings.heading | strip_html | escape
+          -%}
+          {{
+            section.settings.image
+            | image_url: width: 1600
+            | image_tag:
+              widths: '600, 900, 1200, 1600',
+              sizes: '(min-width: 992px) 58vw, 100vw',
+              loading: 'lazy',
+              class: 'mc-look__img',
+              alt: look_alt
+          }}
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'mc-look__img placeholder-svg' }}
+        {%- endif -%}
+
+        {%- for block in section.blocks -%}
+          {%- assign p = block.settings.product -%}
+          <button
+            type="button"
+            class="mc-look__dot"
+            style="--x: {{ block.settings.x }}%; --y: {{ block.settings.y }}%;"
+            data-look-dot="{{ forloop.index }}"
+            aria-expanded="false"
+            aria-controls="McLookPop-{{ section.id }}-{{ forloop.index }}"
+            aria-label="{{ forloop.index }}. {{ p.title | default: block.settings.label | escape }}"
+            {{ block.shopify_attributes }}
+          >
+            <span aria-hidden="true">{{ forloop.index }}</span>
+          </button>
+          {%- if p != blank -%}
+            <div
+              class="mc-look__pop{% if block.settings.x > 60 %} mc-look__pop--left{% endif %}"
+              id="McLookPop-{{ section.id }}-{{ forloop.index }}"
+              style="--x: {{ block.settings.x }}%; --y: {{ block.settings.y }}%;"
+              data-look-pop="{{ forloop.index }}"
+              hidden
+            >
+              {%- if p.featured_image -%}
+                {{ p.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: '', class: 'mc-look__pop-img', width: 72, height: 90 }}
+              {%- endif -%}
+              <span class="mc-look__pop-info">
+                <a href="{{ p.url }}" class="mc-look__pop-title">{{ p.title }}</a>
+                <span class="mc-look__pop-price">{{ p.price | money }}</span>
+              </span>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+        </div>
+      </div>
+
+      <div class="mc-look__panel">
+        {%- if section.settings.eyebrow != blank -%}<span class="mc-look__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="mc-look__title">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<div class="mc-look__text">{{ section.settings.text }}</div>{%- endif -%}
+
+        <ol class="mc-look__list" role="list">
+          {%- assign look_total = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- assign p = block.settings.product -%}
+            {%- if p == blank -%}{%- continue -%}{%- endif -%}
+            {%- assign v = p.selected_or_first_available_variant -%}
+            {%- if p.available -%}{%- assign look_total = look_total | plus: v.price -%}{%- endif -%}
+            <li class="mc-look__item" data-look-item="{{ forloop.index }}" data-price="{{ v.price }}">
+              <span class="mc-look__num" aria-hidden="true">{{ forloop.index }}</span>
+              <a href="{{ p.url }}" class="mc-look__thumb" tabindex="-1" aria-hidden="true">
+                {%- if p.featured_image -%}{{ p.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '', width: 64, height: 80 }}{%- endif -%}
+              </a>
+              <span class="mc-look__info">
+                <a href="{{ p.url }}" class="mc-look__name">{{ p.title }}</a>
+                <span class="mc-look__price" data-look-price>{{ v.price | money }}</span>
+                {%- if p.has_only_default_variant == false and p.available -%}
+                  <select class="mc-look__select" data-look-variant aria-label="{{ p.title | escape }}">
+                    {%- for variant in p.variants -%}
+                      <option value="{{ variant.id }}" data-price="{{ variant.price }}"{% unless variant.available %} disabled{% endunless %}{% if variant.id == v.id %} selected{% endif %}>
+                        {{- variant.title -}}
+                        {%- unless variant.available %} — {{ 'products.product.sold_out' | t }}{% endunless -%}
+                      </option>
+                    {%- endfor -%}
+                  </select>
+                {%- endif -%}
+              </span>
+              {%- if p.available -%}
+                <button type="button" class="mc-look__add" data-look-add="{{ v.id }}" aria-label="{{ 'products.product.add_to_cart' | t }}: {{ p.title | escape }}">
+                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>
+                </button>
+              {%- else -%}
+                <span class="mc-look__soldout">{{ 'products.product.sold_out' | t }}</span>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ol>
+
+        {%- if section.settings.add_all_label != blank and look_total > 0 -%}
+          <button type="button" class="mc-look__all" data-look-add-all>
+            <span>{{ section.settings.add_all_label }}</span>
+            <span class="mc-look__all-total" data-look-total>{{ look_total | money }}</span>
+          </button>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop the look",
+  "tag": "div",
+  "class": "section-mc-look",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "A flat-lay or lifestyle photo, about 1600 × 1200 px." },
+    { "type": "select", "id": "image_position", "label": "Image position", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "color", "id": "panel_background", "label": "Panel background", "default": "#faf4f2" },
+    { "type": "color", "id": "media_background", "label": "Image area background", "default": "#efe3d8", "info": "Fills the space around the image when the text column is taller." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop the look" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Sunny <em>day</em> edit" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Tap the dots to see each piece.</p>" },
+    { "type": "text", "id": "add_all_label", "label": "Add all button", "default": "Add the whole look" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 }
+  ],
+  "blocks": [
+    {
+      "type": "hotspot",
+      "name": "Hotspot",
+      "limit": 8,
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "text", "id": "label", "label": "Label (no product chosen)" },
+        { "type": "range", "id": "x", "label": "Left (%)", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 },
+        { "type": "range", "id": "y", "label": "Top (%)", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop the look",
+      "blocks": [
+        { "type": "hotspot", "settings": { "x": 35, "y": 45 } },
+        { "type": "hotspot", "settings": { "x": 70, "y": 30 } },
+        { "type": "hotspot", "settings": { "x": 72, "y": 72 } }
+      ]
+    }
+  ]
+}
+{% endschema %}

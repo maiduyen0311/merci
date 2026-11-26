@@ -1,0 +1,259 @@
+// =============================================================================
+// Shop the look with hotspots (sections/mc-shop-the-look.liquid, user 2026-11-26 "Nhóm 2 #6")
+// DEMO-ONLY — not shipped in the ThemeForest package (see .claude/memory/packaging-scope.md)
+// =============================================================================
+@use '../tokens' as *;
+
+.mc-look {
+  padding: var(--mc-pt, 60px) 0 var(--mc-pb, 0);
+}
+
+.mc-look__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--look-bg, #faf4f2);
+}
+
+.mc-look--image-right .mc-look__media { order: 2; }
+
+.mc-look__media {
+  display: flex;
+  align-items: center;
+  background: var(--look-media-bg, #efe3d8);
+  line-height: 0;
+}
+
+// the frame is exactly the image → dot % positions stay on their products
+.mc-look__frame { position: relative; width: 100%; }
+
+.mc-look__img { display: block; width: 100%; height: auto; }
+
+// --- dots ---------------------------------------------------------------------
+.mc-look__dot {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #231e17;
+  font: inherit;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 14px rgba(35, 30, 23, 0.25);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+  // soft pulse ring
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -0.6rem;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    animation: mc-look-pulse 2.2s ease-out infinite;
+  }
+
+  &:hover,
+  &.is-active,
+  &[aria-expanded='true'] {
+    background: #231e17;
+    color: #fff;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+
+  &:focus-visible { outline: 2px solid #231e17; outline-offset: 4px; }
+}
+
+@keyframes mc-look-pulse {
+  0% { opacity: 0.9; transform: scale(0.85); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-look__dot::before { animation: none; opacity: 0.6; }
+}
+
+// --- popover card on the image --------------------------------------------------
+.mc-look__pop {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: max-content;
+  max-width: 26rem;
+  padding: 0.8rem 1.4rem 0.8rem 0.8rem;
+  border-radius: 6px;
+  background: #fff;
+  line-height: 1.35;
+  box-shadow: 0 10px 30px rgba(35, 30, 23, 0.18);
+  transform: translate(2.6rem, -50%);
+
+  &--left { transform: translate(calc(-100% - 2.6rem), -50%); }
+  &[hidden] { display: none; }
+}
+
+.mc-look__pop-img { width: 5.6rem; height: 7rem; object-fit: contain; background: #faf6f4; border-radius: 4px; }
+.mc-look__pop-info { display: grid; gap: 0.2rem; }
+.mc-look__pop-title { font-size: 1.4rem; color: inherit; text-decoration: none; &:hover { text-decoration: underline; } }
+.mc-look__pop-price { font-size: 1.3rem; font-weight: 600; color: #9c524c; }
+
+// --- panel -------------------------------------------------------------------------
+.mc-look__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4.8rem 4.4rem;
+}
+
+.mc-look__eyebrow {
+  color: #9c524c;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.mc-look__title {
+  margin: 1rem 0 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 2.6vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.1;
+  text-transform: uppercase;
+
+  em { font-style: italic; color: #9c524c; }
+}
+
+.mc-look__text { margin-top: 1.2rem; font-size: 1.5rem; color: rgba(0, 0, 0, 0.7); p { margin: 0; } }
+
+.mc-look__list {
+  display: grid;
+  gap: 0.8rem;
+  margin: 2.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mc-look__item {
+  display: grid;
+  grid-template-columns: 2.4rem 5.6rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &.is-active { border-color: #231e17; box-shadow: 0 6px 18px rgba(35, 30, 23, 0.08); }
+}
+
+.mc-look__num {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: #231e17;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.mc-look__thumb img { display: block; width: 5.6rem; height: 7rem; object-fit: contain; background: #faf6f4; border-radius: 4px; }
+
+.mc-look__info { display: grid; gap: 0.3rem; min-width: 0; }
+
+.mc-look__name {
+  overflow: hidden;
+  font-size: 1.4rem;
+  color: inherit;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &:hover { color: #9c524c; }
+}
+
+.mc-look__price { font-size: 1.3rem; font-weight: 600; color: #9c524c; }
+
+.mc-look__select {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  background: #fff;
+  font: inherit;
+  font-size: 1.2rem;
+}
+
+.mc-look__add {
+  display: grid;
+  place-items: center;
+  width: 3.6rem;
+  height: 3.6rem;
+  border: 0;
+  border-radius: 50%;
+  background: #231e17;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover { background: var(--color-accent, #bf7069); }
+  &:focus-visible { outline: 2px solid #231e17; outline-offset: 2px; }
+  &.is-loading { opacity: 0.5; }
+}
+
+.mc-look__soldout { font-size: 1.2rem; color: rgba(0, 0, 0, 0.55); }
+
+.mc-look__all {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1.4rem 2.4rem;
+  border: 0;
+  border-radius: 999px;
+  background: #231e17;
+  color: #fff;
+  font: inherit;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover { background: #9c524c; }
+  &.is-loading { opacity: 0.6; }
+}
+
+.mc-look__all-total { letter-spacing: 0.04em; }
+
+@media (max-width: 991.98px) {
+  .mc-look__grid { grid-template-columns: 1fr; }
+  .mc-look--image-right .mc-look__media { order: 0; }
+  .mc-look__panel { padding: 3.2rem 2rem; }
+}
+
+@media (max-width: 575.98px) {
+  .mc-look__dot { width: 2.8rem; height: 2.8rem; font-size: 1.2rem; }
+  // the list below already shows every product → no floating cards on small screens
+  .mc-look__pop { display: none !important; }
+}

@@ -424,6 +424,60 @@
         "padding_top": 60,
         "padding_bottom": 0
       }
+    },
+    "look": {
+      "type": "mc-shop-the-look",
+      "blocks": {
+        "dress": {
+          "type": "hotspot",
+          "settings": {
+            "product": "crochet-mini-dress",
+            "x": 36,
+            "y": 45
+          }
+        },
+        "hat": {
+          "type": "hotspot",
+          "settings": {
+            "product": "wide-brim-straw-boater",
+            "x": 74,
+            "y": 28
+          }
+        },
+        "tote": {
+          "type": "hotspot",
+          "settings": {
+            "product": "striped-straw-tote",
+            "x": 75,
+            "y": 74
+          }
+        },
+        "slides": {
+          "type": "hotspot",
+          "settings": {
+            "product": "braided-slide-sandals",
+            "x": 12,
+            "y": 80
+          }
+        }
+      },
+      "block_order": [
+        "dress",
+        "hat",
+        "tote",
+        "slides"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/merci-demo-look-sunny.jpg",
+        "image_position": "left",
+        "panel_background": "#faf4f2",
+        "eyebrow": "Shop the look",
+        "heading": "Sunny <em>day</em> edit",
+        "text": "<p>Four easy pieces for a long summer day. Tap the dots to see each one.</p>",
+        "add_all_label": "Add the whole look",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
@@ -431,6 +485,7 @@
     "services",
     "video",
     "trending",
+    "look",
     "tiles",
     "new_arrival",
     "parallax",

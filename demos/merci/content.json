@@ -125,6 +125,9 @@
     "brand-cielo-studio": {
       "file": "images/brand-cielo-studio.png"
     },
+    "look-sunny": {
+      "file": "images/look-sunny.jpg"
+    },
     "tile-dress": {
       "file": "images/tile-dress.png"
     },
@@ -1050,6 +1053,10 @@
     {
       "key": "brand-cielo-studio",
       "filename": "merci-demo-brand-cielo-studio.png"
+    },
+    {
+      "key": "look-sunny",
+      "filename": "merci-demo-look-sunny.jpg"
     },
     {
       "key": "tile-dress",
